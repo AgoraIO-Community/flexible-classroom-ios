@@ -36,7 +36,7 @@ target 'AgoraEducation' do
   pod 'AgoraWidgets', :path => '../../open-apaas-extapp-ios/AgoraWidgets.podspec'
   
     
-  pod 'AgoraUIBaseViews', :path => '../Products/AgoraUIBaseViews_Binary.podspec'
-  pod 'AgoraEduCore', :path => '../Products/AgoraEduCore_Binary.podspec'
-  pod 'AgoraWidget', :path => '../Products/AgoraWidget_Binary.podspec'
+  pod 'AgoraUIBaseViews', :path => '../../open-cloudclass-ios/Products/AgoraUIBaseViews_Binary.podspec'
+  pod 'AgoraEduCore', :path => '../../open-cloudclass-ios/Products/AgoraEduCore_Binary.podspec'
+  pod 'AgoraWidget', :path => '../../open-cloudclass-ios/Products/AgoraWidget_Binary.podspec'
 end

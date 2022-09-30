@@ -50,18 +50,18 @@ end
    """
 
 BinaryPodContent = """
-    pod 'AgoraClassroomSDK_iOS', :path => '../../open-cloudclass-ios/AgoraClassroomSDK_iOS.podspec'
-    pod 'AgoraEduUI', :path => '../../open-cloudclass-ios/AgoraEduUI.podspec'
+  pod 'AgoraClassroomSDK_iOS', :path => '../../open-cloudclass-ios/AgoraClassroomSDK_iOS.podspec'
+  pod 'AgoraEduUI', :path => '../../open-cloudclass-ios/AgoraEduUI.podspec'
+  
+  pod 'AgoraProctorSDK', :path => '../../open-proctor-ios/AgoraProctorSDK.podspec'
+  pod 'AgoraProctorUI', :path => '../../open-proctor-ios/AgoraProctorUI.podspec'
+  
+  # widgets
+  pod 'AgoraWidgets', :path => '../../open-apaas-extapp-ios/AgoraWidgets.podspec'
     
-    pod 'AgoraProctorSDK', :path => '../../open-proctor-ios/AgoraProctorSDK.podspec'
-    pod 'AgoraProctorUI', :path => '../../open-proctor-ios/AgoraProctorUI.podspec'
-    
-    # widgets
-    pod 'AgoraWidgets', :path => '../../open-apaas-extapp-ios/AgoraWidgets.podspec'
-    
-  pod 'AgoraUIBaseViews', :path => '../Products/AgoraUIBaseViews_Binary.podspec'
-  pod 'AgoraEduCore', :path => '../Products/AgoraEduCore_Binary.podspec'
-  pod 'AgoraWidget', :path => '../Products/AgoraWidget_Binary.podspec'
+  pod 'AgoraUIBaseViews', :path => '../../open-cloudclass-ios/Products/AgoraUIBaseViews_Binary.podspec'
+  pod 'AgoraEduCore', :path => '../../open-cloudclass-ios/Products/AgoraEduCore_Binary.podspec'
+  pod 'AgoraWidget', :path => '../../open-cloudclass-ios/Products/AgoraWidget_Binary.podspec'
 end
 """
 
