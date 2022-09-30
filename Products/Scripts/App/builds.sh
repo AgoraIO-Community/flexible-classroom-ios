@@ -2,11 +2,11 @@
 Certificate=$1
 
 echo $Certificate
-#cd ../SDK
-#
-#./buildFrameworks.sh
-#
-#cd ../App
+cd ../SDK
+
+./buildFrameworks.sh
+
+cd ../App
 
 rm -fr ../../App
 

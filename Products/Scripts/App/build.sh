@@ -14,8 +14,8 @@ if [ ! -d ${Product_Path} ];then
 fi
 
 xcodebuild -quiet clean -workspace "AgoraEducation.xcworkspace" -scheme "AgoraEducation" -configuration ${Mode}
-xcodebuild -quiet archive -workspace "AgoraEducation.xcworkspace" -scheme "AgoraEducation" -configuration ${Mode} -archivePath ${Product_Path}/AgoraEducation_${Mode}.xcarchive
-xcodebuild -quiet -exportArchive -exportOptionsPlist ${Plist_Path} -archivePath ${Product_Path}/AgoraEducation_${Mode}.xcarchive -exportPath ${Product_Path} || exit 1
+xcodebuild -quiet archive -workspace "AgoraEducation.xcworkspace" -scheme "AgoraEducation" -configuration ${Mode} -archivePath ${Product_Path}/AgoraEducation_${Mode}.xcarchive -destination 'generic/platform=iOS'
+xcodebuild -quiet -exportArchive -exportOptionsPlist ${Plist_Path} -archivePath ${Product_Path}/AgoraEducation_${Mode}.xcarchive -exportPath ${Product_Path} -destination 'generic/platform=iOS' || exit 1
 
 mv ${Product_Path}/AgoraCloudClass.ipa ${Product_Path}/AgoraCloudClass_${Mode}.ipa
 
