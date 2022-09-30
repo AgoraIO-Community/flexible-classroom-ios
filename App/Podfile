@@ -1,0 +1,42 @@
+platform :ios, '10.0'
+inhibit_all_warnings!
+ 
+workspace 'AgoraEducation.xcworkspace'
+install! 'cocoapods', :deterministic_uuids => false, :warn_for_unused_master_specs_repo => false
+ 
+target 'AgoraEducation' do
+  use_frameworks!
+ 
+  # third libs
+  pod 'OpenSSL-Universal', '1.0.2.17'
+  pod 'Protobuf', '3.17.0'
+  pod "CocoaLumberjack", '3.6.1'
+  pod 'AliyunOSSiOS', '2.10.8'
+  pod 'Armin', '1.1.0'
+  pod 'SSZipArchive', '2.4.2'
+  pod 'SwifterSwift', '5.2.0'
+  pod 'Masonry', '1.1.0'
+  pod 'SDWebImage', '5.12.0'
+ 
+  # agora libs
+  pod 'AgoraRtcEngine_iOS/RtcBasic', '3.6.2'
+  pod 'AgoraMediaPlayer_iOS', '1.3.0'
+  pod 'AgoraRtm_iOS', '1.4.8'
+  pod 'Agora_Chat_iOS', '1.0.6'
+  pod 'Whiteboard', '2.16.39'
+ 
+  # open source libs
+
+  pod 'AgoraClassroomSDK_iOS', :path => '../../open-cloudclass-ios/AgoraClassroomSDK_iOS.podspec'
+  pod 'AgoraEduUI', :path => '../../open-cloudclass-ios/AgoraEduUI.podspec'
+      
+  pod 'AgoraProctorSDK', :path => '../../open-proctor-ios/AgoraProctorSDK.podspec'
+  pod 'AgoraProctorUI', :path => '../../open-proctor-ios/AgoraProctorUI.podspec'
+  
+  pod 'AgoraWidgets', :path => '../../open-apaas-extapp-ios/AgoraWidgets.podspec'
+  
+    
+  pod 'AgoraUIBaseViews', :path => '../Products/AgoraUIBaseViews_Binary.podspec'
+  pod 'AgoraEduCore', :path => '../Products/AgoraEduCore_Binary.podspec'
+  pod 'AgoraWidget', :path => '../Products/AgoraWidget_Binary.podspec'
+end

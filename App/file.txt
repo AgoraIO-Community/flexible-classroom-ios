@@ -1,0 +1,45 @@
+2022-09-30 15:23:30.605 xcodebuild[78147:33662698] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionSentinelHostApplications for extension Xcode.DebuggerFoundation.AppExtensionHosts.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
+2022-09-30 15:23:30.605 xcodebuild[78147:33662698] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionPointIdentifierToBundleIdentifier for extension Xcode.DebuggerFoundation.AppExtensionToBundleIdentifierMap.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:macOS, arch:arm64, variant:Designed for [iPad,iPhone], id:00008103-000E18C01132001E }
+{ platform:iOS, id:dvtdevice-DVTiPhonePlaceholder-iphoneos:placeholder, name:Any iOS Device }
+{ platform:iOS Simulator, id:dvtdevice-DVTiOSDeviceSimulatorPlaceholder-iphonesimulator:placeholder, name:Any iOS Simulator Device }
+{ platform:iOS, id:00008020-001444E40CF1002E, name:00的iPad }
+{ platform:iOS Simulator, id:BF3E1C57-0DE6-43DE-AB26-E9EFF4562FC7, OS:15.5, name:iPad (9th generation) }
+{ platform:iOS Simulator, id:8A2524AA-895F-438A-A6CA-0B49B5D2487A, OS:15.5, name:iPad Air (4th generation) }
+{ platform:iOS Simulator, id:91F8EBF1-4578-4ABE-B301-DAD71A929E9F, OS:15.5, name:iPad Air (5th generation) }
+{ platform:iOS Simulator, id:C962A5F7-7C30-48CB-B6CE-C1CEAEE68E47, OS:15.5, name:iPad Pro (9.7-inch) }
+{ platform:iOS Simulator, id:16BDC10C-1C6D-4050-8992-7ACD38B0D983, OS:15.5, name:iPad Pro (11-inch) (3rd generation) }
+{ platform:iOS Simulator, id:0975F85B-5C39-44EA-B1AF-8BA9DC0F2B65, OS:15.5, name:iPad Pro (12.9-inch) (5th generation) }
+{ platform:iOS Simulator, id:281E7A92-D174-47AD-81C0-1C7AA2E39658, OS:15.5, name:iPad mini (6th generation) }
+{ platform:iOS Simulator, id:083DD864-82C5-4EE2-8AB9-67373F7F5F53, OS:15.5, name:iPhone 8 }
+{ platform:iOS Simulator, id:4677DAAC-0356-4BA8-B7A2-C7A9529B6586, OS:15.5, name:iPhone 8 Plus }
+{ platform:iOS Simulator, id:7B2EF090-AF28-4662-AF32-69E508341F8D, OS:15.5, name:iPhone 11 }
+{ platform:iOS Simulator, id:DAD3165E-E0D4-4275-86BE-598A9DAE41F5, OS:15.5, name:iPhone 11 Pro }
+{ platform:iOS Simulator, id:8FBC43F6-CB13-4AA7-892F-1B93AF304ECC, OS:15.5, name:iPhone 11 Pro Max }
+{ platform:iOS Simulator, id:B149C88A-C4EE-4439-8F78-B559E9ECEED8, OS:15.5, name:iPhone 12 }
+{ platform:iOS Simulator, id:9B00DD51-4CA8-4232-A58E-15507611E0F6, OS:15.5, name:iPhone 12 Pro }
+{ platform:iOS Simulator, id:059FF80A-17C5-4B7B-BAB3-4BDBFBEF3E8B, OS:15.5, name:iPhone 12 Pro Max }
+{ platform:iOS Simulator, id:310FC942-1B88-4AB6-8A06-292F8EE41A14, OS:15.5, name:iPhone 12 mini }
+{ platform:iOS Simulator, id:95116440-6751-4FC5-ADDD-19B4CB954995, OS:15.5, name:iPhone 13 }
+{ platform:iOS Simulator, id:E58A00CE-3FA0-413D-942F-7CDA51B3AEA4, OS:15.5, name:iPhone 13 Pro }
+{ platform:iOS Simulator, id:23E0D4A4-5190-4721-B26D-65F2C5103068, OS:15.5, name:iPhone 13 Pro Max }
+{ platform:iOS Simulator, id:2C5DE708-FDB3-4EE0-9B7A-727168B7C8CC, OS:15.5, name:iPhone 13 mini }
+{ platform:iOS Simulator, id:2BF366DA-6B7B-46FF-A213-783A082E33DC, OS:15.5, name:iPhone SE (2nd generation) }
+{ platform:iOS Simulator, id:18C1049F-A7BB-4E26-8884-316C202163EC, OS:15.5, name:iPhone SE (3rd generation) }
+{ platform:iOS Simulator, id:FA2ABCED-DE2F-45B7-BFFC-94503497573D, OS:15.5, name:iPod touch (7th generation) }
+note: Using new build system
+note: Planning
+note: Build preparation complete
+note: Building targets in dependency order
+/Users/lyy/Git/cloudclass_stable/open-flexible-classroom-ios/App/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.5.99. (in target 'AgoraRtm_iOS' from project 'Pods')
+/Users/lyy/Git/cloudclass_stable/open-flexible-classroom-ios/App/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.5.99. (in target 'YYModel' from project 'Pods')
+/Users/lyy/Git/cloudclass_stable/open-flexible-classroom-ios/App/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.5.99. (in target 'AgoraRtcEngine_iOS' from project 'Pods')
+/Users/lyy/Git/cloudclass_stable/open-flexible-classroom-ios/App/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.5.99. (in target 'NTLBridge' from project 'Pods')
+/Users/lyy/Git/cloudclass_stable/open-flexible-classroom-ios/App/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.5.99. (in target 'Masonry' from project 'Pods')
+/Users/lyy/Git/cloudclass_stable/open-flexible-classroom-ios/App/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.5.99. (in target 'AliyunOSSiOS' from project 'Pods')
+/Users/lyy/Git/cloudclass_stable/open-flexible-classroom-ios/App/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.5.99. (in target 'OpenSSL-Universal' from project 'Pods')
+error: Provisioning profile "AgoraLab2020" doesn't include the currently selected device "LYY’s Mac mini" (identifier 00008103-000E18C01132001E). (in target 'AgoraEducation' from project 'AgoraEducation')
+/Users/lyy/Git/cloudclass_stable/open-flexible-classroom-ios/App/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 8.0, but the range of supported deployment target versions is 9.0 to 15.5.99. (in target 'CocoaLumberjack' from project 'Pods')
+** ARCHIVE FAILED **
+
