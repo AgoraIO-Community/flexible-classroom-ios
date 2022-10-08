@@ -26,17 +26,16 @@ target 'AgoraEducation' do
   pod 'Whiteboard', '2.16.39'
  
   # open source libs
-
-  pod 'AgoraClassroomSDK_iOS', :path => '../../open-cloudclass-ios/AgoraClassroomSDK_iOS.podspec'
-  pod 'AgoraEduUI', :path => '../../open-cloudclass-ios/AgoraEduUI.podspec'
+  pod 'AgoraClassroomSDK_iOS', '2.8.0'
+  pod 'AgoraEduUI', '2.8.0'
       
-  pod 'AgoraProctorSDK', :path => '../../open-proctor-ios/AgoraProctorSDK.podspec'
-  pod 'AgoraProctorUI', :path => '../../open-proctor-ios/AgoraProctorUI.podspec'
+  pod 'AgoraProctorSDK', '2.8.0'
+  pod 'AgoraProctorUI', '2.8.0'
   
-  pod 'AgoraWidgets', :path => '../../open-apaas-extapp-ios/AgoraWidgets.podspec'
+  pod 'AgoraWidgets', '2.8.0'
   
-    
-  pod 'AgoraUIBaseViews', :path => '../../open-cloudclass-ios/Products/AgoraUIBaseViews_Binary.podspec'
-  pod 'AgoraEduCore', :path => '../../open-cloudclass-ios/Products/AgoraEduCore_Binary.podspec'
-  pod 'AgoraWidget', :path => '../../open-cloudclass-ios/Products/AgoraWidget_Binary.podspec'
+  # close source libs
+  pod 'AgoraUIBaseViews', '2.8.0'
+  pod 'AgoraEduCore', '2.8.0'
+  pod 'AgoraWidget', '2.8.0'
 end

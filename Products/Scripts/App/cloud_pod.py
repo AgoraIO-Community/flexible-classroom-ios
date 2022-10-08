@@ -210,12 +210,12 @@ def main():
     print  ('Pod Mode: ' + BaseParams["podMode"].name)
 
     # 若为source pod，开发者模式
-    if BaseParams["podMode"] == PODMODE.Source:
-        modifyFlag = input("Need Update pod repo? Yes: 0, NO: Any\n")
-
-        # 是否需要更新cocoapods repo
-        if modifyFlag == "0":
-            BaseParams["updateFlag"] = True
+#    if BaseParams["podMode"] == PODMODE.Source:
+#        modifyFlag = input("Need Update pod repo? Yes: 0, NO: Any\n")
+#
+#        # 是否需要更新cocoapods repo
+#        if modifyFlag == "0":
+#            BaseParams["updateFlag"] = True
     
     executePod()
 
