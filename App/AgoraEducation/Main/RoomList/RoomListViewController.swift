@@ -71,6 +71,11 @@ class RoomListViewController: UIViewController {
                          completion: nil)
             return
         }
+        if FcrEnvironment.shared.environment == .dev {
+            titleView.envLabel.text = "测试环境"
+        } else {
+            titleView.envLabel.text = ""
+        }
         // 检查协议，检查登录
         FcrPrivacyTermsViewController.checkPrivacyTerms {
             LoginStartViewController.showLoginIfNot {
@@ -295,21 +300,23 @@ private extension RoomListViewController {
                 newExtra["coursewareList"] = model.publicCoursewares()
                 v.extraInfo = newExtra
             }
-            if k == "shareLink" {
-                v.extraInfo = ["shareLink": FcrShareLink.shareLinkWith(roomId: roomId)]
-            }
             widgets[k] = v
+        }
+        if region != .CN {
+            launchConfig.widgets.removeValue(forKey: "easemobIM")
         }
         // share link
         let shareLink = AgoraWidgetConfig(with: AgoraShareLinkWidget.self,
                                           widgetId: "shareLink")
         widgets[shareLink.widgetId] = shareLink
+        shareLink.extraInfo = ["shareLink": FcrShareLink.shareLinkWith(roomId: roomId)]
+        // water mark
+//        let watermark = AgoraWidgetConfig(with: AgoraWatermarkWidget.self,
+//                                          widgetId: "watermark")
+//        widgets[watermark.widgetId] = watermark
+//        watermark.extraInfo = ["watermark": userName]
+        
         launchConfig.widgets = widgets
-        
-        if region != .CN {
-            launchConfig.widgets.removeValue(forKey: "easemobIM")
-        }
-        
         if let service = model.serviceType { // 职教入口
             AgoraLoading.loading()
             AgoraClassroomSDK.vocationalLaunch(launchConfig,
@@ -447,13 +454,8 @@ extension RoomListViewController: RoomListItemCellDelegate {
         let inputModel = RoomInputInfoModel()
         inputModel.roomId = item.roomId
         inputModel.roomName = item.roomName
+        inputModel.roleType = item.role ?? 1
         inputModel.userName = FcrUserInfoPresenter.shared.nickName
-        let cid = FcrUserInfoPresenter.shared.companyId
-        if item.creatorId == cid {
-            inputModel.roleType = 2
-        } else {
-            inputModel.roleType = 1
-        }        
         fillupInputModel(inputModel)
     }
     

@@ -411,6 +411,7 @@ struct RoomItemModel {
     let endTime: UInt
     let creatorId: String
     let roomProperties: [String: Any]?
+    let role: Int?
     
     static func modelWith(dict: [String: Any]) -> RoomItemModel? {
         guard let roomName = dict["roomName"] as? String,
@@ -423,6 +424,7 @@ struct RoomItemModel {
         else {
             return nil
         }
+        let role = dict["role"] as? Int
         let roomProperties = dict["roomProperties"] as? [String: Any]
         let model = RoomItemModel(roomName: roomName,
                                   roomId: roomId,
@@ -431,7 +433,8 @@ struct RoomItemModel {
                                   startTime: startTime,
                                   endTime: endTime,
                                   creatorId: creatorId,
-                                  roomProperties: roomProperties)
+                                  roomProperties: roomProperties,
+                                  role: role)
         return model
     }
     
