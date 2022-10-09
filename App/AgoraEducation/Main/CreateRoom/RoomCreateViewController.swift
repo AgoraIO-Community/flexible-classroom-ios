@@ -79,7 +79,7 @@ class RoomCreateViewController: UIViewController {
     
     private let roomTypes: [AgoraEduCoreRoomType] = [.small, .lecture, .oneToOne]
     
-    private var moreSettings: [RoomCreateMoreSetting] = []
+    private var moreSettings: [RoomCreateMoreSetting] = [.title]
     
     private var roomName: String?
     
@@ -222,6 +222,7 @@ private extension RoomCreateViewController {
                 roomProperties["servicetype"] = servicetype.rawValue
             }
         }
+        roomProperties["watermark"] = securityOn
         AgoraLoading.loading()
         FcrOutsideClassAPI.createClassRoom(roomName: name,
                                            roomType: selectedRoomType.rawValue,
@@ -276,15 +277,19 @@ private extension RoomCreateViewController {
            selectedServiceType == .fusion {
             if moreSettingSpread {
                 if playbackOn {
-                    moreSettings = [.title, .playback, .linkInput]
+                    moreSettings = [.title, .security, .playback, .linkInput]
                 } else {
-                    moreSettings = [.title, .playback]
+                    moreSettings = [.title, .security, .playback]
                 }
             } else {
                 moreSettings = [.title]
             }
         } else {
-            moreSettings = []
+            if moreSettingSpread {
+                moreSettings = [.title, .security]
+            } else {
+                moreSettings = [.title]
+            }
         }
         tableView.reloadData()
     }

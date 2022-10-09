@@ -23,7 +23,9 @@ class RoomInputInfoModel {
     var roomType: Int = 0
     var appId: String?
     var token: String?
+    var userUuid: String?
     var serviceType: AgoraEduServiceType?
+    var watermark = false
     
     func publicCoursewares() -> Array<String> {
         let publicJson1 = """

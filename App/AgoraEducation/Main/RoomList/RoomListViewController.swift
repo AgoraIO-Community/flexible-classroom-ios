@@ -194,10 +194,20 @@ private extension RoomListViewController {
             let endDate = Date(timeIntervalSince1970: Double(item.endTime) * 0.001)
             model.roomType = Int(item.roomType)
             model.roomName = item.roomName
-            if let roomProperties = item.roomProperties,
-               let service = roomProperties["serviceType"] as? Int,
-               let serviceType = AgoraEduServiceType(rawValue: service) {
-                model.serviceType = serviceType
+            let cid = FcrUserInfoPresenter.shared.companyId
+            if model.roomType == 6 {
+                model.userUuid = "\(cid)-sub"
+            } else {
+                model.userUuid = cid
+            }
+            if let roomProperties = item.roomProperties {
+                if let service = roomProperties["serviceType"] as? Int,
+                   let serviceType = AgoraEduServiceType(rawValue: service) {
+                    model.serviceType = serviceType
+                }
+                if let watermark = roomProperties["watermark"] as? Bool {
+                    model.watermark = watermark
+                }
             }
             if now.compare(endDate) == .orderedDescending { // 课程过期
                 self?.fetchData()
@@ -215,16 +225,14 @@ private extension RoomListViewController {
     func fillupTokenInfo(model: RoomInputInfoModel,
                          complete: @escaping (RoomInputInfoModel) -> Void) {
         AgoraLoading.loading()
-        guard let roomUuid = model.roomId else {
+        guard let roomUuid = model.roomId,
+              let userUuid = model.userUuid
+        else {
             return
-        }
-        var cid = FcrUserInfoPresenter.shared.companyId
-        if model.roomType == 6 {
-            cid = "\(cid)-sub"
         }
         FcrOutsideClassAPI.buildToken(roomUuid: roomUuid,
                                       userRole: model.roleType,
-                                      userId: cid) { dict in
+                                      userId: userUuid) { dict in
             AgoraLoading.hide()
             guard let data = dict["data"] as? [String : Any] else {
                 fatalError("TokenBuilder buildByServer can not find data, dict: \(dict)")
@@ -249,7 +257,8 @@ private extension RoomListViewController {
               let roomName = model.roomName,
               let roomId = model.roomId,
               let appId = model.appId,
-              let token = model.token
+              let token = model.token,
+              let userUuid = model.userUuid
         else {
             return
         }
@@ -276,7 +285,7 @@ private extension RoomListViewController {
                                                 videoState: .on,
                                                 audioState: .on)
         let launchConfig = AgoraEduLaunchConfig(userName: userName,
-                                                userUuid: FcrUserInfoPresenter.shared.companyId,
+                                                userUuid: userUuid,
                                                 userRole: AgoraEduUserRole(rawValue: role) ?? .student,
                                                 roomName: roomName,
                                                 roomUuid: roomId,
@@ -311,10 +320,12 @@ private extension RoomListViewController {
         widgets[shareLink.widgetId] = shareLink
         shareLink.extraInfo = ["shareLink": FcrShareLink.shareLinkWith(roomId: roomId)]
         // water mark
-//        let watermark = AgoraWidgetConfig(with: AgoraWatermarkWidget.self,
-//                                          widgetId: "watermark")
-//        widgets[watermark.widgetId] = watermark
-//        watermark.extraInfo = ["watermark": userName]
+        if model.watermark {
+            let watermark = AgoraWidgetConfig(with: AgoraWatermarkWidget.self,
+                                              widgetId: "watermark")
+            widgets[watermark.widgetId] = watermark
+            watermark.extraInfo = ["watermark": userName]
+        }
         
         launchConfig.widgets = widgets
         if let service = model.serviceType { // 职教入口
@@ -345,7 +356,8 @@ private extension RoomListViewController {
               let roomName = model.roomName,
               let roomUuid = model.roomId,
               let appId = model.appId,
-              let token = model.token
+              let token = model.token,
+              let userUuid = model.userUuid
         else {
             return
         }
@@ -361,7 +373,7 @@ private extension RoomListViewController {
                                                 videoState: .on,
                                                 audioState: .on)
         let launchConfig = AgoraProctorLaunchConfig(userName: userName,
-                                                    userUuid: FcrUserInfoPresenter.shared.companyId,
+                                                    userUuid: userUuid,
                                                     userRole: .student,
                                                     roomName: roomName,
                                                     roomUuid: roomUuid,

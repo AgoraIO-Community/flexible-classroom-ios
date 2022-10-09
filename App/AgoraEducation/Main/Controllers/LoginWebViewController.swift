@@ -68,8 +68,8 @@ class LoginWebViewController: FcrOutsideClassBaseController {
             if let companyId = data["companyId"] as? String {
                 FcrUserInfoPresenter.shared.companyId = companyId
             }
-            if let displayName = data["displayName"] as? String {
-                FcrUserInfoPresenter.shared.nickName = displayName
+            if let companyName = data["companyName"] as? String {
+                FcrUserInfoPresenter.shared.nickName = companyName
             }
             self.dismiss(animated: true,
                          completion: self.onComplete)
