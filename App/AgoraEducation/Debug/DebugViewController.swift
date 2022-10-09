@@ -137,6 +137,12 @@ extension DebugViewController: DebugViewDelagate {
                           userRole: info.roleType.rawValue,
                           success: tokenSuccessBlock,
                           failure: failureBlock)
+        
+//        data.buildToken(appId: "Your App Id",
+//                        appCertificate: "Your App Certificate",
+//                        userUuid: finalUserId,
+//                        success: tokenSuccessBlock,
+//                        failure: failureBlock)
     }
 }
 

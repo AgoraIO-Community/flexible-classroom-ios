@@ -12,24 +12,32 @@
 - iOS 真机（iPhone 或 iPad）
 
 ## 运行示例项目
-1. [快速接入](https://docs.agora.io/cn/agora-class/agora_class_quickstart_ios?platform=iOS)
-2. 确保你已将[apaas-extapp-ios](https://github.com/AgoraIO-Community/apaas-extapp-ios)项目克隆至本地，并切换至最新发版分支。apaas-extapp-ios 仓库需要和 CloudClass-iOS 仓库位于同级目录下。
-3. 在 CloudClass-iOS/App文件夹中执行`pod install`。
-4. 配置相关参数
-目前项目使用灵动课堂`LoginViewController`中默认的`AppId`和`AppCertificate`请求token，如下方代码所示
+1. 在 open-flexible-classroom-ios/App文件夹中执行`pod install`。
+2. 若当前Build Configuration为Debug模式，则rootViewController为DebugViewController，项目使用默认的`AppId`和`AppCertificate`请求token，如下方代码所示
 ```
-requestToken(region: region.rawValue,
-             userUuid: userUuid,
-             success: tokenSuccessBlock,
-             failure: failureBlock)
+// DebugViewController
+func onClickEnter () {
+    ···
+    data.requestToken(roomId: info.roomId,
+                      userId: finalUserId,
+                      userRole: info.roleType.rawValue,
+                      success: tokenSuccessBlock,
+                      failure: failureBlock)
+    ···
+}
 ```
 若需要使用自己的`AppId`和`AppCertificate`，可将`requestToken`方法的执行注释掉，使用下面的`buildToken`方法
 ```
-buildToken(appId: "Your App Id",
-           appCertificate: "Your App Certificate",
-           userUuid: userUuid,
-           success: tokenSuccessBlock,
-           failure: failureBlock)
+// DebugViewController
+func onClickEnter () {
+    ···
+    data.buildToken(appId: "Your App Id",
+                    appCertificate: "Your App Certificate",
+                    userUuid: finalUserId,
+                    success: tokenSuccessBlock,
+                    failure: failureBlock)
+    ···
+}
 ```
 
 ## 联系我们
