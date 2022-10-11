@@ -211,15 +211,15 @@ private extension RoomCreateViewController {
         let endTime = startTime + 30*60
         var roomProperties = [String: Any]()
         if let servicetype = selectedServiceType {
-            if servicetype == .CDN, playbackOn {
-                roomProperties["servicetype"] = AgoraEduServiceType.hostingScene.rawValue
+            if servicetype == .fusion, playbackOn {
+                roomProperties["serviceType"] = AgoraEduServiceType.hostingScene.rawValue
                 roomProperties["hostingScene"] = [
                     "finishType": 0,
                     "videoURL": playbackLink,
                     "reserveVideoURL": ""
                 ]
             } else {
-                roomProperties["servicetype"] = servicetype.rawValue
+                roomProperties["serviceType"] = servicetype.rawValue
             }
         }
         roomProperties["watermark"] = securityOn

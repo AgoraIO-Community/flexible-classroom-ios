@@ -209,6 +209,13 @@ private extension RoomListViewController {
                     model.watermark = watermark
                 }
             }
+            // CDN大班课暂不支持老师端
+            if model.roomType == 2,
+               model.roleType == 1 {
+                AgoraToast.toast(message: "fcr_joinroom_tips_cdn_character".ag_localized(),
+                                 type: .warning)
+                return
+            }
             if now.compare(endDate) == .orderedDescending { // 课程过期
                 self?.fetchData()
             } else {
