@@ -216,7 +216,7 @@ private extension RoomListViewController {
             }
         } onFailure: { code, msg in
             AgoraLoading.hide()
-            let str = (code == 404) ? "fcr_joinroom_tips_emptyid".ag_localized() : msg
+            let str = (code == 500) ? "fcr_joinroom_tips_emptyid".ag_localized() : msg
             AgoraToast.toast(message: str,
                              type: .warning)
         }
@@ -230,9 +230,9 @@ private extension RoomListViewController {
         else {
             return
         }
-        FcrOutsideClassAPI.buildToken(roomUuid: roomUuid,
-                                      userRole: model.roleType,
-                                      userId: userUuid) { dict in
+        FcrOutsideClassAPI.joinRoom(roomId: roomUuid,
+                                    userRole: model.roleType,
+                                    userUuid: userUuid) { dict in
             AgoraLoading.hide()
             guard let data = dict["data"] as? [String : Any] else {
                 fatalError("TokenBuilder buildByServer can not find data, dict: \(dict)")
