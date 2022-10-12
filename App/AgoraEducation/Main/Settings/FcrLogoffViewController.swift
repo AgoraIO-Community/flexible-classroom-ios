@@ -6,8 +6,6 @@
 //  Copyright © 2022 Agora. All rights reserved.
 //
 
-import UIKit
-import AgoraEduUI
 import AgoraUIBaseViews
 
 class FcrLogoffViewController: FcrOutsideClassBaseController {

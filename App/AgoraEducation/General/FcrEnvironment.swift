@@ -6,13 +6,15 @@
 //  Copyright © 2022 Agora. All rights reserved.
 //
 
-import UIKit
 #if canImport(AgoraClassroomSDK_iOS)
 import AgoraClassroomSDK_iOS
-#else
-import AgoraClassroomSDK
 #endif
+
+#if canImport(AgoraProctorSDK)
 import AgoraProctorSDK
+#endif
+
+import UIKit
 
 class FcrEnvironment {
     
@@ -30,6 +32,7 @@ class FcrEnvironment {
     enum Region: String {
         case CN, NA, EU, AP
         
+        #if canImport(AgoraProctorSDK)
         var proctor: AgoraProctorRegion {
             switch self {
             case .CN:   return .CN
@@ -38,6 +41,7 @@ class FcrEnvironment {
             case .AP:   return .AP
             }
         }
+        #endif
     }
     // environment
     private lazy var _environment: Environment = {
@@ -100,6 +104,8 @@ class FcrEnvironment {
     
     func updateSDKEnviroment() {
         let sel = NSSelectorFromString("setEnvironment:")
+        
+        #if canImport(AgoraClassroomSDK_iOS)
         switch environment {
         case .pro:
             AgoraClassroomSDK.perform(sel,
@@ -111,5 +117,6 @@ class FcrEnvironment {
             AgoraClassroomSDK.perform(sel,
                                       with: 0)
         }
+        #endif
     }
 }

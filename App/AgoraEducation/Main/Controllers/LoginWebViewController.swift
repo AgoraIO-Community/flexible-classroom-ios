@@ -5,8 +5,8 @@
 //  Created by Jonathan on 2022/7/11.
 //  Copyright © 2022 Agora. All rights reserved.
 //
+
 import AgoraUIBaseViews
-import AgoraEduUI
 import WebKit
 import UIKit
 
