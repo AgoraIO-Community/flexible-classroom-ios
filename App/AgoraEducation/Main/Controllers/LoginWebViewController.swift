@@ -11,7 +11,6 @@ import WebKit
 import UIKit
 
 class LoginWebViewController: FcrOutsideClassBaseController {
-    
     private var webView = WKWebView()
     
     public var urlStr: String?
@@ -84,7 +83,7 @@ class LoginWebViewController: FcrOutsideClassBaseController {
 extension LoginWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("login web view start load")
+        
     }
     
     func webView(_ webView: WKWebView,

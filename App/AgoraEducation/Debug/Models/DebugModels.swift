@@ -231,13 +231,6 @@ enum DataSourceIMType: CaseIterable {
         case .easemob:  return "easemob"
         }
     }
-    
-    var edu: IMType {
-        switch self {
-        case .rtm:      return .rtm
-        case .easemob:  return .easemob
-        }
-    }
 }
 
 enum DataSourceEncryptMode: CaseIterable {
@@ -416,7 +409,11 @@ enum DataSourceType: Equatable {
     case environment(DataSourceEnvironment)
     
     enum Key {
-        case roomName, userName, roomType, serviceType, roleType, im, deviceType, startTime, duration, encryptKey, encryptMode, mediaAuth, uiMode, uiLanguage, region, environment
+        case roomName, roomType,  startTime, duration
+        case userName, roleType, deviceType
+        case encryptKey, encryptMode, mediaAuth, serviceType
+        case im, uiMode, uiLanguage
+        case region, environment
     }
     
     var inKey: Key {

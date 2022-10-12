@@ -20,32 +20,6 @@ enum Device: String {
     case iPad
 }
 
-enum FIELD_TYPE: String {
-    case `default`
-    case room
-    case user
-    case duration
-    case encryptKey
-    case encryptMode
-    
-    var moveDistance: CGFloat {
-        switch self {
-        case .room:
-            return 0
-        case .user:
-            return UIDevice.current.agora_is_pad ? 50 : 0
-        case .duration:
-            return UIDevice.current.agora_is_pad ? 230 : 50
-        case .encryptKey:
-            return UIDevice.current.agora_is_pad ? 300 : 90
-        case .encryptMode:
-            return UIDevice.current.agora_is_pad ? 350 : 130
-        default:
-            return 0
-        }
-    }
-}
-
 class LoginConfig {
     
     static let version_time: String = {
@@ -161,4 +135,3 @@ class LoginConfig {
     static let About_cell_id: String = "AboutCell"
     static let encryption_cell_id: String = "EncryptionCell"
 }
-

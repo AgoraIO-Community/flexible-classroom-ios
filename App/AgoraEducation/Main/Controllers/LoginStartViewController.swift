@@ -6,11 +6,10 @@
 //  Copyright © 2022 Agora. All rights reserved.
 //
 
-import UIKit
 import AgoraUIBaseViews
+import UIKit
 
 class LoginStartViewController: UIViewController {
-    
     public static func showLoginIfNot(complete: (() -> Void)?) {
         guard FcrUserInfoPresenter.shared.isLogin == false,
               let root = UIApplication.shared.keyWindow?.rootViewController
@@ -25,6 +24,7 @@ class LoginStartViewController: UIViewController {
         navi.modalTransitionStyle = .crossDissolve
         root.present(navi, animated: true)
     }
+    
     private let logoView = UIImageView(image: UIImage(named: "fcr_login_logo_text_en"))
     
     private let imageView = UIImageView(image: UIImage(named: "fcr_login_center_afc"))
@@ -164,4 +164,3 @@ private extension LoginStartViewController {
         }
     }
 }
-
