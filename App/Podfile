@@ -26,16 +26,19 @@ target 'AgoraEducation' do
   pod 'Whiteboard', '2.16.39'
  
   # open source libs
-  pod 'AgoraClassroomSDK_iOS', '2.8.0'
-  pod 'AgoraEduUI', '2.8.0'
+  pod 'AgoraClassroomSDK_iOS/Binary', :path => '../../open-cloudclass-ios/AgoraClassroomSDK_iOS_Local.podspec'
+#  pod 'AgoraEduUI‘,:subspaces => ['Binary','Resources'], :path => '../../open-cloudclass-ios/AgoraEduUI_Local.podspec'
       
-  pod 'AgoraProctorSDK', '2.8.0'
-  pod 'AgoraProctorUI', '2.8.0'
+  pod 'AgoraProctorSDK/Binary', :path => '../../open-proctor-ios/AgoraProctorSDK_Local.podspec'
   
-  pod 'AgoraWidgets', '2.8.0'
+#  pod 'AgoraProctorUI‘,:subspaces => ['Binary','Resources'], :path => '../../open-proctor-ios/AgoraProctorUI_Local.podspec'
+  
+  
+#  pod 'AgoraWidgets/Binary', :path => '../../open-apaas-extapp-ios/AgoraWidgets_Local.podspec'
+#  pod 'AgoraWidgets‘,:subspaces => ['Binary','Resources'], :path => '../../open-apaas-extapp-ios/AgoraWidgets_Local.podspec'
   
   # close source libs
-  pod 'AgoraUIBaseViews', '2.8.0'
-  pod 'AgoraEduCore', '2.8.0'
-  pod 'AgoraWidget', '2.8.0'
+  pod 'AgoraEduCore/Binary', :path => '../../cloudclass-ios/AgoraEduCore_Local.podspec'
+  pod 'AgoraUIBaseViews/Binary', :path => '../../apaas-common-libs-ios/AgoraUIBaseViews_Local.podspec'
+  pod 'AgoraWidget/Binary', :path => '../../apaas-common-libs-ios/AgoraWidget_Local.podspec'
 end
