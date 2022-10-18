@@ -21,13 +21,13 @@ BaseProjPath = ExtcuteDir + "AgoraEducation" + ".xcodeproj"
 
 SourcePodContent =  """
     # common libs
-    pod 'AgoraUIBaseViews', :path => '../../apaas-common-libs-ios/AgoraUIBaseViews_Local.podspec'
-    pod 'AgoraWidget', :path => '../../apaas-common-libs-ios/AgoraWidget_Local.podspec'
+    pod 'AgoraUIBaseViews/Source', :path => '../../apaas-common-libs-ios/AgoraUIBaseViews_Local.podspec'
+    pod 'AgoraWidget/Source', :path => '../../apaas-common-libs-ios/AgoraWidget_Local.podspec'
     pod 'AgoraReport', :path => '../../apaas-common-libs-ios/AgoraReport.podspec'
     pod 'AgoraRx', :path => '../../apaas-common-libs-ios/AgoraRx.podspec'
 
     # rtc (default pre)
-    pod 'AgoraEduCore', :path => '../../cloudclass-ios/AgoraEduCore_Local.podspec'
+    pod 'AgoraEduCore/Source', :path => '../../cloudclass-ios/AgoraEduCore_Local.podspec'
     pod 'AgoraRte', :path => '../../common-scene-sdk/AgoraRte.podspec'
 
     # open source libs
@@ -51,11 +51,11 @@ end
 
 BinaryPodContent = """
   # open source libs
+  pod 'AgoraEduUI/Binary‘, :path => '../../open-cloudclass-ios/AgoraEduUI_Local.podspec'
   pod 'AgoraClassroomSDK_iOS/Binary', :path => '../../open-cloudclass-ios/AgoraClassroomSDK_iOS_Local.podspec'
-  pod 'AgoraEduUI/Binary', :path => '../../open-cloudclass-ios/AgoraEduUI_Local.podspec'
       
+  pod 'AgoraProctorUI/Binary‘, :path => '../../open-proctor-ios/AgoraProctorUI_Local.podspec'
   pod 'AgoraProctorSDK/Binary', :path => '../../open-proctor-ios/AgoraProctorSDK_Local.podspec'
-  pod 'AgoraProctorUI/Binary', :path => '../../open-proctor-ios/AgoraProctorUI_Local.podspec'
   
   pod 'AgoraWidgets/Binary', :path => '../../open-apaas-extapp-ios/AgoraWidgets_Local.podspec'
   
