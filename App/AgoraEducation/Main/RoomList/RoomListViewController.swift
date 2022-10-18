@@ -6,7 +6,6 @@
 //  Copyright © 2022 Agora. All rights reserved.
 //
 
-import UIKit
 #if canImport(AgoraClassroomSDK_iOS)
 import AgoraClassroomSDK_iOS
 #else
@@ -209,9 +208,12 @@ private extension RoomListViewController {
                     model.watermark = watermark
                 }
             }
+            
             // CDN大班课暂不支持老师端
             if model.roomType == 2,
-               model.roleType == 1 {
+               model.roleType == 1,
+               let serviceTypeInt = model.serviceType?.rawValue,
+                serviceTypeInt != 0 {
                 AgoraToast.toast(message: "fcr_joinroom_tips_cdn_character".ag_localized(),
                                  type: .warning)
                 return
@@ -321,6 +323,15 @@ private extension RoomListViewController {
         if region != .CN {
             launchConfig.widgets.removeValue(forKey: "easemobIM")
         }
+        
+        // Theme
+        switch FcrUserInfoPresenter.shared.theme {
+        case 0:
+            agora_ui_mode = .agoraLight
+        default:
+            agora_ui_mode = .agoraDark
+        }
+        
         // share link
         let shareLink = AgoraWidgetConfig(with: AgoraShareLinkWidget.self,
                                           widgetId: "shareLink")
