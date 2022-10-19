@@ -28,7 +28,7 @@ SourcePodContent =  """
 
     # rtc (default pre)
     pod 'AgoraEduCore/Source', :path => '../../cloudclass-ios/AgoraEduCore_Local.podspec'
-    pod 'AgoraRte', :path => '../../common-scene-sdk/AgoraRte.podspec'
+    pod 'AgoraRte/Source', :path => '../../common-scene-sdk/AgoraRte.podspec'
 
     # open source libs
     pod 'AgoraClassroomSDK_iOS', :path => '../../open-cloudclass-ios/AgoraClassroomSDK_iOS.podspec'

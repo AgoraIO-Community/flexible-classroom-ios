@@ -3,9 +3,9 @@ Certificate=$1
 
 echo $Certificate
 
-#./buildFrameworks.sh
+./buildFrameworks.sh
 
-python3 cloud_pod.py 0 1
+python3 cloud_pod.py 1 1
 
 cd ../App
 
