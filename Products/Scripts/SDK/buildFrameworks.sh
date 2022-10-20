@@ -9,8 +9,8 @@ script_name=buildFramework.sh
 
 cd $classroom_sdk_script_path
 pwd
-sh ./$script_name
+sh ./$script_name AgoraClassroomSDK_iOS
 
 cd $proctor_sdk_script_path
 pwd
-sh ./$script_name
+sh ./$script_name AgoraProctorSDK
