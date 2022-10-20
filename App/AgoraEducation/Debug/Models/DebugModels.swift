@@ -590,13 +590,9 @@ struct DebugLaunchInfo {
         let latencyLevel = proctorLatencyLevel
         let encryptionConfig = proctorEncryptionConfig
         
-        let videoState: AgoraProctorStreamState = (mediaAuth == .video || mediaAuth == .both) ? .on : .off
-        let audioState: AgoraProctorStreamState = (mediaAuth == .audio || mediaAuth == .both) ? .on : .off
         let mediaOptions = AgoraProctorMediaOptions(encryptionConfig: encryptionConfig,
-                                                videoEncoderConfig: nil,
-                                                latencyLevel: latencyLevel,
-                                                videoState: videoState,
-                                                audioState: audioState)
+                                                    videoEncoderConfig: nil,
+                                                    latencyLevel: latencyLevel)
         
         return mediaOptions
     }

@@ -386,10 +386,8 @@ private extension RoomListViewController {
             latencyLevel = .low
         }
         let mediaOptions = AgoraProctorMediaOptions(encryptionConfig: nil,
-                                                videoEncoderConfig: nil,
-                                                latencyLevel: latencyLevel,
-                                                videoState: .on,
-                                                audioState: .on)
+                                                    videoEncoderConfig: nil,
+                                                    latencyLevel: latencyLevel)
         let launchConfig = AgoraProctorLaunchConfig(userName: userName,
                                                     userUuid: userUuid,
                                                     userRole: .student,
