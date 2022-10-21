@@ -3,7 +3,7 @@ Certificate=$1
 
 echo $Certificate
 
-./buildFrameworks.sh
+sh ../SDK/buildFrameworks.sh || exit 1
 
 python3 cloud_pod.py 1 1
 
