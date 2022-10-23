@@ -6,17 +6,17 @@
 //  Copyright © 2022 Agora. All rights reserved.
 //
 
-import UIKit
 import AgoraUIBaseViews
+import AgoraEduCore
 
 struct FcrShareLink {
     public static func shareLinkWith(roomId: String) -> String {
         let owner = FcrUserInfoPresenter.shared.nickName.urlEncoded
-        let room = roomId.urlEncoded
-        let dict = [
+        let dict: [String: Any] = [
             "owner": owner,
-            "roomId": room,
-            "region": FcrEnvironment.shared.region.rawValue
+            "roomId": roomId,
+            "region": FcrEnvironment.shared.region.rawValue,
+            "role": AgoraEduCoreUserRole.student.rawValue
         ]
         let json = dict.jsonString()
         let sc = json?.base64Encoded ?? ""
@@ -27,10 +27,12 @@ struct FcrShareLink {
 //        version = nums.joined(separator: ".")
         let version = "2.8.x"
         var baseURL = "https://solutions-apaas.agora.io/apaas/app/prod/"
+        
         if FcrEnvironment.shared.environment != .pro {
             baseURL = "https://solutions-apaas.agora.io/apaas/app/test/release_"
         }
-        let shareLink = baseURL + version + "/index.html/#/invite?sc=" + sc
+        
+        let shareLink = baseURL + version + "/index.html#/invite?sc=" + sc
         return shareLink
     }
 }

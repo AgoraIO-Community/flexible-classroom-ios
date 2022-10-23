@@ -6,8 +6,8 @@
 //  Copyright © 2019 Agora. All rights reserved.
 //
 
-#import "AppDelegate.h"
 #import "AgoraCloudClass-Swift.h"
+#import "AppDelegate.h"
 
 @interface AppDelegate ()
 

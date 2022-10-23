@@ -30,6 +30,7 @@ class LoginStartViewController: UIViewController {
     private let imageView = UIImageView(image: UIImage(named: "fcr_login_center_afc"))
     
     private let textView = UIImageView(image: UIImage(named: "fcr_login_text_en"))
+    private let textBgView = UIImageView(image: UIImage(named: "fcr_login_logo_text_bg"))
     
     private let haloView = UIImageView(image: UIImage(named: "fcr_login_halo"))
     
@@ -92,8 +93,9 @@ class LoginStartViewController: UIViewController {
 private extension LoginStartViewController {
     func createViews() {
         view.addSubview(imageView)
-        view.addSubview(haloView)
         view.addSubview(logoView)
+        view.addSubview(textBgView)
+        view.addSubview(haloView)
         view.addSubview(textView)
         view.addSubview(afcView)
         
@@ -103,30 +105,56 @@ private extension LoginStartViewController {
                               action: #selector(onClickStart),
                               for: .touchUpInside)
         view.addSubview(startButton)
+        
+        let isSmallDevice = (LoginConfig.device == .iPhone_Small)
+        if !isSmallDevice {
+            textBgView.agora_visible = false
+        }
     }
     
     func createConstrains() {
+        let isSmallDevice = (LoginConfig.device == .iPhone_Small)
+        
+        let leftSideSpace: CGFloat = 29
+        
         logoView.mas_makeConstraints { make in
-            make?.top.equalTo()(55)
-            make?.left.equalTo()(29)
+            make?.top.equalTo()(isSmallDevice ? 24 : 55)
+            make?.left.equalTo()(leftSideSpace)
         }
+        
         imageView.mas_makeConstraints { make in
-            make?.top.equalTo()(logoView.mas_bottom)?.offset()(32)
-            make?.left.equalTo()(32)
+            make?.top.equalTo()(logoView.mas_bottom)?.offset()(isSmallDevice ? 15 : 32)
+            make?.left.equalTo()(leftSideSpace)
+            make?.right.equalTo()(-leftSideSpace)
+            make?.height.equalTo()(imageView.mas_width)
         }
-        textView.mas_makeConstraints { make in
-            make?.top.equalTo()(imageView.mas_bottom)?.offset()(36)
-            make?.left.equalTo()(32)
-        }
-        startButton.mas_makeConstraints { make in
-            make?.top.equalTo()(textView.mas_bottom)?.offset()(33)
-            make?.left.equalTo()(32)
-            make?.width.equalTo()(190)
-            make?.height.equalTo()(52)
-        }
+        
         afcView.mas_makeConstraints { make in
-            make?.left.equalTo()(34)
+            make?.left.equalTo()(leftSideSpace)
             make?.bottom.equalTo()(-30)
+        }
+        
+        startButton.mas_makeConstraints { make in
+            make?.bottom.equalTo()(afcView.mas_top)?.offset()(isSmallDevice ? -47 : -81)
+            make?.left.equalTo()(leftSideSpace)
+            make?.width.equalTo()(isSmallDevice ? 160 : 190)
+            make?.height.equalTo()(isSmallDevice ? 44 : 52)
+        }
+        
+        textBgView.mas_makeConstraints { make in
+            make?.left.right().equalTo()(0)
+            make?.bottom.equalTo()(startButton.mas_top)?.offset()(-22)
+            make?.height.equalTo()(isSmallDevice ? 120 : 135)
+        }
+        
+        let textViewSize = textView.size
+        let textViewRatio = textViewSize.width / textViewSize.height
+
+        textView.mas_makeConstraints { make in
+            make?.top.equalTo()(textBgView.mas_top)?.offset()(4)
+            make?.bottom.equalTo()(textBgView.mas_bottom)?.offset()(-20)
+            make?.left.equalTo()(32)
+            make?.width.equalTo()(textView.mas_height)?.multipliedBy()(textViewRatio)
         }
     }
     
