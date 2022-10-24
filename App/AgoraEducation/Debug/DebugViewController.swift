@@ -262,7 +262,7 @@ extension DebugViewController {
 // MARK: - SDK delegate
 #if canImport(AgoraProctorSDK)
 extension DebugViewController: AgoraProctorSDKDelegate {
-    func proctorSDK(_ classroom: AgoraProctorSDK,
+    func proctorSDK(_ proctor: AgoraProctorSDK, 
                     didExit reason: AgoraProctorExitReason) {
         switch reason {
         case .kickOut:

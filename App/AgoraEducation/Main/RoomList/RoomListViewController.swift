@@ -653,7 +653,7 @@ private extension RoomListViewController {
 
 // MARK: - SDK delegate
 extension RoomListViewController: AgoraProctorSDKDelegate {
-    func proctorSDK(_ classroom: AgoraProctorSDK,
+    func proctorSDK(_ proctor: AgoraProctorSDK,
                     didExit reason: AgoraProctorExitReason) {
         switch reason {
         case .kickOut:
