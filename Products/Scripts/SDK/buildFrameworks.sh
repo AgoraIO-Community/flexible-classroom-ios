@@ -1,9 +1,16 @@
 #!/bin/bash
 
-cd ../../../../open-cloudclass-ios/Products/Scripts/SDK
-pwd
-sh ./buildFrameworks.sh
+# call building of AgoraClassroomSDK_iOS and AgoraProctorSDK
 
-cd ../../../../open-proctor-ios/Products/Scripts/SDK
+classroom_sdk_script_path=../../../../open-cloudclass-ios/Products/Scripts/SDK
+proctor_sdk_script_path=../../../../open-proctor-ios/Products/Scripts/SDK
+
+script_name=buildFramework.sh
+
+cd $classroom_sdk_script_path
 pwd
-sh ./buildFrameworks.sh
+sh ./$script_name AgoraClassroomSDK_iOS
+
+cd $proctor_sdk_script_path
+pwd
+sh ./$script_name AgoraProctorSDK

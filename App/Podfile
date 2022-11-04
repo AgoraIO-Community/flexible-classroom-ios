@@ -28,7 +28,7 @@ target 'AgoraEducation' do
   # open source libs
   pod 'AgoraClassroomSDK_iOS', '2.8.0'
   pod 'AgoraEduUI', '2.8.0'
-      
+  
   pod 'AgoraProctorSDK', '2.8.0'
   pod 'AgoraProctorUI', '2.8.0'
   
