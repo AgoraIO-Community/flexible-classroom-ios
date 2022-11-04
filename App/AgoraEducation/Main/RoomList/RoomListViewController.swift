@@ -370,7 +370,7 @@ private extension RoomListViewController {
                 AgoraLoading.hide()
             } failure: { error in
                 AgoraLoading.hide()
-                
+                 
                 let `error` = error as NSError
                 
                 if error.code == 30403100 {
