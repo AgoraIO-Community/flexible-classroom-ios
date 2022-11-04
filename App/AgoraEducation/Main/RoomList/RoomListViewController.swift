@@ -354,6 +354,7 @@ private extension RoomListViewController {
             } failure: { error in
                 AgoraLoading.hide()
                 
+                let `error` = error as NSError
                 
                 if error.code == 30403100 {
                     AgoraToast.toast(message: "login_kicked".ag_localized(),
@@ -369,6 +370,8 @@ private extension RoomListViewController {
                 AgoraLoading.hide()
             } failure: { error in
                 AgoraLoading.hide()
+                 
+                let `error` = error as NSError
                 
                 if error.code == 30403100 {
                     AgoraToast.toast(message: "login_kicked".ag_localized(),
