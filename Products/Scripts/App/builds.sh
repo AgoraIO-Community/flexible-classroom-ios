@@ -5,7 +5,7 @@ echo $Certificate
 
 sh ../SDK/buildFrameworks.sh || exit 1
 
-python3 cloud_pod.py 1 1
+python cloud_pod.py 1 1
 
 cd ../App
 
