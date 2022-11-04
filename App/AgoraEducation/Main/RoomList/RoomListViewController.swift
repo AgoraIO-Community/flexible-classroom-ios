@@ -353,8 +353,15 @@ private extension RoomListViewController {
                 AgoraLoading.hide()
             } failure: { error in
                 AgoraLoading.hide()
-                AgoraToast.toast(message: error.localizedDescription,
-                                 type: .error)
+                
+                
+                if error.code == 30403100 {
+                    AgoraToast.toast(message: "login_kicked".ag_localized(),
+                                     type: .error)
+                } else {
+                    AgoraToast.toast(message: error.localizedDescription,
+                                     type: .error)
+                }
             }
         } else { // 灵动课堂入口
             AgoraLoading.loading()
@@ -362,8 +369,14 @@ private extension RoomListViewController {
                 AgoraLoading.hide()
             } failure: { error in
                 AgoraLoading.hide()
-                AgoraToast.toast(message: error.localizedDescription,
-                                 type: .error)
+                
+                if error.code == 30403100 {
+                    AgoraToast.toast(message: "login_kicked".ag_localized(),
+                                     type: .error)
+                } else {
+                    AgoraToast.toast(message: error.localizedDescription,
+                                     type: .error)
+                }
             }
         }
     }
