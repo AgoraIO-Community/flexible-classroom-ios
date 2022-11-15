@@ -110,7 +110,7 @@ class RoomCreateViewController: UIViewController {
     
     private var playbackOn = false
     
-    private var playbackLink = "https://web-cdn.agora.io/website-files/images/apass.mp4"
+    private var playbackLink = "https://solutions-apaas.agora.io/cowatch/video/avatar-fte1_h1080p.mov"
     
     private var moreSettingSpread = false {
         didSet {
