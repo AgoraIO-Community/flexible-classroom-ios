@@ -253,7 +253,7 @@ private extension RoomCreateViewController {
     
     func updateSubRoomType() {
         if selectedRoomType == .lecture {
-            serviceTypes = [.livePremium, .liveStandard, .fusion]
+            serviceTypes = [.livePremium]
             if selectedServiceType == nil {
                 selectedServiceType = .livePremium
             }
