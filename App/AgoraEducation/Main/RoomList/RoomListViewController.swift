@@ -320,9 +320,6 @@ private extension RoomListViewController {
             }
             widgets[k] = v
         }
-        if region != .CN {
-            launchConfig.widgets.removeValue(forKey: "easemobIM")
-        }
         
         // Theme
         switch FcrUserInfoPresenter.shared.theme {

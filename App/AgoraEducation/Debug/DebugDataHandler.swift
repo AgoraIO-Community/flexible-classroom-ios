@@ -253,11 +253,6 @@ extension DebugDataHandler {
             extra["coursewareList"] = debugInfo.publicCoursewares()
         }
         
-        if debugInfo.region != .CN ||
-            debugInfo.im == .rtm {
-            launchConfig.widgets.removeValue(forKey: easemobWidgetKey)
-        }
-        
         return launchConfig
     }
     #endif
