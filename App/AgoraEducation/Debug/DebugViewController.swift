@@ -130,6 +130,7 @@ extension DebugViewController: DebugViewDelagate {
                                                                     appId: response.appId,
                                                                     token: response.token,
                                                                     userId: response.userId)
+                
                 let proSDK = AgoraProctorSDK(launchConfig,
                                              delegate: self)
                 self.proctorSDK = proSDK
