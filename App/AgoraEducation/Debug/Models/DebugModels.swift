@@ -8,12 +8,15 @@
 
 #if canImport(AgoraClassroomSDK_iOS)
 import AgoraClassroomSDK_iOS
-#else
-import AgoraClassroomSDK
 #endif
-import AgoraProctorSDK
-import Foundation
+
+#if canImport(AgoraEduUI)
 import AgoraEduUI
+#endif
+
+#if canImport(AgoraProctorSDK)
+import AgoraProctorSDK
+#endif
 
 // text
 enum DataSourceRoomName: Equatable {
@@ -86,8 +89,16 @@ enum DataSourceRoomType: CaseIterable {
     case proctor
     
     static var allCases: [DataSourceRoomType] {
-        var list = FcrUISceneType.getList().toDebugList()
+        var list = [DataSourceRoomType]()
+        
+        #if canImport(AgoraEduUI)
+        list = FcrUISceneType.getList().toDebugList()
+        #endif
+        
+        #if canImport(AgoraProctorUI)
         list.append(.proctor)
+        #endif
+        
         return list
     }
     
@@ -102,6 +113,7 @@ enum DataSourceRoomType: CaseIterable {
         }
     }
     
+    #if canImport(AgoraClassroomSDK_iOS)
     var edu: AgoraEduRoomType? {
         switch self {
         case .oneToOne:     return .oneToOne
@@ -112,6 +124,7 @@ enum DataSourceRoomType: CaseIterable {
         case .unselected:   return nil
         }
     }
+    #endif
     
     var tag: Int {
         switch self {
@@ -150,6 +163,7 @@ enum DataSourceServiceType: CaseIterable {
         }
     }
     
+    #if canImport(AgoraClassroomSDK_iOS)
     var edu: AgoraEduServiceType? {
         switch self {
         case .livePremium:  return .livePremium
@@ -161,6 +175,7 @@ enum DataSourceServiceType: CaseIterable {
         case .unselected:   return nil
         }
     }
+    #endif
 }
 
 enum DataSourceRoleType: Int, CaseIterable {
@@ -182,6 +197,7 @@ enum DataSourceRoleType: Int, CaseIterable {
         }
     }
     
+    #if canImport(AgoraClassroomSDK_iOS)
     var edu: AgoraEduUserRole? {
         switch self {
         case .teacher:      return .teacher
@@ -190,6 +206,7 @@ enum DataSourceRoleType: Int, CaseIterable {
         case .unselected:   return nil
         }
     }
+    #endif
 }
 
 enum DataSourceDeviceType: String, CaseIterable {
@@ -214,13 +231,6 @@ enum DataSourceIMType: CaseIterable {
         case .easemob:  return "easemob"
         }
     }
-    
-    var edu: IMType {
-        switch self {
-        case .rtm:      return .rtm
-        case .easemob:  return .easemob
-        }
-    }
 }
 
 enum DataSourceEncryptMode: CaseIterable {
@@ -238,6 +248,7 @@ enum DataSourceEncryptMode: CaseIterable {
         }
     }
     
+    #if canImport(AgoraClassroomSDK_iOS)
     var edu: AgoraEduMediaEncryptionMode {
         switch self {
         case .none:         return .none
@@ -246,7 +257,9 @@ enum DataSourceEncryptMode: CaseIterable {
         case .AES256GCM2:   return .AES256GCM2
         }
     }
+    #endif
     
+    #if canImport(AgoraProctorSDK)
     var proctor: AgoraProctorMediaEncryptionMode {
         switch self {
         case .none:         return .none
@@ -255,6 +268,7 @@ enum DataSourceEncryptMode: CaseIterable {
         case .AES256GCM2:   return .AES256GCM2
         }
     }
+    #endif
 }
 
 enum DataSourceMediaAuth: CaseIterable {
@@ -321,6 +335,7 @@ enum DataSourceRegion:String, CaseIterable {
         return rawValue
     }
     
+    #if canImport(AgoraClassroomSDK_iOS)
     var edu: AgoraEduRegion {
         switch self {
         case .CN:   return .CN
@@ -329,7 +344,9 @@ enum DataSourceRegion:String, CaseIterable {
         case .AP:   return .AP
         }
     }
+    #endif
     
+    #if canImport(AgoraProctorSDK)
     var proctor: AgoraProctorRegion {
         switch self {
         case .CN:   return .CN
@@ -338,6 +355,7 @@ enum DataSourceRegion:String, CaseIterable {
         case .AP:   return .AP
         }
     }
+    #endif
     
     var env: FcrEnvironment.Region {
         switch self {
@@ -391,7 +409,11 @@ enum DataSourceType: Equatable {
     case environment(DataSourceEnvironment)
     
     enum Key {
-        case roomName, userName, roomType, serviceType, roleType, im, deviceType, startTime, duration, encryptKey, encryptMode, mediaAuth, uiMode, uiLanguage, region, environment
+        case roomName, roomType,  startTime, duration
+        case userName, roleType, deviceType
+        case encryptKey, encryptMode, mediaAuth, serviceType
+        case im, uiMode, uiLanguage
+        case region, environment
     }
     
     var inKey: Key {
@@ -506,6 +528,7 @@ struct DebugLaunchInfo {
     var uiLanguage: DataSourceUILanguage
     var environment: DataSourceEnvironment
     
+    #if canImport(AgoraClassroomSDK_iOS)
     var eduEncryptionConfig: AgoraEduMediaEncryptionConfig? {
         let modeRawValue = encryptMode.edu.rawValue
         guard (modeRawValue > 0 && modeRawValue <= 6),
@@ -517,28 +540,8 @@ struct DebugLaunchInfo {
         return encryptionConfig
     }
     
-    var proctorEncryptionConfig: AgoraProctorMediaEncryptionConfig? {
-        let modeRawValue = encryptMode.proctor.rawValue
-        guard (modeRawValue > 0 && modeRawValue <= 6),
-              let key = encryptKey else {
-            return nil
-        }
-        let encryptionConfig = AgoraProctorMediaEncryptionConfig(mode: encryptMode.proctor,
-                                                                 key: key)
-        return encryptionConfig
-    }
-    
     var eduLatencyLevel: AgoraEduLatencyLevel {
         var latencyLevel = AgoraEduLatencyLevel.ultraLow
-        if roomType == .vocational,
-           serviceType == .liveStandard {
-            latencyLevel = .low
-        }
-        return latencyLevel
-    }
-    
-    var proctorLatencyLevel: AgoraProctorLatencyLevel {
-        var latencyLevel = AgoraProctorLatencyLevel.ultraLow
         if roomType == .vocational,
            serviceType == .liveStandard {
             latencyLevel = .low
@@ -560,21 +563,40 @@ struct DebugLaunchInfo {
         
         return mediaOptions
     }
+    #endif
+    
+    #if canImport(AgoraProctorSDK)
+    var proctorEncryptionConfig: AgoraProctorMediaEncryptionConfig? {
+        let modeRawValue = encryptMode.proctor.rawValue
+        guard (modeRawValue > 0 && modeRawValue <= 6),
+              let key = encryptKey else {
+            return nil
+        }
+        let encryptionConfig = AgoraProctorMediaEncryptionConfig(mode: encryptMode.proctor,
+                                                                 key: key)
+        return encryptionConfig
+    }
+    
+    var proctorLatencyLevel: AgoraProctorLatencyLevel {
+        var latencyLevel = AgoraProctorLatencyLevel.ultraLow
+        if roomType == .vocational,
+           serviceType == .liveStandard {
+            latencyLevel = .low
+        }
+        return latencyLevel
+    }
     
     var proctorMediaOptions: AgoraProctorMediaOptions {
         let latencyLevel = proctorLatencyLevel
         let encryptionConfig = proctorEncryptionConfig
         
-        let videoState: AgoraProctorStreamState = (mediaAuth == .video || mediaAuth == .both) ? .on : .off
-        let audioState: AgoraProctorStreamState = (mediaAuth == .audio || mediaAuth == .both) ? .on : .off
         let mediaOptions = AgoraProctorMediaOptions(encryptionConfig: encryptionConfig,
-                                                videoEncoderConfig: nil,
-                                                latencyLevel: latencyLevel,
-                                                videoState: videoState,
-                                                audioState: audioState)
+                                                    videoEncoderConfig: nil,
+                                                    latencyLevel: latencyLevel)
         
         return mediaOptions
     }
+    #endif
 }
 
 extension FcrSurpportLanguage {
@@ -587,6 +609,7 @@ extension FcrSurpportLanguage {
     }
 }
 
+#if canImport(AgoraEduUI)
 extension FcrUISceneType {
     var debug: DataSourceRoomType {
         switch self {
@@ -598,6 +621,7 @@ extension FcrUISceneType {
         }
     }
 }
+#endif
 
 extension Array where Element == DataSourceType {
     func indexOfType(_ typeKey: DataSourceType.Key) -> Int? {
@@ -613,8 +637,10 @@ extension Array where Element == DataSourceType {
     }
 }
 
+#if canImport(AgoraEduUI)
 extension Array where Element == FcrUISceneType {
     func toDebugList() -> [DataSourceRoomType] {
         return self.map({return $0.debug})
     }
 }
+#endif

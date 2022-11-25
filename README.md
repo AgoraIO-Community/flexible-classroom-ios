@@ -7,26 +7,36 @@ This page introduces how to run the iOS sample project.
 - Prepare the development environment:
   - Xcode 12.0 or later
   - CocoaPods
-
+  - If you are developing using Swift, use Swift 5.0 or later.
 - Real iOS devices, such as iPhone or iPad.
 
 ## Run the sample project
-1. [quick start](https://docs.agora.io/en/agora-class/agora_class_quickstart_ios?platform=iOS)
-2. Configure parameters
-The current Flexible Classroom project uses the default `AppId` and `AppCertificate` in the `LoginViewController` to request tokens, as shown in the code below
+1. Run the command `pod install` in open-flexible-classroom-ios/App.
+2. If current Build Configuration is Debug, the rootViewController will be DebugViewController , and your project will use the default `AppId` and `AppCertificate` to request tokens, as shown in the code below
 ```
-requestToken(region: region.rawValue,
-             userUuid: userUuid,
-             success: tokenSuccessBlock,
-             failure: failureBlock)
+// DebugViewController
+func onClickEnter () {
+    ···
+    data.requestToken(roomId: info.roomId,
+                      userId: finalUserId,
+                      userRole: info.roleType.rawValue,
+                      success: tokenSuccessBlock,
+                      failure: failureBlock)
+    ···
+}
 ```
 To use your own `AppId` and `AppCertificate`, comment out the execution of the `requestToken` method and use the `buildToken` method below
 ```
-buildToken(appId: "Your App Id",
-           appCertificate: "Your App Certificate",
-           userUuid: userUuid,
-           success: tokenSuccessBlock,
-           failure: failureBlock)
+// DebugViewController
+func onClickEnter () {
+    ···
+    data.buildToken(appId: "Your App Id",
+                    appCertificate: "Your App Certificate",
+                    userUuid: finalUserId,
+                    success: tokenSuccessBlock,
+                    failure: failureBlock)
+    ···
+}
 ```
 
 ## Connect us

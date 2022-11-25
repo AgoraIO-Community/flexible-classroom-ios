@@ -6,14 +6,11 @@
 //  Copyright © 2021 Agora. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 @objc public class FcrNavigationController: UINavigationController {
-    
     public override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
-        
     }
     
     public override init(nibName nibNameOrNil: String?,
@@ -23,12 +20,12 @@ import UIKit
     }
     
     public override func viewDidLoad() {
-        self.view.backgroundColor = UIColor.white
-        self.navigationBar.isTranslucent = false
-        self.navigationBar.backIndicatorImage = UIImage(named: "ic_navigation_back")
-        self.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "ic_navigation_back")
-        self.navigationBar.tintColor = UIColor(hex: 0x7B88A0)
-        self.navigationBar.titleTextAttributes = [
+        view.backgroundColor = UIColor.white
+        navigationBar.isTranslucent = false
+        navigationBar.backIndicatorImage = UIImage(named: "ic_navigation_back")
+        navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "ic_navigation_back")
+        navigationBar.tintColor = UIColor(hex: 0x7B88A0)
+        navigationBar.titleTextAttributes = [
             .foregroundColor : UIColor(hex: 0x191919) ?? .black,
             .font : UIFont.systemFont(ofSize: 16)
         ]

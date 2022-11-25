@@ -8,10 +8,12 @@
 
 #if canImport(AgoraClassroomSDK_iOS)
 import AgoraClassroomSDK_iOS
-#else
-import AgoraClassroomSDK
 #endif
+
+#if canImport(AgoraProctorSDK)
 import AgoraProctorSDK
+#endif
+
 import AgoraUIBaseViews
 
 class DebugViewController: UIViewController {
@@ -21,7 +23,9 @@ class DebugViewController: UIViewController {
     private lazy var debugView = DebugView(frame: .zero)
     
     /**sdk**/
+    #if canImport(AgoraProctorSDK)
     private var proctorSDK: AgoraProctorSDK?
+    #endif
 }
 
 // MARK: - Data Delagate
@@ -64,7 +68,9 @@ extension DebugViewController: DebugViewDelagate {
         let failureBlock: (Error) -> () = { [weak self] (error) in
             AgoraLoading.hide()
             
+            #if canImport(AgoraProctorSDK)
             self?.proctorSDK = nil
+            #endif
             
             let `error` = error as NSError
             
@@ -90,39 +96,57 @@ extension DebugViewController: DebugViewDelagate {
             agora_ui_mode = info.uiMode.edu
             agora_ui_language = info.uiLanguage.edu.string
             
-            let roomType = info.roomType
-            if let _ = roomType.edu,
-               let launchConfig = self.data.getEduLaunchConfig(debugInfo: info,
-                                                            appId: response.appId,
-                                                            token: response.token,
-                                                            userId: response.userId) {
-#if DEBUG
-            let sel1 = NSSelectorFromString("setLogConsoleState:");
-            AgoraClassroomSDK.perform(sel1,
-                                      with: 1)
-#endif
-                AgoraClassroomSDK.launch(launchConfig,
-                                         success: launchSuccessBlock,
-                                         failure: failureBlock)
-            } else if roomType == .proctor,
-                      self.proctorSDK == nil {
+            switch info.roomType {
+            case .oneToOne, .small, .lecture, .vocational:
+                #if canImport(AgoraClassroomSDK_iOS)
+                guard let launchConfig = self.data.getEduLaunchConfig(debugInfo: info,
+                                                                      appId: response.appId,
+                                                                      token: response.token,
+                                                                      userId: response.userId) else {
+                    return
+                }
+                
+                #if DEBUG
+                let sel1 = NSSelectorFromString("setLogConsoleState:");
+                AgoraClassroomSDK.perform(sel1,
+                                          with: 1)
+                #endif
+                
+                if let service = info.serviceType.edu,
+                    info.roomType == .vocational {
+                    AgoraClassroomSDK.vocationalLaunch(launchConfig,
+                                                       service: service,
+                                                       success: launchSuccessBlock,
+                                                       failure: failureBlock)
+                } else {
+                    AgoraClassroomSDK.launch(launchConfig,
+                                             success: launchSuccessBlock,
+                                             failure: failureBlock)
+                }
+                #endif
+            case .proctor:
+                #if canImport(AgoraProctorSDK)
                 let launchConfig = self.data.getProctorLaunchConfig(debugInfo: info,
-                                                                     appId: response.appId,
-                                                                     token: response.token,
+                                                                    appId: response.appId,
+                                                                    token: response.token,
                                                                     userId: response.userId)
+                
                 let proSDK = AgoraProctorSDK(launchConfig,
                                              delegate: self)
                 self.proctorSDK = proSDK
-#if DEBUG
-                
+
+                #if DEBUG
                 let sel2 = NSSelectorFromString("setLogConsoleState:");
                 proSDK.perform(sel2,
                                with: 1)
-#endif
+                #endif
                 self.data.updateProctorSDKEnviroment(proctorSDK: proSDK)
-                
+
                 proSDK.launch(launchSuccessBlock,
                               failure: failureBlock)
+                #endif
+            default:
+                break
             }
         }
         
@@ -137,6 +161,12 @@ extension DebugViewController: DebugViewDelagate {
                           userRole: info.roleType.rawValue,
                           success: tokenSuccessBlock,
                           failure: failureBlock)
+        
+//        data.buildToken(appId: "Your App Id",
+//                        appCertificate: "Your App Certificate",
+//                        userUuid: finalUserId,
+//                        success: tokenSuccessBlock,
+//                        failure: failureBlock)
     }
 }
 
@@ -161,7 +191,7 @@ extension DebugViewController: AgoraUIContentContainer {
         
         debugView.delegate = self
         
-        let appVersion = "_" + AgoraClassroomSDK.version()
+        let appVersion = "_" + Bundle.main.version
         let loginVersion = "Login_version".ag_localized() + appVersion
         debugView.bottomLabel.text = loginVersion
         view.addSubview(debugView)
@@ -231,9 +261,9 @@ extension DebugViewController {
 }
 
 // MARK: - SDK delegate
-extension DebugViewController: AgoraProctorSDKDelegate,
-                               AgoraEduClassroomSDKDelegate {
-    func proctorSDK(_ classroom: AgoraProctorSDK,
+#if canImport(AgoraProctorSDK)
+extension DebugViewController: AgoraProctorSDKDelegate {
+    func proctorSDK(_ proctor: AgoraProctorSDK, 
                     didExit reason: AgoraProctorExitReason) {
         switch reason {
         case .kickOut:
@@ -244,7 +274,11 @@ extension DebugViewController: AgoraProctorSDKDelegate,
         
         self.proctorSDK = nil
     }
-    
+}
+#endif
+
+#if canImport(AgoraClassroomSDK_iOS)
+extension DebugViewController: AgoraEduClassroomSDKDelegate {
     public func classroomSDK(_ classroom: AgoraClassroomSDK,
                              didExit reason: AgoraEduExitReason) {
         switch reason {
@@ -255,3 +289,4 @@ extension DebugViewController: AgoraProctorSDKDelegate,
         }
     }
 }
+#endif

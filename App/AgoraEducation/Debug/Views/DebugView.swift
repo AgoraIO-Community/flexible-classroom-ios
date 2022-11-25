@@ -214,6 +214,8 @@ extension DebugView: AgoraUIContentContainer {
         closeButton.addTarget(self,
                               action: #selector(onClickClose),
                               for: .touchUpInside)
+        closeButton.setTitleColor(.black,
+                                  for: .normal)
         addSubview(closeButton)
         
         

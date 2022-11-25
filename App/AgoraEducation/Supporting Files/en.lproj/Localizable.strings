@@ -29,6 +29,7 @@ fcr_joinroom_tips_emptyid = "The Room ID doesn't exist";
 fcr_joinroom_tips_roomid_empty = "The Room ID cannot be empty";
 fcr_joinroom_tips_username_empty = "The User Name cannot be empty";
 fcr_sharelink_tips_roomid = "Room ID has been copied";
+fcr_joinroom_tips_cdn_character = "Only role student can use CDN services in mobile classroom";
 
 fcr_create_room = "Create Classroom";
 fcr_create_small_title = "Small Class";

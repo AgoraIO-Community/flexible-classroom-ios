@@ -79,7 +79,7 @@ class RoomCreateViewController: UIViewController {
     
     private let roomTypes: [AgoraEduCoreRoomType] = [.small, .lecture, .oneToOne]
     
-    private var moreSettings: [RoomCreateMoreSetting] = []
+    private var moreSettings: [RoomCreateMoreSetting] = [.title]
     
     private var roomName: String?
     
@@ -110,7 +110,7 @@ class RoomCreateViewController: UIViewController {
     
     private var playbackOn = false
     
-    private var playbackLink = "https://web-cdn.agora.io/website-files/images/apass.mp4"
+    private var playbackLink = "https://solutions-apaas.agora.io/cowatch/video/avatar-fte1_h1080p.mov"
     
     private var moreSettingSpread = false {
         didSet {
@@ -211,17 +211,18 @@ private extension RoomCreateViewController {
         let endTime = startTime + 30*60
         var roomProperties = [String: Any]()
         if let servicetype = selectedServiceType {
-            if servicetype == .CDN, playbackOn {
-                roomProperties["servicetype"] = AgoraEduServiceType.hostingScene.rawValue
+            if servicetype == .fusion, playbackOn {
+                roomProperties["serviceType"] = AgoraEduServiceType.hostingScene.rawValue
                 roomProperties["hostingScene"] = [
                     "finishType": 0,
                     "videoURL": playbackLink,
                     "reserveVideoURL": ""
                 ]
             } else {
-                roomProperties["servicetype"] = servicetype.rawValue
+                roomProperties["serviceType"] = servicetype.rawValue
             }
         }
+        roomProperties["watermark"] = securityOn
         AgoraLoading.loading()
         FcrOutsideClassAPI.createClassRoom(roomName: name,
                                            roomType: selectedRoomType.rawValue,
@@ -252,7 +253,7 @@ private extension RoomCreateViewController {
     
     func updateSubRoomType() {
         if selectedRoomType == .lecture {
-            serviceTypes = [.livePremium, .liveStandard, .fusion]
+            serviceTypes = [.livePremium]
             if selectedServiceType == nil {
                 selectedServiceType = .livePremium
             }
@@ -276,15 +277,19 @@ private extension RoomCreateViewController {
            selectedServiceType == .fusion {
             if moreSettingSpread {
                 if playbackOn {
-                    moreSettings = [.title, .playback, .linkInput]
+                    moreSettings = [.title, .security, .playback, .linkInput]
                 } else {
-                    moreSettings = [.title, .playback]
+                    moreSettings = [.title, .security, .playback]
                 }
             } else {
                 moreSettings = [.title]
             }
         } else {
-            moreSettings = []
+            if moreSettingSpread {
+                moreSettings = [.title, .security]
+            } else {
+                moreSettings = [.title]
+            }
         }
         tableView.reloadData()
     }

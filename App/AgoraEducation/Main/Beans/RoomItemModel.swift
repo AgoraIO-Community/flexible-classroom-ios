@@ -23,7 +23,9 @@ class RoomInputInfoModel {
     var roomType: Int = 0
     var appId: String?
     var token: String?
+    var userUuid: String?
     var serviceType: AgoraEduServiceType?
+    var watermark = false
     
     func publicCoursewares() -> Array<String> {
         let publicJson1 = """
@@ -411,6 +413,7 @@ struct RoomItemModel {
     let endTime: UInt
     let creatorId: String
     let roomProperties: [String: Any]?
+    let role: Int?
     
     static func modelWith(dict: [String: Any]) -> RoomItemModel? {
         guard let roomName = dict["roomName"] as? String,
@@ -423,6 +426,7 @@ struct RoomItemModel {
         else {
             return nil
         }
+        let role = dict["role"] as? Int
         let roomProperties = dict["roomProperties"] as? [String: Any]
         let model = RoomItemModel(roomName: roomName,
                                   roomId: roomId,
@@ -431,7 +435,8 @@ struct RoomItemModel {
                                   startTime: startTime,
                                   endTime: endTime,
                                   creatorId: creatorId,
-                                  roomProperties: roomProperties)
+                                  roomProperties: roomProperties,
+                                  role: role)
         return model
     }
     

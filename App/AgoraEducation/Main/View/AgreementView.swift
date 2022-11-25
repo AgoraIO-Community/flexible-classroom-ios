@@ -9,10 +9,10 @@
 import UIKit
 
 class AgreementView: UIView {
-    private(set) lazy var checkButton =  UIButton(type: .custom)
-    private lazy var checkLabel =  UILabel(frame: .zero)
-    private(set) lazy var agreeButton =  UIButton(type: .custom)
-    private(set) lazy var disagreeButton =  UIButton(type: .custom)
+    private(set) lazy var checkButton = UIButton(type: .custom)
+    private lazy var checkLabel = UILabel(frame: .zero)
+    private(set) lazy var agreeButton = UIButton(type: .custom)
+    private(set) lazy var disagreeButton = UIButton(type: .custom)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -8,11 +8,11 @@
 
 #if canImport(AgoraClassroomSDK_iOS)
 import AgoraClassroomSDK_iOS
-#else
-import AgoraClassroomSDK
 #endif
+
+#if canImport(AgoraProctorSDK)
 import AgoraProctorSDK
-import Foundation
+#endif
 
 protocol DebugDataHandlerDelegate: NSObjectProtocol {
     func onDataSourceChanged(index: Int,
@@ -51,6 +51,7 @@ class DebugDataHandler {
         }
     }
     
+    #if canImport(AgoraProctorSDK)
     func updateProctorSDKEnviroment(proctorSDK: AgoraProctorSDK) {
         guard case .environment(let environment) = dataSourceList.valueOfType(.environment) as? DataSourceType else {
             return
@@ -68,6 +69,7 @@ class DebugDataHandler {
                                with: 0)
         }
     }
+    #endif
 }
 
 extension DebugDataHandler {
@@ -211,6 +213,7 @@ extension DebugDataHandler {
                                environment: environment)
     }
     
+    #if canImport(AgoraClassroomSDK_iOS)
     func getEduLaunchConfig(debugInfo: DebugLaunchInfo,
                             appId: String,
                             token: String,
@@ -250,14 +253,11 @@ extension DebugDataHandler {
             extra["coursewareList"] = debugInfo.publicCoursewares()
         }
         
-        if debugInfo.region != .CN ||
-            debugInfo.im == .rtm {
-            launchConfig.widgets.removeValue(forKey: easemobWidgetKey)
-        }
-        
         return launchConfig
     }
+    #endif
     
+    #if canImport(AgoraProctorSDK)
     func getProctorLaunchConfig(debugInfo: DebugLaunchInfo,
                                 appId: String,
                                 token: String,
@@ -278,6 +278,7 @@ extension DebugDataHandler {
         return launchConfig
         
     }
+    #endif
     
     func buildToken(appId: String,
                     appCertificate: String,

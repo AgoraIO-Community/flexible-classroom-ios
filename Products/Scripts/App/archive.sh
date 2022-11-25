@@ -3,7 +3,6 @@ Mode=$1
 Project_Path="../../../App"
 Local_Path=`pwd`
 
-python3 cloud_pod.py 1 1
 cd ${Project_Path}
 
 Product_Path="../Products/App"

@@ -11,7 +11,7 @@ import Foundation
 
 extension Bundle {
     var version: String {
-        guard let infoDictionary = Bundle.main.infoDictionary,
+        guard let infoDictionary = infoDictionary,
               let version = infoDictionary["CFBundleShortVersionString"] as? String else {
             return ""
         }

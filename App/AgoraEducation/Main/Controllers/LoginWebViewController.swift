@@ -5,13 +5,12 @@
 //  Created by Jonathan on 2022/7/11.
 //  Copyright © 2022 Agora. All rights reserved.
 //
+
 import AgoraUIBaseViews
-import AgoraEduUI
 import WebKit
 import UIKit
 
 class LoginWebViewController: FcrOutsideClassBaseController {
-    
     private var webView = WKWebView()
     
     public var urlStr: String?
@@ -68,8 +67,8 @@ class LoginWebViewController: FcrOutsideClassBaseController {
             if let companyId = data["companyId"] as? String {
                 FcrUserInfoPresenter.shared.companyId = companyId
             }
-            if let displayName = data["displayName"] as? String {
-                FcrUserInfoPresenter.shared.nickName = displayName
+            if let companyName = data["companyName"] as? String {
+                FcrUserInfoPresenter.shared.nickName = companyName
             }
             self.dismiss(animated: true,
                          completion: self.onComplete)
@@ -84,7 +83,7 @@ class LoginWebViewController: FcrOutsideClassBaseController {
 extension LoginWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("login web view start load")
+        
     }
     
     func webView(_ webView: WKWebView,

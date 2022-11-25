@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1550F0C1289E167D00F6B80F /* DebugInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550F0C0289E167D00F6B80F /* DebugInfoCell.swift */; };
-		15AFBEA12854996B003EBC0C /* AgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AFBEA02854996B003EBC0C /* AgreementView.swift */; };
 		1A44BE7522BF863000766274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A44BE5722BF863000766274 /* Assets.xcassets */; };
 		1A44BE7A22BF863000766274 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A44BE5E22BF863000766274 /* main.m */; };
 		1A44BE7B22BF863000766274 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A44BE6022BF863000766274 /* AppDelegate.m */; };
@@ -24,17 +23,16 @@
 		68403F83276C859800E88214 /* AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861D3CFA276AE05E00645D6A /* AppExtension.swift */; };
 		6861691A26AEB1B800E26F69 /* Agora_Privacy_Policy_en.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6861691826AEB1B800E26F69 /* Agora_Privacy_Policy_en.rtf */; };
 		6861691B26AEB1B800E26F69 /* Agora_Privacy_Policy_cn.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6861691926AEB1B800E26F69 /* Agora_Privacy_Policy_cn.rtf */; };
-		6888099A262825FC00B5FB2A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68880999262825FC00B5FB2A /* LoginViewController.swift */; };
 		688809E82629358800B5FB2A /* FcrNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688809E72629358800B5FB2A /* FcrNavigationController.swift */; };
-		75D36FB810CB94F4AEF8D9A2 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		75D36FB810CB94F4AEF8D9A2 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		7813B70223FA5A0300265830 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7813B6F623FA5A0300265830 /* LaunchScreen.storyboard */; };
 		7878B4C523FA72EE00AF1B4F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7878B4C723FA72EE00AF1B4F /* Localizable.strings */; };
 		7878B4CB23FA735700AF1B4F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7878B4CD23FA735700AF1B4F /* InfoPlist.strings */; };
 		787A004225D10FC10063456F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A004125D10FC10063456F /* AudioToolbox.framework */; };
 		78DFB69825AEE20B00B01906 /* RtmTokenTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78DFB68625AEE20B00B01906 /* RtmTokenTool.mm */; };
 		78DFB69925AEE20B00B01906 /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DFB68B25AEE20B00B01906 /* md5.cpp */; };
+		86292F1E28F6A41900E7F225 /* AgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AFBEA02854996B003EBC0C /* AgreementView.swift */; };
 		8661A1A4270DA50E0047CB16 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78136271242C81ED00B7D1FE /* libz.tbd */; };
-		86D4896D277AE2750062F068 /* LoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D4896C277AE2750062F068 /* LoginModels.swift */; };
 		AB05CE9728C77387001239AD /* RoomCreateTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9528C77387001239AD /* RoomCreateTableCells.swift */; };
 		AB05CE9828C77387001239AD /* RoomCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9628C77387001239AD /* RoomCreateViewController.swift */; };
 		AB05CE9A28C89FAD001239AD /* RoomCreateTimeAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9928C89FAD001239AD /* RoomCreateTimeAlertController.swift */; };
@@ -61,9 +59,6 @@
 		AB7B7B6C28C1D8A7001D327A /* RoomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B7B6B28C1D8A7001D327A /* RoomListViewController.swift */; };
 		AB7B7B6F28C1E0B1001D327A /* RoomListTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B7B6E28C1E0B1001D327A /* RoomListTitleView.swift */; };
 		AB7B7B7128C1E151001D327A /* RoomListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B7B7028C1E151001D327A /* RoomListItemCell.swift */; };
-		AB7FFD6526EA0DDD003A50B8 /* RoomInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7FFD6426EA0DDD003A50B8 /* RoomInfoCell.swift */; };
-		AB7FFD6726EA3962003A50B8 /* RoomInfoOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7FFD6626EA3962003A50B8 /* RoomInfoOptionsView.swift */; };
-		AB7FFD6926EAFEF2003A50B8 /* RoomInfoOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7FFD6826EAFEF2003A50B8 /* RoomInfoOptionCell.swift */; };
 		AB80DBE628CB55320004E518 /* RoomItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80DBE528CB55320004E518 /* RoomItemModel.swift */; };
 		AB82D3AA28D0B11A00ADFC84 /* RoomListShareAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB82D3A928D0B11A00ADFC84 /* RoomListShareAlertController.swift */; };
 		AB8AC745287FEB5000B57B58 /* FcrPrivacyTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8AC744287FEB5000B57B58 /* FcrPrivacyTermsViewController.swift */; };
@@ -117,7 +112,6 @@
 		68362356262D30C20028F7F5 /* BaseLoginObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLoginObject.swift; sourceTree = "<group>"; };
 		6861691826AEB1B800E26F69 /* Agora_Privacy_Policy_en.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Agora_Privacy_Policy_en.rtf; sourceTree = "<group>"; };
 		6861691926AEB1B800E26F69 /* Agora_Privacy_Policy_cn.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Agora_Privacy_Policy_cn.rtf; sourceTree = "<group>"; };
-		68880999262825FC00B5FB2A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		688809E72629358800B5FB2A /* FcrNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrNavigationController.swift; sourceTree = "<group>"; };
 		7710B25021320B9CCD7E9CE1 /* Pods-AgoraEducation.certificated.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.certificated.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.certificated.xcconfig"; sourceTree = "<group>"; };
 		78136271242C81ED00B7D1FE /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -152,7 +146,6 @@
 		78DFB69725AEE20B00B01906 /* DynamicKey4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey4.h; sourceTree = "<group>"; };
 		7E41C30C2710CB486B9E7805 /* Pods_AgoraEducation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgoraEducation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		861D3CFA276AE05E00645D6A /* AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtension.swift; sourceTree = "<group>"; };
-		86D4896C277AE2750062F068 /* LoginModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModels.swift; sourceTree = "<group>"; };
 		8CD382F7BF039504C1D49C53 /* Pods-AgoraEducation.qatestrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.qatestrelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.qatestrelease.xcconfig"; sourceTree = "<group>"; };
 		A5BFF93D50503E0756F47D98 /* Pods-AgoraEducation.qarelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.qarelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.qarelease.xcconfig"; sourceTree = "<group>"; };
 		AB05CE9528C77387001239AD /* RoomCreateTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCreateTableCells.swift; sourceTree = "<group>"; };
@@ -181,9 +174,6 @@
 		AB7B7B6B28C1D8A7001D327A /* RoomListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListViewController.swift; sourceTree = "<group>"; };
 		AB7B7B6E28C1E0B1001D327A /* RoomListTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListTitleView.swift; sourceTree = "<group>"; };
 		AB7B7B7028C1E151001D327A /* RoomListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListItemCell.swift; sourceTree = "<group>"; };
-		AB7FFD6426EA0DDD003A50B8 /* RoomInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInfoCell.swift; sourceTree = "<group>"; };
-		AB7FFD6626EA3962003A50B8 /* RoomInfoOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInfoOptionsView.swift; sourceTree = "<group>"; };
-		AB7FFD6826EAFEF2003A50B8 /* RoomInfoOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInfoOptionCell.swift; sourceTree = "<group>"; };
 		AB80DBE528CB55320004E518 /* RoomItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomItemModel.swift; sourceTree = "<group>"; };
 		AB82D3A928D0B11A00ADFC84 /* RoomListShareAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListShareAlertController.swift; sourceTree = "<group>"; };
 		AB8AC744287FEB5000B57B58 /* FcrPrivacyTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrPrivacyTermsViewController.swift; sourceTree = "<group>"; };
@@ -199,7 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75D36FB810CB94F4AEF8D9A2 /* BuildFile in Frameworks */,
+				75D36FB810CB94F4AEF8D9A2 /* (null) in Frameworks */,
 				8661A1A4270DA50E0047CB16 /* libz.tbd in Frameworks */,
 				787A004225D10FC10063456F /* AudioToolbox.framework in Frameworks */,
 				489330F749FFF2263BE9EF78 /* Pods_AgoraEducation.framework in Frameworks */,
@@ -297,7 +287,6 @@
 			isa = PBXGroup;
 			children = (
 				68362356262D30C20028F7F5 /* BaseLoginObject.swift */,
-				86D4896C277AE2750062F068 /* LoginModels.swift */,
 				AB80DBE528CB55320004E518 /* RoomItemModel.swift */,
 			);
 			path = Beans;
@@ -354,9 +343,6 @@
 		78D7313523B38B5700D2146C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AB7FFD6426EA0DDD003A50B8 /* RoomInfoCell.swift */,
-				AB7FFD6626EA3962003A50B8 /* RoomInfoOptionsView.swift */,
-				AB7FFD6826EAFEF2003A50B8 /* RoomInfoOptionCell.swift */,
 				15AFBEA02854996B003EBC0C /* AgreementView.swift */,
 			);
 			path = View;
@@ -365,7 +351,6 @@
 		78D7313923B38B5700D2146C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				68880999262825FC00B5FB2A /* LoginViewController.swift */,
 				ABB1D15C287C00A600395A13 /* LoginWebViewController.swift */,
 				688809E72629358800B5FB2A /* FcrNavigationController.swift */,
 				AB0A2DD128DAEF6A0048FA3C /* LoginStartViewController.swift */,
@@ -585,7 +570,7 @@
 		1AE0CFFC2283C5F20092AC5E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = Agora;
 				TargetAttributes = {
 					1AE0D0032283C5F20092AC5E = {
@@ -676,7 +661,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd $SRCROOT/../Products/Scripts/App\nchmod u+x ./build-date.sh\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd $SRCROOT/../Products/Scripts/App\nchmod u+x ./build-date.sh\n\n./build-date.sh\n\ncd $SRCROOT/../\ngit config core.hooksPath .githooks\n";
 		};
 		9CCF3ABB7D45F972FD1E62D9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -725,14 +710,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB4F69E72874621F0012E6B3 /* FcrThemeViewController.swift in Sources */,
+				86292F1E28F6A41900E7F225 /* AgreementView.swift in Sources */,
 				AB80DBE628CB55320004E518 /* RoomItemModel.swift in Sources */,
 				AB4F69E32872C2340012E6B3 /* FcrDisclaimerViewController.swift in Sources */,
 				688809E82629358800B5FB2A /* FcrNavigationController.swift in Sources */,
 				6818977D28A259C200681DD9 /* DebugCoursewares.swift in Sources */,
-				AB7FFD6926EAFEF2003A50B8 /* RoomInfoOptionCell.swift in Sources */,
 				AB4F69DD286DC5D40012E6B3 /* FcrNavigatorCell.swift in Sources */,
-				AB7FFD6726EA3962003A50B8 /* RoomInfoOptionsView.swift in Sources */,
-				86D4896D277AE2750062F068 /* LoginModels.swift in Sources */,
 				AB08497128D5CCE100214B68 /* RoomCreateMoreInfoCells.swift in Sources */,
 				AB82D3AA28D0B11A00ADFC84 /* RoomListShareAlertController.swift in Sources */,
 				AB05CE9A28C89FAD001239AD /* RoomCreateTimeAlertController.swift in Sources */,
@@ -757,14 +740,11 @@
 				AB4F69D5286DBE140012E6B3 /* FcrNickNameViewController.swift in Sources */,
 				681528A6289CF10400EFD6F4 /* DebugDataHandler.swift in Sources */,
 				AB7B7B7128C1E151001D327A /* RoomListItemCell.swift in Sources */,
-				15AFBEA12854996B003EBC0C /* AgreementView.swift in Sources */,
 				AB4F69D1286D8C380012E6B3 /* FcrGeneralSettingsViewController.swift in Sources */,
 				68403F83276C859800E88214 /* AppExtension.swift in Sources */,
 				2616FAB2271EC4530086397B /* TokenBuilder.swift in Sources */,
-				6888099A262825FC00B5FB2A /* LoginViewController.swift in Sources */,
 				AB4F69F02876E5160012E6B3 /* FcrUserInfoPresenter.swift in Sources */,
 				AB8AC7472886D13600B57B58 /* FcrLocalization.swift in Sources */,
-				AB7FFD6526EA0DDD003A50B8 /* RoomInfoCell.swift in Sources */,
 				AB7B7B6C28C1D8A7001D327A /* RoomListViewController.swift in Sources */,
 				AB4F69D9286DBE830012E6B3 /* FcrLanguageViewController.swift in Sources */,
 				681528AA289D00CD00EFD6F4 /* DebugModels.swift in Sources */,
@@ -961,6 +941,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 40B28313D80C71B4DA8D643D /* Pods-AgoraEducation.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -999,7 +980,7 @@
 					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
 				);
 				INFOPLIST_FILE = "AgoraEducation/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1024,6 +1005,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4EAA54960A24224AEAEC570D /* Pods-AgoraEducation.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -1061,7 +1043,7 @@
 					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
 				);
 				INFOPLIST_FILE = "AgoraEducation/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1215,6 +1197,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 37B928C7F12A17713289F8D3 /* Pods-AgoraEducation.certificatec.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -1252,7 +1235,7 @@
 					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
 				);
 				INFOPLIST_FILE = "AgoraEducation/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1369,6 +1352,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D07BBD028AA8C6FEF9294576 /* Pods-AgoraEducation.certificatea.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -1406,7 +1390,7 @@
 					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
 				);
 				INFOPLIST_FILE = "AgoraEducation/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1523,6 +1507,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C4C459442E746BCF4D5997C8 /* Pods-AgoraEducation.certificateb.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -1560,7 +1545,7 @@
 					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
 				);
 				INFOPLIST_FILE = "AgoraEducation/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1677,6 +1662,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7710B25021320B9CCD7E9CE1 /* Pods-AgoraEducation.certificated.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -1714,7 +1700,7 @@
 					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
 				);
 				INFOPLIST_FILE = "AgoraEducation/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

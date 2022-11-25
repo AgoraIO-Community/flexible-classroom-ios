@@ -6,7 +6,6 @@
 //  Copyright © 2022 Agora. All rights reserved.
 //
 
-import UIKit
 #if canImport(AgoraClassroomSDK_iOS)
 import AgoraClassroomSDK_iOS
 #else
@@ -70,6 +69,11 @@ class RoomListViewController: UIViewController {
                          animated: true,
                          completion: nil)
             return
+        }
+        if FcrEnvironment.shared.environment == .dev {
+            titleView.envLabel.text = "测试环境"
+        } else {
+            titleView.envLabel.text = ""
         }
         // 检查协议，检查登录
         FcrPrivacyTermsViewController.checkPrivacyTerms {
@@ -189,10 +193,30 @@ private extension RoomListViewController {
             let endDate = Date(timeIntervalSince1970: Double(item.endTime) * 0.001)
             model.roomType = Int(item.roomType)
             model.roomName = item.roomName
-            if let roomProperties = item.roomProperties,
-               let service = roomProperties["serviceType"] as? Int,
-               let serviceType = AgoraEduServiceType(rawValue: service) {
-                model.serviceType = serviceType
+            let cid = FcrUserInfoPresenter.shared.companyId
+            if model.roomType == 6 {
+                model.userUuid = "\(cid)-sub"
+            } else {
+                model.userUuid = cid
+            }
+            if let roomProperties = item.roomProperties {
+                if let service = roomProperties["serviceType"] as? Int,
+                   let serviceType = AgoraEduServiceType(rawValue: service) {
+                    model.serviceType = serviceType
+                }
+                if let watermark = roomProperties["watermark"] as? Bool {
+                    model.watermark = watermark
+                }
+            }
+            
+            // CDN大班课暂不支持老师端
+            if model.roomType == 2,
+               model.roleType == 1,
+               let serviceTypeInt = model.serviceType?.rawValue,
+                serviceTypeInt != 0 {
+                AgoraToast.toast(message: "fcr_joinroom_tips_cdn_character".ag_localized(),
+                                 type: .warning)
+                return
             }
             if now.compare(endDate) == .orderedDescending { // 课程过期
                 self?.fetchData()
@@ -201,7 +225,7 @@ private extension RoomListViewController {
             }
         } onFailure: { code, msg in
             AgoraLoading.hide()
-            let str = (code == 404) ? "fcr_joinroom_tips_emptyid".ag_localized() : msg
+            let str = (code == 500) ? "fcr_joinroom_tips_emptyid".ag_localized() : msg
             AgoraToast.toast(message: str,
                              type: .warning)
         }
@@ -210,16 +234,14 @@ private extension RoomListViewController {
     func fillupTokenInfo(model: RoomInputInfoModel,
                          complete: @escaping (RoomInputInfoModel) -> Void) {
         AgoraLoading.loading()
-        guard let roomUuid = model.roomId else {
+        guard let roomUuid = model.roomId,
+              let userUuid = model.userUuid
+        else {
             return
         }
-        var cid = FcrUserInfoPresenter.shared.companyId
-        if model.roomType == 6 {
-            cid = "\(cid)-sub"
-        }
-        FcrOutsideClassAPI.buildToken(roomUuid: roomUuid,
-                                      userRole: model.roleType,
-                                      userId: cid) { dict in
+        FcrOutsideClassAPI.joinRoom(roomId: roomUuid,
+                                    userRole: model.roleType,
+                                    userUuid: userUuid) { dict in
             AgoraLoading.hide()
             guard let data = dict["data"] as? [String : Any] else {
                 fatalError("TokenBuilder buildByServer can not find data, dict: \(dict)")
@@ -244,7 +266,8 @@ private extension RoomListViewController {
               let roomName = model.roomName,
               let roomId = model.roomId,
               let appId = model.appId,
-              let token = model.token
+              let token = model.token,
+              let userUuid = model.userUuid
         else {
             return
         }
@@ -271,7 +294,7 @@ private extension RoomListViewController {
                                                 videoState: .on,
                                                 audioState: .on)
         let launchConfig = AgoraEduLaunchConfig(userName: userName,
-                                                userUuid: FcrUserInfoPresenter.shared.companyId,
+                                                userUuid: userUuid,
                                                 userRole: AgoraEduUserRole(rawValue: role) ?? .student,
                                                 roomName: roomName,
                                                 roomUuid: roomId,
@@ -295,21 +318,31 @@ private extension RoomListViewController {
                 newExtra["coursewareList"] = model.publicCoursewares()
                 v.extraInfo = newExtra
             }
-            if k == "shareLink" {
-                v.extraInfo = ["shareLink": FcrShareLink.shareLinkWith(roomId: roomId)]
-            }
             widgets[k] = v
         }
+        
+        // Theme
+        switch FcrUserInfoPresenter.shared.theme {
+        case 0:
+            agora_ui_mode = .agoraLight
+        default:
+            agora_ui_mode = .agoraDark
+        }
+        
         // share link
         let shareLink = AgoraWidgetConfig(with: AgoraShareLinkWidget.self,
                                           widgetId: "shareLink")
         widgets[shareLink.widgetId] = shareLink
-        launchConfig.widgets = widgets
-        
-        if region != .CN {
-            launchConfig.widgets.removeValue(forKey: "easemobIM")
+        shareLink.extraInfo = ["shareLink": FcrShareLink.shareLinkWith(roomId: roomId)]
+        // water mark
+        if model.watermark {
+            let watermark = AgoraWidgetConfig(with: AgoraWatermarkWidget.self,
+                                              widgetId: "watermark")
+            widgets[watermark.widgetId] = watermark
+            watermark.extraInfo = ["watermark": userName]
         }
         
+        launchConfig.widgets = widgets
         if let service = model.serviceType { // 职教入口
             AgoraLoading.loading()
             AgoraClassroomSDK.vocationalLaunch(launchConfig,
@@ -317,8 +350,16 @@ private extension RoomListViewController {
                 AgoraLoading.hide()
             } failure: { error in
                 AgoraLoading.hide()
-                AgoraToast.toast(message: error.localizedDescription,
-                                 type: .error)
+                
+                let `error` = error as NSError
+                
+                if error.code == 30403100 {
+                    AgoraToast.toast(message: "login_kicked".ag_localized(),
+                                     type: .error)
+                } else {
+                    AgoraToast.toast(message: error.localizedDescription,
+                                     type: .error)
+                }
             }
         } else { // 灵动课堂入口
             AgoraLoading.loading()
@@ -326,8 +367,16 @@ private extension RoomListViewController {
                 AgoraLoading.hide()
             } failure: { error in
                 AgoraLoading.hide()
-                AgoraToast.toast(message: error.localizedDescription,
-                                 type: .error)
+                 
+                let `error` = error as NSError
+                
+                if error.code == 30403100 {
+                    AgoraToast.toast(message: "login_kicked".ag_localized(),
+                                     type: .error)
+                } else {
+                    AgoraToast.toast(message: error.localizedDescription,
+                                     type: .error)
+                }
             }
         }
     }
@@ -338,7 +387,8 @@ private extension RoomListViewController {
               let roomName = model.roomName,
               let roomUuid = model.roomId,
               let appId = model.appId,
-              let token = model.token
+              let token = model.token,
+              let userUuid = model.userUuid
         else {
             return
         }
@@ -349,12 +399,10 @@ private extension RoomListViewController {
             latencyLevel = .low
         }
         let mediaOptions = AgoraProctorMediaOptions(encryptionConfig: nil,
-                                                videoEncoderConfig: nil,
-                                                latencyLevel: latencyLevel,
-                                                videoState: .on,
-                                                audioState: .on)
+                                                    videoEncoderConfig: nil,
+                                                    latencyLevel: latencyLevel)
         let launchConfig = AgoraProctorLaunchConfig(userName: userName,
-                                                    userUuid: FcrUserInfoPresenter.shared.companyId,
+                                                    userUuid: userUuid,
                                                     userRole: .student,
                                                     roomName: roomName,
                                                     roomUuid: roomUuid,
@@ -447,13 +495,8 @@ extension RoomListViewController: RoomListItemCellDelegate {
         let inputModel = RoomInputInfoModel()
         inputModel.roomId = item.roomId
         inputModel.roomName = item.roomName
+        inputModel.roleType = item.role ?? 1
         inputModel.userName = FcrUserInfoPresenter.shared.nickName
-        let cid = FcrUserInfoPresenter.shared.companyId
-        if item.creatorId == cid {
-            inputModel.roleType = 2
-        } else {
-            inputModel.roleType = 1
-        }        
         fillupInputModel(inputModel)
     }
     
@@ -623,7 +666,7 @@ private extension RoomListViewController {
 
 // MARK: - SDK delegate
 extension RoomListViewController: AgoraProctorSDKDelegate {
-    func proctorSDK(_ classroom: AgoraProctorSDK,
+    func proctorSDK(_ proctor: AgoraProctorSDK,
                     didExit reason: AgoraProctorExitReason) {
         switch reason {
         case .kickOut:

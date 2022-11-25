@@ -21,6 +21,8 @@ class RoomListTitleView: UIView {
     
     weak var delegate: RoomListTitleViewDelegate?
     
+    public let envLabel = UILabel()
+    
     private let cardView = UIView()
     
     private let titleLabel = UILabel()
@@ -152,6 +154,10 @@ private extension RoomListTitleView {
                                 action: #selector(onClickSetting(_:)),
                                 for: .touchUpInside)
         addSubview(settingButton)
+        
+        envLabel.textColor = .black
+        envLabel.font = UIFont.systemFont(ofSize: 12)
+        addSubview(envLabel)
     }
     
     func createConstrains() {
@@ -187,6 +193,10 @@ private extension RoomListTitleView {
         settingButton.mas_makeConstraints { make in
             make?.centerY.equalTo()(titleLabel)
             make?.right.equalTo()(-14)
+        }
+        envLabel.mas_makeConstraints { make in
+            make?.centerY.equalTo()(settingButton)
+            make?.right.equalTo()(settingButton.mas_left)?.offset()(5)
         }
     }
 }
