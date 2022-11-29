@@ -241,16 +241,15 @@ extension DebugDataHandler {
         // MARK: 若对widgets需要添加或修改时，可获取launchConfig中默认配置的widgets进行操作并重新赋值给launchConfig
         let cloudWidgetKey = "AgoraCloudWidget"
         let netlessWidgetKey = "netlessBoard"
-        let easemobWidgetKey = "easemobIM"
         
         let widgets = launchConfig.widgets
+        
         if let config = widgets[cloudWidgetKey] {
             config.extraInfo = ["publicCoursewares": debugInfo.publicCoursewares()]
         }
         
-        if let config = widgets[netlessWidgetKey],
-           var extra = config.extraInfo as? [String: Any] {
-            extra["coursewareList"] = debugInfo.publicCoursewares()
+        if let config = widgets[netlessWidgetKey] {
+            config.extraInfo = ["coursewareList": debugInfo.publicCoursewares()]
         }
         
         return launchConfig
