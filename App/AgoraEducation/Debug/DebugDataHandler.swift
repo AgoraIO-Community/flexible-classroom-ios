@@ -42,10 +42,6 @@ class DebugDataHandler {
     func updateDataSourceList(_ list: [DataSourceType]) {
         self.dataSourceList = list
         
-        if case .region(let region) = dataSourceList.valueOfType(.region) as? DataSourceType {
-            FcrEnvironment.shared.region = region.env
-        }
-        
         if case .uiLanguage(let uiLanguage) = dataSourceList.valueOfType(.uiLanguage) as? DataSourceType {
             FcrLocalization.shared.setupNewLanguage(uiLanguage.edu)
         }
@@ -241,7 +237,6 @@ extension DebugDataHandler {
         // MARK: 若对widgets需要添加或修改时，可获取launchConfig中默认配置的widgets进行操作并重新赋值给launchConfig
         let cloudWidgetKey = "AgoraCloudWidget"
         let netlessWidgetKey = "netlessBoard"
-        let easemobWidgetKey = "easemobIM"
         
         let widgets = launchConfig.widgets
         if let config = widgets[cloudWidgetKey] {
@@ -537,9 +532,6 @@ private extension DebugDataHandler {
             let list = DataSourceRegion.allCases
             let action: OptionSelectedAction = { [weak self] index in
                 let region: DataSourceRegion = list[index]
-                
-                // special
-                FcrEnvironment.shared.region = region.env
                 
                 let newValue = DataSourceType.region(region)
                 self?.updateDataSource(at: dataTypeIndex,
