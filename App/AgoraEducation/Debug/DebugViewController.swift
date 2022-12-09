@@ -112,6 +112,8 @@ extension DebugViewController: DebugViewDelagate {
                                           with: 1)
                 #endif
                 
+                AgoraClassroomSDK.setDelegate(self)
+                
                 if let service = info.serviceType.edu,
                     info.roomType == .vocational {
                     AgoraClassroomSDK.vocationalLaunch(launchConfig,
