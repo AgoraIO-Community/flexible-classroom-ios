@@ -26,7 +26,7 @@ target 'AgoraEducation' do
   pod 'Whiteboard', '2.16.51'
  
   # open source libs
-  pod 'AgoraClassroomSDK_iOS', '2.8.0'
+  pod 'AgoraClassroomSDK_iOS', '2.8.10'
   pod 'AgoraEduUI', '2.8.10'
   
   pod 'AgoraProctorSDK', '1.0.0'
