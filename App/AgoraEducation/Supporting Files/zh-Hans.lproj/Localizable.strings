@@ -194,6 +194,7 @@ debug_encryptKey_holder = "请输入密钥";
 debug_encryption_mode_holder = "请选择加密模式";
 debug_service_type_holder = "请选择音视频服务";
 debug_type_holder = "请选择课堂类型";
+debug_media_latency_holder = "请选择音视频延迟等级";
 debug_startTime_title = "开始时间";
 debug_authMedia_title = "音视频授权";
 debug_uiMode_title = "模式";

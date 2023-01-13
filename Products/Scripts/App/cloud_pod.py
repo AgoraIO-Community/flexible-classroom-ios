@@ -20,32 +20,31 @@ ExtcuteDir = "../../../App/".strip()
 BaseProjPath = ExtcuteDir + "AgoraEducation" + ".xcodeproj"
 
 SourcePodContent =  """
-    # common libs
-    pod 'AgoraUIBaseViews/Source', :path => '../../apaas-common-libs-ios/AgoraUIBaseViews_Local.podspec'
-    pod 'AgoraWidget/Source', :path => '../../apaas-common-libs-ios/AgoraWidget_Local.podspec'
-    pod 'AgoraReport', :path => '../../apaas-common-libs-ios/AgoraReport.podspec'
-    pod 'AgoraRx', :path => '../../apaas-common-libs-ios/AgoraRx.podspec'
-
-    # rtc (default pre)
-    pod 'AgoraEduCore/Source', :path => '../../cloudclass-ios/AgoraEduCore_Local.podspec'
-    pod 'AgoraRte/Source', :path => '../../common-scene-sdk/AgoraRte.podspec'
-
-    # open source libs
-    pod 'AgoraClassroomSDK_iOS', :path => '../../open-cloudclass-ios/AgoraClassroomSDK_iOS.podspec'
-    pod 'AgoraEduUI', :path => '../../open-cloudclass-ios/AgoraEduUI.podspec'
+  # open source libs
+  pod 'AgoraClassroomSDK_iOS', :path => '../../open-cloudclass-ios/AgoraClassroomSDK_iOS.podspec'
+  pod 'AgoraEduUI', :path => '../../open-cloudclass-ios/AgoraEduUI.podspec'
     
-    pod 'AgoraProctorSDK', :path => '../../open-proctor-ios/AgoraProctorSDK.podspec'
-    pod 'AgoraProctorUI', :path => '../../open-proctor-ios/AgoraProctorUI.podspec'
+  pod 'AgoraProctorSDK', :path => '../../open-proctor-ios/AgoraProctorSDK.podspec'
+  pod 'AgoraProctorUI', :path => '../../open-proctor-ios/AgoraProctorUI.podspec'
     
-    # widgets
-    pod 'AgoraWidgets', :path => '../../open-apaas-extapp-ios/AgoraWidgets.podspec'
+  pod 'AgoraWidgets', :path => '../../open-apaas-extapp-ios/AgoraWidgets.podspec'
+  
+  # close source libs
+  pod 'AgoraEduCore/Source', :path => '../../cloudclass-ios/AgoraEduCore_Local.podspec'
+  pod 'AgoraRte/Source', :path => '../../common-scene-sdk/AgoraRte.podspec'
+  
+  pod 'AgoraUIBaseViews/Source', :path => '../../apaas-common-libs-ios/AgoraUIBaseViews_Local.podspec'
+  pod 'AgoraWidget/Source', :path => '../../apaas-common-libs-ios/AgoraWidget_Local.podspec'
+  pod 'AgoraReport', :path => '../../apaas-common-libs-ios/AgoraReport.podspec'
+  pod 'AgoraRx', :path => '../../apaas-common-libs-ios/AgoraRx.podspec'
 
-    pod 'MLeaksFinder'
-    post_install do |installer|
-      ## Fix for XCode 12.5
+  pod 'MLeaksFinder'
+  
+  post_install do |installer|
+    ## Fix for XCode 12.5
       find_and_replace("Pods/FBRetainCycleDetector/FBRetainCycleDetector/Layout/Classes/FBClassStrongLayout.mm",
         "layoutCache[currentClass] = ivars;", "layoutCache[(id<NSCopying>)currentClass] = ivars;")
-    end
+  end
 end
    """
 
