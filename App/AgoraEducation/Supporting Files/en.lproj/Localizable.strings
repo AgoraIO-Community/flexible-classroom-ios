@@ -196,6 +196,7 @@ debug_encryptKey_title = "Key";
 debug_encryptKey_holder = "Please input your key";
 debug_encryption_mode_holder = "Please select your mode";
 debug_type_holder = "Please select class type";
+debug_media_latency_holder = "Please select media latency";
 debug_service_type_holder = "Please select service type";
 debug_startTime_title = "Start";
 debug_authMedia_title = "Media Auth";

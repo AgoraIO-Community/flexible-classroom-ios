@@ -23,7 +23,7 @@ enum Device: String {
 class LoginConfig {
     
     static let version_time: String = {
-        return "2022.08.08"
+        return "2023.01.13"
     }()
     
     static let sdk_version: String = AgoraClassroomSDK.version()

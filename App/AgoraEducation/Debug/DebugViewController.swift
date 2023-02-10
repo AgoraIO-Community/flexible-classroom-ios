@@ -246,6 +246,7 @@ extension DebugViewController {
                                              .userName(.none),
                                              .roomType(.unselected),
                                              .roleType(.unselected),
+                                             .mediaLatency(.ultraLow),
                                              .im(.easemob),
                                              .deviceType(.sub),
                                              .duration(.none),

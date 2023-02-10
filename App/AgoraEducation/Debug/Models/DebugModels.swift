@@ -138,6 +138,25 @@ enum DataSourceRoomType: CaseIterable {
     }
 }
 
+enum DataSourceMediaLatency: CaseIterable {
+    case low
+    case ultraLow
+    
+    var viewText: String {
+        switch self {
+        case .low:       return "low"
+        case .ultraLow:  return "ultraLow"
+        }
+    }
+    
+    var edu: AgoraEduLatencyLevel {
+        switch self {
+        case .low:      return .low
+        case .ultraLow: return .ultraLow
+        }
+    }
+}
+
 enum DataSourceServiceType: CaseIterable {
     case unselected
     case livePremium
@@ -394,6 +413,7 @@ enum DataSourceType: Equatable {
     case roomName(DataSourceRoomName)
     case userName(DataSourceUserName)
     case roomType(DataSourceRoomType)
+    case mediaLatency(DataSourceMediaLatency)
     case serviceType(DataSourceServiceType)
     case roleType(DataSourceRoleType)
     case im(DataSourceIMType)
@@ -409,7 +429,7 @@ enum DataSourceType: Equatable {
     case environment(DataSourceEnvironment)
     
     enum Key {
-        case roomName, roomType,  startTime, duration
+        case roomName, roomType, mediaLatency, startTime, duration
         case userName, roleType, deviceType
         case encryptKey, encryptMode, mediaAuth, serviceType
         case im, uiMode, uiLanguage
@@ -421,6 +441,7 @@ enum DataSourceType: Equatable {
         case .roomName:     return .roomName
         case .userName:     return .userName
         case .roomType:     return .roomType
+        case .mediaLatency: return .mediaLatency
         case .serviceType:  return .serviceType
         case .roleType:     return .roleType
         case .im:           return .im
@@ -447,6 +468,7 @@ enum DataSourceType: Equatable {
         case .roomName:      return "debug_room_title".ag_localized()
         case .userName:      return "debug_user_title".ag_localized()
         case .roomType:      return "debug_class_type_title".ag_localized()
+        case .mediaLatency:  return "Latency"
         case .serviceType:   return "debug_class_service_type_title".ag_localized()
         case .roleType:      return "debug_title_role".ag_localized()
         case .im:            return "IM"
@@ -468,6 +490,7 @@ enum DataSourceType: Equatable {
         case .roomName:      return "debug_room_holder".ag_localized()
         case .userName:      return "debug_user_holder".ag_localized()
         case .roomType:      return "debug_type_holder".ag_localized()
+        case .mediaLatency:  return "debug_media_latency_holder".ag_localized()
         case .serviceType:   return "debug_service_type_holder".ag_localized()
         case .roleType:      return "debug_role_holder".ag_localized()
         case .im:            return "debug_service_type_holder".ag_localized()
@@ -511,6 +534,7 @@ struct DebugLaunchInfo {
     var roomId: String
     var userName: String
     var userId: String
+    var mediaLatency: DataSourceMediaLatency
     var roomType: DataSourceRoomType
     var serviceType: DataSourceServiceType
     var roleType: DataSourceRoleType
@@ -540,17 +564,8 @@ struct DebugLaunchInfo {
         return encryptionConfig
     }
     
-    var eduLatencyLevel: AgoraEduLatencyLevel {
-        var latencyLevel = AgoraEduLatencyLevel.ultraLow
-        if roomType == .vocational,
-           serviceType == .liveStandard {
-            latencyLevel = .low
-        }
-        return latencyLevel
-    }
-    
     var eduMediaOptions: AgoraEduMediaOptions {
-        let latencyLevel = eduLatencyLevel
+        let latencyLevel = mediaLatency.edu
         let encryptionConfig = eduEncryptionConfig
         
         let videoState: AgoraEduStreamState = (mediaAuth == .video || mediaAuth == .both) ? .on : .off

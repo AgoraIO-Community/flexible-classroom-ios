@@ -102,6 +102,7 @@ extension DebugDataHandler {
         var roomName: String?
         var userName: String?
         var roomType: DataSourceRoomType?
+        var mediaLatency: DataSourceMediaLatency = .ultraLow
         var serviceType: DataSourceServiceType = .livePremium
         var roleType: DataSourceRoleType?
         var im: DataSourceIMType?
@@ -133,6 +134,8 @@ extension DebugDataHandler {
                 userName = value
             case .roomType(let dataSourceRoomType):
                 roomType = (dataSourceRoomType != .unselected) ? dataSourceRoomType : nil
+            case .mediaLatency(let latency):
+                mediaLatency = latency
             case .serviceType(let dataSourceServiceType):
                 serviceType = dataSourceServiceType
             case .roleType(let dataSourceRoleType):
@@ -189,10 +192,12 @@ extension DebugDataHandler {
         
         let userId = "\(userName.md5())\(roleType.rawValue)"
         let roomId = "\(roomName.md5())\(roomType.tag)"
+        
         return DebugLaunchInfo(roomName: roomName,
                                roomId: roomId,
                                userName: userName,
                                userId: userId,
+                               mediaLatency: mediaLatency,
                                roomType: roomType,
                                serviceType: serviceType,
                                roleType: roleType,
@@ -367,6 +372,20 @@ private extension DebugDataHandler {
                 self?.updateDataSource(at: dataTypeIndex,
                                        with: newValue)
             })
+        case .mediaLatency(let selected):
+            let list = DataSourceMediaLatency.allCases
+            let action: OptionSelectedAction = { [weak self] index in
+                let mediaLatency: DataSourceMediaLatency = list[index]
+                let newValue = DataSourceType.mediaLatency(mediaLatency)
+                self?.updateDataSource(at: dataTypeIndex,
+                                       with: newValue)
+            }
+            let options: [(String, OptionSelectedAction)] = list.map({return ($0.viewText, action)})
+            let selectedIndex = list.firstIndex(where: {$0 == selected})
+            type = .option(options: options,
+                           placeholder: placeholder,
+                           text: selected.viewText,
+                           selectedIndex: selectedIndex ?? -1)
         case .startTime(let dataSourceStartTime):
             type = .time(timeInterval: dataSourceStartTime.timeInterval,
                          action: { [weak self] value in

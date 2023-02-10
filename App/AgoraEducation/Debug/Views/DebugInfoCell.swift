@@ -170,11 +170,11 @@ extension DebugInfoCell: AgoraUIContentContainer {
         titleLabel.mas_makeConstraints { make in
             make?.top.left().equalTo()(0)
             make?.height.equalTo()(40)
-            make?.width.equalTo()(58)
+            make?.width.equalTo()(68)
         }
         textField.mas_makeConstraints { make in
             make?.top.right().equalTo()(0)
-            make?.left.equalTo()(titleLabel.mas_right)
+            make?.left.equalTo()(titleLabel.mas_right)?.offset()(10)
             make?.height.equalTo()(40)
         }
         indicatorView.mas_makeConstraints { make in
@@ -196,6 +196,7 @@ extension DebugInfoCell: AgoraUIContentContainer {
     func updateViewProperties() {
         titleLabel.textColor = UIColor(hexString: "8A8A9A")
         titleLabel.font = UIFont.systemFont(ofSize: 14)
+        titleLabel.adjustsFontSizeToFitWidth = true
         
         textField.font = UIFont.systemFont(ofSize: 14)
         
