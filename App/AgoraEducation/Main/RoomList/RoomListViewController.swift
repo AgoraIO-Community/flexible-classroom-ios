@@ -309,7 +309,7 @@ private extension RoomListViewController {
         // MARK: 若对widgets需要添加或修改时，可获取launchConfig中默认配置的widgets进行操作并重新赋值给launchConfig
         var widgets = Dictionary<String,AgoraWidgetConfig>()
         launchConfig.widgets.forEach { (k,v) in
-            if k == "AgoraCloudWidget" {
+            if k == "cloudDrive" {
                 v.extraInfo = ["publicCoursewares": model.publicCoursewares()]
             }
             if k == "netlessBoard",
