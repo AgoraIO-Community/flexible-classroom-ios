@@ -12,20 +12,16 @@ import AgoraEduCore
 struct FcrShareLink {
     public static func shareLinkWith(roomId: String) -> String {
         let owner = FcrUserInfoPresenter.shared.nickName.urlEncoded
-        let dict: [String: Any] = [
-            "owner": owner,
-            "roomId": roomId,
-            "region": FcrEnvironment.shared.region.rawValue,
-            "role": AgoraEduCoreUserRole.student.rawValue
-        ]
+        
+        let dict: [String: Any] = ["owner": owner,
+                                   "roomId": roomId,
+                                   "region": FcrEnvironment.shared.region.rawValue,
+                                   "role": AgoraEduCoreUserRole.student.rawValue]
+        
         let json = dict.jsonString()
         let sc = json?.base64Encoded ?? ""
-//        var version = UIApplication.shared.version ?? ""
-//        var nums = version.split(separator: ".")
-//        nums.removeLast()
-//        nums.append("x")
-//        version = nums.joined(separator: ".")
-        let version = "2.8.x"
+        
+        let version = getInvitationLinkVersion()
         var baseURL = "https://solutions-apaas.agora.io/apaas/app/prod/"
         
         if FcrEnvironment.shared.environment != .pro {
@@ -33,9 +29,24 @@ struct FcrShareLink {
         }
         
         let shareLink = baseURL + version + "/index.html#/invite?sc=" + sc
+        
         return shareLink
     }
+    
+    static func getInvitationLinkVersion() -> String {
+        let appVersion = Bundle.main.version
+                
+        let startIndex = appVersion.index(appVersion.endIndex,
+                                          offsetBy: -1)
+        let endIndex = appVersion.endIndex
+        
+        let text = appVersion.replacingCharacters(in: startIndex..<endIndex,
+                                                  with: "x")
+        
+        return text
+    }
 }
+
 class RoomListShareAlertController: UIViewController {
     
     static func show(in viewController: UIViewController,
