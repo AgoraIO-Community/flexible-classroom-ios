@@ -77,7 +77,6 @@
 # ========== Guidelines End=============
 # --------------------------------------------------------------------------------------------------------------------------
 
-
 echo Package_Publish: $Package_Publish
 echo is_tag_fetch: $is_tag_fetch
 echo arch: $arch
@@ -88,3 +87,42 @@ echo build_time: $build_time
 echo release_version: $release_version
 echo short_version: $short_version
 echo pwd: `pwd`
+echo BUILD_NUMBER: ${BUILD_NUMBER}
+
+export all_proxy=http://10.80.1.174:1080
+
+# difference
+Repo_Name="open-flexible-classroom-ios"
+
+# import
+. ../apaas-cicd-ios/Products/Scripts/Other/v1/operation_print.sh
+
+App_Array=(Debug)
+
+# path
+Scripts_Path=./Products/Scripts
+Scripts_App_Path=${Scripts_Path}/App
+Scripts_Pack_Path=${Scripts_Path}/Pack
+
+# build
+if [ ${is_official_build} = true ]; then
+    App_Array=(Release)
+fi
+
+for Mode in ${App_Array[*]} 
+do
+  ${Scripts_App_Path}/build.sh ${Mode} ${Repo_Name}
+  
+  errorPrint $? "${Mode} Build"
+done
+
+# sign
+
+# publish
+  if [ "${Package_Publish}" = true ]; then
+    #${Pack_Path}/package_artifactory.sh ${SDK} ${Repo_Name} ${BUILD_NUMBER}
+
+    #errorPrint $? "${SDK} Package"
+  fi
+
+unset all_proxy
