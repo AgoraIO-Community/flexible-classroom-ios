@@ -92,37 +92,54 @@ echo BUILD_NUMBER: ${BUILD_NUMBER}
 export all_proxy=http://10.80.1.174:1080
 
 # difference
+App_Name="AgoraCloudClass"
+Target_Name="AgoraEducation"
+Project_Name="AgoraEducation"
 Repo_Name="open-flexible-classroom-ios"
 
 # import
 . ../apaas-cicd-ios/Products/Scripts/Other/v1/operation_print.sh
 
+# mode
 App_Array=(Debug)
 
-# path
-Scripts_Path=./Products/Scripts
-Scripts_App_Path=${Scripts_Path}/App
-Scripts_Pack_Path=${Scripts_Path}/Pack
-
-# build
 if [ ${is_official_build} = true ]; then
     App_Array=(Release)
 fi
 
+# path
+CICD_Scripts_Path="../apaas-cicd-ios/Products/Scripts"
+CICD_Build_Path="${CICD_Scripts_Path}/App/Build"
+CICD_Pack_Path="${CICD_Scripts_Path}/App/Pack"
+CICD_Upload_Path="${CICD_Scripts_Path}/App/Upload"
+
+Build_Path="./Products/Scripts/Build"
+
+# dependency
+${Build_Path}/dependency.sh ${Repo_Name}
+
+# podfile
+${Build_Path}/podfile.sh 0
+
+# build
 for Mode in ${App_Array[*]} 
 do
-  ${Scripts_App_Path}/build.sh ${Mode} ${Repo_Name}
+  ${CICD_Build_Path}/v1/build.sh ${App_Name} ${Target_Name} ${Project_Name} ${Mode} ${Repo_Name}
   
-  errorPrint $? "${Mode} Build"
+  errorPrint $? "${App_Name} ${Mode} build"
 done
 
 # sign
 
 # publish
-  if [ "${Package_Publish}" = true ]; then
-    #${Pack_Path}/package_artifactory.sh ${SDK} ${Repo_Name} ${BUILD_NUMBER}
+if [ "${Package_Publish}" = true ]; then
+    ${CICD_Pack_Path}/v1/package.sh ${App_Name} ${Repo_Name}
 
-    #errorPrint $? "${SDK} Package"
-  fi
+    errorPrint $? "${App_Name} package"
+
+    ${CICD_Upload_Path}/v1/upload_artifactory.sh ${App_Name} ${Repo_Name}
+
+    errorPrint $? "${App_Name} upload"
+fi
 
 unset all_proxy
