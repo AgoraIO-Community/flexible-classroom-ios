@@ -59,9 +59,9 @@ BinaryPodContent = """
   pod 'AgoraWidgets/Binary',          :path => '../AgoraWidgets_Local.podspec'
   
   # close source libs
-  pod 'AgoraEduCore/Binary',          :path => '../../cloudclass-ios/AgoraEduCore_Local.podspec'
-  pod 'AgoraUIBaseViews/Binary',      :path => '../../apaas-common-libs-ios/AgoraUIBaseViews_Local.podspec'
-  pod 'AgoraWidget/Binary',           :path => '../../apaas-common-libs-ios/AgoraWidget_Local.podspec'
+  pod 'AgoraEduCore/Binary',          :path => '../AgoraEduCore_Local.podspec'
+  pod 'AgoraUIBaseViews/Binary',      :path => '../AgoraUIBaseViews_Local.podspec'
+  pod 'AgoraWidget/Binary',           :path => '../AgoraWidget_Local.podspec'
 end
 """
 
