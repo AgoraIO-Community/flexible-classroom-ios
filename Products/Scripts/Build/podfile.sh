@@ -6,4 +6,4 @@ echo pwd: `pwd`
 # parameters
 Dependency_Type=$1
 
-python ./cloud_pod.py 0 ${Dependency_Type}
+python ./cloud_pod.py ${Dependency_Type} 1 
