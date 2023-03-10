@@ -661,7 +661,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd $SRCROOT/../Products/Scripts/App\nchmod u+x ./build-date.sh\n\n./build-date.sh\n\ncd $SRCROOT/../\ngit config core.hooksPath .githooks\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd $SRCROOT/../Products/Scripts/Build\nchmod u+x ./build-date.sh\n\n./build-date.sh\n\ncd $SRCROOT/../\ngit config core.hooksPath .githooks\n";
 		};
 		9CCF3ABB7D45F972FD1E62D9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -10,11 +10,14 @@
 # AgoraEduCore 
 # AgoraWidget
 # AgoraUIBaseViews
-Dep_Array_URL=("https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/CommonSceneSDK/cavan/20230302/ios/AgoraRte_1.0.0_19.zip"
-               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/apaas_common_libs_ios/cavan/20230302/ios/AgoraReport_2.0.0_82.zip"
-               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/apaas_common_libs_ios/cavan/20230302/ios/AgoraRx_2.0.0_82.zip"
-               "https://artifactory.agoralab.co/artifactory/AD_repo/apaas_common_libs_ios/cavan/20230302/ios/AgoraUIBaseViews_2.8.0_82.zip"
-               "https://artifactory.agoralab.co/artifactory/AD_repo/apaas_common_libs_ios/cavan/20230302/ios/AgoraWidget_2.8.0_82.zip")
+Dep_Array_URL=("https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/apaas-classroom-ios/cavan/20230310/ios/AgoraClassroomSDK_iOS_2.8.20_7.zip" 
+               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/apaas-classroom-ios/cavan/20230310/ios/AgoraEduUI_2.8.20_7.zip"
+               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/Proctor_iOS/cavan/20230309/ios/AgoraProctorSDK_1.0.0_18.zip"
+               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/Proctor_iOS/cavan/20230309/ios/AgoraProctorUI_1.0.0_18.zip"
+               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/Widgets_iOS/cavan/20230309/ios/AgoraWidgets_2.8.20_16.zip"
+               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/Edu_Core_iOS/cavan/20230309/ios/AgoraEduCore_2.8.20_15.zip"
+               "https://artifactory.agoralab.co/artifactory/AD_repo/apaas_common_libs_ios/cavan/20230302/ios/AgoraWidget_2.8.0_82.zip"
+               "https://artifactory.agoralab.co/artifactory/AD_repo/apaas_common_libs_ios/cavan/20230302/ios/AgoraUIBaseViews_2.8.0_82.zip")
 
 Dep_Array=(AgoraClassroomSDK_iOS
            AgoraEduUI
