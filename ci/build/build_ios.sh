@@ -119,7 +119,7 @@ Build_Path="./Products/Scripts/Build"
 ${Build_Path}/dependency.sh ${Repo_Name}
 
 # podfile
-${Build_Path}/podfile.sh 0
+${Build_Path}/podfile.sh 1
 
 # build
 for Mode in ${App_Array[*]} 
