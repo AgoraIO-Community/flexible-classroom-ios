@@ -4,6 +4,10 @@
 
 ## Build generated
 #build/
+*.podspec
+*.framework
+*.dSYM
+
 DerivedData
 xcshareddata
 Podfile.lock
