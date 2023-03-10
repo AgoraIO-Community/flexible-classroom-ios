@@ -129,7 +129,13 @@ do
   errorPrint $? "${App_Name} ${Mode} build"
 done
 
+ls
+
+exit 0
+
 # sign
+
+
 
 # publish
 if [ "${Package_Publish}" = true ]; then
