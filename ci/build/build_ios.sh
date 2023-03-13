@@ -132,7 +132,9 @@ do
 done
 
 # sign
-./sign ${Products_App_Path}/${App_Name}.ipa
+echo pwd: `pwd`
+
+${WORKSPACE}/sign ${Products_App_Path}/${App_Name}.ipa
 
 ls ${Products_App_Path}
 
