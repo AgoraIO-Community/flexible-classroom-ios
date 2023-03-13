@@ -88,6 +88,7 @@ echo release_version: $release_version
 echo short_version: $short_version
 echo pwd: `pwd`
 echo BUILD_NUMBER: ${BUILD_NUMBER}
+echo open_flexible_classroom_ios: ${open_flexible_classroom_ios}
 
 export all_proxy=http://10.80.1.174:1080
 
@@ -96,6 +97,7 @@ App_Name="AgoraCloudClass"
 Target_Name="AgoraEducation"
 Project_Name="AgoraEducation"
 Repo_Name="open-flexible-classroom-ios"
+Branch_Name=${open_flexible_classroom_ios}
 
 # import
 . ../apaas-cicd-ios/Products/Scripts/Other/v1/operation_print.sh
@@ -137,12 +139,12 @@ if [ "${Package_Publish}" = true ]; then
     errorPrint $? "${App_Name} sign"
 
     # package
-    ${CICD_Pack_Path}/v1/package.sh ${App_Name} ${Repo_Name}
+    ${CICD_Pack_Path}/v1/package.sh ${App_Name} ${Branch_Name} ${Repo_Name}
     
     errorPrint $? "${App_Name} package"
 
     # upload
-    ${CICD_Upload_Path}/v1/upload_artifactory.sh ${App_Name} ${Repo_Name} ${is_official_build}
+    ${CICD_Upload_Path}/v1/upload_artifactory.sh ${App_Name} ${Branch_Name} ${Repo_Name} ${is_official_build}
 
     errorPrint $? "${App_Name} upload"
 fi
