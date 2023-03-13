@@ -138,6 +138,8 @@ ${WORKSPACE}/sign ${Products_App_Path}/${App_Name}.ipa
 
 ls ${Products_App_Path}
 
+errorPrint $? "${App_Name} sign"
+
 # publish
 if [ "${Package_Publish}" = true ]; then
     ${CICD_Pack_Path}/v1/package.sh ${App_Name} ${Repo_Name}
