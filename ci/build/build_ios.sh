@@ -124,18 +124,15 @@ ${Build_Path}/podfile.sh 1
 # build
 for Mode in ${App_Array[*]} 
 do
-  ${CICD_Build_Path}/v1/build.sh ${App_Name} ${Target_Name} ${Project_Name} ${Mode} ${Repo_Name}
+  ${CICD_Build_Path}/v1/build.sh ${App_Name} ${Target_Name} ${Project_Name} ${Mode} ${Repo_Name} false
   
   errorPrint $? "${App_Name} ${Mode} build"
 done
 
-ls
-
-exit 0
-
 # sign
+./sign ./Package/${App_Name}.ipa
 
-
+ls
 
 # publish
 if [ "${Package_Publish}" = true ]; then
