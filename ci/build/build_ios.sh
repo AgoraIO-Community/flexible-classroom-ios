@@ -88,7 +88,7 @@ echo release_version: $release_version
 echo short_version: $short_version
 echo pwd: `pwd`
 echo BUILD_NUMBER: ${BUILD_NUMBER}
-echo open_flexible_classroom_ios: ${open_flexible_classroom_ios}
+echo open_flexible_classroom_ios: ${open_flexible_classroom_ios_branch}
 
 export all_proxy=http://10.80.1.174:1080
 
