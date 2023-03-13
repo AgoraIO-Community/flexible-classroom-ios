@@ -130,11 +130,7 @@ do
 done
 
 # sign
-echo pwd: `pwd`
-
-sh ${WORKSPACE}/sign ${Products_App_Path}/${App_Name}.ipa
-
-ls ${Products_App_Path}
+${CICD_Build_Path}/v1/sign_ipa.sh ${App_Name} ${Repo_Name}
 
 errorPrint $? "${App_Name} sign"
 
