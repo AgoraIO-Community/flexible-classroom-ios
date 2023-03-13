@@ -97,7 +97,7 @@ App_Name="AgoraCloudClass"
 Target_Name="AgoraEducation"
 Project_Name="AgoraEducation"
 Repo_Name="open-flexible-classroom-ios"
-Branch_Name=${open_flexible_classroom_ios}
+Branch_Name=${open_flexible_classroom_ios_branch}
 
 # import
 . ../apaas-cicd-ios/Products/Scripts/Other/v1/operation_print.sh
