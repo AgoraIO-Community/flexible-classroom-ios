@@ -130,17 +130,19 @@ do
 done
 
 # sign
-${CICD_Build_Path}/v1/sign_ipa.sh ${App_Name} ${Repo_Name}
+${CICD_Build_Path}/v1/sign_ipa.sh ${App_Name} ${Repo_Name} ${is_official_build}
 
 errorPrint $? "${App_Name} sign"
 
 # publish
 if [ "${Package_Publish}" = true ]; then
+    # package
     ${CICD_Pack_Path}/v1/package.sh ${App_Name} ${Repo_Name}
-
+    
     errorPrint $? "${App_Name} package"
 
-    ${CICD_Upload_Path}/v1/upload_artifactory.sh ${App_Name} ${Repo_Name}
+    # upload
+    ${CICD_Upload_Path}/v1/upload_artifactory.sh ${App_Name} ${Repo_Name} ${is_official_build}
 
     errorPrint $? "${App_Name} upload"
 fi
