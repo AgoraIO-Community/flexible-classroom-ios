@@ -113,7 +113,9 @@ CICD_Build_Path="${CICD_Scripts_Path}/App/Build"
 CICD_Pack_Path="${CICD_Scripts_Path}/App/Pack"
 CICD_Upload_Path="${CICD_Scripts_Path}/App/Upload"
 
-Build_Path="./Products/Scripts/Build"
+Products_Path="./Products"
+Build_Path="${Products_Path}/Scripts/Build"
+Products_App_Path="${Products_Path}/App"
 
 # dependency
 ${Build_Path}/dependency.sh ${Repo_Name}
@@ -130,9 +132,9 @@ do
 done
 
 # sign
-./sign ./Package/${App_Name}.ipa
+./sign ${Products_App_Path}/${App_Name}.ipa
 
-ls
+ls ${Products_App_Path}
 
 # publish
 if [ "${Package_Publish}" = true ]; then
