@@ -119,8 +119,6 @@ Products_App_Path="${Products_Path}/App"
 
 # dependency
 ${Build_Path}/dependency.sh ${Repo_Name}
-
-# podfile
 ${Build_Path}/podfile.sh 1
 
 # build
@@ -134,7 +132,7 @@ done
 # sign
 echo pwd: `pwd`
 
-${WORKSPACE}/sign ${Products_App_Path}/${App_Name}.ipa
+sh ${WORKSPACE}/sign ${Products_App_Path}/${App_Name}.ipa
 
 ls ${Products_App_Path}
 
