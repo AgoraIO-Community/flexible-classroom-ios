@@ -103,7 +103,7 @@ Branch_Name=${open_flexible_classroom_ios_branch}
 . ../apaas-cicd-ios/Products/Scripts/Other/v1/operation_print.sh
 
 # mode
-App_Array=(Debug)
+App_Array=(Release)
 
 if [ ${is_official_build} = true ]; then
     App_Array=(Release)
