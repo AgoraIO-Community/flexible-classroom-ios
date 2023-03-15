@@ -123,6 +123,8 @@ Products_App_Path="${Products_Path}/App"
 ${Build_Path}/dependency.sh ${Repo_Name}
 ${Build_Path}/podfile.sh 1
 
+${CICD_Build_Path}/v1/lib_arch.sh ${Repo_Name}
+
 # build
 for Mode in ${App_Array[*]} 
 do
