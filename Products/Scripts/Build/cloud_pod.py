@@ -19,8 +19,7 @@ class RTCVERSION(Enum):
 ExtcuteDir = "../../../App/".strip()
 BaseProjPath = ExtcuteDir + "AgoraEducation" + ".xcodeproj"
 
-SourcePodContent =  """
-  # open source libs
+SourcePodContent = """
   pod 'AgoraClassroomSDK_iOS/Source',   :path => '../../open-cloudclass-ios/AgoraClassroomSDK_iOS_Local.podspec'
   pod 'AgoraEduUI/Source',              :path => '../../open-cloudclass-ios/AgoraEduUI_Local.podspec'
     
@@ -42,14 +41,22 @@ SourcePodContent =  """
   
   post_install do |installer|
     ## Fix for XCode 12.5
-      find_and_replace("Pods/FBRetainCycleDetector/FBRetainCycleDetector/Layout/Classes/FBClassStrongLayout.mm",
-        "layoutCache[currentClass] = ivars;", "layoutCache[(id<NSCopying>)currentClass] = ivars;")
+    find_and_replace("Pods/FBRetainCycleDetector/FBRetainCycleDetector/Layout/Classes/FBClassStrongLayout.mm",
+                     "layoutCache[currentClass] = ivars;", "layoutCache[(id<NSCopying>)currentClass] = ivars;")
+    
+    # no signing for pods bundle
+    installer.pods_project.targets.each do |target|
+      if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+        target.build_configurations.each do |config|
+          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+        end
+      end
+    end
   end
 end
-   """
+"""
 
 BinaryPodContent = """
-  # open source libs
   pod 'AgoraClassroomSDK_iOS/Binary', :path => '../AgoraClassroomSDK_iOS_Local.podspec'
   pod 'AgoraEduUI/Binary‘,            :path => '../AgoraEduUI_Local.podspec'
   
@@ -62,6 +69,17 @@ BinaryPodContent = """
   pod 'AgoraEduCore/Binary',          :path => '../AgoraEduCore_Local.podspec'
   pod 'AgoraUIBaseViews/Binary',      :path => '../AgoraUIBaseViews_Local.podspec'
   pod 'AgoraWidget/Binary',           :path => '../AgoraWidget_Local.podspec'
+  
+  # post install, no signing for pods bundle
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+        target.build_configurations.each do |config|
+          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+        end
+      end
+    end
+  end
 end
 """
 
@@ -126,13 +144,12 @@ def rtcHandle(lines):
 
             lines[index] = str
 
-
 def addLeaksFinderFunction(lines):
     if BaseParams["podMode"] != PODMODE.Source:
         return
     
     print("Add function for MLeaksFinder")
-    keyword = "target"
+    keyword = "target 'AgoraEducation' do"
     funcName = "def find_and_replace"
     addIndex = -1
     for index,str in enumerate(lines):
@@ -145,7 +162,6 @@ def addLeaksFinderFunction(lines):
     if addIndex != -1:
         newStr = LeaksFinderContent + "\n" + lines[addIndex]
         lines[addIndex] = newStr
-
 
 def generatePodfile():
     podFilePath = ExtcuteDir + '%s' % 'Podfile'
