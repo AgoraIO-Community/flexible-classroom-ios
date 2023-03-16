@@ -49,5 +49,4 @@ target 'AgoraEducation' do
       end
     end
   end
-  # post install
 end
