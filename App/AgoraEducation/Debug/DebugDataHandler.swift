@@ -48,21 +48,18 @@ class DebugDataHandler {
     }
     
     #if canImport(AgoraProctorSDK)
-    func updateProctorSDKEnviroment(proctorSDK: AgoraProctorSDK) {
+    func updateProctorEnviroment(proctor: AgoraProctor) {
         guard case .environment(let environment) = dataSourceList.valueOfType(.environment) as? DataSourceType else {
             return
         }
-        let sel = NSSelectorFromString("setEnvironment:")
+        
         switch environment {
         case .pro:
-            proctorSDK.perform(sel,
-                               with: 2)
+            proctor.setParameters(["environment": 2])
         case .pre:
-            proctorSDK.perform(sel,
-                               with: 1)
+            proctor.setParameters(["environment": 1])
         case .dev:
-            proctorSDK.perform(sel,
-                               with: 0)
+            proctor.setParameters(["environment": 0])
         }
     }
     #endif
@@ -224,6 +221,8 @@ extension DebugDataHandler {
             return nil
         }
         let mediaOptions = debugInfo.eduMediaOptions
+        
+        mediaOptions.videoEncoderConfig?.outputOrientationMode = .fixedPortrait
         
         let launchConfig = AgoraEduLaunchConfig(userName: debugInfo.userName,
                                                 userUuid: userId,

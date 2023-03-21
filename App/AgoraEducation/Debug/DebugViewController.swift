@@ -24,7 +24,7 @@ class DebugViewController: UIViewController {
     
     /**sdk**/
     #if canImport(AgoraProctorSDK)
-    private var proctorSDK: AgoraProctorSDK?
+    private var proctor: AgoraProctor?
     #endif
 }
 
@@ -69,7 +69,7 @@ extension DebugViewController: DebugViewDelagate {
             AgoraLoading.hide()
             
             #if canImport(AgoraProctorSDK)
-            self?.proctorSDK = nil
+            self?.proctor = nil
             #endif
             
             let `error` = error as NSError
@@ -133,19 +133,18 @@ extension DebugViewController: DebugViewDelagate {
                                                                     token: response.token,
                                                                     userId: response.userId)
                 
-                let proSDK = AgoraProctorSDK(launchConfig,
-                                             delegate: self)
-                self.proctorSDK = proSDK
+                let proctor = AgoraProctor(config: launchConfig,
+                                           delegate: self)
+                self.proctor = proctor
 
                 #if DEBUG
-                let sel2 = NSSelectorFromString("setLogConsoleState:");
-                proSDK.perform(sel2,
-                               with: 1)
+                proctor.setParameters(["console": true])
                 #endif
-                self.data.updateProctorSDKEnviroment(proctorSDK: proSDK)
+                
+                self.data.updateProctorEnviroment(proctor: proctor)
 
-                proSDK.launch(launchSuccessBlock,
-                              failure: failureBlock)
+                proctor.launch(success: launchSuccessBlock,
+                               failure: failureBlock)
                 #endif
             default:
                 break
@@ -265,9 +264,8 @@ extension DebugViewController {
 
 // MARK: - SDK delegate
 #if canImport(AgoraProctorSDK)
-extension DebugViewController: AgoraProctorSDKDelegate {
-    func proctorSDK(_ proctor: AgoraProctorSDK, 
-                    didExit reason: AgoraProctorExitReason) {
+extension DebugViewController: AgoraProctorDelegate {
+    func onExit(reason: AgoraProctorExitReason) {
         switch reason {
         case .kickOut:
             AgoraToast.toast(message: "kick out")
@@ -275,7 +273,7 @@ extension DebugViewController: AgoraProctorSDKDelegate {
             break
         }
         
-        self.proctorSDK = nil
+        self.proctor = nil
     }
 }
 #endif

@@ -10,12 +10,12 @@
 # AgoraEduCore 
 # AgoraWidget
 # AgoraUIBaseViews
-Dep_Array_URL=("https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraClassroomSDK_iOS/ci_landing_backup/dev/AgoraClassroomSDK_iOS_2.8.20.zip" 
-               "https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraEduUI/ci_landing_backup/dev/AgoraEduUI_2.8.20.zip"
-               "https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraProctorSDK/ci_landing_Flex/dev/AgoraProctorSDK_1.0.0.zip"
-               "https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraProctorUI/ci_landing_Flex/dev/AgoraProctorUI_1.0.0.zip"
+Dep_Array_URL=("https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraClassroomSDK_iOS/Flex/dev/AgoraClassroomSDK_iOS_2.8.30.zip" 
+               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraEduUI/Flex/dev/AgoraEduUI_2.8.30.zip"
+               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraProctorSDK/Flex/dev/AgoraProctorSDK_1.0.1.zip"
+               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraProctorUI/Flex/dev/AgoraProctorUI_1.0.0.zip"
                "https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraWidgets/ci_landing_Flex/dev/AgoraWidgets_2.8.20.zip"
-               "https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraEduCore/ci_landing_Flex/dev/AgoraEduCore_2.8.20_18.zip"
+               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraEduCore/Flex/dev/AgoraEduCore_2.8.30.zip"
                "https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraWidget/ci_landing_backup/dev/AgoraWidget_2.8.0.zip"
                "https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraUIBaseViews/ci_landing_backup/dev/AgoraUIBaseViews_2.8.0.zip")
 

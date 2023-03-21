@@ -41,9 +41,8 @@ class RoomListViewController: UIViewController {
     private var isRefreshing = false // 下拉刷新
     
     private var isLoading = false // 上拉加载
-
-    /**sdk**/
-    private var proctorSDK: AgoraProctorSDK?
+    
+    private var proctor: AgoraProctor?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -398,8 +397,8 @@ private extension RoomListViewController {
         } else if model.serviceType == .liveStandard {
             latencyLevel = .low
         }
-        let mediaOptions = AgoraProctorMediaOptions(encryptionConfig: nil,
-                                                    videoEncoderConfig: nil,
+        let mediaOptions = AgoraProctorMediaOptions(videoEncoderConfig: AgoraProctorVideoEncoderConfig(),
+                                                    encryptionConfig: nil,
                                                     latencyLevel: latencyLevel)
         let launchConfig = AgoraProctorLaunchConfig(userName: userName,
                                                     userUuid: userUuid,
@@ -412,32 +411,29 @@ private extension RoomListViewController {
                                                     mediaOptions: mediaOptions,
                                                     userProperties: nil)
         
-        let proSDK = AgoraProctorSDK(launchConfig,
-                                     delegate: self)
-        self.proctorSDK = proSDK
+        let proctor = AgoraProctor(config: launchConfig,
+                                  delegate: self)
+        self.proctor = proctor
         
-        let sel = NSSelectorFromString("setEnvironment:")
+        
         switch FcrEnvironment.shared.environment {
         case .pro:
-            proSDK.perform(sel,
-                           with: 2)
+            proctor.setParameters(["environment": 2])
         case .pre:
-            proSDK.perform(sel,
-                           with: 1)
+            proctor.setParameters(["environment": 1])
         case .dev:
-            proSDK.perform(sel,
-                           with: 0)
+            proctor.setParameters(["environment": 0])
         }
         
-        proSDK.launch {
+        proctor.launch {
             AgoraLoading.hide()
         } failure: { [weak self] (error) in
             AgoraLoading.hide()
-            
-            self?.proctorSDK = nil
-            
+
+            self?.proctor = nil
+
             let `error` = error as NSError
-            
+
             if error.code == 30403100 {
                 AgoraToast.toast(message: "login_kicked".ag_localized(),
                                  type: .error)
@@ -665,9 +661,8 @@ private extension RoomListViewController {
 }
 
 // MARK: - SDK delegate
-extension RoomListViewController: AgoraProctorSDKDelegate {
-    func proctorSDK(_ proctor: AgoraProctorSDK,
-                    didExit reason: AgoraProctorExitReason) {
+extension RoomListViewController: AgoraProctorDelegate {
+    func onExit(reason: AgoraProctorExitReason) {
         switch reason {
         case .kickOut:
             AgoraToast.toast(message: "kick out")
@@ -675,6 +670,6 @@ extension RoomListViewController: AgoraProctorSDKDelegate {
             break
         }
         
-        self.proctorSDK = nil
+        self.proctor = nil
     }
 }
