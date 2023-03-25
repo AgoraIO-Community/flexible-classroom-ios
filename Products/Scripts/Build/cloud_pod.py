@@ -72,6 +72,10 @@ BinaryPodContent = """
   
   # post install, no signing for pods bundle
   post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings['inhibit_all_warnings'] = 'YES'
+    end
+  
     installer.pods_project.targets.each do |target|
       if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
         target.build_configurations.each do |config|

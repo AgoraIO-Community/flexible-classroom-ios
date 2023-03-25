@@ -583,30 +583,35 @@ struct DebugLaunchInfo {
     #if canImport(AgoraProctorSDK)
     var proctorEncryptionConfig: AgoraProctorMediaEncryptionConfig? {
         let modeRawValue = encryptMode.proctor.rawValue
+        
         guard (modeRawValue > 0 && modeRawValue <= 6),
               let key = encryptKey else {
             return nil
         }
-        let encryptionConfig = AgoraProctorMediaEncryptionConfig(mode: encryptMode.proctor,
-                                                                 key: key)
+        
+        let encryptionConfig = AgoraProctorMediaEncryptionConfig(key: key,
+                                                                 mode: encryptMode.proctor)
         return encryptionConfig
     }
     
     var proctorLatencyLevel: AgoraProctorLatencyLevel {
         var latencyLevel = AgoraProctorLatencyLevel.ultraLow
+        
         if roomType == .vocational,
            serviceType == .liveStandard {
             latencyLevel = .low
         }
+        
         return latencyLevel
     }
     
     var proctorMediaOptions: AgoraProctorMediaOptions {
         let latencyLevel = proctorLatencyLevel
         let encryptionConfig = proctorEncryptionConfig
+        let videoEncoderCofig = AgoraProctorVideoEncoderConfig()
         
-        let mediaOptions = AgoraProctorMediaOptions(encryptionConfig: encryptionConfig,
-                                                    videoEncoderConfig: nil,
+        let mediaOptions = AgoraProctorMediaOptions(videoEncoderConfig: videoEncoderCofig,
+                                                    encryptionConfig: encryptionConfig,
                                                     latencyLevel: latencyLevel)
         
         return mediaOptions
