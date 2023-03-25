@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/bin/sh
 # cd this file path
 cd $(dirname $0)
 echo pwd: `pwd`

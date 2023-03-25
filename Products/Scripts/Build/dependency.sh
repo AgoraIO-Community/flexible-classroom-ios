@@ -10,14 +10,28 @@
 # AgoraEduCore 
 # AgoraWidget
 # AgoraUIBaseViews
-Dep_Array_URL=("https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraClassroomSDK_iOS/Flex/dev/AgoraClassroomSDK_iOS_2.8.30.zip" 
-               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraEduUI/Flex/dev/AgoraEduUI_2.8.30.zip"
-               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraProctorSDK/Flex/dev/AgoraProctorSDK_1.0.1.zip"
-               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraProctorUI/Flex/dev/AgoraProctorUI_1.0.0.zip"
-               "https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraWidgets/ci_landing_Flex/dev/AgoraWidgets_2.8.20.zip"
-               "https://artifactory-api.bj2.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraEduCore/Flex/dev/AgoraEduCore_2.8.30.zip"
-               "https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraWidget/ci_landing_backup/dev/AgoraWidget_2.8.0.zip"
-               "https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS/AgoraUIBaseViews/ci_landing_backup/dev/AgoraUIBaseViews_2.8.0.zip")
+Artifactory_iOS_URL="https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS"
+
+AgoraClassroomSDK_iOS_URL="${Artifactory_iOS_URL}/AgoraClassroomSDK_iOS/Flex/dev/AgoraClassroomSDK_iOS_2.8.30.zip"
+AgoraEduUI_URL="${Artifactory_iOS_URL}/AgoraEduUI/Flex/dev/AgoraEduUI_2.8.30.zip"
+
+AgoraProctorSDK_URL="${Artifactory_iOS_URL}/AgoraProctorSDK/Flex/dev/AgoraProctorSDK_1.0.1.zip"
+AgoraProctorUI_URL="${Artifactory_iOS_URL}/AgoraProctorUI/Flex/dev/AgoraProctorUI_1.0.0.zip"
+
+AgoraWidgets_URL="${Artifactory_iOS_URL}/AgoraWidgets/Flex/dev/AgoraWidgets_2.8.30.zip"
+
+AgoraEduCore_URL="${Artifactory_iOS_URL}/AgoraEduCore/release_2.8.21/dev/AgoraEduCore_2.8.21.zip"
+AgoraWidget_URL="${Artifactory_iOS_URL}/AgoraWidget/Flex/dev/AgoraWidget_2.8.0.zip"
+AgoraUIBaseViews_URL="${Artifactory_iOS_URL}/AgoraUIBaseViews/Flex/dev/AgoraUIBaseViews_2.8.0.zip"
+
+Dep_Array_URL=("${AgoraClassroomSDK_iOS_URL}" 
+               "${AgoraEduUI_URL}"
+               "${AgoraProctorSDK_URL}"
+               "${AgoraProctorUI_URL}"
+               "${AgoraWidgets_URL}"
+               "${AgoraEduCore_URL}"
+               "${AgoraWidget_URL}"
+               "${AgoraUIBaseViews_URL}")
 
 Dep_Array=(AgoraClassroomSDK_iOS
            AgoraEduUI
