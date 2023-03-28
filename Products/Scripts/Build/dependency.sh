@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Difference
 # Dependency libs
