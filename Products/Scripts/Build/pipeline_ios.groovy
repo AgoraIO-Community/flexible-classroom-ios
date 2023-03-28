@@ -8,11 +8,11 @@ buildUtils = new agora.build.BuildUtils()
 compileConfig = [
     "sourceDir": "open-flexible-classroom-ios",
     "non-publish": [
-        "command": "./ci/build/build_ios.sh",
+        "command": "./Products/Scripts/Build/pipeline_ios.sh",
         "extraArgs": "",
     ],
     "publish": [
-        "command": "./ci/build/build_ios.sh",
+        "command": "./Products/Scripts/Build/pipeline_ios.sh",
         "extraArgs": "",
     ]
 ]
