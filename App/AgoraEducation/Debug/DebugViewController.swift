@@ -17,12 +17,9 @@ import AgoraProctorSDK
 import AgoraUIBaseViews
 
 class DebugViewController: UIViewController {
-    /**data**/
     private lazy var data = DebugDataHandler(delegate: self)
-    /**view**/
     private lazy var debugView = DebugView(frame: .zero)
     
-    /**sdk**/
     #if canImport(AgoraProctorSDK)
     private var proctor: AgoraProctor?
     #endif
