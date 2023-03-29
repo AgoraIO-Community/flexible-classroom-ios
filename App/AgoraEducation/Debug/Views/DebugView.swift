@@ -333,5 +333,7 @@ extension DebugView: AgoraUIContentContainer {
         
         bottomLabel.textColor = UIColor(hexString: "7D8798")
         bottomLabel.font = UIFont.systemFont(ofSize: 12)
+        bottomLabel.textAlignment = .center
+        bottomLabel.numberOfLines = 0
     }
 }

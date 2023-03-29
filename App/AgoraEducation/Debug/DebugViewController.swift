@@ -190,7 +190,7 @@ extension DebugViewController: AgoraUIContentContainer {
         debugView.delegate = self
         
         let appVersion = "_" + Bundle.main.version
-        let loginVersion = "Login_version".ag_localized() + appVersion
+        let loginVersion = "Login_version".ag_localized() + appVersion + "\n" + LoginConfig.version_time
         debugView.bottomLabel.text = loginVersion
         view.addSubview(debugView)
         
