@@ -24,7 +24,7 @@ Branch_Name=${open_flexible_classroom_ios_branch}
 . ../apaas-cicd-ios/Products/Scripts/Other/v1/operation_print.sh
 
 # mode
-App_Array=(Debug)
+App_Array=(CertificateA)
 
 if [ ${is_official_build} = true ]; then
     App_Array=(Release)
@@ -55,7 +55,7 @@ done
 # publish
 if [ "${Package_Publish}" = true ]; then
     # sign
-    ${CICD_Build_Path}/v1/sign_ipa.sh ${App_Name} ${Repo_Name} ${is_official_build}
+    ${CICD_Build_Path}/v1/sign_archive.sh ${App_Name} ${Repo_Name} ${is_official_build}
 
     errorPrint $? "${App_Name} sign"
 

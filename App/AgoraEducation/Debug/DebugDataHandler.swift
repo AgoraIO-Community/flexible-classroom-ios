@@ -29,7 +29,7 @@ class DebugDataHandler {
     
     private let tokenBuilder = TokenBuilder()
     
-    private var dataSourceList: [DataSourceType] = [] {
+    private var dataSourceList = [DataSourceType]() {
         didSet {
             checkDataSource()
         }
@@ -103,8 +103,8 @@ extension DebugDataHandler {
         var serviceType: DataSourceServiceType = .livePremium
         var roleType: DataSourceRoleType?
         var im: DataSourceIMType?
-        // proctor
-        var deviceType: DataSourceDeviceType = .main
+        
+        var deviceType: DataSourceDeviceType = .main // proctor
         var duration: NSNumber?
         var encryptKey: String?
         var encryptMode: DataSourceEncryptMode?
@@ -217,9 +217,11 @@ extension DebugDataHandler {
                             token: String,
                             userId: String) -> AgoraEduLaunchConfig? {
         guard let userRole = debugInfo.roleType.edu,
-        let roomType = debugInfo.roomType.edu else {
+              let roomType = debugInfo.roomType.edu
+        else {
             return nil
         }
+        
         let mediaOptions = debugInfo.eduMediaOptions
         
         mediaOptions.videoEncoderConfig?.outputOrientationMode = .fixedPortrait
@@ -246,10 +248,6 @@ extension DebugDataHandler {
         
         if let config = widgets[cloudWidgetKey] {
             config.extraInfo = ["publicCoursewares": debugInfo.publicCoursewares()]
-        }
-        
-        if let config = widgets[netlessWidgetKey] {
-            config.extraInfo = ["coursewareList": debugInfo.publicCoursewares()]
         }
         
         return launchConfig
