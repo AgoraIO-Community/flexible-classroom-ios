@@ -17,12 +17,9 @@ import AgoraProctorSDK
 import AgoraUIBaseViews
 
 class DebugViewController: UIViewController {
-    /**data**/
     private lazy var data = DebugDataHandler(delegate: self)
-    /**view**/
     private lazy var debugView = DebugView(frame: .zero)
     
-    /**sdk**/
     #if canImport(AgoraProctorSDK)
     private var proctor: AgoraProctor?
     #endif
@@ -193,7 +190,7 @@ extension DebugViewController: AgoraUIContentContainer {
         debugView.delegate = self
         
         let appVersion = "_" + Bundle.main.version
-        let loginVersion = "Login_version".ag_localized() + appVersion
+        let loginVersion = "Login_version".ag_localized() + appVersion + "\n" + LoginConfig.version_time
         debugView.bottomLabel.text = loginVersion
         view.addSubview(debugView)
         
