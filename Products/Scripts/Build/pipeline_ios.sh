@@ -44,6 +44,9 @@ Products_App_Path="${Products_Path}/App"
 ${Build_Path}/dependency.sh ${Repo_Name}
 ${Build_Path}/podfile.sh 1
 
+# build date
+${Build_Path}/build-date.sh
+
 # build
 for Mode in ${App_Array[*]} 
 do

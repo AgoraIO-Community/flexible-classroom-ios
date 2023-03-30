@@ -1,4 +1,7 @@
 #!/bin/sh
+# cd this file path
+cd $(dirname $0)
+echo pwd: `pwd`
 
 time=$(date "+%Y.%m.%d")
 
