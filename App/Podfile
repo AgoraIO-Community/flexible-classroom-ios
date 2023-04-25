@@ -32,7 +32,7 @@ target 'AgoraEducation' do
   pod 'AgoraEduUI',            '2.8.30'
   
   pod 'AgoraProctorSDK',       '1.0.1'
-  pod 'AgoraProctorUI',        '1.0.1'
+  pod 'AgoraProctorUI',        '1.0.0'
   
   pod 'AgoraWidgets',          '2.8.30'
   
