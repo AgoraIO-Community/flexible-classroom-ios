@@ -96,7 +96,7 @@ private extension RoomListShareAlertController {
             return
         }
         UIPasteboard.general.string = FcrShareLink.shareLinkWith(roomId: roomId)
-        AgoraToast.toast(message: "fcr_sharelink_tips_roomid".ag_localized(),
+        AgoraToast.toast(message: "fcr_sharingLink_tips_roomid".ag_localized(),
                          type: .notice)
         dismiss(animated: true)
         complete?()
