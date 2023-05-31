@@ -28,25 +28,31 @@ target 'AgoraEducation' do
   pod 'Whiteboard',                  '2.16.51'
  
   # open source libs
-  pod 'AgoraClassroomSDK_iOS', '2.8.20'
-  pod 'AgoraEduUI',            '2.8.20'
+  pod 'AgoraClassroomSDK_iOS', '2.8.30'
+  pod 'AgoraEduUI',            '2.8.30'
   
-  pod 'AgoraProctorSDK',       '1.0.0'
+  pod 'AgoraProctorSDK',       '1.0.1'
   pod 'AgoraProctorUI',        '1.0.0'
   
-  pod 'AgoraWidgets',          '2.8.20'
+  pod 'AgoraWidgets',          '2.8.30'
   
   # close source libs
   pod 'AgoraUIBaseViews',      '2.8.0'
-  pod 'AgoraEduCore', 	       '2.8.20'
+  pod 'AgoraEduCore', 	       '2.8.30'
   pod 'AgoraWidget',           '2.8.0'
 
   # post install, no signing for pods bundle, after xcode 14
+  low_version_target_names = ["Armin", "YYModel", "Masonry", "NTLBridge", "CocoaLumberjack", "AliyunOSSiOS"]
+  
   post_install do |installer|
     installer.pods_project.targets.each do |target|
-      if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
-        target.build_configurations.each do |config|
+      target.build_configurations.each do |config|
+        if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
           config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+        end
+        
+        if low_version_target_names.include?(target.name)
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
         end
       end
     end

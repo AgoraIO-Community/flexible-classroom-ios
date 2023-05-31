@@ -329,10 +329,10 @@ private extension RoomListViewController {
         }
         
         // share link
-        let shareLink = AgoraWidgetConfig(with: AgoraShareLinkWidget.self,
-                                          widgetId: "shareLink")
-        widgets[shareLink.widgetId] = shareLink
-        shareLink.extraInfo = ["shareLink": FcrShareLink.shareLinkWith(roomId: roomId)]
+        let sharingLink = AgoraWidgetConfig(with: AgoraSharingLinkWidget.self,
+                                            widgetId: "sharingLink")
+        widgets[sharingLink.widgetId] = sharingLink
+        sharingLink.extraInfo = ["sharingLink": FcrShareLink.shareLinkWith(roomId: roomId)]
         // water mark
         if model.watermark {
             let watermark = AgoraWidgetConfig(with: AgoraWatermarkWidget.self,
@@ -499,7 +499,7 @@ extension RoomListViewController: RoomListItemCellDelegate {
     func onClickCopy(at indexPath: IndexPath) {
         let item = dataSource[indexPath.row]
         UIPasteboard.general.string = item.roomId
-        AgoraToast.toast(message: "fcr_sharelink_tips_roomid".ag_localized(),
+        AgoraToast.toast(message: "fcr_sharingLink_tips_roomid".ag_localized(),
                          type: .notice)
     }
 }
