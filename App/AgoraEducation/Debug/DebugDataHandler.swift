@@ -100,7 +100,6 @@ extension DebugDataHandler {
         var userName: String?
         var roomType: DataSourceRoomType?
         var mediaLatency: DataSourceMediaLatency = .ultraLow
-        var serviceType: DataSourceServiceType = .livePremium
         var roleType: DataSourceRoleType?
         var im: DataSourceIMType?
         
@@ -133,8 +132,6 @@ extension DebugDataHandler {
                 roomType = (dataSourceRoomType != .unselected) ? dataSourceRoomType : nil
             case .mediaLatency(let latency):
                 mediaLatency = latency
-            case .serviceType(let dataSourceServiceType):
-                serviceType = dataSourceServiceType
             case .roleType(let dataSourceRoleType):
                 roleType = (dataSourceRoleType != .unselected) ? dataSourceRoleType : nil
             case .im(let dataSourceIMType):
@@ -196,7 +193,6 @@ extension DebugDataHandler {
                                userId: userId,
                                mediaLatency: mediaLatency,
                                roomType: roomType,
-                               serviceType: serviceType,
                                roleType: roleType,
                                im: im,
                                deviceType: deviceType,
@@ -240,9 +236,8 @@ extension DebugDataHandler {
                                                 mediaOptions: mediaOptions,
                                                 userProperties: nil)
         
-        // MARK: 若对widgets需要添加或修改时，可获取launchConfig中默认配置的widgets进行操作并重新赋值给launchConfig
+        // MARK: 若对widgets需要添加或修改时，可获取launchConfig中默认配置的widgets进行操作
         let cloudWidgetKey = "cloudDrive"
-        let netlessWidgetKey = "netlessBoard"
         
         let widgets = launchConfig.widgets
         
@@ -420,20 +415,6 @@ private extension DebugDataHandler {
                                        with: newValue)
             }
             
-            let options: [(String, OptionSelectedAction)] = list.map({return ($0.viewText, action)})
-            let selectedIndex = list.firstIndex(where: {$0 == selected})
-            type = .option(options: options,
-                           placeholder: placeholder,
-                           text: selected.viewText,
-                           selectedIndex: selectedIndex ?? -1)
-        case .serviceType(let selected):
-            let list = DataSourceServiceType.allCases
-            let action: OptionSelectedAction = { [weak self] index in
-                let serviceType: DataSourceServiceType = list[index]
-                let newValue = DataSourceType.serviceType(serviceType)
-                self?.updateDataSource(at: dataTypeIndex,
-                                       with: newValue)
-            }
             let options: [(String, OptionSelectedAction)] = list.map({return ($0.viewText, action)})
             let selectedIndex = list.firstIndex(where: {$0 == selected})
             type = .option(options: options,
