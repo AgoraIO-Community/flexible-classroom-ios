@@ -94,7 +94,7 @@ extension DebugViewController: DebugViewDelagate {
             agora_ui_language = info.uiLanguage.edu.string
             
             switch info.roomType {
-            case .oneToOne, .small, .lecture, .vocational:
+            case .oneToOne, .small, .lecture:
                 #if canImport(AgoraClassroomSDK_iOS)
                 guard let launchConfig = self.data.getEduLaunchConfig(debugInfo: info,
                                                                       appId: response.appId,
@@ -111,17 +111,9 @@ extension DebugViewController: DebugViewDelagate {
                 
                 AgoraClassroomSDK.setDelegate(self)
                 
-                if let service = info.serviceType.edu,
-                    info.roomType == .vocational {
-                    AgoraClassroomSDK.vocationalLaunch(launchConfig,
-                                                       service: service,
-                                                       success: launchSuccessBlock,
-                                                       failure: failureBlock)
-                } else {
-                    AgoraClassroomSDK.launch(launchConfig,
-                                             success: launchSuccessBlock,
-                                             failure: failureBlock)
-                }
+                AgoraClassroomSDK.launch(launchConfig,
+                                         success: launchSuccessBlock,
+                                         failure: failureBlock)
                 #endif
             case .proctor:
                 #if canImport(AgoraProctorSDK)

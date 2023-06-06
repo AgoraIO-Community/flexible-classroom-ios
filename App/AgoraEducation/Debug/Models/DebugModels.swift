@@ -85,21 +85,13 @@ enum DataSourceRoomType: CaseIterable {
     case oneToOne
     case small
     case lecture
-    case vocational
     case proctor
     
     static var allCases: [DataSourceRoomType] {
-        var list = [DataSourceRoomType]()
-        
-        #if canImport(AgoraEduUI)
-        list = FcrUISceneType.getList().toDebugList()
-        #endif
-        
-        #if canImport(AgoraProctorUI)
-        list.append(.proctor)
-        #endif
-        
-        return list
+        return [.oneToOne,
+                .small,
+                .lecture,
+                .proctor]
     }
     
     var viewText: String {
@@ -107,7 +99,6 @@ enum DataSourceRoomType: CaseIterable {
         case .oneToOne:     return "debug_onetoone".ag_localized()
         case .small:        return "debug_small".ag_localized()
         case .lecture:      return "debug_lecture".ag_localized()
-        case .vocational:   return "debug_vocational_lecture".ag_localized()
         case .proctor:      return "debug_proctor".ag_localized()
         case .unselected:   return ""
         }
@@ -119,7 +110,6 @@ enum DataSourceRoomType: CaseIterable {
         case .oneToOne:     return .oneToOne
         case .small:        return .small
         case .lecture:      return .lecture
-        case .vocational:   return .vocation
         case .proctor:      return nil
         case .unselected:   return nil
         }
@@ -131,7 +121,6 @@ enum DataSourceRoomType: CaseIterable {
         case .oneToOne:     return 0
         case .small:        return 4
         case .lecture:      return 2
-        case .vocational:   return 2
         case .proctor:      return 6
         case .unselected:   return 4
         }
@@ -155,46 +144,6 @@ enum DataSourceMediaLatency: CaseIterable {
         case .ultraLow: return .ultraLow
         }
     }
-}
-
-enum DataSourceServiceType: CaseIterable {
-    case unselected
-    case livePremium
-    case liveStandard
-    case cdn
-    case fusion
-    case mixStreamCDN
-    case hostingScene
-    
-    static var allCases: [DataSourceServiceType] {
-        return [.livePremium, .liveStandard, .cdn, .fusion, .mixStreamCDN, .hostingScene]
-    }
-    
-    var viewText: String {
-        switch self {
-        case .livePremium:  return "debug_service_rtc".ag_localized()
-        case .liveStandard: return "debug_service_fast_rtc".ag_localized()
-        case .cdn:          return "debug_service_only_cdn".ag_localized()
-        case .fusion:       return "debug_service_mixed_cdn".ag_localized()
-        case .mixStreamCDN: return "合流转推"
-        case .hostingScene: return "伪直播"
-        case .unselected:   return ""
-        }
-    }
-    
-    #if canImport(AgoraClassroomSDK_iOS)
-    var edu: AgoraEduServiceType? {
-        switch self {
-        case .livePremium:  return .livePremium
-        case .liveStandard: return .liveStandard
-        case .cdn:          return .CDN
-        case .fusion:       return .fusion
-        case .mixStreamCDN: return .mixStreamCDN
-        case .hostingScene: return .hostingScene
-        case .unselected:   return nil
-        }
-    }
-    #endif
 }
 
 enum DataSourceRoleType: Int, CaseIterable {
@@ -414,7 +363,6 @@ enum DataSourceType: Equatable {
     case userName(DataSourceUserName)
     case roomType(DataSourceRoomType)
     case mediaLatency(DataSourceMediaLatency)
-    case serviceType(DataSourceServiceType)
     case roleType(DataSourceRoleType)
     case im(DataSourceIMType)
     case deviceType(DataSourceDeviceType)
@@ -442,7 +390,6 @@ enum DataSourceType: Equatable {
         case .userName:     return .userName
         case .roomType:     return .roomType
         case .mediaLatency: return .mediaLatency
-        case .serviceType:  return .serviceType
         case .roleType:     return .roleType
         case .im:           return .im
         case .deviceType:   return .deviceType
@@ -469,7 +416,6 @@ enum DataSourceType: Equatable {
         case .userName:      return "debug_user_title".ag_localized()
         case .roomType:      return "debug_class_type_title".ag_localized()
         case .mediaLatency:  return "Latency"
-        case .serviceType:   return "debug_class_service_type_title".ag_localized()
         case .roleType:      return "debug_title_role".ag_localized()
         case .im:            return "IM"
         case .deviceType:    return "debug_device_type".ag_localized()
@@ -491,7 +437,6 @@ enum DataSourceType: Equatable {
         case .userName:      return "debug_user_holder".ag_localized()
         case .roomType:      return "debug_type_holder".ag_localized()
         case .mediaLatency:  return "debug_media_latency_holder".ag_localized()
-        case .serviceType:   return "debug_service_type_holder".ag_localized()
         case .roleType:      return "debug_role_holder".ag_localized()
         case .im:            return "debug_service_type_holder".ag_localized()
         case .deviceType:    return "debug_device_holder".ag_localized()
@@ -536,7 +481,6 @@ struct DebugLaunchInfo {
     var userId: String
     var mediaLatency: DataSourceMediaLatency
     var roomType: DataSourceRoomType
-    var serviceType: DataSourceServiceType
     var roleType: DataSourceRoleType
     var im: DataSourceIMType
     var deviceType: DataSourceDeviceType
@@ -595,13 +539,7 @@ struct DebugLaunchInfo {
     }
     
     var proctorLatencyLevel: AgoraProctorLatencyLevel {
-        var latencyLevel = AgoraProctorLatencyLevel.ultraLow
-        
-        if roomType == .vocational,
-           serviceType == .liveStandard {
-            latencyLevel = .low
-        }
-        
+        let latencyLevel = AgoraProctorLatencyLevel.ultraLow
         return latencyLevel
     }
     
@@ -629,20 +567,6 @@ extension FcrSurpportLanguage {
     }
 }
 
-#if canImport(AgoraEduUI)
-extension FcrUISceneType {
-    var debug: DataSourceRoomType {
-        switch self {
-        case .oneToOne:     return .oneToOne
-        case .lecture:      return .lecture
-        case .small:        return .small
-        case .vocation:     return .vocational
-        @unknown default:   return .oneToOne
-        }
-    }
-}
-#endif
-
 extension Array where Element == DataSourceType {
     func indexOfType(_ typeKey: DataSourceType.Key) -> Int? {
         return self.firstIndex(where: {typeKey == $0.inKey})
@@ -656,11 +580,3 @@ extension Array where Element == DataSourceType {
         return value
     }
 }
-
-#if canImport(AgoraEduUI)
-extension Array where Element == FcrUISceneType {
-    func toDebugList() -> [DataSourceRoomType] {
-        return self.map({return $0.debug})
-    }
-}
-#endif
