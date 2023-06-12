@@ -220,8 +220,6 @@ extension DebugDataHandler {
         
         let mediaOptions = debugInfo.eduMediaOptions
         
-        mediaOptions.videoEncoderConfig?.outputOrientationMode = .fixedPortrait
-        
         let launchConfig = AgoraEduLaunchConfig(userName: debugInfo.userName,
                                                 userUuid: userId,
                                                 userRole: userRole,
