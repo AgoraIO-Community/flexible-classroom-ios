@@ -243,6 +243,7 @@ fileprivate class FcrRequest {
             self.onSuccess?(dict)
         }), failRetry: { error in
             guard let code = error.code else {
+                self.onFailure?(-1, "local network connects unsuccessfully")
                 return .resign
             }
             if code == 401 { // access token 失效
