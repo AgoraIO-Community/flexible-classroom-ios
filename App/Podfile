@@ -38,7 +38,7 @@ target 'AgoraEducation' do
   
   # close source libs
   pod 'AgoraUIBaseViews',      '2.8.0'
-  pod 'AgoraEduCore', 	       '2.8.40'
+  pod 'AgoraEduCore', 	       '2.8.50'
   pod 'AgoraWidget',           '2.8.0'
 
   # post install, no signing for pods bundle, after xcode 14
