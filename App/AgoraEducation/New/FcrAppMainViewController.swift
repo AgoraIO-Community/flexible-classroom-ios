@@ -1,6 +1,6 @@
 //
 //  RoomListViewController.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by Jonathan on 2022/9/2.
 //  Copyright © 2022 Agora. All rights reserved.
@@ -15,7 +15,7 @@ import AgoraUIBaseViews
 import AgoraProctorSDK
 import AgoraWidgets
 
-class RoomListViewController: UIViewController {
+class FcrAppMainViewController: FcrAppViewController {
     /**views**/
     private let kSectionTitle = 0
     private let kSectionNotice = 1
@@ -61,24 +61,62 @@ class RoomListViewController: UIViewController {
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard FcrUserInfoPresenter.shared.qaMode == false else {
-            let debugVC = DebugViewController()
-            debugVC.modalPresentationStyle = .fullScreen
-            self.present(debugVC,
-                         animated: true,
-                         completion: nil)
+//        guard FcrUserInfoPresenter.shared.qaMode == false else {
+//            let debugVC = DebugViewController()
+//            debugVC.modalPresentationStyle = .fullScreen
+//            self.present(debugVC,
+//                         animated: true,
+//                         completion: nil)
+//            return
+//        }
+//        if FcrEnvironment.shared.environment == .dev {
+//            titleView.envLabel.text = "测试环境"
+//        } else {
+//            titleView.envLabel.text = ""
+//        }
+        
+        // 1. Check if agreed privacy
+        privacyCheck { [weak self] in
+            // 2. Check if logined
+            self?.loginCheck { [weak self] in
+                // 3. Refresh data
+                self?.fetchData()
+            }
+        }
+    }
+    
+    func privacyCheck(completion: @escaping FcrAppCompletion) {
+        if FcrAppLocalUser.isAgreedPrivacy {
+            completion()
             return
         }
-        if FcrEnvironment.shared.environment == .dev {
-            titleView.envLabel.text = "测试环境"
-        } else {
-            titleView.envLabel.text = ""
+        
+        let vc = FcrAppPrivacyTermsViewController()
+        
+        present(vc,
+                animated: true)
+        
+        vc.onAgreedCompleted = {
+            FcrAppLocalUser.isAgreedPrivacy = true
+            
+            completion()
         }
-        // 检查协议，检查登录
-        FcrPrivacyTermsViewController.checkPrivacyTerms {
-            LoginStartViewController.showLoginIfNot {
-                self.fetchData()
-            }
+    }
+    
+    func loginCheck(completion: @escaping FcrAppCompletion) {
+        guard FcrUserInfoPresenter.shared.isLogin == true else {
+            return
+        }
+        
+        let vc = FcrAppLoginViewController()
+        
+        let navigation = FcrNavigationController(rootViewController: vc)
+        
+        present(navigation,
+                animated: true)
+        
+        vc.onCompleted = { [weak navigation] in
+            navigation?.dismiss(animated: true)
         }
     }
     
@@ -99,22 +137,10 @@ class RoomListViewController: UIViewController {
 
         onPullLoadUp()
     }
-
-    public override var shouldAutorotate: Bool {
-        return true
-    }
-    
-    public override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        return UIDevice.current.agora_is_pad ? .landscapeRight : .portrait
-    }
-
-    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return UIDevice.current.agora_is_pad ? .landscapeRight : .portrait
-    }
-    
 }
+
 // MARK: - Private
-private extension RoomListViewController {
+private extension FcrAppMainViewController {
     func setup() {
         // setup agora loading
         if let bundle = Bundle.agora_bundle("AgoraEduUI"),
@@ -478,7 +504,7 @@ private extension RoomListViewController {
     }
 }
 // MARK: - RoomListItemCell Call Back
-extension RoomListViewController: RoomListItemCellDelegate {
+extension FcrAppMainViewController: RoomListItemCellDelegate {
     func onClickShare(at indexPath: IndexPath) {
         let item = dataSource[indexPath.row]
         RoomListShareAlertController.show(in: self,
@@ -504,7 +530,7 @@ extension RoomListViewController: RoomListItemCellDelegate {
     }
 }
 // MARK: - Table View Call Back
-extension RoomListViewController: UITableViewDelegate, UITableViewDataSource {
+extension FcrAppMainViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
@@ -572,7 +598,7 @@ extension RoomListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 // MARK: - RoomListTitleViewDelegate
-extension RoomListViewController: RoomListTitleViewDelegate {
+extension FcrAppMainViewController: RoomListTitleViewDelegate {
     func onEnterDebugMode() {
         FcrUserInfoPresenter.shared.qaMode = true
         let debugVC = DebugViewController()
@@ -608,7 +634,7 @@ extension RoomListViewController: RoomListTitleViewDelegate {
     }
 }
 // MARK: - Creations
-private extension RoomListViewController {
+private extension FcrAppMainViewController {
     func createViews() {
         view.addSubview(backGroundView)
         
@@ -661,7 +687,7 @@ private extension RoomListViewController {
 }
 
 // MARK: - SDK delegate
-extension RoomListViewController: AgoraProctorDelegate {
+extension FcrAppMainViewController: AgoraProctorDelegate {
     func onExit(reason: AgoraProctorExitReason) {
         switch reason {
         case .kickOut:

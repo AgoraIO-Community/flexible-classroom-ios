@@ -1,6 +1,6 @@
 //
 //  DebugInfoCell.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by DoubleCircle on 2022/8/6.
 //  Copyright © 2022 Agora. All rights reserved.

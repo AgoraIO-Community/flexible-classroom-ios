@@ -1,6 +1,6 @@
 //
 //  DebugModels.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by LYY on 2022/8/5.
 //  Copyright © 2022 Agora. All rights reserved.

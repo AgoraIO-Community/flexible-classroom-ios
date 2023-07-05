@@ -1,6 +1,6 @@
 //
 //  FcrLogoffViewController.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by Jonathan on 2022/7/11.
 //  Copyright © 2022 Agora. All rights reserved.

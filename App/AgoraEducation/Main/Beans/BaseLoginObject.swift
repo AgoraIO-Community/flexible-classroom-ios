@@ -1,6 +1,6 @@
 //
 //  BaseLoginObject.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by LYY on 2021/4/19.
 //  Copyright © 2021 Agora. All rights reserved.
@@ -23,7 +23,7 @@ enum Device: String {
 class LoginConfig {
     
     static let version_time: String = {
-        return "2023.01.13"
+        return "2023.07.05"
     }()
     
     static let sdk_version: String = AgoraClassroomSDK.version()

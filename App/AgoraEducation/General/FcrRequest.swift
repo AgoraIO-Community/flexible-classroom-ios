@@ -1,6 +1,6 @@
 //
 //  FcrRequest.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by Jonathan on 2022/7/7.
 //  Copyright © 2022 Agora. All rights reserved.
@@ -192,7 +192,7 @@ class FcrOutsideClassAPI {
             onFailure?(0, "")
             // 全token失效
             FcrUserInfoPresenter.shared.logout {
-                LoginStartViewController.showLoginIfNot(complete: nil)
+//                FcrAppLoginViewController.showLoginIfNot(complete: nil)
             }
             return
         }
@@ -256,7 +256,7 @@ fileprivate class FcrRequest {
             } else if code == 400 { // 全token失效
                 self.onFailure?(0, "Access Denied")
                 FcrUserInfoPresenter.shared.logout {
-                    LoginStartViewController.showLoginIfNot(complete: nil)
+//                    FcrAppLoginViewController.showLoginIfNot(complete: nil)
                 }
             } else {
                 self.onFailure?(code, error.localizedDescription)

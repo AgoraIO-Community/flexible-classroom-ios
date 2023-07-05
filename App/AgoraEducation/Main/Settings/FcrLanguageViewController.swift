@@ -1,6 +1,6 @@
 //
 //  FcrLanguageViewController.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by Jonathan on 2022/6/30.
 //  Copyright © 2022 Agora. All rights reserved.
@@ -26,7 +26,7 @@ class FcrLanguageViewController: FcrOutsideClassBaseController {
     }
     
     func reloadRootViews() {
-        let navi = FcrNavigationController(rootViewController: RoomListViewController())
+        let navi = FcrNavigationController(rootViewController: FcrAppMainViewController())
         var viewControllers = navi.viewControllers
         viewControllers.append(FcrSettingsViewController())
         viewControllers.append(FcrGeneralSettingsViewController())

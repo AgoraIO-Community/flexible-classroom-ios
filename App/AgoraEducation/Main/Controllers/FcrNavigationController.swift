@@ -1,6 +1,6 @@
 //
 //  MainViewController.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by LYY on 2021/4/16.
 //  Copyright © 2021 Agora. All rights reserved.
@@ -48,7 +48,8 @@ import UIKit
     
     public override func pushViewController(_ viewController: UIViewController,
                                             animated: Bool) {
-        super.pushViewController(viewController, animated: animated)
+        super.pushViewController(viewController,
+                                 animated: animated)
         
         let barItem = UIBarButtonItem(title: "",
                                       style: .plain,
@@ -69,7 +70,7 @@ import UIKit
         return self.topViewController?.supportedInterfaceOrientations ?? .landscapeRight
     }
     
-    public override var prefersStatusBarHidden: Bool{
+    public override var prefersStatusBarHidden: Bool {
         return true
     }
 }

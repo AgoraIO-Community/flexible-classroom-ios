@@ -1,6 +1,6 @@
 //
 //  RoomCreateTimeAlertController.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by Jonathan on 2022/9/7.
 //  Copyright © 2022 Agora. All rights reserved.

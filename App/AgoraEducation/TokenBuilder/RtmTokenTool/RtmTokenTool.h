@@ -1,6 +1,6 @@
 //
 //  RtcTokenTool.h
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by Jerry on 2019/10/11.
 //  Copyright © 2019 Jerry. All rights reserved.

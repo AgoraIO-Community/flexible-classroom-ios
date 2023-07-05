@@ -1,6 +1,6 @@
 //
 //  DebugViewController.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by LYY on 2022/8/5.
 //  Copyright © 2022 Agora. All rights reserved.
@@ -103,11 +103,11 @@ extension DebugViewController: DebugViewDelagate {
                     return
                 }
                 
-                #if DEBUG
+//                #if DEBUG
                 let sel1 = NSSelectorFromString("setLogConsoleState:");
                 AgoraClassroomSDK.perform(sel1,
                                           with: 1)
-                #endif
+//                #endif
                 
                 AgoraClassroomSDK.setDelegate(self)
                 
@@ -225,15 +225,18 @@ extension DebugViewController {
     }
     
     private func initData() {
+        FcrEnvironment.shared.environment = .dev
+        FcrEnvironment.shared.region = .CN
+        
         let language = data.getLaunchLanguage()
         let region = data.getRegion()
         let uiMode = data.getUIMode()
         let environment = data.getEnvironment()
         
-        let defaultList: [DataSourceType] = [.roomName(.none),
-                                             .userName(.none),
-                                             .roomType(.unselected),
-                                             .roleType(.unselected),
+        let defaultList: [DataSourceType] = [.roomName(.value("dddfffddd")),
+                                             .userName(.value("ios111")),
+                                             .roomType(.small),
+                                             .roleType(.student),
                                              .mediaLatency(.ultraLow),
                                              .im(.easemob),
                                              .deviceType(.sub),
@@ -247,6 +250,10 @@ extension DebugViewController {
                                              .region(region),
                                              .environment(environment)]
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
+            self.onClickEnter()
+        }
+         
         data.updateDataSourceList(defaultList)
     }
 }

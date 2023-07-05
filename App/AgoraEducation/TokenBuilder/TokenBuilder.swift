@@ -1,6 +1,6 @@
 //
 //  TokenBuilder.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by ZYP on 2021/10/19.
 //  Copyright © 2021 Agora. All rights reserved.
