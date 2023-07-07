@@ -24,16 +24,40 @@ class FcrAppLoginViewController: FcrAppViewController {
     
     private let startButton = UIButton(type: .custom)
     
+    private var center: FcrAppCenter
+    
     var onCompleted: FcrAppCompletion?
+    
+    init(center: FcrAppCenter,
+         onCompleted: FcrAppCompletion? = nil) {
+        self.center = center
+        self.onCompleted = onCompleted
+        
+        super.init(nibName: nil,
+                   bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true,
                                                      animated: true)
+        
+        
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
+        
         initViews()
         initViewFrame()
         updateViewProperties()
@@ -43,24 +67,28 @@ class FcrAppLoginViewController: FcrAppViewController {
     @objc func onClickStart() {
         AgoraLoading.loading()
         
-        FcrOutsideClassAPI.getAuthWebPage { dict in
-            AgoraLoading.hide()
-            
-            guard let redirectURL = dict["data"] as? String else {
+        center.getAgoraConsoleURL { [weak self] url in
+            guard let `self` = self else {
                 return
             }
             
-            let vc = FcrAppLoginWebViewController(url: redirectURL)
+            AgoraLoading.hide()
             
-            vc.onComplete = self.onCompleted
+            let vc = FcrAppLoginWebViewController(url: url,
+                                                  center: self.center) { [weak self] isLogined in
+                if isLogined {
+                    self?.navigationController?.dismiss(animated: true)
+                } else {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }
             
             self.navigationController?.pushViewController(vc,
                                                           animated: true)
-        } onFailure: { code, msg in
+        } failure: { [weak self] error in
             AgoraLoading.hide()
             
-            AgoraToast.toast(message: msg,
-                             type: .error)
+            self?.showErrorToast(error)
         }
     }
 }

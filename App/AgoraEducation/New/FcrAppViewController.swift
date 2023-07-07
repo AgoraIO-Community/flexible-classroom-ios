@@ -42,4 +42,15 @@ class FcrAppViewController: UIViewController {
                              actions: actions,
                              in: self)
     }
+    
+    func showErrorToast(_ error: FcrAppError) {
+        showToast(error.description(),
+                  type: .error)
+    }
+    
+    func showToast(_ message: String,
+                   type: AgoraToastType = .notice) {
+        AgoraToast.toast(message: message,
+                         type: type)
+    }
 }

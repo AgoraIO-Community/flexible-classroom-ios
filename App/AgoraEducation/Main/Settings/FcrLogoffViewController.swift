@@ -8,7 +8,7 @@
 
 import AgoraUIBaseViews
 
-class FcrLogoffViewController: FcrOutsideClassBaseController {
+class FcrLogoffViewController: FcrAppViewController {
 
     private let textLabel = UILabel()
     

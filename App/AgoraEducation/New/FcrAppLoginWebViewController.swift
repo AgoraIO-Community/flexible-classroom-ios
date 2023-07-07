@@ -15,20 +15,37 @@ class FcrAppLoginWebViewController: FcrAppViewController {
     
     public var url: String
     
-    public var onComplete: (() -> Void)?
+    public var onLoginCompleted: FcrAppBoolCompletion?
     
     private var debugButton = UIButton(type: .custom)
     
     private var debugCount: Int = 0
     
-    init(url: String) {
+    private var center: FcrAppCenter
+    
+    init(url: String,
+         center: FcrAppCenter,
+         onLoginCompleted: FcrAppBoolCompletion? = nil) {
         self.url = url
+        self.center = center
         super.init(nibName: nil,
                    bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false,
+                                                     animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(true,
+                                                     animated: true)
     }
     
     override func viewDidLoad() {
@@ -48,31 +65,22 @@ class FcrAppLoginWebViewController: FcrAppViewController {
         webView.load(request)
     }
     
-    private func fetchUserInfo() {
+    private func createLocalUser(accessToken: String,
+                                 refreshToken: String) {
+        center.updateAccessToken(accessToken)
+        center.updateRefreshToken(refreshToken)
+        
         AgoraLoading.loading()
         
-        FcrOutsideClassAPI.fetchUserInfo { rsp in
+        center.createLocalUser { [weak self] in
             AgoraLoading.hide()
             
-            guard let data = rsp["data"] as? [String: Any] else {
-                return
-            }
-            
-            if let companyId = data["companyId"] as? String {
-                FcrUserInfoPresenter.shared.companyId = companyId
-            }
-            
-            if let companyName = data["companyName"] as? String {
-                FcrUserInfoPresenter.shared.nickName = companyName
-            }
-            
-            self.dismiss(animated: true,
-                         completion: self.onComplete)
-        } onFailure: { code, msg in
+            self?.onLoginCompleted?(true)
+        } failure: { [weak self] error in
             AgoraLoading.hide()
             
-            self.dismiss(animated: true,
-                         completion: self.onComplete)
+            self?.showErrorToast(error)
+            self?.onLoginCompleted?(false)
         }
     }
     
@@ -139,18 +147,34 @@ extension FcrAppLoginWebViewController: WKNavigationDelegate {
         
         if queryItems.contains(where: {$0.name == "accessToken"}),
            queryItems.contains(where: {$0.name == "refreshToken"}) {
-            // 获取登录结果
+            
+            var accessTokenValue: String?
+            var refreshTokenValue: String?
+            
+            // Get access token and refresh token after logging in
             queryItems.forEach { item in
                 if item.name == "accessToken",
                    let accessToken = item.value {
-                    FcrUserInfoPresenter.shared.accessToken = accessToken
+                    accessTokenValue = accessToken
                 } else if item.name == "refreshToken",
                           let refreshToken = item.value {
-                    FcrUserInfoPresenter.shared.refreshToken = refreshToken
+                    refreshTokenValue = refreshToken
                 }
             }
-            fetchUserInfo()
+            
             decisionHandler(.cancel)
+            
+            guard let `accessToken` = accessTokenValue,
+                  let `refreshToken` = refreshTokenValue else {
+                let error = FcrAppError(code: -1,
+                                        message: "Access token or refresh token retrieval failed")
+                showErrorToast(error)
+                onLoginCompleted?(false)
+                return
+            }
+            
+            createLocalUser(accessToken: accessToken,
+                            refreshToken: refreshToken)
         } else {
             decisionHandler(.allow)
         }

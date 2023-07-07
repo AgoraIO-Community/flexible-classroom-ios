@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FcrNickNameViewController: FcrOutsideClassBaseController {
+class FcrNickNameViewController: FcrAppViewController {
     
     private let textField = UITextField(frame: .zero)
     

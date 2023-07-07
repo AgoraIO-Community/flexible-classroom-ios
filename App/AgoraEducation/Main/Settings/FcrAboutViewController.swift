@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FcrAboutViewController: FcrOutsideClassBaseController {
+class FcrAboutViewController: FcrAppViewController {
     
     private enum FcrSettingsOption: Int {
         case privacy = 0

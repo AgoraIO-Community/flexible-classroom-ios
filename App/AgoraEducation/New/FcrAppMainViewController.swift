@@ -43,9 +43,25 @@ class FcrAppMainViewController: FcrAppViewController {
     private var isLoading = false // 上拉加载
     
     private var proctor: AgoraProctor?
+    
+    private let center = FcrAppCenter()
 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 1. Check if agreed privacy
+        privacyCheck { [weak self] in
+            // 2. Check if logined
+            self?.loginCheck { [weak self] in
+                // 3. Refresh data
+//                self?.fetchData()
+            }
+        }
+        
         
         setup()
         createViews()
@@ -75,18 +91,11 @@ class FcrAppMainViewController: FcrAppViewController {
 //            titleView.envLabel.text = ""
 //        }
         
-        // 1. Check if agreed privacy
-        privacyCheck { [weak self] in
-            // 2. Check if logined
-            self?.loginCheck { [weak self] in
-                // 3. Refresh data
-                self?.fetchData()
-            }
-        }
+        
     }
     
     func privacyCheck(completion: @escaping FcrAppCompletion) {
-        if FcrAppLocalUser.isAgreedPrivacy {
+        guard center.isAgreedPrivacy == false else {
             completion()
             return
         }
@@ -96,21 +105,28 @@ class FcrAppMainViewController: FcrAppViewController {
         present(vc,
                 animated: true)
         
-        vc.onAgreedCompleted = {
-            FcrAppLocalUser.isAgreedPrivacy = true
-            
+        vc.onAgreedCompleted = { [weak self] in
+            self?.center.localStorage.writeData(true,
+                                                key: .privacyAgreement)
             completion()
         }
     }
     
     func loginCheck(completion: @escaping FcrAppCompletion) {
-        guard FcrUserInfoPresenter.shared.isLogin == true else {
+        guard center.isLogined == false else {
             return
         }
         
-        let vc = FcrAppLoginViewController()
+        let vc = FcrAppLoginViewController(center: center)
         
-        let navigation = FcrNavigationController(rootViewController: vc)
+        let navigation = FcrAppNavigationController(rootViewController: vc)
+        let frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        let button = UIButton(frame: frame)
+        button.setImage(UIImage(named: "ic_navigation_back"), for: .normal)
+        
+        navigation.backButton = button
+        
+        navigation.modalPresentationStyle = .fullScreen
         
         present(navigation,
                 animated: true)

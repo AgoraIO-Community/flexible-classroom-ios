@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FcrDisclaimerViewController: FcrOutsideClassBaseController {
+class FcrDisclaimerViewController: FcrAppViewController {
     
     private let textLabel = UILabel()
     

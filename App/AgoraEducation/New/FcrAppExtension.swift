@@ -14,6 +14,9 @@ import UIKit
 typealias FcrAppCompletion = () -> (Void)
 typealias FcrAppSuccess = () -> (Void)
 typealias FcrAppFailure = (FcrAppError) -> (Void)
+typealias FcrAppRequestSuccess = (FcrAppServerResponseObject) throws -> (Void)
+typealias FcrAppStringCompletion = (String) -> (Void)
+typealias FcrAppBoolCompletion = (Bool) -> (Void)
 
 extension Bundle {
     var version: String {

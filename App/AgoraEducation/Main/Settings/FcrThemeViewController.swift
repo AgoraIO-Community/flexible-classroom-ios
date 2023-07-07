@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FcrThemeViewController: FcrOutsideClassBaseController {
+class FcrThemeViewController: FcrAppViewController {
     
     private enum FcrThemeOption: Int {
         case light = 0

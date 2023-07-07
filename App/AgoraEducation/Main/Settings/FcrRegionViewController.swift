@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FcrRegionViewController: FcrOutsideClassBaseController {
+class FcrRegionViewController: FcrAppViewController {
     
     private let tableView = UITableView(frame: .zero,
                                         style: .plain)

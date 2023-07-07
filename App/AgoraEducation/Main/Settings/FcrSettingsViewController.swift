@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FcrSettingsViewController: FcrOutsideClassBaseController {
+class FcrSettingsViewController: FcrAppViewController {
     
     private enum FcrSettingsOption: Int {
         case generalSetting = 0
