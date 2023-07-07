@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import WebKit
 import Armin
 
 class FcrAppCenter: NSObject {
@@ -126,7 +127,13 @@ class FcrAppCenter: NSObject {
 
 extension FcrAppCenter: FcrAppLocalUserDelegate {
     func onLogOut() {
-        localStorage.allClean()
+        let websiteDataTypes = WKWebsiteDataStore.allWebsiteDataTypes()
+        let fromDate = Date(timeIntervalSince1970: 0)
+        
+        WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes,
+                                                modifiedSince: fromDate) { [weak self] in
+            self?.localStorage.allClean()
+        }
     }
 }
 

@@ -43,6 +43,7 @@
 		86B81E682A568F4800BA631C /* FcrAppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E672A568F4800BA631C /* FcrAppNavigationController.swift */; };
 		86B81E6A2A56A2B400BA631C /* FcrAppLocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E692A56A2B400BA631C /* FcrAppLocalUser.swift */; };
 		86B81E6C2A56B16500BA631C /* FcrAppEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E6B2A56B16500BA631C /* FcrAppEnums.swift */; };
+		86B81E6E2A57EBEA00BA631C /* FcrAppRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E6D2A57EBEA00BA631C /* FcrAppRoom.swift */; };
 		AB05CE9728C77387001239AD /* RoomCreateTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9528C77387001239AD /* RoomCreateTableCells.swift */; };
 		AB05CE9828C77387001239AD /* RoomCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9628C77387001239AD /* RoomCreateViewController.swift */; };
 		AB05CE9A28C89FAD001239AD /* RoomCreateTimeAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9928C89FAD001239AD /* RoomCreateTimeAlertController.swift */; };
@@ -146,6 +147,7 @@
 		86B81E672A568F4800BA631C /* FcrAppNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FcrAppNavigationController.swift; sourceTree = "<group>"; };
 		86B81E692A56A2B400BA631C /* FcrAppLocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppLocalUser.swift; sourceTree = "<group>"; };
 		86B81E6B2A56B16500BA631C /* FcrAppEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppEnums.swift; sourceTree = "<group>"; };
+		86B81E6D2A57EBEA00BA631C /* FcrAppRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppRoom.swift; sourceTree = "<group>"; };
 		8CD382F7BF039504C1D49C53 /* Pods-AgoraEducation.qatestrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.qatestrelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.qatestrelease.xcconfig"; sourceTree = "<group>"; };
 		A5BFF93D50503E0756F47D98 /* Pods-AgoraEducation.qarelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.qarelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.qarelease.xcconfig"; sourceTree = "<group>"; };
 		AB05CE9528C77387001239AD /* RoomCreateTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCreateTableCells.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				86B81E692A56A2B400BA631C /* FcrAppLocalUser.swift */,
 				86B81E652A566C5800BA631C /* FcrAppCenter.swift */,
 				86B81E6B2A56B16500BA631C /* FcrAppEnums.swift */,
+				86B81E6D2A57EBEA00BA631C /* FcrAppRoom.swift */,
 				86B81E5C2A55946100BA631C /* Views */,
 				86B81E5A2A5593A400BA631C /* FcrAppViewController.swift */,
 				AB8AC744287FEB5000B57B58 /* FcrPrivacyTermsViewController.swift */,
@@ -714,6 +717,7 @@
 				681528AA289D00CD00EFD6F4 /* DebugModels.swift in Sources */,
 				78DFB69825AEE20B00B01906 /* RtmTokenTool.mm in Sources */,
 				AB07A337287C549D0072A29F /* FcrLogoffViewController.swift in Sources */,
+				86B81E6E2A57EBEA00BA631C /* FcrAppRoom.swift in Sources */,
 				68362357262D30C20028F7F5 /* BaseLoginObject.swift in Sources */,
 				681528AD289D0ED200EFD6F4 /* DebugOptionsView.swift in Sources */,
 				86B81E5B2A5593A400BA631C /* FcrAppViewController.swift in Sources */,
