@@ -31,11 +31,11 @@ private extension AgoraEduServiceType {
     func title() -> String? {
         switch self {
         case .livePremium:
-            return "fcr_create_premium_title".ag_localized()
+            return "fcr_create_premium_title".localized()
         case .liveStandard:
-            return "fcr_create_standard_title".ag_localized()
+            return "fcr_create_standard_title".localized()
         case .fusion:
-            return "fcr_create_fusion_title".ag_localized()
+            return "fcr_create_fusion_title".localized()
         default:
             return nil
         }
@@ -44,11 +44,11 @@ private extension AgoraEduServiceType {
     func subTitle() -> String? {
         switch self {
         case .livePremium:
-            return "fcr_create_premium_subtitle".ag_localized()
+            return "fcr_create_premium_subtitle".localized()
         case .liveStandard:
-            return "fcr_create_standard_subtitle".ag_localized()
+            return "fcr_create_standard_subtitle".localized()
         case .fusion:
-            return "fcr_create_fusion_subtitle".ag_localized()
+            return "fcr_create_fusion_subtitle".localized()
         default:
             return nil
         }
@@ -163,7 +163,7 @@ class RoomCreateViewController: UIViewController {
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor(hex: 0xF8FAFF)
         if FcrUserInfoPresenter.shared.nickName.count > 0 {
-            roomName = FcrUserInfoPresenter.shared.nickName + "fcr_create_room_name_owner".ag_localized()
+            roomName = FcrUserInfoPresenter.shared.nickName + "fcr_create_room_name_owner".localized()
         }
         createViews()
         createConstrains()
@@ -200,7 +200,7 @@ private extension RoomCreateViewController {
         guard let name = roomName,
               name.count > 0
         else {
-            AgoraToast.toast(message: "fcr_create_label_roomname_empty".ag_localized(),
+            AgoraToast.toast(message: "fcr_create_label_roomname_empty".localized(),
                              type: .error)
             return
         }
@@ -443,18 +443,18 @@ extension RoomCreateViewController: UICollectionViewDelegate,
         switch roomType {
         case .small:
             cell.imageView.image = UIImage(named: "fcr_room_create_small_bg")
-            cell.titleLabel.text = "fcr_create_small_title".ag_localized()
-            cell.subTitleLabel.text = "fcr_create_small_detail".ag_localized()
+            cell.titleLabel.text = "fcr_create_small_title".localized()
+            cell.subTitleLabel.text = "fcr_create_small_detail".localized()
             cell.aSelected = (roomType == selectedRoomType)
         case .lecture:
             cell.imageView.image = UIImage(named: "fcr_room_create_lecture_bg")
-            cell.titleLabel.text = "fcr_create_lecture_title".ag_localized()
-            cell.subTitleLabel.text = "fcr_create_lecture_detail".ag_localized()
+            cell.titleLabel.text = "fcr_create_lecture_title".localized()
+            cell.subTitleLabel.text = "fcr_create_lecture_detail".localized()
             cell.aSelected = (roomType == selectedRoomType)
         case .oneToOne:
             cell.imageView.image = UIImage(named: "fcr_room_create_1v1_bg")
-            cell.titleLabel.text = "fcr_create_onetoone_title".ag_localized()
-            cell.subTitleLabel.text = "fcr_create_onetoone_detail".ag_localized()
+            cell.titleLabel.text = "fcr_create_onetoone_title".localized()
+            cell.subTitleLabel.text = "fcr_create_onetoone_detail".localized()
             cell.aSelected = (roomType == selectedRoomType)
         default: break
         }
@@ -485,7 +485,7 @@ private extension RoomCreateViewController {
                               for: .touchUpInside)
         view.addSubview(closeButton)
         
-        titleLabel.text = "fcr_create_room".ag_localized()
+        titleLabel.text = "fcr_create_room".localized()
         titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textAlignment = .center
         view.addSubview(titleLabel)
@@ -493,7 +493,7 @@ private extension RoomCreateViewController {
         actionContentView.backgroundColor = UIColor.white
         view.addSubview(actionContentView)
         
-        createButton.setTitle("fcr_create_submit".ag_localized(),
+        createButton.setTitle("fcr_create_submit".localized(),
                               for: .normal)
         createButton.addTarget(self,
                                action: #selector(onClickCreate(_:)),
@@ -506,7 +506,7 @@ private extension RoomCreateViewController {
         createButton.backgroundColor = UIColor(hex: 0x357BF6)
         actionContentView.addSubview(createButton)
         
-        cancelButton.setTitle("fcr_create_cancel".ag_localized(),
+        cancelButton.setTitle("fcr_create_cancel".localized(),
                               for: .normal)
         cancelButton.addTarget(self,
                                action: #selector(onClickCancel(_:)),

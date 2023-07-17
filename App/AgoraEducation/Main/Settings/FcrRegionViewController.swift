@@ -23,7 +23,7 @@ class FcrRegionViewController: FcrAppViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "fcr_settings_label_region".ag_localized()
+        title = "fcr_settings_label_region".localized()
         
         createViews()
         createConstrains()

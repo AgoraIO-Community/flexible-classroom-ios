@@ -11,33 +11,23 @@ import WebKit
 import Armin
 
 class FcrAppCenter: NSObject {
-    private lazy var armin = FcrAppRequest(logTube: self)
+    private lazy var armin = FcrAppArmin(logTube: self)
+    private let urlGroup = FcrAppURLGroup()
+    
+    private(set) lazy var room = FcrAppRoom(urlGroup: urlGroup,
+                                            armin: armin)
+    
+    let localStorage = FcrAppLocalStorage()
     
     var localUser: FcrAppLocalUser?
     
-    let localStorage = FcrAppLocalStorage()
-    private let urlGroup = FcrAppURLGroup()
+    var isLogined = false
+    
+    var isAgreedPrivacy = false
     
     override init() {
         super.init()
-        createLocalUser()
-    }
-    
-    var isLogined: Bool {
-        if let _ = localUser {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    var isAgreedPrivacy: Bool {
-        do {
-            return try localStorage.readData(key: .privacyAgreement,
-                                             type: Bool.self)
-        } catch {
-            return false
-        }
+        initWithLocalStorage()
     }
     
     func updateAccessToken(_ accessToken: String) {
@@ -88,9 +78,7 @@ class FcrAppCenter: NSObject {
     func createLocalUser(success: @escaping FcrAppSuccess,
                          failure: @escaping FcrAppFailure) {
         let url = urlGroup.userInfo()
-        let headers = urlGroup.headers()
-        
-        print("::::: \(headers)")
+        let headers = ["Authorization": "Bearer \(urlGroup.accessToken)"]
         
         armin.convertableRequest(url: url,
                                  headers: headers,
@@ -110,6 +98,8 @@ class FcrAppCenter: NSObject {
             self.localStorage.writeData(object.displayName,
                                         key: .nickname)
             
+            self.urlGroup.companyId = object.companyId
+            
             let localUser = FcrAppLocalUser(nickName: object.displayName)
             
             localUser.delegate = self
@@ -120,8 +110,37 @@ class FcrAppCenter: NSObject {
         }, failure: failure)
     }
     
-    private func createLocalUser() {
-        
+    private func initWithLocalStorage() {
+        do {
+            let nickname = try localStorage.readData(key: .nickname,
+                                                     type: String.self)
+            
+            let privacy = try localStorage.readData(key: .privacyAgreement,
+                                                    type: Bool.self)
+            
+            let companyId = try localStorage.readData(key: .companyId,
+                                                      type: String.self)
+            
+            let accessToken = try localStorage.readData(key: .accessTokenKey,
+                                                        type: String.self)
+            
+            let refreshToken = try localStorage.readData(key: .refreshToken,
+                                                         type: String.self)
+            
+            self.isAgreedPrivacy = privacy
+            
+            self.localUser = FcrAppLocalUser(nickName: nickname)
+            
+            self.isLogined = true
+            
+            self.urlGroup.companyId = companyId
+            self.urlGroup.accessToken = accessToken
+            self.urlGroup.refreshToken = refreshToken
+            
+        } catch {
+            isLogined = false
+            isAgreedPrivacy = false
+        }
     }
 }
 

@@ -11,13 +11,6 @@ import CommonCrypto
 import Foundation
 import UIKit
 
-typealias FcrAppCompletion = () -> (Void)
-typealias FcrAppSuccess = () -> (Void)
-typealias FcrAppFailure = (FcrAppError) -> (Void)
-typealias FcrAppRequestSuccess = (FcrAppServerResponseObject) throws -> (Void)
-typealias FcrAppStringCompletion = (String) -> (Void)
-typealias FcrAppBoolCompletion = (Bool) -> (Void)
-
 extension Bundle {
     var version: String {
         guard let infoDictionary = infoDictionary,
@@ -62,5 +55,25 @@ extension String {
         result.deallocate()
         
         return hash as String
+    }
+    
+    func localized() -> String {
+        let bundle = Bundle.main
+        
+        if let language = agora_ui_language,
+           let languagePath = bundle.path(forResource: language,
+                                          ofType: "lproj"),
+           let bundle = Bundle(path: languagePath) {
+            
+            return bundle.localizedString(forKey: self,
+                                          value: nil,
+                                          table: nil)
+        } else {
+            let text = bundle.localizedString(forKey: self,
+                                              value: nil,
+                                              table: nil)
+            
+            return text
+        }
     }
 }

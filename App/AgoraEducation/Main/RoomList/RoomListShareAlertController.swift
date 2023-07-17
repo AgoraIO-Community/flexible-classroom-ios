@@ -96,7 +96,7 @@ private extension RoomListShareAlertController {
             return
         }
         UIPasteboard.general.string = FcrShareLink.shareLinkWith(roomId: roomId)
-        AgoraToast.toast(message: "fcr_sharingLink_tips_roomid".ag_localized(),
+        AgoraToast.toast(message: "fcr_sharingLink_tips_roomid".localized(),
                          type: .notice)
         dismiss(animated: true)
         complete?()
@@ -122,10 +122,10 @@ private extension RoomListShareAlertController {
         
         copyTitleLabel.font = UIFont.systemFont(ofSize: 12)
         copyTitleLabel.textColor = UIColor.black
-        copyTitleLabel.text = "fcr_room_list_copy_link".ag_localized()
+        copyTitleLabel.text = "fcr_room_list_copy_link".localized()
         contentView.addSubview(copyTitleLabel)
         
-        cancelButton.setTitle("fcr_alert_cancel".ag_localized(),
+        cancelButton.setTitle("fcr_alert_cancel".localized(),
                               for: .normal)
         cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         cancelButton.addTarget(self,

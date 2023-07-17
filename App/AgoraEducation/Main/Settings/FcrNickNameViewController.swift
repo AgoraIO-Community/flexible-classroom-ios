@@ -17,7 +17,7 @@ class FcrNickNameViewController: FcrAppViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "settings_nickname".ag_localized()
+        title = "settings_nickname".localized()
         view.backgroundColor = .white
         createViews()
         createConstrains()

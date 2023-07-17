@@ -134,7 +134,7 @@ private extension FcrInputAlertController {
                                                   width: 14,
                                                   height: 40))
         textField.leftViewMode = .always
-        textField.placeholder = "fcr_alert_input_ph".ag_localized()
+        textField.placeholder = "fcr_alert_input_ph".localized()
         textField.backgroundColor = UIColor(hex: 0xF2F4F8)
         textField.clearButtonMode = .always
         contentView.addSubview(textField)

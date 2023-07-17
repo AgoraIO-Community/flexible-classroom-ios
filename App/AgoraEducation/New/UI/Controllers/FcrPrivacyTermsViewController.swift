@@ -13,7 +13,7 @@ import UIKit
 class FcrAppPrivacyTermsViewController: FcrAppViewController {
     private lazy var termTitle = UILabel()
     private lazy var contentView = WKWebView(frame: .zero)
-    private lazy var agreementView = FcrAppAgreementView(frame: .zero)
+    private lazy var agreementView = FcrAppUIAgreementView(frame: .zero)
     
     var onAgreedCompleted: FcrAppCompletion?
     
@@ -71,7 +71,7 @@ extension FcrAppPrivacyTermsViewController: AgoraUIContentContainer {
     func updateViewProperties() {
         view.backgroundColor = .white
         
-        termTitle.text = "Service_title".ag_localized()
+        termTitle.text = "Service_title".localized()
         termTitle.textColor = .black
         termTitle.font = .boldSystemFont(ofSize: 14)
     }

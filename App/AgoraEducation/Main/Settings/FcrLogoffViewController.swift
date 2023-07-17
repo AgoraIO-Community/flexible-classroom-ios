@@ -20,7 +20,7 @@ class FcrLogoffViewController: FcrAppViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(hex: 0xF9F9FC)
-        title = "settings_close_account".ag_localized()
+        title = "settings_close_account".localized()
         createViews()
         createConstrains()
     }
@@ -29,14 +29,14 @@ class FcrLogoffViewController: FcrAppViewController {
 private extension FcrLogoffViewController {
     // 注销账号
     @objc func onClickLogoff() {
-        let alertController = UIAlertController(title: "fcr_alert_title".ag_localized(),
-                                                message: "settings_logoff_alert".ag_localized(),
+        let alertController = UIAlertController(title: "fcr_alert_title".localized(),
+                                                message: "settings_logoff_alert".localized(),
                                                 preferredStyle: .alert)
-        let submit = UIAlertAction(title: "fcr_alert_submit".ag_localized(),
+        let submit = UIAlertAction(title: "fcr_alert_submit".localized(),
                                    style: .default) { action in
             self.logoffUser()
         }
-        let cancel = UIAlertAction(title: "fcr_alert_cancel".ag_localized(),
+        let cancel = UIAlertAction(title: "fcr_alert_cancel".localized(),
                                    style: .default)
         alertController.addAction(submit)
         alertController.addAction(cancel)
@@ -66,7 +66,7 @@ private extension FcrLogoffViewController {
 private extension FcrLogoffViewController {
     func createViews() {
         textLabel.numberOfLines = 0
-        let attrString = NSMutableAttributedString(string: "settings_logoff_detail".ag_localized())
+        let attrString = NSMutableAttributedString(string: "settings_logoff_detail".localized())
         let paraStyle = NSMutableParagraphStyle()
         paraStyle.paragraphSpacing = 21
         let attr: [NSAttributedString.Key : Any] = [.font: UIFont.systemFont(ofSize: 18),
@@ -81,7 +81,7 @@ private extension FcrLogoffViewController {
         
         checkBox.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         checkBox.setTitleColor(UIColor(hex: 0x191919), for: .normal)
-        checkBox.setTitle("settings_logoff_agreenment".ag_localized(),
+        checkBox.setTitle("settings_logoff_agreenment".localized(),
                           for: .normal)
         checkBox.setImage(UIImage(named: "checkBox_unchecked"),
                           for: .normal)
@@ -106,7 +106,7 @@ private extension FcrLogoffViewController {
         logoffButton.setTitleColor(UIColor(hex: 0x357BF6),
                                    for: .normal)
         logoffButton.isEnabled = false
-        logoffButton.setTitle("settings_logoff_submit".ag_localized(),
+        logoffButton.setTitle("settings_logoff_submit".localized(),
                               for: .normal)
         logoffButton.addTarget(self,
                                action: #selector(onClickLogoff),

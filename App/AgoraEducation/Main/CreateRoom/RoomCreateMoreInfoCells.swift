@@ -59,7 +59,7 @@ class RoomMoreTitleCell: UITableViewCell {
         
         titleLabel.textColor = UIColor.black
         titleLabel.font = UIFont.boldSystemFont(ofSize: 13)
-        titleLabel.text = "fcr_create_more_setting".ag_localized()
+        titleLabel.text = "fcr_create_more_setting".localized()
         contentView.addSubview(titleLabel)
         
         contentView.addSubview(arrow)
@@ -123,12 +123,12 @@ class RoomSecurityInfoCell: UITableViewCell {
         contentView.addSubview(iconView)
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 13)
-        titleLabel.text = "fcr_create_more_security".ag_localized() + "·"
+        titleLabel.text = "fcr_create_more_security".localized() + "·"
         titleLabel.textColor = UIColor.black
         contentView.addSubview(titleLabel)
         
         detailLabel.font = UIFont.boldSystemFont(ofSize: 13)
-        detailLabel.text = "fcr_create_more_security_detail".ag_localized()
+        detailLabel.text = "fcr_create_more_security_detail".localized()
         detailLabel.textColor = UIColor(hex: 0x757575)
         contentView.addSubview(detailLabel)
         
@@ -208,7 +208,7 @@ class RoomPlayBackInfoCell: UITableViewCell {
         contentView.addSubview(iconView)
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 13)
-        titleLabel.text = "fcr_create_more_playback".ag_localized()
+        titleLabel.text = "fcr_create_more_playback".localized()
         titleLabel.textColor = UIColor.black
         contentView.addSubview(titleLabel)
         

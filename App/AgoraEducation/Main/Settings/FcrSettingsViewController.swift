@@ -26,7 +26,7 @@ class FcrSettingsViewController: FcrAppViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "settings_setting".ag_localized()
+        title = "settings_setting".localized()
         createViews()
         createConstrains()
     }
@@ -53,16 +53,16 @@ private extension FcrSettingsViewController {
     }
     // 退出登录按钮
     @objc func onClickLogout() {
-        let alertController = UIAlertController(title: "fcr_alert_title".ag_localized(),
-                                                message: "settings_logout_alert".ag_localized(),
+        let alertController = UIAlertController(title: "fcr_alert_title".localized(),
+                                                message: "settings_logout_alert".localized(),
                                                 preferredStyle: .alert)
-        let submit = UIAlertAction(title: "fcr_alert_submit".ag_localized(),
+        let submit = UIAlertAction(title: "fcr_alert_submit".localized(),
                                    style: .default) { action in
             FcrUserInfoPresenter.shared.logout {
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }
-        let cancel = UIAlertAction(title: "fcr_alert_cancel".ag_localized(),
+        let cancel = UIAlertAction(title: "fcr_alert_cancel".localized(),
                                    style: .default)
         alertController.addAction(submit)
         alertController.addAction(cancel)
@@ -82,9 +82,9 @@ extension FcrSettingsViewController: UITableViewDelegate, UITableViewDataSource 
         let type = dataSource[indexPath.row]
         switch type {
         case .generalSetting:
-            cell.infoLabel.text = "fcr_settings_option_general".ag_localized()
+            cell.infoLabel.text = "fcr_settings_option_general".localized()
         case .aboutUs:
-            cell.infoLabel.text = "fcr_settings_option_about_us".ag_localized()
+            cell.infoLabel.text = "fcr_settings_option_about_us".localized()
         }
         return cell
     }
@@ -125,7 +125,7 @@ private extension FcrSettingsViewController {
         logoutButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         logoutButton.setTitleColor(UIColor(hex: 0x357BF6),
                                    for: .normal)
-        logoutButton.setTitle("settings_logout".ag_localized(),
+        logoutButton.setTitle("settings_logout".localized(),
                               for: .normal)
         logoutButton.addTarget(self,
                                action: #selector(onClickLogout),

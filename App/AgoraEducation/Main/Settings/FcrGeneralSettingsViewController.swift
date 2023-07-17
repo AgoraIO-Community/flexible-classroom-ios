@@ -30,7 +30,7 @@ class FcrGeneralSettingsViewController: FcrAppViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "fcr_settings_option_general".ag_localized()
+        title = "fcr_settings_option_general".localized()
         createViews()
         createConstrains()
     }
@@ -80,15 +80,15 @@ extension FcrGeneralSettingsViewController: UITableViewDelegate, UITableViewData
         let type = dataSource[indexPath.row]
         switch type {
         case .nickName:
-            cell.infoLabel.text = "settings_nickname".ag_localized()
+            cell.infoLabel.text = "settings_nickname".localized()
         case .language:
-            cell.infoLabel.text = "fcr_settings_label_language".ag_localized()
+            cell.infoLabel.text = "fcr_settings_label_language".localized()
         case .area:
-            cell.infoLabel.text = "fcr_settings_label_region".ag_localized()
+            cell.infoLabel.text = "fcr_settings_label_region".localized()
         case .theme:
-            cell.infoLabel.text = "settings_theme".ag_localized()
+            cell.infoLabel.text = "settings_theme".localized()
         case .logoff:
-            cell.infoLabel.text = "settings_close_account".ag_localized()
+            cell.infoLabel.text = "settings_close_account".localized()
         }
         return cell
     }

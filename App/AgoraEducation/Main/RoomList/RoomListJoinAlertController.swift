@@ -120,14 +120,14 @@ private extension RoomListJoinAlertController {
               let roomId = idTextField.text,
               roomId.count > 0
         else {
-            AgoraToast.toast(message: "fcr_joinroom_tips_roomid_empty".ag_localized(),
+            AgoraToast.toast(message: "fcr_joinroom_tips_roomid_empty".localized(),
                              type: .error)
             return
         }
         guard let name = nameTextField.text,
               name.count > 0
         else {
-            AgoraToast.toast(message: "fcr_joinroom_tips_username_empty".ag_localized(),
+            AgoraToast.toast(message: "fcr_joinroom_tips_username_empty".localized(),
                              type: .error)
             return
         }
@@ -224,7 +224,7 @@ private extension RoomListJoinAlertController {
         contentView.addSubview(alertBg)
         
         titleLabel.textColor = .black
-        titleLabel.text = "fcr_room_join_title".ag_localized()
+        titleLabel.text = "fcr_room_join_title".localized()
         titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         contentView.addSubview(titleLabel)
         
@@ -237,11 +237,11 @@ private extension RoomListJoinAlertController {
         cardView.addSubview(lineView)
         
         let idTitleLabel = UILabel()
-        idTitleLabel.text = "fcr_room_join_room_id".ag_localized()
+        idTitleLabel.text = "fcr_room_join_room_id".localized()
         idTitleLabel.font = UIFont.boldSystemFont(ofSize: 15)
         idTitleLabel.textColor = UIColor.black
         
-        idTextField.placeholder = "fcr_room_join_room_id_ph".ag_localized()
+        idTextField.placeholder = "fcr_room_join_room_id_ph".localized()
         idTextField.leftViewMode = .always
         idTextField.leftView = idTitleLabel
         idTextField.font = UIFont.boldSystemFont(ofSize: 15)
@@ -252,11 +252,11 @@ private extension RoomListJoinAlertController {
         contentView.addSubview(idTextField)
         
         let nameTitleLabel = UILabel()
-        nameTitleLabel.text = "fcr_room_join_room_name".ag_localized()
+        nameTitleLabel.text = "fcr_room_join_room_name".localized()
         nameTitleLabel.font = UIFont.boldSystemFont(ofSize: 15)
         nameTitleLabel.textColor = UIColor.black
         
-        nameTextField.placeholder = "fcr_room_join_room_name_ph".ag_localized()
+        nameTextField.placeholder = "fcr_room_join_room_name_ph".localized()
         nameTextField.leftViewMode = .always
         nameTextField.leftView = nameTitleLabel
         nameTextField.font = UIFont.boldSystemFont(ofSize: 15)
@@ -265,13 +265,13 @@ private extension RoomListJoinAlertController {
         nameTextField.returnKeyType = .done
         contentView.addSubview(nameTextField)
         
-        roleTitleLabel.text = "fcr_room_join_room_role".ag_localized()
+        roleTitleLabel.text = "fcr_room_join_room_role".localized()
         roleTitleLabel.font = UIFont.systemFont(ofSize: 15)
         roleTitleLabel.textColor = UIColor(hex: 0xBDBEC6)
         contentView.addSubview(roleTitleLabel)
         
         studentButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        studentButton.setTitleForAllStates("fcr_room_join_room_role_student".ag_localized())
+        studentButton.setTitleForAllStates("fcr_room_join_room_role_student".localized())
         studentButton.setTitleColor(.white,
                                     for: .selected)
         studentButton.setTitleColor(.black,
@@ -292,7 +292,7 @@ private extension RoomListJoinAlertController {
         contentView.addSubview(studentButton)
         
         teacherButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        teacherButton.setTitleForAllStates("fcr_room_join_room_role_teacher".ag_localized())
+        teacherButton.setTitleForAllStates("fcr_room_join_room_role_teacher".localized())
         teacherButton.setTitleColor(.white,
                                     for: .selected)
         teacherButton.setTitleColor(.black,
@@ -315,7 +315,7 @@ private extension RoomListJoinAlertController {
                               for: .touchUpInside)
         contentView.addSubview(closeButton)
         
-        submitButton.setTitle("fcr_alert_sure".ag_localized(),
+        submitButton.setTitle("fcr_alert_sure".localized(),
                               for: .normal)
         submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         submitButton.addTarget(self,
@@ -328,7 +328,7 @@ private extension RoomListJoinAlertController {
         submitButton.backgroundColor = UIColor(hex: 0x357BF6)
         contentView.addSubview(submitButton)
         
-        cancelButton.setTitle("fcr_alert_cancel".ag_localized(),
+        cancelButton.setTitle("fcr_alert_cancel".localized(),
                               for: .normal)
         cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         cancelButton.addTarget(self,

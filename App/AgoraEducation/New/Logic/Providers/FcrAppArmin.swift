@@ -1,5 +1,5 @@
 //
-//  FcrAppRequest.swift
+//  FcrAppArmin.swift
 //  AgoraEducation
 //
 //  Created by Cavan on 2023/7/6.
@@ -9,7 +9,7 @@
 import Foundation
 import Armin
 
-class FcrAppRequest: Armin {
+class FcrAppArmin: Armin {
     func request(url: String,
                  headers: [String: String]? = nil,
                  parameters: [String: Any]? = nil,

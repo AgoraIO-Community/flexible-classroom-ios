@@ -20,7 +20,7 @@ class FcrLanguageViewController: FcrAppViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "fcr_settings_label_language".ag_localized()
+        title = "fcr_settings_label_language".localized()
         createViews()
         createConstrains()
     }
@@ -89,11 +89,11 @@ private extension FcrSurpportLanguage {
     func description() -> String {
         switch self {
         case .zh_cn:
-            return "fcr_settings_option_general_language_simplified".ag_localized()
+            return "fcr_settings_option_general_language_simplified".localized()
         case .en:
-            return "fcr_settings_option_general_language_english".ag_localized()
+            return "fcr_settings_option_general_language_english".localized()
         case .zh_tw:
-            return "fcr_settings_option_general_language_traditional".ag_localized()
+            return "fcr_settings_option_general_language_traditional".localized()
         }
     }
 }

@@ -155,7 +155,7 @@ extension DebugInfoCell: AgoraUIContentContainer {
                                  action: #selector(onTimeChanged(_:)),
                              for: .valueChanged)
         
-        textWarningLabel.text = "debug_text_warn".ag_localized()
+        textWarningLabel.text = "debug_text_warn".localized()
         
         contentView.addSubviews([titleLabel,
                                  textField,

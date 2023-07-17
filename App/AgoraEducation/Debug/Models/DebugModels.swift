@@ -96,10 +96,10 @@ enum DataSourceRoomType: CaseIterable {
     
     var viewText: String {
         switch self {
-        case .oneToOne:     return "debug_onetoone".ag_localized()
-        case .small:        return "debug_small".ag_localized()
-        case .lecture:      return "debug_lecture".ag_localized()
-        case .proctor:      return "debug_proctor".ag_localized()
+        case .oneToOne:     return "debug_onetoone".localized()
+        case .small:        return "debug_small".localized()
+        case .lecture:      return "debug_lecture".localized()
+        case .proctor:      return "debug_proctor".localized()
         case .unselected:   return ""
         }
     }
@@ -158,9 +158,9 @@ enum DataSourceRoleType: Int, CaseIterable {
     
     var viewText: String {
         switch self {
-        case .teacher:      return "debug_role_teacher".ag_localized()
-        case .student:      return "debug_role_student".ag_localized()
-        case .observer:     return "debug_role_observer".ag_localized()
+        case .teacher:      return "debug_role_teacher".localized()
+        case .student:      return "debug_role_student".localized()
+        case .observer:     return "debug_role_observer".localized()
         case .unselected:   return ""
         }
     }
@@ -183,8 +183,8 @@ enum DataSourceDeviceType: String, CaseIterable {
     
     var viewText: String {
         switch self {
-        case .main:     return "debug_device_main".ag_localized()
-        case .sub:      return "debug_device_sub".ag_localized()
+        case .main:     return "debug_device_main".localized()
+        case .sub:      return "debug_device_sub".localized()
         }
     }
 }
@@ -247,10 +247,10 @@ enum DataSourceMediaAuth: CaseIterable {
     
     var viewText: String {
         switch self {
-        case .none:     return "debug_auth_none".ag_localized()
-        case .audio:    return "debug_auth_audio".ag_localized()
-        case .video:    return "debug_auth_video".ag_localized()
-        case .both:     return "debug_auth_both".ag_localized()
+        case .none:     return "debug_auth_none".localized()
+        case .audio:    return "debug_auth_audio".localized()
+        case .video:    return "debug_auth_video".localized()
+        case .both:     return "debug_auth_both".localized()
         }
     }
 }
@@ -261,8 +261,8 @@ enum DataSourceUIMode: Int, CaseIterable {
     
     var viewText: String {
         switch self {
-        case .light: return "settings_theme_light".ag_localized()
-        case .dark:  return "settings_theme_dark".ag_localized()
+        case .light: return "settings_theme_light".localized()
+        case .dark:  return "settings_theme_dark".localized()
         }
     }
     
@@ -280,8 +280,8 @@ enum DataSourceUILanguage: CaseIterable {
     
     var viewText: String {
         switch self {
-        case .zh_cn:    return "debug_uiLanguage_zh_cn".ag_localized()
-        case .en:       return "debug_uiLanguage_en".ag_localized()
+        case .zh_cn:    return "debug_uiLanguage_zh_cn".localized()
+        case .en:       return "debug_uiLanguage_en".localized()
         }
     }
     
@@ -342,9 +342,9 @@ enum DataSourceEnvironment: CaseIterable {
     
     var viewText: String {
         switch self {
-        case .dev:      return "debug_env_test".ag_localized()
-        case .pre:      return "debug_pre_test".ag_localized()
-        case .pro:      return "debug_pro_test".ag_localized()
+        case .dev:      return "debug_env_test".localized()
+        case .pre:      return "debug_pre_test".localized()
+        case .pro:      return "debug_pro_test".localized()
         }
     }
     
@@ -412,43 +412,43 @@ enum DataSourceType: Equatable {
     
     var title: String {
         switch self {
-        case .roomName:      return "debug_room_title".ag_localized()
-        case .userName:      return "debug_user_title".ag_localized()
-        case .roomType:      return "debug_class_type_title".ag_localized()
+        case .roomName:      return "debug_room_title".localized()
+        case .userName:      return "debug_user_title".localized()
+        case .roomType:      return "debug_class_type_title".localized()
         case .mediaLatency:  return "Latency"
-        case .roleType:      return "debug_title_role".ag_localized()
+        case .roleType:      return "debug_title_role".localized()
         case .im:            return "IM"
-        case .deviceType:    return "debug_device_type".ag_localized()
-        case .startTime:     return "debug_startTime_title".ag_localized()
-        case .duration:      return "debug_duration_title".ag_localized()
-        case .encryptKey:    return "debug_encryptKey_title".ag_localized()
-        case .encryptMode:   return "debug_encryption_mode_title".ag_localized()
-        case .mediaAuth:     return "debug_authMedia_title".ag_localized()
-        case .uiMode:        return "debug_uiMode_title".ag_localized()
-        case .uiLanguage:    return "debug_uiLanguage_title".ag_localized()
-        case .region:        return "debug_region_title".ag_localized()
-        case .environment:   return "debug_env_title".ag_localized()
+        case .deviceType:    return "debug_device_type".localized()
+        case .startTime:     return "debug_startTime_title".localized()
+        case .duration:      return "debug_duration_title".localized()
+        case .encryptKey:    return "debug_encryptKey_title".localized()
+        case .encryptMode:   return "debug_encryption_mode_title".localized()
+        case .mediaAuth:     return "debug_authMedia_title".localized()
+        case .uiMode:        return "debug_uiMode_title".localized()
+        case .uiLanguage:    return "debug_uiLanguage_title".localized()
+        case .region:        return "debug_region_title".localized()
+        case .environment:   return "debug_env_title".localized()
         }
     }
     
     var placeholder: String {
         switch self {
-        case .roomName:      return "debug_room_holder".ag_localized()
-        case .userName:      return "debug_user_holder".ag_localized()
-        case .roomType:      return "debug_type_holder".ag_localized()
-        case .mediaLatency:  return "debug_media_latency_holder".ag_localized()
-        case .roleType:      return "debug_role_holder".ag_localized()
-        case .im:            return "debug_service_type_holder".ag_localized()
-        case .deviceType:    return "debug_device_holder".ag_localized()
+        case .roomName:      return "debug_room_holder".localized()
+        case .userName:      return "debug_user_holder".localized()
+        case .roomType:      return "debug_type_holder".localized()
+        case .mediaLatency:  return "debug_media_latency_holder".localized()
+        case .roleType:      return "debug_role_holder".localized()
+        case .im:            return "debug_service_type_holder".localized()
+        case .deviceType:    return "debug_device_holder".localized()
         case .startTime:     return ""
-        case .duration:      return "debug_duration_holder".ag_localized()
-        case .encryptKey:    return "debug_encryptKey_holder".ag_localized()
-        case .encryptMode:   return "debug_encryption_mode_holder".ag_localized()
-        case .mediaAuth:     return "debug_authMedia_holder".ag_localized()
-        case .uiMode:        return "debug_uiMode_holder".ag_localized()
-        case .uiLanguage:    return "debug_region_holder".ag_localized()
-        case .region:        return "debug_region_title".ag_localized()
-        case .environment:   return "debug_env_holder".ag_localized()
+        case .duration:      return "debug_duration_holder".localized()
+        case .encryptKey:    return "debug_encryptKey_holder".localized()
+        case .encryptMode:   return "debug_encryption_mode_holder".localized()
+        case .mediaAuth:     return "debug_authMedia_holder".localized()
+        case .uiMode:        return "debug_uiMode_holder".localized()
+        case .uiLanguage:    return "debug_region_holder".localized()
+        case .region:        return "debug_region_title".localized()
+        case .environment:   return "debug_env_holder".localized()
         }
     }
 }

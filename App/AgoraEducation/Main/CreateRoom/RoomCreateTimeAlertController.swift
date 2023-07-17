@@ -134,7 +134,7 @@ private extension RoomCreateTimeAlertController {
         date.hour = hours[pickerView.selectedRow(inComponent: kComponentHour)]
         date.minute = minutes[pickerView.selectedRow(inComponent: kComponentMinute)]
         guard date > Date() else {
-            AgoraToast.toast(message: "fcr_create_tips_starttime".ag_localized(),
+            AgoraToast.toast(message: "fcr_create_tips_starttime".localized(),
                              type: .warning)
             return
         }
@@ -213,9 +213,9 @@ extension RoomCreateTimeAlertController: UIPickerViewDelegate,
         if component == kComponentDay {
             let date = days[row]
             if row == 0 {
-                return "fcr_create_picker_today".ag_localized()
+                return "fcr_create_picker_today".localized()
             } else {
-                return date.string(withFormat: "fcr_create_picker_time_format".ag_localized())
+                return date.string(withFormat: "fcr_create_picker_time_format".localized())
             }
         } else if component == kComponentHour {
             let h = hours[row]
@@ -260,7 +260,7 @@ private extension RoomCreateTimeAlertController {
         contentView.addSubview(alertBg)
         
         titleLabel.textColor = .black
-        titleLabel.text = "fcr_create_select_start_time".ag_localized()
+        titleLabel.text = "fcr_create_select_start_time".localized()
         titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         contentView.addSubview(titleLabel)
         
@@ -271,7 +271,7 @@ private extension RoomCreateTimeAlertController {
                               for: .touchUpInside)
         contentView.addSubview(closeButton)
         
-        submitButton.setTitle("fcr_alert_sure".ag_localized(),
+        submitButton.setTitle("fcr_alert_sure".localized(),
                               for: .normal)
         submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         submitButton.addTarget(self,
@@ -284,7 +284,7 @@ private extension RoomCreateTimeAlertController {
         submitButton.backgroundColor = UIColor(hex: 0x357BF6)
         contentView.addSubview(submitButton)
         
-        cancelButton.setTitle("fcr_alert_cancel".ag_localized(),
+        cancelButton.setTitle("fcr_alert_cancel".localized(),
                               for: .normal)
         cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         cancelButton.addTarget(self,

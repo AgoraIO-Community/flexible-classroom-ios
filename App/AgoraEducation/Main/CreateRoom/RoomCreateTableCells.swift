@@ -334,11 +334,11 @@ class RoomTimeInfoCell: UITableViewCell {
     public var startDate: Date? {
         didSet {
             if let date = startDate {
-                startTimeLabel.text = date.string(withFormat: "fcr_create_table_time_format".ag_localized())
+                startTimeLabel.text = date.string(withFormat: "fcr_create_table_time_format".localized())
                 let endDate = date.addingTimeInterval(30*60)
                 endTimeLabel.text = endDate.string(withFormat: "HH:mm")
             } else {
-                startTimeLabel.text = "fcr_create_current_time".ag_localized()
+                startTimeLabel.text = "fcr_create_current_time".localized()
                 endTimeLabel.text = ""
             }
         }

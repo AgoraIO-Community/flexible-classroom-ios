@@ -1,5 +1,5 @@
 //
-//  FcrAppAgreementView.swift
+//  FcrAppUIAgreementView.swift
 //  FlexibleClassroom
 //
 //  Created by DoubleCircle on 2022/6/11.
@@ -9,7 +9,7 @@
 import AgoraUIBaseViews
 import UIKit
 
-class FcrAppAgreementView: UIView, AgoraUIContentContainer {
+class FcrAppUIAgreementView: UIView, AgoraUIContentContainer {
     private(set) lazy var checkButton = UIButton(type: .custom)
     private(set) lazy var agreeButton = UIButton(type: .custom)
     private(set) lazy var disagreeButton = UIButton(type: .custom)
@@ -93,11 +93,11 @@ class FcrAppAgreementView: UIView, AgoraUIContentContainer {
         backgroundColor = UIColor(hex: 0xFFFFFFF,
                                   transparency: 0.5)
         
-        checkLabel.text = "Service_check_content".ag_localized()
+        checkLabel.text = "Service_check_content".localized()
         checkLabel.textColor = UIColor(hex: 0x7D8798)
         checkLabel.font = .systemFont(ofSize: 10)
         
-        agreeButton.setTitle("Service_agree".ag_localized(),
+        agreeButton.setTitle("Service_agree".localized(),
                              for: .normal)
         agreeButton.setTitleColor(.white,
                                   for: .normal)
@@ -106,7 +106,7 @@ class FcrAppAgreementView: UIView, AgoraUIContentContainer {
         agreeButton.titleLabel?.font = .systemFont(ofSize: 14)
         agreeButton.layer.cornerRadius = 17
         
-        disagreeButton.setTitle("Service_disagree".ag_localized(),
+        disagreeButton.setTitle("Service_disagree".localized(),
                                 for: .normal)
         
         disagreeButton.setTitleColor(UIColor(hex: 0x8A8A9A),

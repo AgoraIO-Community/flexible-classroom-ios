@@ -307,7 +307,7 @@ extension DebugView: AgoraUIContentContainer {
             
             titleLabel.textColor = .white
         } else {
-            subTitleLabel.text = "About_url".ag_localized()
+            subTitleLabel.text = "About_url".localized()
             subTitleLabel.textColor = UIColor(hex: 0x677386)
             subTitleLabel.font = UIFont.systemFont(ofSize: 14)
             
@@ -315,7 +315,7 @@ extension DebugView: AgoraUIContentContainer {
         }
 
         titleLabel.font = .systemFont(ofSize: isPad ? 24 : 20)
-        titleLabel.text = "Login_title".ag_localized()
+        titleLabel.text = "Login_title".localized()
         
         let iconName = (LoginConfig.device == .iPhone_Small) ? "icon_small" : "icon_big"
         logoImageView.image = UIImage(named: iconName)
@@ -323,7 +323,7 @@ extension DebugView: AgoraUIContentContainer {
         closeButton.setTitle("Close",
                              for: .normal)
         
-        enterButton.setTitle("Login_enter".ag_localized(),
+        enterButton.setTitle("Login_enter".localized(),
                              for: .normal)
         enterButton.setTitleColor(.white,
                                   for: .normal)

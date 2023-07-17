@@ -28,6 +28,7 @@ class FcrAppLoginWebViewController: FcrAppViewController {
          onLoginCompleted: FcrAppBoolCompletion? = nil) {
         self.url = url
         self.center = center
+        self.onLoginCompleted = onLoginCompleted
         super.init(nibName: nil,
                    bundle: nil)
     }

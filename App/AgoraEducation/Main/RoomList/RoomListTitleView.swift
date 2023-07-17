@@ -105,7 +105,7 @@ private extension RoomListTitleView {
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.textColor = UIColor.black
-        titleLabel.text = "fcr_room_list_title".ag_localized()
+        titleLabel.text = "fcr_room_list_title".localized()
         titleLabel.isUserInteractionEnabled = true
         addSubview(titleLabel)
         let tap = UITapGestureRecognizer(target: self,
@@ -113,14 +113,14 @@ private extension RoomListTitleView {
         titleLabel.addGestureRecognizer(tap)
         
         joinActionView.iconView.image = UIImage(named: "fcr_room_list_join")
-        joinActionView.titleLabel.text = "fcr_room_list_join".ag_localized()
+        joinActionView.titleLabel.text = "fcr_room_list_join".localized()
         joinActionView.button.addTarget(self,
                                         action: #selector(onClickJoin(_:)),
                                         for: .touchUpInside)
         addSubview(joinActionView)
         
         createActionView.iconView.image = UIImage(named: "fcr_room_list_create")
-        createActionView.titleLabel.text = "fcr_room_list_create".ag_localized()
+        createActionView.titleLabel.text = "fcr_room_list_create".localized()
         createActionView.button.addTarget(self,
                                           action: #selector(onClickCreate(_:)),
                                           for: .touchUpInside)

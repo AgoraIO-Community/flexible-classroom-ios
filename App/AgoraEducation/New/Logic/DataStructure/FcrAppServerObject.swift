@@ -29,12 +29,6 @@ extension FcrAppCodable {
     }
 }
 
-struct FcrAppServerUserInfoObject: FcrAppCodable {
-    var companyId: String
-    var companyName: String
-    var displayName: String
-}
-
 struct FcrAppServerResponseObject {
     var code: Int
     var msg: String
@@ -73,3 +67,37 @@ struct FcrAppServerResponseObject {
     }
 }
 
+// MARK: - User
+struct FcrAppServerUserInfoObject: FcrAppCodable {
+    var companyId: String
+    var companyName: String
+    var displayName: String
+}
+
+// MARK: - Room
+struct FcrAppServerRoomObject: FcrAppCodable {
+    var roomName: String
+    var roomId: String
+    var roomType: FcrAppRoomType
+    var roomState: FcrAppRoomState
+    
+    var startTime: Int64
+    var endTime: Int64
+    
+    // User Id who created this room
+    var creatorId: String
+    
+    var industry: String
+}
+
+struct FcrAppServerRoomListObject: FcrAppCodable {
+    var total: Int
+    var nextId: String
+    var count: Int
+    var list: [FcrAppServerRoomObject]
+}
+
+struct FcrAppServerJoinRoomObject: FcrAppCodable {
+    var token: String
+    var appId: String
+}

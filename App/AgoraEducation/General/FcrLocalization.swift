@@ -68,15 +68,3 @@ public class FcrLocalization {
     }
 }
 
-extension String {
-    func ag_localized() -> String {
-        if let bundle = FcrLocalization.shared.languageBundle {
-            return bundle.localizedString(forKey: self,
-                                          value: nil,
-                                          table: nil)
-        } else {
-            return NSLocalizedString(self,
-                                     comment: "")
-        }
-    }
-}

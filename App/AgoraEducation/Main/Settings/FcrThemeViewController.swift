@@ -17,9 +17,9 @@ class FcrThemeViewController: FcrAppViewController {
         func description() -> String {
             switch self {
             case .light:
-                return "settings_theme_light".ag_localized()
+                return "settings_theme_light".localized()
             case .dark:
-                return "settings_theme_dark".ag_localized()
+                return "settings_theme_dark".localized()
             }
         }
     }
@@ -38,7 +38,7 @@ class FcrThemeViewController: FcrAppViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "settings_theme".ag_localized()
+        title = "settings_theme".localized()
         createViews()
         createConstrains()
     }

@@ -72,7 +72,7 @@ extension DebugViewController: DebugViewDelagate {
             let `error` = error as NSError
             
             if error.code == 30403100 {
-                AgoraToast.toast(message: "login_kicked".ag_localized(),
+                AgoraToast.toast(message: "login_kicked".localized(),
                                  type: .error)
             } else {
                 AgoraToast.toast(message: error.localizedDescription,
@@ -104,9 +104,9 @@ extension DebugViewController: DebugViewDelagate {
                 }
                 
 //                #if DEBUG
-                let sel1 = NSSelectorFromString("setLogConsoleState:");
-                AgoraClassroomSDK.perform(sel1,
-                                          with: 1)
+//                let sel1 = NSSelectorFromString("setLogConsoleState:");
+//                AgoraClassroomSDK.perform(sel1,
+//                                          with: 1)
 //                #endif
                 
                 AgoraClassroomSDK.setDelegate(self)
@@ -182,7 +182,7 @@ extension DebugViewController: AgoraUIContentContainer {
         debugView.delegate = self
         
         let appVersion = "_" + Bundle.main.version
-        let loginVersion = "Login_version".ag_localized() + appVersion + "\n" + LoginConfig.version_time
+        let loginVersion = "Login_version".localized() + appVersion + "\n" + LoginConfig.version_time
         debugView.bottomLabel.text = loginVersion
         view.addSubview(debugView)
         
@@ -233,7 +233,7 @@ extension DebugViewController {
         let uiMode = data.getUIMode()
         let environment = data.getEnvironment()
         
-        let defaultList: [DataSourceType] = [.roomName(.value("dddfffddd")),
+        let defaultList: [DataSourceType] = [.roomName(.value("uuuiiidddaaa")),
                                              .userName(.value("ios111")),
                                              .roomType(.small),
                                              .roleType(.student),
@@ -253,7 +253,7 @@ extension DebugViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
             self.onClickEnter()
         }
-         
+        
         data.updateDataSourceList(defaultList)
     }
 }

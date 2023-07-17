@@ -29,7 +29,7 @@ class FcrAboutViewController: FcrAppViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "fcr_settings_label_about_us_about_us".ag_localized()
+        title = "fcr_settings_label_about_us_about_us".localized()
         createViews()
         createConstrains()
     }
@@ -54,23 +54,23 @@ extension FcrAboutViewController: UITableViewDelegate, UITableViewDataSource {
         switch type {
         case .privacy:
             let cell = tableView.dequeueReusableCell(withClass: FcrNavigatorCell.self)
-            cell.infoLabel.text = "fcr_settings_link_about_us_privacy_policy".ag_localized()
+            cell.infoLabel.text = "fcr_settings_link_about_us_privacy_policy".localized()
             return cell
         case .terms:
             let cell = tableView.dequeueReusableCell(withClass: FcrNavigatorCell.self)
-            cell.infoLabel.text = "fcr_settings_link_about_us_user_agreement".ag_localized()
+            cell.infoLabel.text = "fcr_settings_link_about_us_user_agreement".localized()
             return cell
         case .disclaimer:
             let cell = tableView.dequeueReusableCell(withClass: FcrNavigatorCell.self)
-            cell.infoLabel.text = "settings_disclaimer".ag_localized()
+            cell.infoLabel.text = "settings_disclaimer".localized()
             return cell
         case .register:
             let cell = tableView.dequeueReusableCell(withClass: FcrNavigatorCell.self)
-            cell.infoLabel.text = "settings_register".ag_localized()
+            cell.infoLabel.text = "settings_register".localized()
             return cell
         case .publish:
             let cell = tableView.dequeueReusableCell(withClass: FcrDetailInfoCell.self)
-            cell.infoLabel.text = "settings_publish_time".ag_localized()
+            cell.infoLabel.text = "settings_publish_time".localized()
             cell.detailLabel.text = LoginConfig.version_time
             return cell
         }
@@ -83,12 +83,12 @@ extension FcrAboutViewController: UITableViewDelegate, UITableViewDataSource {
         let type = dataSource[indexPath.row]
         switch type {
         case .privacy:
-            if let url = URL(string: "settings_srivacy_url".ag_localized()) {
+            if let url = URL(string: "settings_srivacy_url".localized()) {
                 UIApplication.shared.open(url, options: [:]) { (complete) in
                 }
             }
         case .terms:
-            if let url = URL(string: "settings_terms_url".ag_localized()) {
+            if let url = URL(string: "settings_terms_url".localized()) {
                 UIApplication.shared.open(url, options: [:]) { (complete) in
                 }
             }
@@ -97,7 +97,7 @@ extension FcrAboutViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(vc,
                                                      animated: true)
         case .register:
-            if let url = URL(string: "settings_signup_url".ag_localized()) {
+            if let url = URL(string: "settings_signup_url".localized()) {
                 UIApplication.shared.open(url, options: [:]) { (complete) in
                 }
             }
