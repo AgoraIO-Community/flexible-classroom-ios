@@ -1,6 +1,6 @@
 //
 //  FcrAppObjects.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by Cavan on 2023/7/13.
 //  Copyright © 2023 Agora. All rights reserved.

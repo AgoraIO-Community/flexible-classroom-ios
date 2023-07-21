@@ -45,8 +45,6 @@ class FcrAppLoginViewController: FcrAppViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true,
                                                      animated: true)
-        
-        
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -55,9 +53,6 @@ class FcrAppLoginViewController: FcrAppViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
-        
         initViews()
         initViewFrame()
         updateViewProperties()
@@ -192,15 +187,13 @@ extension FcrAppLoginViewController: AgoraUIContentContainer {
         let point3 = CGPoint(x: bounds.maxX - 20,
                              y: bounds.maxY - 20)
         
-        animation.values = [
-            NSValue(cgPoint: point0),
-            NSValue(cgPoint: point1),
-            NSValue(cgPoint: point2),
-            NSValue(cgPoint: point3),
-            NSValue(cgPoint: point2),
-            NSValue(cgPoint: point1),
-            NSValue(cgPoint: point0)
-        ]
+        animation.values = [NSValue(cgPoint: point0),
+                            NSValue(cgPoint: point1),
+                            NSValue(cgPoint: point2),
+                            NSValue(cgPoint: point3),
+                            NSValue(cgPoint: point2),
+                            NSValue(cgPoint: point1),
+                            NSValue(cgPoint: point0)]
         
         animation.duration = 24
         animation.repeatCount = MAXFLOAT

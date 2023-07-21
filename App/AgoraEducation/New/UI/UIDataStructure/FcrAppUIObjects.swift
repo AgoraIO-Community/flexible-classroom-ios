@@ -1,6 +1,6 @@
 //
 //  FcrAppUIObjects.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by Cavan on 2023/7/13.
 //  Copyright © 2023 Agora. All rights reserved.
@@ -16,6 +16,22 @@ struct FcrAppUIRoomListItem {
     var time: String
     
     static func create(from: FcrAppServerRoomObject) -> FcrAppUIRoomListItem {
+        // Id
+        let originalString = from.roomId
+        let characters = Array(originalString)
+        var newString = [String]()
+
+        for index in stride(from: 0,
+                            to: characters.count,
+                            by: 3) {
+            let subCharacters = characters[index..<min(index + 3,
+                                                       characters.count)]
+            let subString = String(subCharacters)
+            newString.append(subString)
+        }
+
+        let roomId = newString.joined(separator: " ")
+        
         // Time
         let startDate = Date(timeIntervalSince1970: Double(from.startTime) * 0.001)
         let endDate = Date(timeIntervalSince1970: Double(from.endTime) * 0.001)
@@ -26,7 +42,7 @@ struct FcrAppUIRoomListItem {
         
         let item = FcrAppUIRoomListItem(roomState: from.roomState,
                                         roomType: from.roomType,
-                                        roomId: from.roomId,
+                                        roomId: roomId,
                                         roomName: from.roomName,
                                         time: time)
         

@@ -1,22 +1,22 @@
 //
-//  FcrCheckBoxCell.swift
+//  FcrAppUICheckBoxCell.swift
 //  FlexibleClassroom
 //
 //  Created by Jonathan on 2022/6/30.
 //  Copyright © 2022 Agora. All rights reserved.
 //
 
-import UIKit
+import AgoraUIBaseViews
 
-class FcrCheckBoxCell: UITableViewCell {
-
-    public var infoLabel: UILabel = UILabel()
+class FcrAppUICheckBoxCell: UITableViewCell, AgoraUIContentContainer {
+    private var checkBox = UIImageView(image: UIImage(named: "ic_round_check_box_unsel"))
     
-    public var aSelected = false {
+    var aSelected = false {
         didSet {
             guard aSelected != oldValue else {
                 return
             }
+            
             if aSelected {
                 checkBox.image = UIImage(named: "ic_round_check_box_sel")
             } else {
@@ -25,42 +25,43 @@ class FcrCheckBoxCell: UITableViewCell {
         }
     }
     
-    private var checkBox = UIImageView(image: UIImage(named: "ic_round_check_box_unsel"))
+    let infoLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle,
                   reuseIdentifier: String?) {
         super.init(style: style,
                    reuseIdentifier: reuseIdentifier)
-        
-        separatorInset = .zero
-        createViews()
-        createConstrains()
+        initViews()
+        initViewFrame()
+        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
-
-// MARK: - Creations
-private extension FcrCheckBoxCell {
-    func createViews() {
-        infoLabel.font = UIFont.systemFont(ofSize: 14)
-        infoLabel.textColor = UIColor(hex: 0x191919)
-        infoLabel.textAlignment = .left
-        addSubview(infoLabel)
+    
+    func initViews() {
+        separatorInset = .zero
         
+        addSubview(infoLabel)
         addSubview(checkBox)
     }
     
-    func createConstrains() {
+    func initViewFrame() {
         infoLabel.mas_makeConstraints { make in
             make?.left.equalTo()(16)
             make?.centerY.equalTo()(0)
         }
+        
         checkBox.mas_makeConstraints { make in
             make?.right.equalTo()(-20)
             make?.centerY.equalTo()(0)
         }
+    }
+    
+    func updateViewProperties() {
+        infoLabel.font = UIFont.systemFont(ofSize: 14)
+        infoLabel.textColor = UIColor(hex: 0x191919)
+        infoLabel.textAlignment = .left
     }
 }

@@ -1,6 +1,6 @@
 //
 //  FcrAppCenter.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by Cavan on 2023/7/6.
 //  Copyright © 2023 Agora. All rights reserved.
@@ -12,50 +12,57 @@ import Armin
 
 class FcrAppCenter: NSObject {
     private lazy var armin = FcrAppArmin(logTube: self)
-    private let urlGroup = FcrAppURLGroup()
+    private(set) lazy var urlGroup = FcrAppURLGroup(localStorage: localStorage)
     
     private(set) lazy var room = FcrAppRoom(urlGroup: urlGroup,
                                             armin: armin)
     
-    let localStorage = FcrAppLocalStorage()
+    private let localStorage = FcrAppLocalStorage()
     
     var localUser: FcrAppLocalUser?
     
-    var isLogined = false
+    var isAgreedPrivacy = false {
+        didSet {
+            localStorage.writeData(isAgreedPrivacy,
+                                   key: .privacyAgreement)
+        }
+    }
     
-    var isAgreedPrivacy = false
+    var uiMode = FcrAppUIMode.light {
+        didSet {
+            localStorage.writeData(uiMode,
+                                   key: .uiMode)
+        }
+    }
+    
+    var language = FcrAppLanguage.en {
+        didSet {
+            localStorage.writeData(language,
+                                   key: .language)
+            
+        }
+    }
+    
+    var isLogined = false
     
     override init() {
         super.init()
-        initWithLocalStorage()
-    }
-    
-    func updateAccessToken(_ accessToken: String) {
-        urlGroup.accessToken = accessToken
-        
-        localStorage.writeData(accessToken,
-                               key: .accessTokenKey)
-    }
-    
-    func updateRefreshToken(_ refreshToken: String) {
-        urlGroup.refreshToken = refreshToken
-        
-        localStorage.writeData(refreshToken,
-                               key: .refreshToken)
-    }
-    
-    func switchRegion(_ region: FcrAppRegion) {
-        urlGroup.region = region
-        
-        localStorage.writeData(region.rawValue,
-                               key: .region)
-    }
-    
-    func switchEnvironment(_ environment: FcrAppEnvironment) {
-        urlGroup.environment = environment
-        
-        localStorage.writeData(environment.rawValue,
-                               key: .environment)
+        do {
+            let privacy = try localStorage.readData(key: .privacyAgreement,
+                                                    type: Bool.self)
+            
+            self.isAgreedPrivacy = privacy
+            
+            let nickname = try localStorage.readData(key: .nickname,
+                                                     type: String.self)
+            
+            self.localUser = FcrAppLocalUser(nickname: nickname,
+                                             localStorage: localStorage)
+            
+            self.isLogined = true
+        } catch {
+            isLogined = false
+        }
     }
     
     func getAgoraConsoleURL(success: @escaping FcrAppStringCompletion,
@@ -100,9 +107,8 @@ class FcrAppCenter: NSObject {
             
             self.urlGroup.companyId = object.companyId
             
-            let localUser = FcrAppLocalUser(nickName: object.displayName)
-            
-            localUser.delegate = self
+            let localUser = FcrAppLocalUser(nickname: object.displayName,
+                                            localStorage: self.localStorage)
             
             self.localUser = localUser
             
@@ -110,48 +116,36 @@ class FcrAppCenter: NSObject {
         }, failure: failure)
     }
     
-    private func initWithLocalStorage() {
-        do {
-            let nickname = try localStorage.readData(key: .nickname,
-                                                     type: String.self)
-            
-            let privacy = try localStorage.readData(key: .privacyAgreement,
-                                                    type: Bool.self)
-            
-            let companyId = try localStorage.readData(key: .companyId,
-                                                      type: String.self)
-            
-            let accessToken = try localStorage.readData(key: .accessTokenKey,
-                                                        type: String.self)
-            
-            let refreshToken = try localStorage.readData(key: .refreshToken,
-                                                         type: String.self)
-            
-            self.isAgreedPrivacy = privacy
-            
-            self.localUser = FcrAppLocalUser(nickName: nickname)
-            
-            self.isLogined = true
-            
-            self.urlGroup.companyId = companyId
-            self.urlGroup.accessToken = accessToken
-            self.urlGroup.refreshToken = refreshToken
-            
-        } catch {
-            isLogined = false
-            isAgreedPrivacy = false
-        }
-    }
-}
-
-extension FcrAppCenter: FcrAppLocalUserDelegate {
-    func onLogOut() {
+    func logout(completion: FcrAppCompletion? = nil) {
         let websiteDataTypes = WKWebsiteDataStore.allWebsiteDataTypes()
         let fromDate = Date(timeIntervalSince1970: 0)
         
         WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes,
                                                 modifiedSince: fromDate) { [weak self] in
-            self?.localStorage.allClean()
+            self?.localStorage.cleanUserInfo()
+            self?.localUser = nil
+            
+            completion?()
+        }
+    }
+    
+    func closeAccount(success: FcrAppCompletion? = nil,
+                      failure: FcrAppFailure? = nil) {
+        logout { [weak self] in
+            guard let `self` = self else {
+                return
+            }
+            
+            let url = self.urlGroup.closeAccount()
+            let headers = self.urlGroup.headers()
+            
+            self.armin.request(url: url,
+                               headers: headers,
+                               method: .delete,
+                               event: "close-account",
+                               success: { _ in
+                success?()
+            }, failure: failure)
         }
     }
 }

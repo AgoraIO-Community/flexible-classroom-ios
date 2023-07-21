@@ -1,6 +1,6 @@
 //
 //  FcrAppUIRoomListSubViews.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by Cavan on 2023/7/13.
 //  Copyright © 2023 Agora. All rights reserved.
@@ -38,7 +38,6 @@ class FcrAppUIRoomListPlaceholderView: UIView, AgoraUIContentContainer {
         label.mas_makeConstraints { make in
             make?.top.equalTo()(imageView.mas_bottom)
             make?.left.right().equalTo()(0)
-            make?.bottom.equalTo()(0)
             make?.height.equalTo()(16)
         }
     }

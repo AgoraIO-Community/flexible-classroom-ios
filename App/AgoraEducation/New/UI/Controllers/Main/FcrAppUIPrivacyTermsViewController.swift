@@ -1,5 +1,5 @@
 //
-//  FcrAppPrivacyTermsViewController.swift
+//  FcrAppUIPrivacyTermsViewController.swift
 //  FlexibleClassroom
 //
 //  Created by Jonathan on 2022/7/14.
@@ -10,7 +10,7 @@ import AgoraUIBaseViews
 import WebKit
 import UIKit
 
-class FcrAppPrivacyTermsViewController: FcrAppViewController {
+class FcrAppUIPrivacyTermsViewController: FcrAppViewController {
     private lazy var termTitle = UILabel()
     private lazy var contentView = WKWebView(frame: .zero)
     private lazy var agreementView = FcrAppUIAgreementView(frame: .zero)
@@ -27,7 +27,7 @@ class FcrAppPrivacyTermsViewController: FcrAppViewController {
     }
 }
 
-extension FcrAppPrivacyTermsViewController: AgoraUIContentContainer {
+extension FcrAppUIPrivacyTermsViewController: AgoraUIContentContainer {
     func initViews() {
         view.addSubview(termTitle)
         
@@ -104,7 +104,7 @@ extension FcrAppPrivacyTermsViewController: AgoraUIContentContainer {
     }
 }
 
-extension FcrAppPrivacyTermsViewController: WKUIDelegate {
+extension FcrAppUIPrivacyTermsViewController: WKUIDelegate {
     public func webView(_ webView: WKWebView,
                         createWebViewWith configuration: WKWebViewConfiguration,
                         for navigationAction: WKNavigationAction,

@@ -68,8 +68,8 @@ class FcrAppLoginWebViewController: FcrAppViewController {
     
     private func createLocalUser(accessToken: String,
                                  refreshToken: String) {
-        center.updateAccessToken(accessToken)
-        center.updateRefreshToken(refreshToken)
+        center.urlGroup.accessToken = accessToken
+        center.urlGroup.refreshToken = refreshToken
         
         AgoraLoading.loading()
         

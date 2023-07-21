@@ -37,6 +37,9 @@ class FcrAppViewController: UIViewController {
                    actions: [AgoraAlertAction]) {
         let alertController = AgoraAlert()
         
+        alertController.backgroundColor = .white
+        alertController.shadowColor = UIColor.lightGray.cgColor
+        
         alertController.show(title: title,
                              contentList: contentList,
                              actions: actions,
@@ -52,5 +55,13 @@ class FcrAppViewController: UIViewController {
                    type: AgoraToastType = .notice) {
         AgoraToast.toast(message: message,
                          type: type)
+    }
+    
+    func openURL(_ url: String) {
+        guard let urlObject = URL(string: url) else {
+            return
+        }
+        
+        UIApplication.shared.open(urlObject)
     }
 }

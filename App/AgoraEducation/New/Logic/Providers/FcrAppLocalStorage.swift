@@ -1,6 +1,6 @@
 //
 //  FcrAppLocalStorage.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by Cavan on 2023/7/5.
 //  Copyright © 2023 Agora. All rights reserved.
@@ -8,20 +8,27 @@
 
 import Foundation
 
-fileprivate let kQAMode = "com.agora.qaMode"
-
 class FcrAppLocalStorage {
     enum Key: String, CaseIterable {
         case privacyAgreement = "com.agora.privacyTermsAgree"
-        case accessTokenKey = "com.agora.accessToken"
-        case refreshToken = "com.agora.refreshToken"
-        case companyId = "com.agora.companyId"
-        case companyName = "com.agora.companyName"
-        case nickname = "com.agora.nickname"
-        case theme = "com.agora.theme"
         
-        case region = "com.agora.region"
-        case environment = "com.agora.environment"
+        case accessToken      = "com.agora.accessToken"
+        case refreshToken     = "com.agora.refreshToken"
+        case companyId        = "com.agora.companyId"
+        case companyName      = "com.agora.companyName"
+        case nickname         = "com.agora.nickname"
+        
+        case environment      = "com.agora.environment"
+        case language         = "com.agora.language"
+        case region           = "com.agora.region"
+        case uiMode           = "com.agora.uiMode"
+        
+        var isUserInfo: Bool {
+            switch self {
+            case .environment, .language, .region, .uiMode: return true
+            default: return false
+            }
+        }
     }
     
     func writeData(_ value: Any,
@@ -50,6 +57,18 @@ class FcrAppLocalStorage {
     
     func removeData(key: Key) {
         UserDefaults.standard.removeObject(forKey: key.rawValue)
+    }
+    
+    func cleanUserInfo() {
+        var list = Key.allCases
+        
+        for item in list {
+            guard item.isUserInfo else {
+                continue
+            }
+            
+            removeData(key: item)
+        }
     }
     
     func allClean() {

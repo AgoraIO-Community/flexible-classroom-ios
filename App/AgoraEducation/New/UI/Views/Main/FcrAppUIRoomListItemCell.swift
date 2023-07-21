@@ -1,6 +1,6 @@
 //
 //  FcrAppUIRoomListItemCell.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by Cavan on 2023/7/14.
 //  Copyright © 2023 Agora. All rights reserved.
@@ -9,15 +9,15 @@
 import AgoraUIBaseViews
 
 protocol FcrAppUIRoomListItemCellDelegate: NSObjectProtocol {
-    func onClickShare(at indexPath: IndexPath)
-    func onClickEnter(at indexPath: IndexPath)
-    func onClickCopy(at indexPath: IndexPath)
+    func onPressedSharedButton(at indexPath: IndexPath)
+    func onPressedEnteredButton(at indexPath: IndexPath)
+    func onPressedCopiedButton(at indexPath: IndexPath)
 }
 
 typealias FcrAppUIRoomListItemCellType = FcrAppUIRoomState
 
 class FcrAppUIRoomListItemCell: UITableViewCell {
-    public weak var delegate: FcrAppUIRoomListItemCellDelegate?
+    weak var delegate: FcrAppUIRoomListItemCellDelegate?
     
     var indexPath: IndexPath?
     
@@ -263,6 +263,7 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
             timeIcon.image = UIImage(named: "fcr_room_list_clock_white")
             typeIcon.image = UIImage(named: "fcr_room_list_label_white")
             verticalLine.backgroundColor = .white
+            
             // text color
             stateLabel.textColor = .white
             idTitleLabel.textColor = .white
@@ -276,14 +277,16 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
             }
         case .closed:
             cardView.alpha = 0.5
-            stateIcon.isHidden = true
             cardView.backgroundColor = UIColor(hex: 0xF0F0F7)
+            verticalLine.backgroundColor = .black
+            
+            stateIcon.isHidden = true
             shareButton.isHidden = true
             enterButton.isHidden = true
             copyButton.isHidden = true
+            
             timeIcon.image = UIImage(named: "fcr_room_list_clock_black")
             typeIcon.image = UIImage(named: "fcr_room_list_label_black")
-            verticalLine.backgroundColor = .black
             
             // text color
             stateLabel.textColor = .black
@@ -306,7 +309,7 @@ private extension FcrAppUIRoomListItemCell {
             return
         }
         
-        delegate?.onClickShare(at: i)
+        delegate?.onPressedSharedButton(at: i)
     }
     
     @objc func onClickEnter(_ sender: UIButton) {
@@ -314,13 +317,13 @@ private extension FcrAppUIRoomListItemCell {
             return
         }
         
-        delegate?.onClickEnter(at: i)
+        delegate?.onPressedEnteredButton(at: i)
     }
     
     @objc func onClickCopy(_ sender: UIButton) {
         guard let i = indexPath else {
             return
         }
-        delegate?.onClickCopy(at: i)
+        delegate?.onPressedCopiedButton(at: i)
     }
 }

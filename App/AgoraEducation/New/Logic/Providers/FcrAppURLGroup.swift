@@ -21,10 +21,6 @@ class FcrAppURLGroup {
                 return "https://api-solutions.bj2.agoralab.co"
             case .NA:
                 return "https://api-solutions.sv3sbm.agoralab.co"
-//            case .EU:
-//                return "https://api-solutions.fr3sbm.agoralab.co"
-//            case .AP:
-//                return "https://api-solutions.sg3sbm.agoralab.co"
             }
         }
     }
@@ -45,16 +41,73 @@ class FcrAppURLGroup {
     private let version2 = "v2"
     private let version3 = "v3"
     
-    var companyId = ""
+    var companyId = "" {
+        didSet {
+            localStorage.writeData(companyId,
+                                   key: .companyId)
+        }
+    }
     
     /// Access token is used outside the room
-    var accessToken = ""
+    var accessToken = "" {
+        didSet {
+            localStorage.writeData(accessToken,
+                                   key: .accessToken)
+        }
+    }
     
     /// Using a refreshToken to request an updated accessToken
-    var refreshToken = ""
+    var refreshToken = "" {
+        didSet {
+            localStorage.writeData(refreshToken,
+                                   key: .refreshToken)
+        }
+    }
     
-    var environment = FcrAppEnvironment.pro
-    var region = FcrAppRegion.CN
+    var environment = FcrAppEnvironment.pro {
+        didSet {
+            localStorage.writeData(environment,
+                                   key: .environment)
+        }
+    }
+    
+    var region = FcrAppRegion.CN {
+        didSet {
+            localStorage.writeData(region,
+                                   key: .region)
+        }
+    }
+    
+    private let localStorage: FcrAppLocalStorage
+    
+    init(localStorage: FcrAppLocalStorage) {
+        self.localStorage = localStorage
+        
+        if let companyId = try? localStorage.readData(key: .companyId,
+                                                      type: String.self) {
+            self.companyId = companyId
+        }
+        
+        if let accessToken = try? localStorage.readData(key: .accessToken,
+                                                        type: String.self) {
+            self.accessToken = accessToken
+        }
+        
+        if let refreshToken = try? localStorage.readData(key: .refreshToken,
+                                                        type: String.self) {
+            self.refreshToken = refreshToken
+        }
+        
+        if let environment = try? localStorage.readData(key: .environment,
+                                                        type: FcrAppEnvironment.self) {
+            self.environment = environment
+        }
+        
+        if let region = try? localStorage.readData(key: .region,
+                                                   type: FcrAppRegion.self) {
+            self.region = region
+        }
+    }
     
     func headers() -> [String: String] {
         return ["Authorization": accessToken]

@@ -1,6 +1,6 @@
 //
 //  FcrAppEnums.swift
-//  AgoraEducation
+//  FlexibleClassroom
 //
 //  Created by Cavan on 2023/7/6.
 //  Copyright © 2023 Agora. All rights reserved.
@@ -8,12 +8,20 @@
 
 import Foundation
 
-enum FcrAppRegion: String {
+enum FcrAppRegion: String, CaseIterable {
     case CN, NA
+}
+
+enum FcrAppUIMode: Int, CaseIterable {
+    case light, dark
 }
 
 enum FcrAppEnvironment: String {
     case dev, pre, pro
+}
+
+enum FcrAppLanguage: String, CaseIterable {
+    case zh_cn, en
 }
 
 enum FcrAppRoomType: Int, FcrAppCodable {
