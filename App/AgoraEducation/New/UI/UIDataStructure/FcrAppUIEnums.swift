@@ -6,12 +6,14 @@
 //  Copyright © 2023 Agora. All rights reserved.
 //
 
+import AgoraClassroomSDK_iOS
 import Foundation
 
 typealias FcrAppUIRoomState = FcrAppRoomState
 typealias FcrAppUILanguage  = FcrAppLanguage
 typealias FcrAppUIRoomType  = FcrAppRoomType
 typealias FcrAppUIRegion    = FcrAppRegion
+typealias FcrAppUIUserRole  = FcrAppUserRole
 
 extension FcrAppUIRoomType {
     func text() -> String {
@@ -20,6 +22,25 @@ extension FcrAppUIRoomType {
         case .smallClass:   return "fcr_create_small_title".localized()
         case .lectureHoll:  return "fcr_create_lecture_title".localized()
         case .proctor:      return "pt_home_page_scene_option_online_proctoring".localized()
+        }
+    }
+    
+    func toClassroomType() -> AgoraEduRoomType {
+        switch self {
+        case .oneToOne:     return .oneToOne
+        case .lectureHoll:  return .lecture
+        case .smallClass:   return .small
+        default:            fatalError()
+        }
+    }
+}
+
+extension FcrAppUIUserRole {
+    func toClassroomType() -> AgoraEduUserRole {
+        switch self {
+        case .student:     return .student
+        case .teacher:     return .teacher
+        default:           fatalError()
         }
     }
 }

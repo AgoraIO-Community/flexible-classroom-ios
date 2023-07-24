@@ -21,12 +21,6 @@ class FcrAppMainViewController: FcrAppViewController {
     private let backgroundView = UIImageView(image: UIImage(named: "fcr_room_list_bg"))
     
     private let titleView = FcrAppUIMainTitleView(frame: .zero)
-   
-    private let kTitleMax: CGFloat = 198
-    
-    private let kTitleMin: CGFloat = 110
-    
-    private var noticeShow = false
     
     private var proctor: AgoraProctor?
     
@@ -48,7 +42,7 @@ class FcrAppMainViewController: FcrAppViewController {
             // 2. Check if logined
             self?.loginCheck { [weak self] in
                 // 3. Refresh data
-//                self?.fetchData()
+                self?.roomListComponent.refresh()
             }
         }
     }
@@ -58,26 +52,9 @@ class FcrAppMainViewController: FcrAppViewController {
         navigationController?.setNavigationBarHidden(true,
                                                      animated: true)
     }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        guard FcrUserInfoPresenter.shared.qaMode == false else {
-//            let debugVC = DebugViewController()
-//            debugVC.modalPresentationStyle = .fullScreen
-//            self.present(debugVC,
-//                         animated: true,
-//                         completion: nil)
-//            return
-//        }
-//        if FcrEnvironment.shared.environment == .dev {
-//            titleView.envLabel.text = "测试环境"
-//        } else {
-//            titleView.envLabel.text = ""
-//        }
-        
-        
-    }
-    
+}
+
+private extension FcrAppMainViewController {
     func privacyCheck(completion: @escaping FcrAppCompletion) {
         guard center.isAgreedPrivacy == false else {
             completion()
@@ -100,16 +77,9 @@ class FcrAppMainViewController: FcrAppViewController {
             return
         }
         
-        let vc = FcrAppLoginViewController(center: center)
+        let vc = FcrAppUILoginViewController(center: center)
         
         let navigation = FcrAppNavigationController(rootViewController: vc)
-        let frame = CGRect(x: 0, y: 0, width: 44, height: 44)
-        let button = UIButton(frame: frame)
-        button.setImage(UIImage(named: "ic_navigation_back"), for: .normal)
-        
-        navigation.backButton = button
-        
-        navigation.modalPresentationStyle = .fullScreen
         
         present(navigation,
                 animated: true)
@@ -139,6 +109,10 @@ extension FcrAppMainViewController: AgoraUIContentContainer {
                              warningImage: warningImage,
                              errorImage: errorImage)
         
+        if let navigation = navigationController as? FcrAppNavigationController {
+            navigation.csDelegate = self
+        }
+        
         view.addSubview(backgroundView)
         view.addSubview(titleView)
         view.addSubview(roomListComponent.view)
@@ -158,7 +132,7 @@ extension FcrAppMainViewController: AgoraUIContentContainer {
         
         titleView.mas_makeConstraints { make in
             make?.left.top().right().equalTo()(0)
-            make?.height.equalTo()(kTitleMax)
+            make?.height.equalTo()(198)
         }
     }
     
@@ -168,33 +142,32 @@ extension FcrAppMainViewController: AgoraUIContentContainer {
     }
 }
 
-// MARK: - RoomListTitleViewDelegate
 extension FcrAppMainViewController: FcrAppUIMainTitleViewDelegate {
     func onEnterDebugMode() {
-        FcrUserInfoPresenter.shared.qaMode = true
-        let debugVC = DebugViewController()
-        debugVC.modalPresentationStyle = .fullScreen
-        self.present(debugVC,
-                     animated: true,
-                     completion: nil)
+        
     }
     
     func onClickJoin() {
-        let inputModel = RoomInputInfoModel()
-        RoomListJoinAlertController.show(in: self,
-                                         inputModel: inputModel) { model in
-//            self.fillupInputModel(inputModel)
+        let vc = FcrAppUIJoinRoomController()
+        
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc,
+                animated: true)
+        
+        vc.completion = { [weak self] (options) in
+            self?.joinRoom(options: options)
         }
     }
     
     func onClickCreate() {
         RoomCreateViewController.showCreateRoom {
-            self.noticeShow = true
+//            self.noticeShow = true
 //            self.tableView.reloadData()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                self.noticeShow = false
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+//                self.noticeShow = false
 //                self.tableView.reloadData()
-            }
+//            }
         }
     }
     
@@ -205,7 +178,62 @@ extension FcrAppMainViewController: FcrAppUIMainTitleViewDelegate {
     }
 }
 
-// MARK: - SDK delegate
+private extension FcrAppMainViewController {
+    func joinRoom(options: FcrAppUIJoinRoomOptions) {
+        guard let userId = center.localUser?.userId else {
+            return
+        }
+        
+        AgoraLoading.loading()
+        
+        center.room.joinRoomPreCheck(roomId: options.roomId,
+                                     role: options.userRole,
+                                     userId: userId) { [weak self] object in
+            guard let self = self else {
+                return
+            }
+            
+            let config = self.createClassroomConfig(userId: userId,
+                                                    userName: options.nickname,
+                                                    joinRoomObject: object)
+            AgoraClassroomSDK.launch(config) {
+                AgoraLoading.hide()
+            } failure: { [weak self] error in
+                AgoraLoading.hide()
+                self?.showErrorToast(error)
+            }
+        } failure: { [weak self] error in
+            AgoraLoading.hide()
+            
+            self?.showErrorToast(error)
+        }
+    }
+    
+    func createClassroomConfig(userId: String,
+                               userName: String,
+                               joinRoomObject: FcrAppServerJoinRoomObject) -> AgoraEduLaunchConfig {
+        let config = AgoraEduLaunchConfig(userName: userName,
+                                          userUuid: userId,
+                                          userRole: joinRoomObject.role.toClassroomType(),
+                                          roomName: joinRoomObject.roomDetail.roomName,
+                                          roomUuid: joinRoomObject.roomDetail.roomId,
+                                          roomType: joinRoomObject.roomDetail.roomType.toClassroomType(),
+                                          appId: joinRoomObject.appId,
+                                          token: joinRoomObject.token)
+        
+        return config
+    }
+}
+
+extension FcrAppMainViewController: FcrAppNavigationControllerDelegate {
+    func navigationWillPopToRoot(_ navigation: FcrAppNavigationController) {
+        loginCheck { [weak self] in
+            self?.roomListComponent.refresh()
+        }
+    }
+}
+
+// MARK: - AgoraProctorDelegate
 extension FcrAppMainViewController: AgoraProctorDelegate {
     func onExit(reason: AgoraProctorExitReason) {
         switch reason {

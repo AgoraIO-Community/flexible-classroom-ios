@@ -10,14 +10,20 @@ import UIKit
 
 protocol FcrAppNavigationControllerDelegate: NSObjectProtocol {
     func navigation(_ navigation: FcrAppNavigationController,
-                    didBackButtonPressed from: UIViewController,
+                    willPop from: UIViewController,
                     to: UIViewController?)
+    
+    func navigation(_ navigation: FcrAppNavigationController,
+                    didPopToRoot from: UIViewController)
 }
 
 extension FcrAppNavigationControllerDelegate {
     func navigation(_ navigation: FcrAppNavigationController,
-                    didBackButtonPressed from: UIViewController,
+                    willPop from: UIViewController,
                     to: UIViewController?) {}
+    
+    func navigation(_ navigation: FcrAppNavigationController,
+                    didPopToRoot from: UIViewController) {}
 }
 
 extension UINavigationBar {
@@ -63,6 +69,18 @@ class FcrAppNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let frame = CGRect(x: 0,
+                           y: 0,
+                           width: 44,
+                           height: 44)
+        
+        let button = UIButton(frame: frame)
+        
+        button.setImage(UIImage(named: "ic_navigation_back"),
+                        for: .normal)
+        
+        backButton = button
+        
         modalPresentationStyle = .fullScreen
     }
     
@@ -99,12 +117,25 @@ class FcrAppNavigationController: UINavigationController {
         
         if let fromVC = from {
             csDelegate?.navigation(self,
-                                   didBackButtonPressed: fromVC,
+                                   willPop: fromVC,
                                    to: to)
         }
         
         super.popViewController(animated: animated)
         return to
+    }
+    
+    override func popToRootViewController(animated: Bool) -> [UIViewController]? {
+        let from = children.last
+        
+        let vcs = super.popToRootViewController(animated: animated)
+        
+        if let fromVC = from {
+            csDelegate?.navigation(self,
+                                   didPopToRoot: fromVC)
+        }
+        
+        return vcs
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

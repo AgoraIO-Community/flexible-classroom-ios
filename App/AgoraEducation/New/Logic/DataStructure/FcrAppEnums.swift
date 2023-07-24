@@ -32,7 +32,10 @@ enum FcrAppRoomType: Int, FcrAppCodable {
 }
 
 enum FcrAppRoomState: Int, FcrAppCodable {
-    case unstarted  = 0
-    case inProgress = 1
-    case closed     = 2
+    case unstarted, inProgress, closed
+}
+
+enum FcrAppUserRole: Int, FcrAppCodable {
+    case teacher = 1
+    case student = 2
 }

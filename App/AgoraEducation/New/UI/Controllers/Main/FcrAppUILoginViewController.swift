@@ -1,5 +1,5 @@
 //
-//  FcrAppLoginViewController.swift
+//  FcrAppUILoginViewController.swift
 //  FlexibleClassroom
 //
 //  Created by Jonathan on 2022/9/21.
@@ -9,7 +9,7 @@
 import AgoraUIBaseViews
 import UIKit
 
-class FcrAppLoginViewController: FcrAppViewController {
+class FcrAppUILoginViewController: FcrAppViewController {
     private let logoView = UIImageView(image: UIImage(named: "fcr_login_logo_text_en"))
     
     private let imageView = UIImageView(image: UIImage(named: "fcr_login_center_afc"))
@@ -69,7 +69,7 @@ class FcrAppLoginViewController: FcrAppViewController {
             
             AgoraLoading.hide()
             
-            let vc = FcrAppLoginWebViewController(url: url,
+            let vc = FcrAppUILoginWebViewController(url: url,
                                                   center: self.center) { [weak self] isLogined in
                 if isLogined {
                     self?.navigationController?.dismiss(animated: true)
@@ -89,7 +89,7 @@ class FcrAppLoginViewController: FcrAppViewController {
 }
 
 // MARK: - AgoraUIContentContainer
-extension FcrAppLoginViewController: AgoraUIContentContainer {
+extension FcrAppUILoginViewController: AgoraUIContentContainer {
     func initViews() {
         view.addSubview(imageView)
         view.addSubview(logoView)

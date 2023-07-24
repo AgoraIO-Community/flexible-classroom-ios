@@ -46,8 +46,19 @@ class FcrAppViewController: UIViewController {
                              in: self)
     }
     
-    func showErrorToast(_ error: FcrAppError) {
-        showToast(error.description(),
+    func showErrorToast(_ error: Error) {
+        var appError: FcrAppError
+        
+        if let errorObj = error as? FcrAppError {
+            appError = errorObj
+        } else {
+            let nsError = error as NSError
+            
+            appError = FcrAppError(code: nsError.code,
+                                   message: nsError.debugDescription)
+        }
+        
+        showToast(appError.description(),
                   type: .error)
     }
     

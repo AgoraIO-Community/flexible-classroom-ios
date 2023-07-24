@@ -56,7 +56,11 @@ class FcrAppCenter: NSObject {
             let nickname = try localStorage.readData(key: .nickname,
                                                      type: String.self)
             
-            self.localUser = FcrAppLocalUser(nickname: nickname,
+            let userId = try localStorage.readData(key: .userId,
+                                                   type: String.self)
+            
+            self.localUser = FcrAppLocalUser(userId: userId,
+                                             nickname: nickname,
                                              localStorage: localStorage)
             
             self.isLogined = true
@@ -105,9 +109,13 @@ class FcrAppCenter: NSObject {
             self.localStorage.writeData(object.displayName,
                                         key: .nickname)
             
+            self.localStorage.writeData(object.userId,
+                                        key: .userId)
+            
             self.urlGroup.companyId = object.companyId
             
-            let localUser = FcrAppLocalUser(nickname: object.displayName,
+            let localUser = FcrAppLocalUser(userId: object.userId,
+                                            nickname: object.displayName,
                                             localStorage: self.localStorage)
             
             self.localUser = localUser
@@ -124,6 +132,7 @@ class FcrAppCenter: NSObject {
                                                 modifiedSince: fromDate) { [weak self] in
             self?.localStorage.cleanUserInfo()
             self?.localUser = nil
+            self?.isLogined = false
             
             completion?()
         }

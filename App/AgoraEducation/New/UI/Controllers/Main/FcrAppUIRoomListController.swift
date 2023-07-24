@@ -25,7 +25,7 @@ class FcrAppUIRoomListController: FcrAppViewController {
     
     weak var delegate: FcrAppUIRoomListControllerDelegate?
     
-    var dataSource = [FcrAppUIRoomListItem]() {
+    private var dataSource = [FcrAppUIRoomListItem]() {
         didSet {
             placeholderView.isHidden = !isShowPlaceholder
             tableView.isHidden = isShowPlaceholder
@@ -68,6 +68,14 @@ class FcrAppUIRoomListController: FcrAppViewController {
         }
 
         onPullLoadUp()
+    }
+    
+    func refresh() {
+        refreshRoomList { [weak self] in
+            self?.tableView.reloadData()
+        } failure: { [weak self] error in
+            self?.showErrorToast(error)
+        }
     }
 }
 

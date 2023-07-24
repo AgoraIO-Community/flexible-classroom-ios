@@ -37,18 +37,21 @@ class FcrAppRoom {
         }, failure: failure)
     }
     
-    func joinRoom(roomId: String,
-                  role: Int,
-                  userId: String,
-                  success: @escaping (FcrAppServerJoinRoomObject) -> Void,
-                  failure: @escaping FcrAppFailure) {
+    func joinRoomPreCheck(roomId: String,
+                          role: FcrAppUserRole,
+                          userId: String,
+                          success: @escaping (FcrAppServerJoinRoomObject) -> Void,
+                          failure: @escaping FcrAppFailure) {
         let url = urlGroup.joinRoom()
         
         let parameters: [String: Any] = ["roomId": roomId,
-                                         "role": role,
+                                         "role": role.rawValue,
                                          "userUuid": userId]
         
+        let headers = urlGroup.headers()
+        
         armin.convertableRequest(url: url,
+                                 headers: headers,
                                  parameters: parameters,
                                  method: .put,
                                  event: "join-room",

@@ -10,7 +10,7 @@ import AgoraUIBaseViews
 import WebKit
 import UIKit
 
-class FcrAppLoginWebViewController: FcrAppViewController {
+class FcrAppUILoginWebViewController: FcrAppViewController {
     private var webView = WKWebView()
     
     public var url: String
@@ -96,7 +96,7 @@ class FcrAppLoginWebViewController: FcrAppViewController {
     }
 }
 
-extension FcrAppLoginWebViewController: AgoraUIContentContainer {
+extension FcrAppUILoginWebViewController: AgoraUIContentContainer {
     func initViews() {
         webView.navigationDelegate = self
         view.addSubview(webView)
@@ -125,7 +125,7 @@ extension FcrAppLoginWebViewController: AgoraUIContentContainer {
 }
 
 // MARK: - WKNavigationDelegate
-extension FcrAppLoginWebViewController: WKNavigationDelegate {
+extension FcrAppUILoginWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  didStartProvisionalNavigation navigation: WKNavigation!) {
         

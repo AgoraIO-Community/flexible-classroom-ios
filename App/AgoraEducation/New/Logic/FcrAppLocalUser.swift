@@ -12,6 +12,8 @@ import WebKit
 class FcrAppLocalUser {
     private let localStorage: FcrAppLocalStorage
     
+    var userId: String
+    
     var nickname: String {
         didSet {
             localStorage.writeData(nickname,
@@ -19,8 +21,10 @@ class FcrAppLocalUser {
         }
     }
     
-    init(nickname: String,
+    init(userId: String,
+         nickname: String,
          localStorage: FcrAppLocalStorage) {
+        self.userId = userId
         self.nickname = nickname
         self.localStorage = localStorage
     }

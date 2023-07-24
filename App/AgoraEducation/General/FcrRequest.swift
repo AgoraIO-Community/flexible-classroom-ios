@@ -192,7 +192,7 @@ class FcrOutsideClassAPI {
             onFailure?(0, "")
             // 全token失效
             FcrUserInfoPresenter.shared.logout {
-//                FcrAppLoginViewController.showLoginIfNot(complete: nil)
+//                FcrAppUILoginViewController.showLoginIfNot(complete: nil)
             }
             return
         }
@@ -256,7 +256,7 @@ fileprivate class FcrRequest {
             } else if code == 400 { // 全token失效
                 self.onFailure?(0, "Access Denied")
                 FcrUserInfoPresenter.shared.logout {
-//                    FcrAppLoginViewController.showLoginIfNot(complete: nil)
+//                    FcrAppUILoginViewController.showLoginIfNot(complete: nil)
                 }
             } else {
                 self.onFailure?(code, error.localizedDescription)

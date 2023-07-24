@@ -106,8 +106,14 @@ private extension FcrAppUISettingsViewController {
     }
     
     @objc func onClickLogout() {
-        let confirm = AgoraAlertAction(title: "fcr_alert_submit".localized()) { _ in
-
+        let confirm = AgoraAlertAction(title: "fcr_alert_submit".localized()) { [weak self] _ in
+            guard let `self` = self else {
+                return
+            }
+            
+            self.center.logout { [weak self] in
+                self?.navigationController?.popToRootViewController(animated: true)
+            }
         }
 
         let cancel = AgoraAlertAction(title: "fcr_alert_cancel".localized())
@@ -116,22 +122,6 @@ private extension FcrAppUISettingsViewController {
                   contentList: ["settings_logout_alert".localized()],
                   actions: [confirm,
                             cancel])
-        
-//        let alertController = UIAlertController(title: "fcr_alert_title".localized(),
-//                                                message: "settings_logout_alert".localized(),
-//                                                preferredStyle: .alert)
-//
-//        let submit = UIAlertAction(title: "fcr_alert_submit".localized(),
-//                                   style: .default) { action in
-            FcrUserInfoPresenter.shared.logout {
-                self.navigationController?.popToRootViewController(animated: true)
-            }
-//        }
-//        let cancel = UIAlertAction(title: "fcr_alert_cancel".localized(),
-//                                   style: .default)
-//        alertController.addAction(submit)
-//        alertController.addAction(cancel)
-//        present(alertController, animated: true)
     }
 }
 

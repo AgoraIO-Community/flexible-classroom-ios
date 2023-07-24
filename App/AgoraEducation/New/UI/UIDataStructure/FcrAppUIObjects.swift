@@ -49,3 +49,9 @@ struct FcrAppUIRoomListItem {
         return item
     }
 }
+
+struct FcrAppUIJoinRoomOptions {
+    var roomId: String
+    var nickname: String
+    var userRole: FcrAppUIUserRole
+}

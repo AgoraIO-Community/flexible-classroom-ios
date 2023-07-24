@@ -72,6 +72,7 @@ struct FcrAppServerUserInfoObject: FcrAppCodable {
     var companyId: String
     var companyName: String
     var displayName: String
+    var userId: String
 }
 
 // MARK: - Room
@@ -97,7 +98,16 @@ struct FcrAppServerRoomListObject: FcrAppCodable {
     var list: [FcrAppServerRoomObject]
 }
 
+
+struct FcrAppServerDetailRoomObject: FcrAppCodable {
+    var roomName: String
+    var roomId: String
+    var roomType: FcrAppRoomType
+}
+
 struct FcrAppServerJoinRoomObject: FcrAppCodable {
     var token: String
     var appId: String
+    var role: FcrAppUserRole
+    var roomDetail: FcrAppServerDetailRoomObject
 }

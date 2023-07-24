@@ -17,6 +17,7 @@ class FcrAppLocalStorage {
         case companyId        = "com.agora.companyId"
         case companyName      = "com.agora.companyName"
         case nickname         = "com.agora.nickname"
+        case userId           = "com.agora.userId"
         
         case environment      = "com.agora.environment"
         case language         = "com.agora.language"
@@ -26,7 +27,7 @@ class FcrAppLocalStorage {
         var isUserInfo: Bool {
             switch self {
             case .environment, .language, .region, .uiMode: return true
-            default: return false
+            default:                                        return false
             }
         }
     }
@@ -60,7 +61,7 @@ class FcrAppLocalStorage {
     }
     
     func cleanUserInfo() {
-        var list = Key.allCases
+        let list = Key.allCases
         
         for item in list {
             guard item.isUserInfo else {
