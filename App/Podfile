@@ -28,8 +28,8 @@ target 'AgoraEducation' do
   pod 'Whiteboard',                  '2.16.51'
  
   # open source libs
-  pod 'AgoraClassroomSDK_iOS', '2.8.40'
-  pod 'AgoraEduUI',            '2.8.40'
+  pod 'AgoraClassroomSDK_iOS', '2.8.60'
+  pod 'AgoraEduUI',            '2.8.60'
   
   pod 'AgoraProctorSDK',       '1.0.1'
   pod 'AgoraProctorUI',        '1.0.0'
@@ -38,7 +38,7 @@ target 'AgoraEducation' do
   
   # close source libs
   pod 'AgoraUIBaseViews',      '2.8.0'
-  pod 'AgoraEduCore', 	       '2.8.50'
+  pod 'AgoraEduCore', 	       '2.8.60'
   pod 'AgoraWidget',           '2.8.0'
 
   # post install, no signing for pods bundle, after xcode 14
