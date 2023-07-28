@@ -6,12 +6,16 @@
 //  Copyright © 2022 Agora. All rights reserved.
 //
 
-import UIKit
+import AgoraUIBaseViews
 
 protocol RoomBaseInfoCellDelegate: NSObjectProtocol {
     
     func onRoomNameChanged(text: String)
 }
+
+
+
+
 // 房间基本信息：名称及班型
 class RoomBaseInfoCell: UITableViewCell, UITextFieldDelegate {
     
@@ -222,6 +226,9 @@ class RoomTypeInfoCell: UICollectionViewCell {
         }
     }
 }
+
+
+/*
 // 房间subType选项信息
 class RoomSubTypeInfoCell: UITableViewCell {
     
@@ -314,21 +321,15 @@ class RoomSubTypeInfoCell: UITableViewCell {
         }
     }
 }
-// 房间时间信息
-class RoomTimeInfoCell: UITableViewCell {
-    
+*/
+
+class RoomTimeInfoCell: UITableViewCell, AgoraUIContentContainer {
     private let cardView = UIView()
-    
     private let startTitleLabel = UILabel()
-    
     private let endTitleLabel = UILabel()
-    
     private let startTimeLabel = UILabel()
-    
-    private let arrowIcon = UIImageView(image: UIImage(named: "fcr_room_create_time_arrow"))
-    
+    private let arrowIcon = UIImageView()
     private let endTimeLabel = UILabel()
-    
     private let endInfoLabel = UILabel()
     
     public var startDate: Date? {
@@ -348,83 +349,102 @@ class RoomTimeInfoCell: UITableViewCell {
                   reuseIdentifier: String?) {
         super.init(style: style,
                    reuseIdentifier: reuseIdentifier)
-        selectionStyle = .none
-        createViews()
-        createConstrains()
+        initViews()
+        initViewFrame()
+        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func createViews() {
-        backgroundColor = .clear
-        contentView.backgroundColor = .clear
+    func initViews() {
+        selectionStyle = .none
         
-        cardView.backgroundColor = UIColor.white
-        cardView.layer.cornerRadius = 16
-        cardView.clipsToBounds = true
         contentView.addSubview(cardView)
         
-        startTitleLabel.text = "fcr_create_start_time".localized()
-        startTitleLabel.font = UIFont.systemFont(ofSize: 13)
-        startTitleLabel.textColor = UIColor(hex: 0x757575)
         cardView.addSubview(startTitleLabel)
-        
-        endTitleLabel.text = "fcr_create_end_time".localized()
-        endTitleLabel.font = UIFont.systemFont(ofSize: 13)
-        endTitleLabel.textColor = UIColor(hex: 0x757575)
         cardView.addSubview(endTitleLabel)
-        
-        startTimeLabel.text = "Start Time"
-        startTimeLabel.font = UIFont.boldSystemFont(ofSize: 14)
-        startTimeLabel.textColor = UIColor.black
         cardView.addSubview(startTimeLabel)
-        
         cardView.addSubview(arrowIcon)
-        
-        endTimeLabel.text = "fcr_create_end_time".localized()
-        endTimeLabel.font = UIFont.boldSystemFont(ofSize: 14)
-        endTimeLabel.textColor = UIColor(hex: 0x757575)
         cardView.addSubview(endTimeLabel)
+        cardView.addSubview(endInfoLabel)
         
-        endInfoLabel.text = "fcr_create_end_time_info".localized()
+        cardView.layer.cornerRadius = 16
+        cardView.clipsToBounds = true
+        
+        startTitleLabel.font = UIFont.systemFont(ofSize: 13)
+        
+        startTimeLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        
+        endTitleLabel.font = UIFont.systemFont(ofSize: 13)
+        
+        endTimeLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        
         endInfoLabel.font = UIFont.systemFont(ofSize: 10)
         endInfoLabel.textColor = UIColor(hex: 0x757575)
-        cardView.addSubview(endInfoLabel)
     }
     
-    private func createConstrains() {
+    func initViewFrame() {
         cardView.mas_makeConstraints { make in
             make?.top.equalTo()(10)
             make?.left.equalTo()(15)
             make?.right.equalTo()(-15)
             make?.bottom.equalTo()(0)
         }
+        
         startTitleLabel.mas_makeConstraints { make in
             make?.top.equalTo()(cardView)?.offset()(16)
             make?.left.equalTo()(21)
         }
+        
         endTitleLabel.mas_makeConstraints { make in
             make?.centerY.equalTo()(startTitleLabel)
             make?.left.equalTo()(contentView.mas_centerX)
         }
+        
         startTimeLabel.mas_makeConstraints { make in
             make?.left.equalTo()(startTitleLabel)
             make?.top.equalTo()(startTitleLabel.mas_bottom)?.offset()(12)
         }
+        
         arrowIcon.mas_makeConstraints { make in
             make?.left.equalTo()(startTimeLabel.mas_right)?.offset()(5)
             make?.centerY.equalTo()(startTimeLabel)
         }
+        
         endTimeLabel.mas_makeConstraints { make in
             make?.left.equalTo()(endTitleLabel)
             make?.centerY.equalTo()(startTimeLabel)
             make?.height.greaterThanOrEqualTo()(10)
         }
+        
         endInfoLabel.mas_makeConstraints { make in
             make?.left.equalTo()(endTimeLabel.mas_right)?.offset()(8)
             make?.bottom.equalTo()(endTimeLabel)
         }
+    }
+    
+    func updateViewProperties() {
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        
+        cardView.backgroundColor = UIColor.white
+        
+        arrowIcon.image = UIImage(named: "fcr_room_create_time_arrow")
+        
+        startTimeLabel.text = "fcr_create_current_time".localized()
+        startTitleLabel.text = "fcr_create_start_time".localized()
+        startTitleLabel.textColor = UIColor(hex: 0x757575)
+        
+        endTitleLabel.text = "fcr_create_end_time".localized()
+        endTitleLabel.textColor = UIColor(hex: 0x757575)
+        
+        startTimeLabel.textColor = UIColor.black
+        
+        endTimeLabel.text = "fcr_create_end_time".localized()
+        endTimeLabel.textColor = UIColor(hex: 0x757575)
+        
+        endInfoLabel.text = "fcr_create_end_time_info".localized()
     }
 }

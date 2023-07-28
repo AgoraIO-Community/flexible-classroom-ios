@@ -20,7 +20,7 @@ extension FcrAppUIRoomType {
         switch self {
         case .oneToOne:     return "fcr_create_onetoone_title".localized()
         case .smallClass:   return "fcr_create_small_title".localized()
-        case .lectureHoll:  return "fcr_create_lecture_title".localized()
+        case .lectureHall:  return "fcr_create_lecture_title".localized()
         case .proctor:      return "pt_home_page_scene_option_online_proctoring".localized()
         }
     }
@@ -28,7 +28,7 @@ extension FcrAppUIRoomType {
     func toClassroomType() -> AgoraEduRoomType {
         switch self {
         case .oneToOne:     return .oneToOne
-        case .lectureHoll:  return .lecture
+        case .lectureHall:  return .lecture
         case .smallClass:   return .small
         default:            fatalError()
         }

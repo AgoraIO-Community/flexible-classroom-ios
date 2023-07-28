@@ -159,7 +159,7 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
         
         let item3 = FcrAppServerRoomObject(roomName: "test3",
                                            roomId: "123456789",
-                                           roomType: .lectureHoll,
+                                           roomType: .lectureHall,
                                            roomState: .closed,
                                            startTime: 1689566769183,
                                            endTime: 1689586769183,

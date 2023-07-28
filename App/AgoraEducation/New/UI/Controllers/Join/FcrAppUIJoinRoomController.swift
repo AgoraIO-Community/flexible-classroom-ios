@@ -26,7 +26,7 @@ fileprivate class JoinRoomNameTextField: FcrAppUIRoomNameTextField {
     }
 }
 
-class FcrAppUIJoinRoomController: UIViewController {
+class FcrAppUIJoinRoomController: FcrAppViewController {
     private let contentView = UIView()
     
     private let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))

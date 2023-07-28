@@ -26,7 +26,7 @@ enum FcrAppLanguage: String, CaseIterable {
 
 enum FcrAppRoomType: Int, FcrAppCodable {
     case oneToOne    = 0
-    case lectureHoll = 2
+    case lectureHall = 2
     case smallClass  = 4
     case proctor     = 6
 }
