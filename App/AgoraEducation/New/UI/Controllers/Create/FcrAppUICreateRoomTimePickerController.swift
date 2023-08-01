@@ -65,7 +65,7 @@ class FcrAppUICreateRoomTimePickerController: FcrAppViewController {
     
     private var selectedDate = Date() {
         didSet {
-            print(">>>>>>>>>> selectedDate: \(selectedDate.day), \(selectedDate.hour), \(selectedDate.minute)")
+            printDebug("selectedDate: \(selectedDate.desc())")
         }
     }
     
@@ -77,7 +77,7 @@ class FcrAppUICreateRoomTimePickerController: FcrAppViewController {
                    bundle: nil)
         
         self.selectedDate = initDate()
-        print(">>>>>>>>>> init: \(selectedDate.desc())")
+        printDebug("init: \(selectedDate.desc())")
     }
     
     required init?(coder: NSCoder) {
@@ -415,50 +415,30 @@ extension FcrAppUICreateRoomTimePickerController: UIPickerViewDelegate,
             return
         }
         
-        
         let last = selectedDate
         printDebug("last: \(last.desc())")
         selectedDate = date
         
         updateDataSource(date: date)
         
-//
         switch type {
         case .day:
             pickerView.reloadComponent(FcrAppUIDateType.hour.component())
             pickerView.reloadComponent(FcrAppUIDateType.minute.component())
             
+            selectPickerRow(type: .hour,
+                            value: last.hour)
             
-            DispatchQueue.main.async {
-                self.selectPickerRow(type: .hour,
-                                     value: last.hour)
-                
-                self.selectPickerRow(type: .minute,
-                                     value: last.minute)
-            }
+            selectPickerRow(type: .minute,
+                            value: last.minute)
         case .hour:
             pickerView.reloadComponent(FcrAppUIDateType.minute.component())
             
-            DispatchQueue.main.async {
-                self.selectPickerRow(type: .minute,
-                                     value: last.minute)
-            }
+            selectPickerRow(type: .minute,
+                            value: last.minute)
         default:
             break
         }
-        
-//        checkout(date: date)
-        
-//        switch type {
-//        case .day:
-//            handleDay(date: date)
-//        case .hour:
-//           handleHour(date: date)
-//        default:
-//            break
-//        }
-        
-        print(">>>>>>>>>>>>>>> >>>>>>>>>>>>>>>")
     }
     
     func valid(date: Date) -> Bool {
@@ -503,20 +483,18 @@ extension FcrAppUICreateRoomTimePickerController: UIPickerViewDelegate,
                          value: Int) {
         switch type {
         case .hour:
-            if let select = hours.firstIndex(where: {$0 == value}) {
-                print(">>>>>>>>>> hours firstIndex: \(select), \(value)")
+            if let selected = hours.firstIndex(where: {$0 == value}) {
+                print(">>>>>>>>>> hours firstIndex: \(selected), value: \(value)")
                 
-                pickerView.selectRow(select,
-                                     inComponent: FcrAppUIDateType.hour.component(),
-                                     animated: false)
+                pickerScroll(to: selected,
+                             type: type)
             }
         case .minute:
-            if let select = minutes.firstIndex(where: {$0 == value}) {
-                print(">>>>>>>>>> minutes firstIndex: \(select), \(value)")
+            if let selected = minutes.firstIndex(where: {$0 == value}) {
+                print(">>>>>>>>>> minutes firstIndex: \(selected), value: \(value)")
                 
-                pickerView.selectRow(select,
-                                     inComponent: FcrAppUIDateType.minute.component(),
-                                     animated: false)
+                pickerScroll(to: selected,
+                             type: type)
             }
         default:
             fatalError()
@@ -532,108 +510,6 @@ extension FcrAppUICreateRoomTimePickerController: UIPickerViewDelegate,
                                       animated: animated)
         }
     }
-    
-            
-    
-    
-//    func handleDay(date: Date) {
-//        let last = selectedDate
-//
-////        guard last.isInToday != date.isInToday else {
-////            return
-////        }
-//
-//        guard !reset(date: date) else {
-//            return
-//        }
-//
-//
-//
-//        if date.isInToday {
-//            let current = initDate()
-//            hours = createHourList(date: current)
-//
-//            print(">>>>>>>>>> handleDay isInToday")
-//        } else {
-//            hours = createHourList(date: date)
-//        }
-//
-//        print(">>>>>>>>>> handleDay")
-//
-//        minutes = createMinuteList(date: date)
-//
-//        pickerView.reloadComponent(FcrAppUIDateType.hour.component())
-//        pickerView.reloadComponent(FcrAppUIDateType.minute.component())
-//
-//        if let select = hours.firstIndex(where: {$0 == last.hour}) {
-//            print(">>>>>>>>>> hours firstIndex: \(select), \(last.hour)")
-//
-//            pickerView.selectRow(select,
-//                                 inComponent: FcrAppUIDateType.hour.component(),
-//                                 animated: false)
-//        }
-//
-//        if let select = minutes.firstIndex(where: {$0 == last.minute}) {
-//            print(">>>>>>>>>> minutes firstIndex: \(select), \(last.minute)")
-//
-//            pickerView.selectRow(select,
-//                                 inComponent: FcrAppUIDateType.minute.component(),
-//                                 animated: false)
-//        }
-//
-//        selectedDate = date
-//    }
-//
-//    func handleHour(date: Date) {
-//        let last = selectedDate
-//
-////        guard last.isInCurrent(.hour) != date.isInCurrent(.hour) else {
-////            return
-////        }
-//
-//        guard !reset(date: date) else {
-//            return
-//        }
-//
-//        minutes = createMinuteList(date: date)
-//
-//        pickerView.reloadComponent(<#T##component: Int##Int#>)
-//
-//        pickerView.reloadComponent(FcrAppUIDateType.minute.component())
-//
-//        if let select = minutes.firstIndex(where: {$0 == last.minute}) {
-//            pickerView.selectRow(select,
-//                                 inComponent: FcrAppUIDateType.minute.component(),
-//                                 animated: false)
-//        }
-//
-//        selectedDate = date
-//    }
-//
-//    func reset(date: Date) -> Bool {
-//        let current = initDate()
-//
-//        guard date < current else {
-//            return false
-//        }
-//
-//        print(">>>>>>>>>> reset")
-//
-//        updateDataSource(date: current)
-//
-//        selectedDate = current
-//
-//        pickerView.reloadAllComponents()
-//
-//        DispatchQueue.main.async {
-//            pickerView.selectRow(0, inComponent: FcrAppUIDateType.hour.component(), animated: false)
-//            pickerView.selectRow(0, inComponent: FcrAppUIDateType.minute.component(), animated: false)
-//        }
-//
-//
-//
-//        return true
-//    }
 }
 
 fileprivate extension Date {
