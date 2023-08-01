@@ -9,47 +9,6 @@
 import AgoraUIBaseViews
 import UIKit
 
-//private extension AgoraEduServiceType {
-//    func icon() -> UIImage? {
-//        switch self {
-//        case .livePremium:
-//            return UIImage(named: "fcr_room_create_premium")
-//        case .liveStandard:
-//            return UIImage(named: "fcr_room_create_standard")
-//        case .fusion:
-//            return UIImage(named: "fcr_room_create_fusion")
-//        default:
-//            return nil
-//        }
-//    }
-//
-//    func title() -> String? {
-//        switch self {
-//        case .livePremium:
-//            return "fcr_create_premium_title".localized()
-//        case .liveStandard:
-//            return "fcr_create_standard_title".localized()
-//        case .fusion:
-//            return "fcr_create_fusion_title".localized()
-//        default:
-//            return nil
-//        }
-//    }
-//
-//    func subTitle() -> String? {
-//        switch self {
-//        case .livePremium:
-//            return "fcr_create_premium_subtitle".localized()
-//        case .liveStandard:
-//            return "fcr_create_standard_subtitle".localized()
-//        case .fusion:
-//            return "fcr_create_fusion_subtitle".localized()
-//        default:
-//            return nil
-//        }
-//    }
-//}
-
 class FcrAppUICreateRoomViewController: FcrAppViewController {
         
     enum RoomCreateMoreSetting {
@@ -76,29 +35,12 @@ class FcrAppUICreateRoomViewController: FcrAppViewController {
                                                  .lectureHall,
                                                  .oneToOne]
     
+    private var selectedRoomType = FcrAppUIRoomType.smallClass
+    
     private var moreSettings: [RoomCreateMoreSetting] = [.title]
     
     private var roomName: String?
-    
-//    private var selectedRoomType: AgoraEduCoreRoomType = .small {
-//        didSet {
-//            guard selectedRoomType != oldValue else {
-//                return
-//            }
-//            updateSubRoomType()
-//            updateMoreSettings()
-//        }
-//    }
-//
-//    private var selectedServiceType: AgoraEduServiceType? {
-//        didSet {
-//            guard selectedServiceType != oldValue else {
-//                return
-//            }
-//            updateMoreSettings()
-//        }
-//    }
-    
+        
     private var selectDate: Date?
     
     private var securityOn = false
@@ -115,27 +57,9 @@ class FcrAppUICreateRoomViewController: FcrAppViewController {
         }
     }
     
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 122,
-                                 height: 78)
-        layout.minimumInteritemSpacing = 9
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 20,
-                                           left: 16,
-                                           bottom: 0,
-                                           right: 16)
-        let view = UICollectionView(frame: .zero,
-                                    collectionViewLayout: layout)
-        view.delegate = self
-        view.dataSource = self
-        view.backgroundColor = .clear
-        view.showsHorizontalScrollIndicator = false
-        view.register(cellWithClass: RoomTypeInfoCell.self)
-        return view
-    }()
-    
     private let topView = FcrAppUICreateRoomTopView(frame: .zero)
+    
+    private let timeView = FcrAppUICreateRoomTimeView(frame: .zero)
     
     private let actionContentView = UIView()
     
@@ -157,7 +81,7 @@ class FcrAppUICreateRoomViewController: FcrAppViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        view.backgroundColor = UIColor(hex: 0xF8FAFF)
+        
 //        if FcrUserInfoPresenter.shared.nickName.count > 0 {
 //            roomName = FcrUserInfoPresenter.shared.nickName + "fcr_create_room_name_owner".localized()
 //        }
@@ -183,12 +107,21 @@ extension FcrAppUICreateRoomViewController: AgoraUIContentContainer {
         view.addSubview(closeButton)
         view.addSubview(titleLabel)
         view.addSubview(topView)
+        view.addSubview(timeView)
         view.addSubview(actionContentView)
         
         actionContentView.addSubview(createButton)
         actionContentView.addSubview(cancelButton)
         
         topView.layer.cornerRadius = 24
+        topView.collectionView.delegate = self
+        topView.collectionView.dataSource = self
+        
+        timeView.layer.cornerRadius = 24
+        
+        timeView.addTarget(self,
+                           action: #selector(onTimeButtonPressed),
+                           for: .touchUpInside)
         
         closeButton.addTarget(self,
                               action: #selector(onClickCancel(_:)),
@@ -237,6 +170,13 @@ extension FcrAppUICreateRoomViewController: AgoraUIContentContainer {
             make?.height.equalTo()(248)
         }
         
+        timeView.mas_makeConstraints { make in
+            make?.top.equalTo()(self.topView.mas_bottom)?.offset()(10)
+            make?.left.equalTo()(15)
+            make?.right.equalTo()(-15)
+            make?.height.equalTo()(83)
+        }
+        
         actionContentView.mas_makeConstraints { make in
             make?.left.right().bottom().equalTo()(0)
             if #available(iOS 11.0, *) {
@@ -262,9 +202,13 @@ extension FcrAppUICreateRoomViewController: AgoraUIContentContainer {
     }
     
     func updateViewProperties() {
+        view.backgroundColor = UIColor(hex: 0xF8FAFF)
+        
         titleLabel.text = "fcr_create_room".localized()
         
         topView.backgroundColor = .white
+        
+        timeView.backgroundColor = .white
         
         actionContentView.backgroundColor = UIColor.white
         
@@ -291,6 +235,15 @@ extension FcrAppUICreateRoomViewController: AgoraUIContentContainer {
 
 // MARK: - Actions
 private extension FcrAppUICreateRoomViewController {
+    @objc func onTimeButtonPressed(_ sender: UIButton) {
+        let vc = FcrAppUICreateRoomTimePickerController(date: Date())
+        
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc,
+                animated: true)
+    }
+    
     @objc func onClickCancel(_ sender: UIButton) {
         complete = nil
         dismiss(animated: true)
@@ -356,11 +309,11 @@ private extension FcrAppUICreateRoomViewController {
     }
     
     func showTimeSelection() {
-        RoomCreateTimeAlertController.showTimeSelection(in: self,
-                                                        from: Date()) { date in
-            self.selectDate = date
-            self.tableView.reloadData()
-        }
+//        FcrAppUICreateRoomTimePickerController.showTimeSelection(in: self,
+//                                                        from: Date()) { date in
+//            self.selectDate = date
+//            self.tableView.reloadData()
+//        }
     }
     
     func updateMoreSettings() {
@@ -392,118 +345,118 @@ extension FcrAppUICreateRoomViewController: RoomBaseInfoCellDelegate {
     }
 }
 // MARK: - Table View Call Back
-extension FcrAppUICreateRoomViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
-        if section == kSectionRoomType {
-            return 1
-        } else if section == kSectionTime {
-            return 1
-        } else if section == kSectionMoreSetting {
-            return moreSettings.count
-        } else {
-            return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == kSectionRoomType {
-            let cell = tableView.dequeueReusableCell(withClass: RoomBaseInfoCell.self)
-            cell.inputText = roomName
-            cell.optionsView = collectionView
-            cell.delegate = self
-            return cell
-        } else if indexPath.section == kSectionTime {
-            let cell = tableView.dequeueReusableCell(withClass: RoomTimeInfoCell.self)
-            cell.startDate = selectDate
-            return cell
-        } else {
-            let type = moreSettings[indexPath.row]
-            if type == .title {
-                let cell = tableView.dequeueReusableCell(withClass: RoomMoreTitleCell.self)
-                cell.spred = moreSettingSpread
-                return cell
-            } else if type == .security {
-                let cell = tableView.dequeueReusableCell(withClass: RoomSecurityInfoCell.self)
-                cell.switchButton.isSelected = securityOn
-                cell.switchButton.addTarget(self,
-                                            action: #selector(onClickSecurity(_:)),
-                                            for: .touchUpInside)
-                return cell
-            } else if type == .playback {
-                let cell = tableView.dequeueReusableCell(withClass: RoomPlayBackInfoCell.self)
-                cell.switchButton.isSelected = playbackOn
-                cell.switchButton.addTarget(self,
-                                            action: #selector(onClickPlayback(_:)),
-                                            for: .touchUpInside)
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(withClass: RoomPlayBackInputCell.self)
-                return cell
-            }
-        }
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath,
-                              animated: false)
-        if indexPath.section == kSectionTime {
-            showTimeSelection()
-        } else if indexPath.section == kSectionMoreSetting {
-            let type = moreSettings[indexPath.row]
-            switch type {
-            case .title:
-                moreSettingSpread = true
-//            case .linkInput:
-//                FcrInputAlertController.show(in: self,
-//                                             text: playbackLink,
-//                                             min: 1) { str in
-//                    self.playbackLink = str
-//                    self.tableView.reloadData()
-//                }
-            default: break
-            }
-        }
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == kSectionRoomType {
-            return 200
-        } else if indexPath.section == kSectionRoomSubType {
-            return 60
-        } else if indexPath.section == kSectionTime {
-            return 94
-        } else if indexPath.section == kSectionMoreSetting {
-            return 60
-        } else {
-            return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        var isEnabe = false
-        if indexPath.section == kSectionRoomSubType ||
-            indexPath.section == kSectionTime {
-            isEnabe = true
-        }
-        if indexPath.section == kSectionMoreSetting ||
-            indexPath.row == 0 {
-            isEnabe = true
-        }
-        return isEnabe
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        UIApplication.shared.keyWindow?.endEditing(true)
-    }
-}
+//extension FcrAppUICreateRoomViewController: UITableViewDelegate, UITableViewDataSource {
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 4
+//    }
+//
+//    func tableView(_ tableView: UITableView,
+//                   numberOfRowsInSection section: Int) -> Int {
+//        if section == kSectionRoomType {
+//            return 1
+//        } else if section == kSectionTime {
+//            return 1
+//        } else if section == kSectionMoreSetting {
+//            return moreSettings.count
+//        } else {
+//            return 0
+//        }
+//    }
+//
+//    func tableView(_ tableView: UITableView,
+//                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        if indexPath.section == kSectionRoomType {
+//            let cell = tableView.dequeueReusableCell(withClass: RoomBaseInfoCell.self)
+//            cell.inputText = roomName
+//            cell.optionsView = collectionView
+//            cell.delegate = self
+//            return cell
+//        } else if indexPath.section == kSectionTime {
+//            let cell = tableView.dequeueReusableCell(withClass: RoomTimeInfoCell.self)
+//            cell.startDate = selectDate
+//            return cell
+//        } else {
+//            let type = moreSettings[indexPath.row]
+//            if type == .title {
+//                let cell = tableView.dequeueReusableCell(withClass: RoomMoreTitleCell.self)
+//                cell.spred = moreSettingSpread
+//                return cell
+//            } else if type == .security {
+//                let cell = tableView.dequeueReusableCell(withClass: RoomSecurityInfoCell.self)
+//                cell.switchButton.isSelected = securityOn
+//                cell.switchButton.addTarget(self,
+//                                            action: #selector(onClickSecurity(_:)),
+//                                            for: .touchUpInside)
+//                return cell
+//            } else if type == .playback {
+//                let cell = tableView.dequeueReusableCell(withClass: RoomPlayBackInfoCell.self)
+//                cell.switchButton.isSelected = playbackOn
+//                cell.switchButton.addTarget(self,
+//                                            action: #selector(onClickPlayback(_:)),
+//                                            for: .touchUpInside)
+//                return cell
+//            } else {
+//                let cell = tableView.dequeueReusableCell(withClass: RoomPlayBackInputCell.self)
+//                return cell
+//            }
+//        }
+//    }
+//
+//    func tableView(_ tableView: UITableView,
+//                   didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath,
+//                              animated: false)
+//        if indexPath.section == kSectionTime {
+//            showTimeSelection()
+//        } else if indexPath.section == kSectionMoreSetting {
+//            let type = moreSettings[indexPath.row]
+//            switch type {
+//            case .title:
+//                moreSettingSpread = true
+////            case .linkInput:
+////                FcrInputAlertController.show(in: self,
+////                                             text: playbackLink,
+////                                             min: 1) { str in
+////                    self.playbackLink = str
+////                    self.tableView.reloadData()
+////                }
+//            default: break
+//            }
+//        }
+//    }
+//
+//    func tableView(_ tableView: UITableView,
+//                   heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if indexPath.section == kSectionRoomType {
+//            return 200
+//        } else if indexPath.section == kSectionRoomSubType {
+//            return 60
+//        } else if indexPath.section == kSectionTime {
+//            return 94
+//        } else if indexPath.section == kSectionMoreSetting {
+//            return 60
+//        } else {
+//            return 0
+//        }
+//    }
+//
+//    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+//        var isEnabe = false
+//        if indexPath.section == kSectionRoomSubType ||
+//            indexPath.section == kSectionTime {
+//            isEnabe = true
+//        }
+//        if indexPath.section == kSectionMoreSetting ||
+//            indexPath.row == 0 {
+//            isEnabe = true
+//        }
+//        return isEnabe
+//    }
+//
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        UIApplication.shared.keyWindow?.endEditing(true)
+//    }
+//}
 // MARK: - Collection View Call Back
 extension FcrAppUICreateRoomViewController: UICollectionViewDelegate,
                                     UICollectionViewDataSource {
@@ -516,25 +469,13 @@ extension FcrAppUICreateRoomViewController: UICollectionViewDelegate,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withClass: RoomTypeInfoCell.self,
                                                       for: indexPath)
-//        let roomType = roomTypes[indexPath.row]
-//        switch roomType {
-//        case .small:
-//            cell.imageView.image = UIImage(named: "fcr_room_create_small_bg")
-//            cell.titleLabel.text = "fcr_create_small_title".localized()
-//            cell.subTitleLabel.text = "fcr_create_small_detail".localized()
-//            cell.aSelected = (roomType == selectedRoomType)
-//        case .lecture:
-//            cell.imageView.image = UIImage(named: "fcr_room_create_lecture_bg")
-//            cell.titleLabel.text = "fcr_create_lecture_title".localized()
-//            cell.subTitleLabel.text = "fcr_create_lecture_detail".localized()
-//            cell.aSelected = (roomType == selectedRoomType)
-//        case .oneToOne:
-//            cell.imageView.image = UIImage(named: "fcr_room_create_1v1_bg")
-//            cell.titleLabel.text = "fcr_create_onetoone_title".localized()
-//            cell.subTitleLabel.text = "fcr_create_onetoone_detail".localized()
-//            cell.aSelected = (roomType == selectedRoomType)
-//        default: break
-//        }
+        let roomType = roomTypes[indexPath.row]
+        
+        cell.imageView.image = roomType.image()
+        cell.titleLabel.text = roomType.title()
+        cell.subTitleLabel.text = roomType.subTitle()
+        cell.aSelected = (roomType == selectedRoomType)
+        
         return cell
     }
     
@@ -542,12 +483,53 @@ extension FcrAppUICreateRoomViewController: UICollectionViewDelegate,
                         didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath,
                                     animated: false)
-//        selectedRoomType = roomTypes[indexPath.row]
-//        collectionView.reloadData {
-//            collectionView.scrollToItem(at: indexPath,
-//                                        at: .centeredHorizontally,
-//                                        animated: true)
-//        }
+        selectedRoomType = roomTypes[indexPath.row]
+        
+        collectionView.reloadData()
+        
+        collectionView.scrollToItem(at: indexPath,
+                                    at: .centeredHorizontally,
+                                    animated: true)
     }
 }
 
+fileprivate extension FcrAppUIRoomType {
+    func image() -> UIImage? {
+        switch self {
+        case .smallClass:
+            return UIImage(named: "fcr_room_create_small_bg")
+        case .lectureHall:
+            return UIImage(named: "fcr_room_create_lecture_bg")
+        case .oneToOne:
+            return UIImage(named: "fcr_room_create_1v1_bg")
+        case .proctor:
+            return nil
+        }
+    }
+    
+    func title() -> String? {
+        switch self {
+        case .smallClass:
+            return "fcr_create_small_title".localized()
+        case .lectureHall:
+            return "fcr_create_lecture_title".localized()
+        case .oneToOne:
+            return "fcr_create_onetoone_title".localized()
+        case .proctor:
+            return nil
+        }
+    }
+    
+    func subTitle() -> String? {
+        switch self {
+        case .smallClass:
+            return "fcr_create_small_detail".localized()
+        case .lectureHall:
+            return "fcr_create_lecture_detail".localized()
+        case .oneToOne:
+            return "fcr_create_onetoone_detail".localized()
+        case .proctor:
+            return nil
+        }
+    }
+}

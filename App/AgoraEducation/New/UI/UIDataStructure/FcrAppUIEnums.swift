@@ -14,6 +14,7 @@ typealias FcrAppUILanguage  = FcrAppLanguage
 typealias FcrAppUIRoomType  = FcrAppRoomType
 typealias FcrAppUIRegion    = FcrAppRegion
 typealias FcrAppUIUserRole  = FcrAppUserRole
+typealias FcrAppUIDateType  = Calendar.Component
 
 extension FcrAppUIRoomType {
     func text() -> String {
@@ -40,7 +41,6 @@ extension FcrAppUIUserRole {
         switch self {
         case .student:     return .student
         case .teacher:     return .teacher
-        default:           fatalError()
         }
     }
 }

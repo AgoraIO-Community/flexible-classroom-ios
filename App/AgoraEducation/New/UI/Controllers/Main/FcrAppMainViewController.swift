@@ -45,6 +45,8 @@ class FcrAppMainViewController: FcrAppViewController {
                 self?.roomListComponent.refresh()
             }
         }
+        
+        onClickCreate()
     }
     
     public override func viewWillAppear(_ animated: Bool) {

@@ -58,7 +58,7 @@
 		86E5024B2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5024A2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift */; };
 		AB05CE9728C77387001239AD /* RoomCreateTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9528C77387001239AD /* RoomCreateTableCells.swift */; };
 		AB05CE9828C77387001239AD /* FcrAppUICreateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9628C77387001239AD /* FcrAppUICreateRoomViewController.swift */; };
-		AB05CE9A28C89FAD001239AD /* RoomCreateTimeAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9928C89FAD001239AD /* RoomCreateTimeAlertController.swift */; };
+		AB05CE9A28C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9928C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift */; };
 		AB07A337287C549D0072A29F /* FcrAppUICloseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07A336287C549D0072A29F /* FcrAppUICloseAccountViewController.swift */; };
 		AB08496128D1812700214B68 /* FcrAppUIJoinRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08496028D1812700214B68 /* FcrAppUIJoinRoomController.swift */; };
 		AB08497128D5CCE100214B68 /* RoomCreateMoreInfoCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08497028D5CCE100214B68 /* RoomCreateMoreInfoCells.swift */; };
@@ -172,7 +172,7 @@
 		A5BFF93D50503E0756F47D98 /* Pods-AgoraEducation.qarelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.qarelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.qarelease.xcconfig"; sourceTree = "<group>"; };
 		AB05CE9528C77387001239AD /* RoomCreateTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCreateTableCells.swift; sourceTree = "<group>"; };
 		AB05CE9628C77387001239AD /* FcrAppUICreateRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FcrAppUICreateRoomViewController.swift; sourceTree = "<group>"; };
-		AB05CE9928C89FAD001239AD /* RoomCreateTimeAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCreateTimeAlertController.swift; sourceTree = "<group>"; };
+		AB05CE9928C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICreateRoomTimePickerController.swift; sourceTree = "<group>"; };
 		AB07A336287C549D0072A29F /* FcrAppUICloseAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICloseAccountViewController.swift; sourceTree = "<group>"; };
 		AB08496028D1812700214B68 /* FcrAppUIJoinRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIJoinRoomController.swift; sourceTree = "<group>"; };
 		AB08497028D5CCE100214B68 /* RoomCreateMoreInfoCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCreateMoreInfoCells.swift; sourceTree = "<group>"; };
@@ -442,7 +442,6 @@
 			isa = PBXGroup;
 			children = (
 				AB05CE9528C77387001239AD /* RoomCreateTableCells.swift */,
-				AB05CE9928C89FAD001239AD /* RoomCreateTimeAlertController.swift */,
 				AB08497028D5CCE100214B68 /* RoomCreateMoreInfoCells.swift */,
 				AB08497228D963C400214B68 /* FcrInputAlertController.swift */,
 				86A15D722A735D35001CDAD7 /* FcrAppUICreateRoomViews.swift */,
@@ -548,6 +547,7 @@
 			isa = PBXGroup;
 			children = (
 				AB05CE9628C77387001239AD /* FcrAppUICreateRoomViewController.swift */,
+				AB05CE9928C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -753,7 +753,7 @@
 				86B81E622A5666B800BA631C /* FcrAppArmin.swift in Sources */,
 				86E502492A6002FD003C04D8 /* FcrAppUIEnums.swift in Sources */,
 				AB82D3AA28D0B11A00ADFC84 /* RoomListShareAlertController.swift in Sources */,
-				AB05CE9A28C89FAD001239AD /* RoomCreateTimeAlertController.swift in Sources */,
+				AB05CE9A28C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift in Sources */,
 				AB0A2DD228DAEF6A0048FA3C /* FcrAppUILoginViewController.swift in Sources */,
 				1A44BE7B22BF863000766274 /* AppDelegate.m in Sources */,
 				78DFB69925AEE20B00B01906 /* md5.cpp in Sources */,
