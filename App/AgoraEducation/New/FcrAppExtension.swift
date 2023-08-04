@@ -11,6 +11,10 @@ import CommonCrypto
 import Foundation
 import UIKit
 
+func printDebug(_ text: String) {
+    print(">>>>>>>>>> \(text)")
+}
+
 extension Bundle {
     var version: String {
         guard let infoDictionary = infoDictionary,

@@ -53,7 +53,7 @@ class FcrAppUICreateRoomTimePickerController: FcrAppViewController {
     
     private let pickerView = UIPickerView(frame: .zero)
     
-    // Data source
+    // Data
     private let dateTypeList: [FcrAppUIDateType] = [.day,
                                                     .hour,
                                                     .minute]
@@ -63,21 +63,24 @@ class FcrAppUICreateRoomTimePickerController: FcrAppViewController {
     
     private var minutes = [Int]()
     
-    private(set) var selectedDate = Date() {
+    private(set) var selectedStartDate: Date {
         didSet {
-            printDebug("selectedDate: \(selectedDate.desc())")
+            printDebug("selectedStartDate: \(selectedStartDate.desc())")
         }
     }
     
-    private var complete: ((Date) -> Void)?
+    private var completion: FcrAppDateCompletion? = nil
     
-    init(date: Date) {
-        self.selectedDate = date
+    init(date: Date,
+         completion: FcrAppDateCompletion? = nil) {
+        self.selectedStartDate = date
+        self.completion = completion
+        
         super.init(nibName: nil,
                    bundle: nil)
         
-        self.selectedDate = initDate()
-        printDebug("init: \(selectedDate.desc())")
+        self.selectedStartDate = modifyDate(date)
+        printDebug("init: \(selectedStartDate.desc())")
     }
     
     required init?(coder: NSCoder) {
@@ -86,7 +89,7 @@ class FcrAppUICreateRoomTimePickerController: FcrAppViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        resetDataSource(date: selectedDate)
+        resetDataSource(date: selectedStartDate)
         initViews()
         initViewFrame()
         updateViewProperties()
@@ -201,19 +204,19 @@ extension FcrAppUICreateRoomTimePickerController: AgoraUIContentContainer {
 }
 
 private extension FcrAppUICreateRoomTimePickerController {
-    func initDate() -> Date {
-        var date = Date()
+    func modifyDate(_ date: Date) -> Date {
+        var modified = date
         
-        if let multip = minuteIsMultipleOfFive(minute: date.minute) {
+        if let multip = minuteIsMultipleOfFive(minute: modified.minute) {
             if multip == 60 {
-                date.hour += 1
-                date.minute = 0
+                modified.hour += 1
+                modified.minute = 0
             } else {
-                date.minute = multip
+                modified.minute = multip
             }
         }
         
-        return date
+        return modified
     }
     
     func resetDataSource(date: Date) {
@@ -300,17 +303,13 @@ private extension FcrAppUICreateRoomTimePickerController {
         
         return date
     }
-    
-    func printDebug(_ text: String) {
-        print(">>>>>>>>>> \(text)")
-    }
 }
 
 // MARK: - Actions
 private extension FcrAppUICreateRoomTimePickerController {
     @objc func onClickCancel(_ sender: UIButton) {
         dismiss(animated: true)
-        complete = nil
+        completion = nil
     }
     
     @objc func onConfirmButtonPressed(_ sender: UIButton) {
@@ -321,6 +320,10 @@ private extension FcrAppUICreateRoomTimePickerController {
         }
         
         dismiss(animated: true)
+        
+        completion?(date)
+        
+        completion = nil
     }
 }
 
@@ -409,9 +412,9 @@ extension FcrAppUICreateRoomTimePickerController: UIPickerViewDelegate {
             return
         }
         
-        let last = selectedDate
+        let last = selectedStartDate
         printDebug("last: \(last.desc())")
-        selectedDate = date
+        selectedStartDate = date
         
         updateDataSource(date: date)
         
@@ -436,7 +439,7 @@ extension FcrAppUICreateRoomTimePickerController: UIPickerViewDelegate {
     }
     
     func valid(date: Date) -> Bool {
-        let current = initDate()
+        let current = Date()
         
         if date >= current {
             return true
@@ -451,14 +454,14 @@ extension FcrAppUICreateRoomTimePickerController: UIPickerViewDelegate {
                          type: .minute)
             
             printDebug("invalid")
-            selectedDate = current
+            selectedStartDate = current
             return false
         }
     }
     
     func updateDataSource(date: Date) {
         if date.isInToday {
-            let current = initDate()
+            let current = Date()
             
             hours = createHourList(startHour: current.hour)
             

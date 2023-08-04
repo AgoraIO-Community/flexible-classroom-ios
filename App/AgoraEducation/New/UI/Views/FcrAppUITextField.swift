@@ -35,6 +35,14 @@ class FcrAppUITextField: UITextField, UITextFieldDelegate {
             return true
         }
     }
+    
+    func getText() -> String? {
+        if let string = text, !string.isEmpty {
+            return string
+        } else {
+            return nil
+        }
+    }
 }
 
 class FcrAppUIIconTextField: FcrAppUITextField, AgoraUIContentContainer {

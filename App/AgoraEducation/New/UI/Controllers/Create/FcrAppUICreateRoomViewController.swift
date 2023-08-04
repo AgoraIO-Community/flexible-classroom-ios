@@ -190,10 +190,13 @@ extension FcrAppUICreateRoomViewController: FcrAppUICreateRoomMoreTableViewDeleg
 // MARK: - Actions
 private extension FcrAppUICreateRoomViewController {
     @objc func onTimeButtonPressed(_ sender: UIButton) {
-        let vc = FcrAppUICreateRoomTimePickerController(date: Date())
+        let vc = FcrAppUICreateRoomTimePickerController(date: Date()) { [weak self] date in
+            self?.timeView.startDate = date
+        }
         
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
+        
         present(vc,
                 animated: true)
     }
@@ -204,56 +207,40 @@ private extension FcrAppUICreateRoomViewController {
     }
     
     @objc func onClickCreate(_ sender: UIButton) {
-        guard let roomName = headerView.userNameTextField.text,
-                !roomName.isEmpty else {
+        // Room name
+        guard let roomName = headerView.userNameTextField.getText() else {
             showToast("fcr_create_label_roomname_empty".localized(),
                       type: .error)
             return
         }
         
-        guard let userName = headerView.userNameTextField.text,
-              !userName.isEmpty else {
+        // User name
+        guard let userName = headerView.userNameTextField.getText() else {
             showToast("user name empty",
                       type: .error)
             return
         }
         
-        let roomType = headerView.selectedRoomType
+        // Time
+        var schedule: Date
         
-        var date = Date()
-       
-        let startTime = Int64(date.timeIntervalSince1970) * 1000
+        if let date = timeView.startDate {
+            schedule = date
+        } else {
+            schedule = Date()
+        }
+        
+        let startTime = Int64(schedule.timeIntervalSince1970) * 1000
         let endTime = (startTime + 30 * 60) * 1000
         
-//        var date = selectDate ?? Date()
-
-//        var roomProperties = [String: Any]()
-       
-//        roomProperties["watermark"] = securityOn
-        
-        
-//        AgoraLoading.loading()
-//        FcrOutsideClassAPI.createClassRoom(roomName: name,
-//                                           roomType: selectedRoomType.rawValue,
-//                                           startTime: startTime * 1000,
-//                                           endTine: endTime * 1000,
-//                                           roomProperties: roomProperties) { rsp in
-//            AgoraLoading.hide()
-//            self.complete?()
-//            self.complete = nil
-//            self.dismiss(animated: true)
-//        } onFailure: { code, msg in
-//            AgoraLoading.hide()
-//            AgoraToast.toast(message: msg,
-//                             type: .error)
-//        }
-        
+        // Room type
+        let roomType = headerView.selectedRoomType
+                
         AgoraLoading.loading()
         
-        
-        let config = FcrAppRoomCreateConfig(roomName: "",
+        let config = FcrAppRoomCreateConfig(roomName: roomName,
                                             roomType: roomType,
-                                            userName: "",
+                                            userName: userName,
                                             startTime: startTime,
                                             endTime: endTime)
         
