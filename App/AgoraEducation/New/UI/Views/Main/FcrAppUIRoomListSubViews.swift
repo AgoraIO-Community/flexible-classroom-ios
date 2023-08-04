@@ -53,9 +53,22 @@ class FcrAppUIRoomListPlaceholderView: UIView, AgoraUIContentContainer {
     }
 }
 
-class FcrAppUIRoomListTitleView: UIView, AgoraUIContentContainer {
+class FcrAppUIRoomListCornerRadiusView: UIView {
+    let radius: CGFloat = 24
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        layer.cornerRadius = radius
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class FcrAppUIRoomListTitleView: UIView,
+                                 AgoraUIContentContainer {
     private let label = UILabel(frame: .zero)
-    let titleCornerRadius: CGFloat = 24
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -74,10 +87,10 @@ class FcrAppUIRoomListTitleView: UIView, AgoraUIContentContainer {
     
     func initViewFrame() {
         label.mas_makeConstraints { make in
-            make?.left.equalTo()(21)
-            make?.top.equalTo()(27)
-            make?.right.equalTo()(21)
+            make?.left.equalTo()(0)
+            make?.right.equalTo()(0)
             make?.height.equalTo()(24)
+            make?.bottom.equalTo()(0)
         }
     }
     
@@ -85,7 +98,53 @@ class FcrAppUIRoomListTitleView: UIView, AgoraUIContentContainer {
         label.font = UIFont.systemFont(ofSize: 16,
                                        weight: .medium)
         label.text = "fcr_room_list_rooms".localized()
+    }
+}
+
+class FcrAppUIRoomListAddedNoticeView: UIView,
+                                       AgoraUIContentContainer {
+    private let label = UILabel()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initViews()
+        updateViewProperties()
+        initViewFrame()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func initViews() {
+        addSubview(label)
         
-        layer.cornerRadius = titleCornerRadius
+        label.layer.cornerRadius = 20
+        label.clipsToBounds = true
+        
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+    }
+    
+    func initViewFrame() {
+        guard let size = label.text?.agora_size(font: label.font) else {
+            return
+        }
+        
+        let width = size.width + 20
+        
+        label.mas_remakeConstraints { make in
+            make?.center.equalTo()(0)
+            make?.width.equalTo()(width)
+            make?.top.equalTo()(0)
+            make?.bottom.equalTo()(0)
+        }
+    }
+    
+    func updateViewProperties() {
+        label.backgroundColor = UIColor(hex: 0x357BF6)
+        
+        label.text = "fcr_room_list_room_created".localized()
+        label.textColor = .white
     }
 }

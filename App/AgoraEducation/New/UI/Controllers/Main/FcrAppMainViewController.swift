@@ -32,7 +32,6 @@ class FcrAppMainViewController: FcrAppViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initViews()
         initViewFrame()
         updateViewProperties()
@@ -45,8 +44,6 @@ class FcrAppMainViewController: FcrAppViewController {
                 self?.roomListComponent.refresh()
             }
         }
-        
-        onClickCreate()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -163,7 +160,9 @@ extension FcrAppMainViewController: FcrAppUIMainTitleViewDelegate {
     }
     
     func onClickCreate() {
-        let vc = FcrAppUICreateRoomViewController(center: center)
+        let vc = FcrAppUICreateRoomViewController(center: center) { [weak self] in
+            self?.roomListComponent.addedNotice()
+        }
         
         present(vc,
                 animated: true)

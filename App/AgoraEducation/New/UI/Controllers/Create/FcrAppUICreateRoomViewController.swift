@@ -16,9 +16,9 @@ class FcrAppUICreateRoomViewController: FcrAppViewController {
     
     private let titleLabel = UILabel()
     
-    private let headerView = FcrAppUICreateRoomHeaderView(roomTypeList:  [.smallClass,
-                                                                          .lectureHall,
-                                                                          .oneToOne])
+    private let headerView = FcrAppUICreateRoomHeaderView(roomTypeList: [.smallClass,
+                                                                         .lectureHall,
+                                                                         .oneToOne])
     
     private let timeView = FcrAppUICreateRoomTimeView(frame: .zero)
     
@@ -26,12 +26,14 @@ class FcrAppUICreateRoomViewController: FcrAppViewController {
     
     private let footerView = FcrAppUICreateRoomFooterView(frame: .zero)
     
-    private var complete: (() -> Void)?
+    private var completion: FcrAppCompletion?
     
     private var center: FcrAppCenter
     
-    init(center: FcrAppCenter) {
+    init(center: FcrAppCenter,
+         completion: FcrAppCompletion? = nil) {
         self.center = center
+        self.completion = completion
         super.init(nibName: nil,
                    bundle: nil)
     }
@@ -202,11 +204,16 @@ private extension FcrAppUICreateRoomViewController {
     }
     
     @objc func onClickCancel(_ sender: UIButton) {
-        complete = nil
+        completion = nil
         dismiss(animated: true)
     }
     
     @objc func onClickCreate(_ sender: UIButton) {
+        dismiss(animated: true)
+        completion?()
+        completion = nil
+        return
+        
         // Room name
         guard let roomName = headerView.userNameTextField.getText() else {
             showToast("fcr_create_label_roomname_empty".localized(),
@@ -246,8 +253,9 @@ private extension FcrAppUICreateRoomViewController {
         
         center.room.createRoom(config: config) { [weak self] roomId in
             AgoraLoading.hide()
-            
             self?.dismiss(animated: true)
+            self?.completion?()
+            self?.completion = nil
         } failure: { [weak self] error in
             AgoraLoading.hide()
             self?.showErrorToast(error)

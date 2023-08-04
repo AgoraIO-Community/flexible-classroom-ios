@@ -9,9 +9,9 @@
 import AgoraUIBaseViews
 
 protocol FcrAppUIRoomListItemCellDelegate: NSObjectProtocol {
-    func onPressedSharedButton(at indexPath: IndexPath)
-    func onPressedEnteredButton(at indexPath: IndexPath)
-    func onPressedCopiedButton(at indexPath: IndexPath)
+    func onSharedButtonPressed(at indexPath: IndexPath)
+    func onEnteredButtonPressed(at indexPath: IndexPath)
+    func onCopiedButtonPressed(at indexPath: IndexPath)
 }
 
 typealias FcrAppUIRoomListItemCellType = FcrAppUIRoomState
@@ -43,7 +43,7 @@ class FcrAppUIRoomListItemCell: UITableViewCell {
     
     let idLabel = UILabel()
     
-    private let copyButton = UIButton(type: .custom)
+    private let copiedButton = UIButton(type: .custom)
     
     let nameLabel = UILabel()
     
@@ -55,9 +55,9 @@ class FcrAppUIRoomListItemCell: UITableViewCell {
         
     let typeLabel = UILabel()
     
-    private let enterButton = UIButton(type: .custom)
+    private let enteredButton = UIButton(type: .custom)
     
-    private let shareButton = UIButton(type: .custom)
+    private let sharedButton = UIButton(type: .custom)
     
     override init(style: UITableViewCell.CellStyle,
                   reuseIdentifier: String?) {
@@ -84,25 +84,25 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
         cardView.addSubview(verticalLine)
         cardView.addSubview(idTitleLabel)
         cardView.addSubview(idLabel)
-        cardView.addSubview(copyButton)
+        cardView.addSubview(copiedButton)
         cardView.addSubview(nameLabel)
         cardView.addSubview(timeIcon)
         cardView.addSubview(timeLabel)
         cardView.addSubview(typeIcon)
         cardView.addSubview(typeLabel)
-        cardView.addSubview(enterButton)
-        cardView.addSubview(shareButton)
+        cardView.addSubview(enteredButton)
+        cardView.addSubview(sharedButton)
         
-        copyButton.addTarget(self,
-                             action: #selector(onClickCopy(_:)),
+        copiedButton.addTarget(self,
+                             action: #selector(onCopiedButtonPressed(_:)),
                              for: .touchUpInside)
         
-        enterButton.addTarget(self,
-                              action: #selector(onClickEnter(_:)),
+        enteredButton.addTarget(self,
+                              action: #selector(onEnteredButtonPressed(_:)),
                               for: .touchUpInside)
         
-        shareButton.addTarget(self,
-                              action: #selector(onClickShare(_:)),
+        sharedButton.addTarget(self,
+                              action: #selector(onSharedButtonPressed(_:)),
                               for: .touchUpInside)
     }
     
@@ -140,12 +140,12 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
             make?.centerY.equalTo()(stateLabel)
         }
         
-        copyButton.mas_makeConstraints { make in
+        copiedButton.mas_makeConstraints { make in
             make?.left.equalTo()(idLabel.mas_right)
             make?.centerY.equalTo()(stateLabel)
         }
         
-        shareButton.mas_makeConstraints { make in
+        sharedButton.mas_makeConstraints { make in
             make?.top.equalTo()(14)
             make?.right.equalTo()(-12)
         }
@@ -175,7 +175,7 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
             make?.left.equalTo()(typeIcon.mas_right)?.offset()(8)
         }
         
-        enterButton.mas_makeConstraints { make in
+        enteredButton.mas_makeConstraints { make in
             make?.right.offset()(-14)
             make?.bottom.offset()(-19)
             make?.width.equalTo()(100)
@@ -196,7 +196,7 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
         
         idLabel.font = UIFont.systemFont(ofSize: 10)
         
-        copyButton.setImage(UIImage(named: "fcr_room_list_copy_black"),
+        copiedButton.setImage(UIImage(named: "fcr_room_list_copy_black"),
                             for: .normal)
         
         nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
@@ -205,13 +205,13 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
         
         typeLabel.font = UIFont.systemFont(ofSize: 10)
         
-        enterButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        enterButton.layer.cornerRadius = 18
-        enterButton.clipsToBounds = true
-        enterButton.setTitle("fcr_room_list_enter".localized(),
+        enteredButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        enteredButton.layer.cornerRadius = 18
+        enteredButton.clipsToBounds = true
+        enteredButton.setTitle("fcr_room_list_enter".localized(),
                              for: .normal)
         
-        shareButton.setImage(UIImage(named: "fcr_room_list_share_black"),
+        sharedButton.setImage(UIImage(named: "fcr_room_list_share_black"),
                              for: .normal)
         
         updateType()
@@ -221,20 +221,26 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
         switch type {
         case .unstarted:
             cardView.alpha = 1
-            stateIcon.isHidden = true
             cardView.backgroundColor = UIColor(hex: 0xE4E6FF)
-            shareButton.isHidden = false
-            enterButton.isHidden = false
-            enterButton.backgroundColor = UIColor(hex: 0x357BF6)
-            enterButton.setTitleColor(.white,
-                                      for: .normal)
-            copyButton.isHidden = false
-            shareButton.setImage(UIImage(named: "fcr_room_list_share_black"),
+            
+            stateIcon.isHidden = true
+            
+            sharedButton.isHidden = true
+            sharedButton.setImage(UIImage(named: "fcr_room_list_share_black"),
                                  for: .normal)
-            copyButton.setImage(UIImage(named: "fcr_room_list_copy_black"),
+            
+            enteredButton.isHidden = false
+            enteredButton.backgroundColor = UIColor(hex: 0x357BF6)
+            enteredButton.setTitleColor(.white,
+                                      for: .normal)
+            
+            copiedButton.isHidden = false
+            copiedButton.setImage(UIImage(named: "fcr_room_list_copy_black"),
                                 for: .normal)
+            
             timeIcon.image = UIImage(named: "fcr_room_list_clock_black")
             typeIcon.image = UIImage(named: "fcr_room_list_label_black")
+            
             verticalLine.backgroundColor = .black
             
             // text color
@@ -250,18 +256,24 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
             }
         case .inProgress:
             cardView.alpha = 1
-            stateIcon.isHidden = false
             cardView.backgroundColor = UIColor(hex: 0x5765FF)
-            shareButton.isHidden = false
-            enterButton.isHidden = false
-            enterButton.backgroundColor = .black
-            shareButton.setImage(UIImage(named: "fcr_room_list_share_white"),
+            
+            stateIcon.isHidden = false
+            
+            sharedButton.isHidden = true
+            sharedButton.setImage(UIImage(named: "fcr_room_list_share_white"),
                                  for: .normal)
-            copyButton.isHidden = false
-            copyButton.setImage(UIImage(named: "fcr_room_list_copy_white"),
+            
+            enteredButton.isHidden = false
+            enteredButton.backgroundColor = .black
+            
+            copiedButton.isHidden = false
+            copiedButton.setImage(UIImage(named: "fcr_room_list_copy_white"),
                                 for: .normal)
+            
             timeIcon.image = UIImage(named: "fcr_room_list_clock_white")
             typeIcon.image = UIImage(named: "fcr_room_list_label_white")
+            
             verticalLine.backgroundColor = .white
             
             // text color
@@ -278,12 +290,13 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
         case .closed:
             cardView.alpha = 0.5
             cardView.backgroundColor = UIColor(hex: 0xF0F0F7)
+            
             verticalLine.backgroundColor = .black
             
             stateIcon.isHidden = true
-            shareButton.isHidden = true
-            enterButton.isHidden = true
-            copyButton.isHidden = true
+            sharedButton.isHidden = true
+            enteredButton.isHidden = true
+            copiedButton.isHidden = true
             
             timeIcon.image = UIImage(named: "fcr_room_list_clock_black")
             typeIcon.image = UIImage(named: "fcr_room_list_label_black")
@@ -304,26 +317,27 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
 }
 
 private extension FcrAppUIRoomListItemCell {
-    @objc func onClickShare(_ sender: UIButton) {
-        guard let i = indexPath else {
+    @objc func onSharedButtonPressed(_ sender: UIButton) {
+        guard let index = indexPath else {
             return
         }
         
-        delegate?.onPressedSharedButton(at: i)
+        delegate?.onSharedButtonPressed(at: index)
     }
     
-    @objc func onClickEnter(_ sender: UIButton) {
-        guard let i = indexPath else {
+    @objc func onEnteredButtonPressed(_ sender: UIButton) {
+        guard let index = indexPath else {
             return
         }
         
-        delegate?.onPressedEnteredButton(at: i)
+        delegate?.onEnteredButtonPressed(at: index)
     }
     
-    @objc func onClickCopy(_ sender: UIButton) {
-        guard let i = indexPath else {
+    @objc func onCopiedButtonPressed(_ sender: UIButton) {
+        guard let index = indexPath else {
             return
         }
-        delegate?.onPressedCopiedButton(at: i)
+        
+        delegate?.onCopiedButtonPressed(at: index)
     }
 }

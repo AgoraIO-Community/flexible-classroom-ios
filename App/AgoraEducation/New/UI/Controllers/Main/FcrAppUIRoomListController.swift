@@ -15,9 +15,12 @@ protocol FcrAppUIRoomListControllerDelegate: NSObjectProtocol {
 
 class FcrAppUIRoomListController: FcrAppViewController {
     private lazy var refreshAction = UIRefreshControl()
+    
+    private let cornerRadiusView = FcrAppUIRoomListCornerRadiusView()
+    
     private let placeholderView = FcrAppUIRoomListPlaceholderView(frame: .zero)
     private let titleView = FcrAppUIRoomListTitleView(frame: .zero)
-    
+    private let noticeView = FcrAppUIRoomListAddedNoticeView(frame: .zero)
     private let tableView = UITableView(frame: .zero,
                                         style: .plain)
     
@@ -40,12 +43,12 @@ class FcrAppUIRoomListController: FcrAppViewController {
     
     init(center: FcrAppCenter) {
         self.center = center
-        
         super.init(nibName: nil,
                    bundle: nil)
+        fakeData()
         initViews()
-        updateViewProperties()
         initViewFrame()
+        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -57,7 +60,7 @@ class FcrAppUIRoomListController: FcrAppViewController {
                                change: [NSKeyValueChangeKey : Any]?,
                                context: UnsafeMutableRawPointer?) {
         let offset = tableView.contentSize.height - tableView.frame.size.height + 150
-
+        
         guard offset > 0,
               let changeNew = change?[.newKey] as? CGPoint,
               let changeOld = change?[.oldKey] as? CGPoint,
@@ -77,13 +80,27 @@ class FcrAppUIRoomListController: FcrAppViewController {
             self?.showErrorToast(error)
         }
     }
+    
+    func addedNotice() {
+        noticeView(isShow: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.noticeView(isShow: false)
+        }
+    }
 }
 
 extension FcrAppUIRoomListController: AgoraUIContentContainer {
     func initViews() {
+        view.addSubview(cornerRadiusView)
+        view.addSubview(noticeView)
         view.addSubview(titleView)
         view.addSubview(placeholderView)
         view.addSubview(tableView)
+        
+        cornerRadiusView.backgroundColor = .white
+        
+        noticeView.isHidden = true
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -108,25 +125,41 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
         placeholderView.isHidden = !isShowPlaceholder
 
         tableView.isHidden = isShowPlaceholder
+        
+        placeholderView.isHidden = true
     }
     
     func initViewFrame() {
+        let radius = cornerRadiusView.radius
+        
+        cornerRadiusView.mas_makeConstraints { make in
+            make?.top.equalTo()(0)
+            make?.left.equalTo()(0)
+            make?.right.equalTo()(0)?.offset()(radius)
+            make?.bottom.equalTo()(0)?.offset()(radius)
+        }
+        
         placeholderView.mas_makeConstraints { make in
             make?.top.equalTo()(66)
             make?.left.right().bottom().equalTo()(0)
         }
         
-        tableView.mas_makeConstraints { make in
-            make?.top.equalTo()(66)
-            make?.left.right().bottom().equalTo()(0)
+        titleView.mas_makeConstraints { make in
+            make?.top.equalTo()(0)
+            make?.left.equalTo()(radius)
+            make?.right.equalTo()(-radius)
+            make?.height.equalTo()(51)
         }
         
-        let titleCornerRadius = titleView.titleCornerRadius
+        noticeView.mas_makeConstraints { make in
+            make?.top.equalTo()(self.titleView.mas_bottom)?.offset()(-40)
+            make?.left.right().equalTo()(0)
+            make?.height.equalTo()(40)
+        }
         
-        titleView.mas_makeConstraints { make in
-            make?.top.left().equalTo()(0)
-            make?.right.equalTo()(titleCornerRadius)
-            make?.bottom.equalTo()(placeholderView.mas_top)?.offset()(titleCornerRadius)
+        tableView.mas_makeConstraints { make in
+            make?.top.equalTo()(noticeView.mas_bottom)?.offset()(23)
+            make?.left.right().bottom().equalTo()(0)
         }
     }
     
@@ -175,7 +208,7 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
         dataSource.append(object3)
     }
     
-    @objc func onPullRefreshDown() {
+    @objc private func onPullRefreshDown() {
         guard refreshAction.isRefreshing else {
             return
         }
@@ -193,7 +226,7 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
         }
     }
     
-    func onPullLoadUp() {
+    private func onPullLoadUp() {
         guard !pullUpLoading else {
             return
         }
@@ -206,6 +239,28 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
         } failure: { [weak self] error in
             self?.pullUpLoading = false
             self?.showErrorToast(error)
+        }
+    }
+    
+    private func noticeView(isShow: Bool) {
+        if isShow {
+            noticeView.isHidden = false
+        }
+        
+        let offset: CGFloat = (isShow ? 11 : -40)
+        
+        noticeView.mas_updateConstraints { make in
+            make?.top.equalTo()(self.titleView.mas_bottom)?.offset()(offset)
+        }
+        
+        UIView.animate(withDuration: TimeInterval.agora_animation) {
+            self.view.layoutIfNeeded()
+        } completion: { isFinished in
+            guard isFinished, !isShow else {
+                return
+            }
+            
+            self.noticeView.isHidden = true
         }
     }
 }
@@ -275,19 +330,19 @@ extension FcrAppUIRoomListController: UITableViewDelegate {
 }
 
 extension FcrAppUIRoomListController: FcrAppUIRoomListItemCellDelegate {
-    func onPressedSharedButton(at indexPath: IndexPath) {
+    func onSharedButtonPressed(at indexPath: IndexPath) {
         let info = dataSource[indexPath.row]
         
         delegate?.onSelectedRoomToShare(roomInfo: info)
     }
     
-    func onPressedEnteredButton(at indexPath: IndexPath) {
+    func onEnteredButtonPressed(at indexPath: IndexPath) {
         let info = dataSource[indexPath.row]
         
         delegate?.onSelectedRoomToJoin(roomInfo: info)
     }
     
-    func onPressedCopiedButton(at indexPath: IndexPath) {
+    func onCopiedButtonPressed(at indexPath: IndexPath) {
         let info = dataSource[indexPath.row]
         
         UIPasteboard.general.string = info.roomId
