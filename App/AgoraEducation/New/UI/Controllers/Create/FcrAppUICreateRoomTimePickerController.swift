@@ -47,7 +47,7 @@ class FcrAppUICreateRoomTimePickerController: FcrAppViewController {
     
     private let titleLabel = UILabel()
     
-    private let submitButton = UIButton(type: .custom)
+    private let confirmButton = UIButton(type: .custom)
     
     private let cancelButton = UIButton(type: .custom)
     
@@ -63,7 +63,7 @@ class FcrAppUICreateRoomTimePickerController: FcrAppViewController {
     
     private var minutes = [Int]()
     
-    private var selectedDate = Date() {
+    private(set) var selectedDate = Date() {
         didSet {
             printDebug("selectedDate: \(selectedDate.desc())")
         }
@@ -99,25 +99,25 @@ extension FcrAppUICreateRoomTimePickerController: AgoraUIContentContainer {
         contentView.addSubview(effectView)
         contentView.addSubview(backgroundImageView)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(submitButton)
+        contentView.addSubview(confirmButton)
         contentView.addSubview(cancelButton)
         contentView.addSubview(pickerView)
         
-        contentView.layer.cornerRadius = 40
+        contentView.layer.cornerRadius = 24
         contentView.clipsToBounds = true
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         
-        submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        confirmButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
-        submitButton.addTarget(self,
-                               action: #selector(onClickSubmmit(_:)),
+        confirmButton.addTarget(self,
+                               action: #selector(onConfirmButtonPressed(_:)),
                                for: .touchUpInside)
         
-        submitButton.setTitleColor(.white,
+        confirmButton.setTitleColor(.white,
                                    for: .normal)
-        submitButton.layer.cornerRadius = 23
-        submitButton.clipsToBounds = true
+        confirmButton.layer.cornerRadius = 23
+        confirmButton.clipsToBounds = true
         
         cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
@@ -163,7 +163,7 @@ extension FcrAppUICreateRoomTimePickerController: AgoraUIContentContainer {
             make?.bottom.equalTo()(-93)
         }
         
-        submitButton.mas_makeConstraints { make in
+        confirmButton.mas_makeConstraints { make in
             make?.bottom.equalTo()(-30)
             make?.right.equalTo()(-12)
             make?.height.equalTo()(46)
@@ -171,8 +171,8 @@ extension FcrAppUICreateRoomTimePickerController: AgoraUIContentContainer {
         }
         
         cancelButton.mas_makeConstraints { make in
-            make?.centerY.equalTo()(submitButton)
-            make?.right.equalTo()(submitButton.mas_left)?.offset()(-15)
+            make?.centerY.equalTo()(confirmButton)
+            make?.right.equalTo()(confirmButton.mas_left)?.offset()(-15)
             make?.height.equalTo()(46)
             make?.width.equalTo()(110)
         }
@@ -188,10 +188,10 @@ extension FcrAppUICreateRoomTimePickerController: AgoraUIContentContainer {
         titleLabel.textColor = .black
         titleLabel.text = "fcr_create_select_start_time".localized()
         
-        submitButton.setTitle("fcr_alert_sure".localized(),
+        confirmButton.setTitle("fcr_alert_sure".localized(),
                               for: .normal)
         
-        submitButton.backgroundColor = UIColor(hex: 0x357BF6)
+        confirmButton.backgroundColor = UIColor(hex: 0x357BF6)
         
         cancelButton.setTitle("fcr_alert_cancel".localized(),
                               for: .normal)
@@ -279,8 +279,8 @@ private extension FcrAppUICreateRoomTimePickerController {
         let multip = Int(ceil((Float(minute) / 5))) * 5
         
         if (multip % 5 != 0) {
-            print(">>>>>>>>>> minuteIsMultipleOfFive minute: \(minute)")
-            print(">>>>>>>>>> minuteIsMultipleOfFive multip: \(multip)")
+            printDebug("minuteIsMultipleOfFive minute: \(minute)")
+            printDebug("minuteIsMultipleOfFive multip: \(multip)")
             fatalError()
         }
         
@@ -313,28 +313,19 @@ private extension FcrAppUICreateRoomTimePickerController {
         complete = nil
     }
     
-    @objc func onClickSubmmit(_ sender: UIButton) {
-//        var date = days[pickerView.selectedRow(inComponent: kComponentDay)]
-//        date.hour = hours[pickerView.selectedRow(inComponent: kComponentHour)]
-//        date.minute = minutes[pickerView.selectedRow(inComponent: kComponentMinute)]
-//
-//        guard date > Date() else {
-//            showToast("fcr_create_tips_starttime".localized(),
-//                      type: .warning)
-//            return
-//        }
-//
-//        complete?(date)
-//
-//        dismiss(animated: true)
-//
-//        complete = nil
+    @objc func onConfirmButtonPressed(_ sender: UIButton) {
+        var date = getDateFromPicker()
+        
+        if !valid(date: date) {
+            date = Date()
+        }
+        
+        dismiss(animated: true)
     }
 }
 
-// MARK: - UIPickerView Call Back
-extension FcrAppUICreateRoomTimePickerController: UIPickerViewDelegate,
-                                         UIPickerViewDataSource {
+// MARK: - UIPickerViewDataSource
+extension FcrAppUICreateRoomTimePickerController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView,
                     numberOfRowsInComponent component: Int) -> Int {
         let type = FcrAppUIDateType.create(with: component)
@@ -403,7 +394,10 @@ extension FcrAppUICreateRoomTimePickerController: UIPickerViewDelegate,
             return nil
         }
     }
-    
+}
+
+// MARK: - UIPickerViewDelegate
+extension FcrAppUICreateRoomTimePickerController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView,
                     didSelectRow row: Int,
                     inComponent component: Int) {
@@ -444,7 +438,7 @@ extension FcrAppUICreateRoomTimePickerController: UIPickerViewDelegate,
     func valid(date: Date) -> Bool {
         let current = initDate()
         
-        if date > current {
+        if date >= current {
             return true
         } else {
             resetDataSource(date: current)
@@ -514,6 +508,6 @@ extension FcrAppUICreateRoomTimePickerController: UIPickerViewDelegate,
 
 fileprivate extension Date {
     func desc() -> String {
-        return "\(day), \(hour), \(minute)"
+        return "Day: \(day), Hour: \(hour), Minute: \(minute)"
     }
 }

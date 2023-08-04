@@ -28,8 +28,8 @@ class FcrAppUITextField: UITextField, UITextFieldDelegate {
                    replacementString string: String) -> Bool {
         // The first character is not a blank
         if let text = textField.text,
-            text.isEmpty,
-            string.first == " " {
+           text.isEmpty,
+           string.first == " " {
             return false
         } else {
             return true

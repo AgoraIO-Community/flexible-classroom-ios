@@ -163,14 +163,10 @@ extension FcrAppMainViewController: FcrAppUIMainTitleViewDelegate {
     }
     
     func onClickCreate() {
-        FcrAppUICreateRoomViewController.showCreateRoom {
-//            self.noticeShow = true
-//            self.tableView.reloadData()
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-//                self.noticeShow = false
-//                self.tableView.reloadData()
-//            }
-        }
+        let vc = FcrAppUICreateRoomViewController(center: center)
+        
+        present(vc,
+                animated: true)
     }
     
     func onClickSetting() {
@@ -181,7 +177,7 @@ extension FcrAppMainViewController: FcrAppUIMainTitleViewDelegate {
 }
 
 private extension FcrAppMainViewController {
-    func joinRoom(options: FcrAppUIJoinRoomOptions) {
+    func joinRoom(options: FcrAppUIJoinRoomConfig) {
         guard let userId = center.localUser?.userId else {
             return
         }

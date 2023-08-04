@@ -6,7 +6,7 @@
 //  Copyright © 2023 Agora. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct FcrAppUIRoomListItem {
     var roomState: FcrAppUIRoomState
@@ -50,8 +50,15 @@ struct FcrAppUIRoomListItem {
     }
 }
 
-struct FcrAppUIJoinRoomOptions {
+struct FcrAppUIJoinRoomConfig {
     var roomId: String
     var nickname: String
     var userRole: FcrAppUIUserRole
+}
+
+struct FcrAppUICreateRoomMoreSettingOption {
+    var iconImage: UIImage?
+    var title: String
+    var subTitle: String?
+    var isSwitchOn: Bool
 }

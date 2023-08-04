@@ -8,20 +8,29 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUICreateRoomTopView: UIView, AgoraUIContentContainer {
-    private let roomNameTextField = FcrAppUIRoomNameTextField(frame: .zero)
-    private let userNameTextField = FcrAppUIRoomNameTextField(frame: .zero)
+// MARK: - Header
+class FcrAppUICreateRoomHeaderView: UIView, AgoraUIContentContainer {
+    // View
+    private let collectionView = UICollectionView(frame: .zero,
+                                                  collectionViewLayout: UICollectionViewLayout())
     
-    let collectionView = UICollectionView(frame: .zero,
-                                          collectionViewLayout: UICollectionViewLayout())
+    let roomNameTextField = FcrAppUIRoomNameTextField(frame: .zero)
+    let userNameTextField = FcrAppUIRoomNameTextField(frame: .zero)
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    // Data
+    private(set) var selectedRoomType = FcrAppUIRoomType.smallClass
+    
+    private let roomTypeList: [FcrAppUIRoomType]
+    
+    init(roomTypeList: [FcrAppUIRoomType]) {
+        self.roomTypeList = roomTypeList
+        
+        super.init(frame: .zero)
         initViews()
         initViewFrame()
         updateViewProperties()
     }
-    
+        
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -46,6 +55,9 @@ class FcrAppUICreateRoomTopView: UIView, AgoraUIContentContainer {
         
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(cellWithClass: RoomTypeInfoCell.self)
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
     
     func initViewFrame() {
@@ -89,6 +101,84 @@ class FcrAppUICreateRoomTopView: UIView, AgoraUIContentContainer {
     }
 }
 
+extension FcrAppUICreateRoomHeaderView: UICollectionViewDelegate,
+                                        UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        return roomTypeList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withClass: RoomTypeInfoCell.self,
+                                                      for: indexPath)
+        let roomType = roomTypeList[indexPath.row]
+        
+        cell.imageView.image = roomType.image()
+        cell.titleLabel.text = roomType.title()
+        cell.subTitleLabel.text = roomType.subTitle()
+        cell.aSelected = (roomType == selectedRoomType)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath,
+                                    animated: false)
+        
+        selectedRoomType = roomTypeList[indexPath.row]
+        
+        collectionView.reloadData()
+        
+        collectionView.scrollToItem(at: indexPath,
+                                    at: .centeredHorizontally,
+                                    animated: true)
+    }
+}
+
+fileprivate extension FcrAppUIRoomType {
+    func image() -> UIImage? {
+        switch self {
+        case .smallClass:
+            return UIImage(named: "fcr_room_create_small_bg")
+        case .lectureHall:
+            return UIImage(named: "fcr_room_create_lecture_bg")
+        case .oneToOne:
+            return UIImage(named: "fcr_room_create_1v1_bg")
+        case .proctor:
+            return nil
+        }
+    }
+    
+    func title() -> String? {
+        switch self {
+        case .smallClass:
+            return "fcr_create_small_title".localized()
+        case .lectureHall:
+            return "fcr_create_lecture_title".localized()
+        case .oneToOne:
+            return "fcr_create_onetoone_title".localized()
+        case .proctor:
+            return nil
+        }
+    }
+    
+    func subTitle() -> String? {
+        switch self {
+        case .smallClass:
+            return "fcr_create_small_detail".localized()
+        case .lectureHall:
+            return "fcr_create_lecture_detail".localized()
+        case .oneToOne:
+            return "fcr_create_onetoone_detail".localized()
+        case .proctor:
+            return nil
+        }
+    }
+}
+
+// MARK: - Room time
 class FcrAppUICreateRoomTimeView: UIButton, AgoraUIContentContainer {
     private let startTitleLabel = UILabel()
     private let endTitleLabel = UILabel()
@@ -101,7 +191,7 @@ class FcrAppUICreateRoomTimeView: UIButton, AgoraUIContentContainer {
         didSet {
             if let date = startDate {
                 startTimeLabel.text = date.string(withFormat: "fcr_create_table_time_format".localized())
-                let endDate = date.addingTimeInterval(30*60)
+                let endDate = date.addingTimeInterval(30 * 60)
                 endTimeLabel.text = endDate.string(withFormat: "HH:mm")
             } else {
                 startTimeLabel.text = "fcr_create_current_time".localized()
@@ -186,5 +276,70 @@ class FcrAppUICreateRoomTimeView: UIButton, AgoraUIContentContainer {
         
         endInfoLabel.text = "fcr_create_end_time_info".localized()
         endInfoLabel.textColor = UIColor(hex: 0x757575)
+    }
+}
+
+// MARK: - Footer
+class FcrAppUICreateRoomFooterView: UIView,
+                                    AgoraUIContentContainer {
+    let createButton = UIButton(type: .custom)
+    let cancelButton = UIButton(type: .custom)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initViews()
+        initViewFrame()
+        updateViewProperties()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func initViews() {
+        addSubview(createButton)
+        addSubview(cancelButton)
+        
+        createButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        createButton.layer.cornerRadius = 23
+        createButton.clipsToBounds = true
+        
+        cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        cancelButton.layer.cornerRadius = 23
+        cancelButton.clipsToBounds = true
+    }
+    
+    func initViewFrame() {
+        createButton.mas_makeConstraints { make in
+            make?.top.equalTo()(16)
+            make?.right.equalTo()(-30)
+            make?.height.equalTo()(46)
+            make?.width.equalTo()(190)
+        }
+        
+        cancelButton.mas_makeConstraints { make in
+            make?.centerY.equalTo()(createButton)
+            make?.right.equalTo()(createButton.mas_left)?.offset()(-15)
+            make?.height.equalTo()(46)
+            make?.width.equalTo()(110)
+        }
+    }
+    
+    func updateViewProperties() {
+        createButton.setTitle("fcr_create_submit".localized(),
+                              for: .normal)
+        
+        createButton.setTitleColor(.white,
+                                   for: .normal)
+        
+        createButton.backgroundColor = UIColor(hex: 0x357BF6)
+        
+        cancelButton.setTitle("fcr_create_cancel".localized(),
+                              for: .normal)
+        
+        cancelButton.setTitleColor(.black,
+                                   for: .normal)
+        
+        cancelButton.backgroundColor = UIColor(hex: 0xF8F8F8)
     }
 }

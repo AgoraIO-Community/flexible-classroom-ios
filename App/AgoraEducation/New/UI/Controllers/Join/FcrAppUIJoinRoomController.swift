@@ -53,7 +53,7 @@ class FcrAppUIJoinRoomController: FcrAppViewController {
     
     private let joinButton = UIButton(type: .custom)
     
-    var completion: ((FcrAppUIJoinRoomOptions) -> Void)?
+    var completion: ((FcrAppUIJoinRoomConfig) -> Void)?
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -314,7 +314,7 @@ private extension FcrAppUIJoinRoomController {
         
         let role: FcrAppUIUserRole = (teacherButton.isSelected ? .teacher : .student)
         
-        let options = FcrAppUIJoinRoomOptions(roomId: roomId,
+        let options = FcrAppUIJoinRoomConfig(roomId: roomId,
                                               nickname: name,
                                               userRole: role)
         
