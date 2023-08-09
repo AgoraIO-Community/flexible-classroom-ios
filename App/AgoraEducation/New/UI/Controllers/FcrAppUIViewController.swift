@@ -8,7 +8,7 @@
 
 import AgoraUIBaseViews
 
-class FcrAppViewController: UIViewController {
+class FcrAppUIViewController: UIViewController {
     override init(nibName nibNameOrNil: String?,
                   bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil,
@@ -66,6 +66,15 @@ class FcrAppViewController: UIViewController {
                    type: AgoraToastType = .notice) {
         AgoraToast.toast(message: message,
                          type: type)
+    }
+    
+    func presentViewController(_ viewController: FcrAppUIPresentedViewController,
+                               animated flag: Bool) {
+        viewController.modalPresentationStyle = .overCurrentContext
+        viewController.modalTransitionStyle = .crossDissolve
+        
+        present(viewController,
+                animated: flag)
     }
     
     func openURL(_ url: String) {

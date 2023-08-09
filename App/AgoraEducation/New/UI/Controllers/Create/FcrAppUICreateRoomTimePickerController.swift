@@ -37,7 +37,7 @@ fileprivate extension FcrAppUIDateType {
     }
 }
 
-class FcrAppUICreateRoomTimePickerController: FcrAppViewController {
+class FcrAppUICreateRoomTimePickerController: FcrAppUIViewController {
     // View
     private let contentView = UIView()
     

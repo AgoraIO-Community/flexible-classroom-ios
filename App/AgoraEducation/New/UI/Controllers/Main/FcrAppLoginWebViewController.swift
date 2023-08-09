@@ -10,7 +10,7 @@ import AgoraUIBaseViews
 import WebKit
 import UIKit
 
-class FcrAppUILoginWebViewController: FcrAppViewController {
+class FcrAppUILoginWebViewController: FcrAppUIViewController {
     private var webView = WKWebView()
     
     public var url: String

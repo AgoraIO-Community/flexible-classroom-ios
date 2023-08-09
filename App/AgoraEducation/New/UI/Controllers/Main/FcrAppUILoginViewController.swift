@@ -9,7 +9,7 @@
 import AgoraUIBaseViews
 import UIKit
 
-class FcrAppUILoginViewController: FcrAppViewController {
+class FcrAppUILoginViewController: FcrAppUIViewController {
     private let logoView = UIImageView(image: UIImage(named: "fcr_login_logo_text_en"))
     
     private let imageView = UIImageView(image: UIImage(named: "fcr_login_center_afc"))

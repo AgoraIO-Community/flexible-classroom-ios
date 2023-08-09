@@ -8,7 +8,7 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUIDisclaimerViewController: FcrAppViewController, AgoraUIContentContainer {
+class FcrAppUIDisclaimerViewController: FcrAppUIViewController, AgoraUIContentContainer {
     private let textLabel = UILabel()
     private let infoLabel = UILabel()
     

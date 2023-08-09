@@ -1,21 +1,17 @@
 //
-//  RoomListViewController.swift
+//  FcrAppUIMainViewController.swift
 //  FlexibleClassroom
 //
-//  Created by Jonathan on 2022/9/2.
-//  Copyright © 2022 Agora. All rights reserved.
+//  Created by Cavan on 2023/7/13.
+//  Copyright © 2023 Agora. All rights reserved.
 //
 
-#if canImport(AgoraClassroomSDK_iOS)
 import AgoraClassroomSDK_iOS
-#else
-import AgoraClassroomSDK
-#endif
 import AgoraUIBaseViews
 import AgoraProctorSDK
 import AgoraWidgets
 
-class FcrAppMainViewController: FcrAppViewController {
+class FcrAppUIMainViewController: FcrAppUIViewController {
     private lazy var roomListComponent = FcrAppUIRoomListController(center: center)
     
     private let backgroundView = UIImageView(image: UIImage(named: "fcr_room_list_bg"))
@@ -44,6 +40,8 @@ class FcrAppMainViewController: FcrAppViewController {
                 self?.roomListComponent.refresh()
             }
         }
+        
+        onClickJoin()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -53,7 +51,7 @@ class FcrAppMainViewController: FcrAppViewController {
     }
 }
 
-private extension FcrAppMainViewController {
+private extension FcrAppUIMainViewController {
     func privacyCheck(completion: @escaping FcrAppCompletion) {
         guard center.isAgreedPrivacy == false else {
             completion()
@@ -78,7 +76,7 @@ private extension FcrAppMainViewController {
         
         let vc = FcrAppUILoginViewController(center: center)
         
-        let navigation = FcrAppNavigationController(rootViewController: vc)
+        let navigation = FcrAppUINavigationController(rootViewController: vc)
         
         present(navigation,
                 animated: true)
@@ -89,7 +87,7 @@ private extension FcrAppMainViewController {
     }
 }
 
-extension FcrAppMainViewController: AgoraUIContentContainer {
+extension FcrAppUIMainViewController: AgoraUIContentContainer {
     func initViews() {
         // Loading view
         if let bundle = Bundle.agora_bundle("AgoraEduUI"),
@@ -108,7 +106,7 @@ extension FcrAppMainViewController: AgoraUIContentContainer {
                              warningImage: warningImage,
                              errorImage: errorImage)
         
-        if let navigation = navigationController as? FcrAppNavigationController {
+        if let navigation = navigationController as? FcrAppUINavigationController {
             navigation.csDelegate = self
         }
         
@@ -141,22 +139,18 @@ extension FcrAppMainViewController: AgoraUIContentContainer {
     }
 }
 
-extension FcrAppMainViewController: FcrAppUIMainTitleViewDelegate {
+extension FcrAppUIMainViewController: FcrAppUIMainTitleViewDelegate {
     func onEnterDebugMode() {
         
     }
     
     func onClickJoin() {
-        let vc = FcrAppUIJoinRoomController()
-        
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
-        present(vc,
-                animated: true)
-        
-        vc.completion = { [weak self] (options) in
-            self?.joinRoom(options: options)
+        let vc = FcrAppUIJoinRoomController(center: center) { [weak self] object in
+            self?.joinRoom(options: object)
         }
+        
+        presentViewController(vc,
+                              animated: true)
     }
     
     func onClickCreate() {
@@ -175,55 +169,30 @@ extension FcrAppMainViewController: FcrAppUIMainTitleViewDelegate {
     }
 }
 
-private extension FcrAppMainViewController {
+private extension FcrAppUIMainViewController {
     func joinRoom(options: FcrAppUIJoinRoomConfig) {
-        guard let userId = center.localUser?.userId else {
-            return
-        }
+        let config = AgoraEduLaunchConfig(userName: options.userName,
+                                          userUuid: options.userId,
+                                          userRole: options.userRole.toClassroomType(),
+                                          roomName: options.roomName,
+                                          roomUuid: options.roomId,
+                                          roomType: options.roomType.toClassroomType(),
+                                          appId: options.appId,
+                                          token: options.token)
         
         AgoraLoading.loading()
         
-        center.room.joinRoomPreCheck(roomId: options.roomId,
-                                     role: options.userRole,
-                                     userId: userId) { [weak self] object in
-            guard let self = self else {
-                return
-            }
-            
-            let config = self.createClassroomConfig(userId: userId,
-                                                    userName: options.nickname,
-                                                    joinRoomObject: object)
-            AgoraClassroomSDK.launch(config) {
-                AgoraLoading.hide()
-            } failure: { [weak self] error in
-                AgoraLoading.hide()
-                self?.showErrorToast(error)
-            }
+        AgoraClassroomSDK.launch(config) {
+            AgoraLoading.hide()
         } failure: { [weak self] error in
             AgoraLoading.hide()
-            
             self?.showErrorToast(error)
         }
     }
-    
-    func createClassroomConfig(userId: String,
-                               userName: String,
-                               joinRoomObject: FcrAppServerJoinRoomObject) -> AgoraEduLaunchConfig {
-        let config = AgoraEduLaunchConfig(userName: userName,
-                                          userUuid: userId,
-                                          userRole: joinRoomObject.role.toClassroomType(),
-                                          roomName: joinRoomObject.roomDetail.roomName,
-                                          roomUuid: joinRoomObject.roomDetail.roomId,
-                                          roomType: joinRoomObject.roomDetail.roomType.toClassroomType(),
-                                          appId: joinRoomObject.appId,
-                                          token: joinRoomObject.token)
-        
-        return config
-    }
 }
 
-extension FcrAppMainViewController: FcrAppNavigationControllerDelegate {
-    func navigationWillPopToRoot(_ navigation: FcrAppNavigationController) {
+extension FcrAppUIMainViewController: FcrAppNavigationControllerDelegate {
+    func navigationWillPopToRoot(_ navigation: FcrAppUINavigationController) {
         loginCheck { [weak self] in
             self?.roomListComponent.refresh()
         }
@@ -231,7 +200,7 @@ extension FcrAppMainViewController: FcrAppNavigationControllerDelegate {
 }
 
 // MARK: - AgoraProctorDelegate
-extension FcrAppMainViewController: AgoraProctorDelegate {
+extension FcrAppUIMainViewController: AgoraProctorDelegate {
     func onExit(reason: AgoraProctorExitReason) {
         switch reason {
         case .kickOut:

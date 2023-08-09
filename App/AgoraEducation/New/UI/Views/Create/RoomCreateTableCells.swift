@@ -162,7 +162,7 @@ class RoomTypeInfoCell: UICollectionViewCell {
     
     public let subTitleLabel = UILabel()
     
-    public let selectedView = UIImageView(image: UIImage(named: "fcr_room_create_sel"))
+    public let selectedView = UIImageView(image: UIImage(named: "fcr_mobile_check2"))
     
     public var aSelected = false {
         didSet {
@@ -249,7 +249,7 @@ class RoomSubTypeInfoCell: UITableViewCell {
             guard aSelected != oldValue else {
                 return
             }
-            selectedView.image = aSelected ? UIImage(named: "fcr_room_create_sel") : UIImage(named: "fcr_room_create_unsel")
+            selectedView.image = aSelected ? UIImage(named: "fcr_mobile_check2") : UIImage(named: "fcr_room_create_unsel")
         }
     }
     

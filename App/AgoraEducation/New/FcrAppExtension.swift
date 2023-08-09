@@ -39,6 +39,29 @@ extension UIDevice {
     }
 }
 
+extension NotificationCenter {
+    func observerKeyboard(listening: (((endFrame: CGRect, duration: Double)) -> Void)? = nil) {
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillChangeFrameNotification,
+                                               object: nil,
+                                               queue: nil) { (notify) in
+            guard let userInfo = notify.userInfo else {
+                return
+            }
+            
+            let endKeyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+            let endKeyboardFrame = endKeyboardFrameValue?.cgRectValue
+            let durationValue = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber
+            let duration = durationValue?.doubleValue
+            
+            if let listening = listening {
+                let callbackParameter = (endFrame: endKeyboardFrame!,
+                                         duration: duration!)
+                listening(callbackParameter)
+            }
+        }
+    }
+}
+
 extension String {
     func md5() -> String {
         let str = self.cString(using: String.Encoding.utf8)

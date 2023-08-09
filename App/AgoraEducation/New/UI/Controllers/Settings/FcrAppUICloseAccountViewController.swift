@@ -8,7 +8,7 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUICloseAccountViewController: FcrAppViewController, AgoraUIContentContainer {
+class FcrAppUICloseAccountViewController: FcrAppUIViewController, AgoraUIContentContainer {
     private let closeAccountButton = UIButton(type: .custom)
     private let checkBox = UIButton(type: .custom)
     private let textLabel = UILabel()

@@ -8,7 +8,7 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUINicknameViewController: FcrAppViewController {
+class FcrAppUINicknameViewController: FcrAppUIViewController {
     private let textField = UITextField(frame: .zero)
     private let line = UIView()
     private var center = FcrAppCenter()

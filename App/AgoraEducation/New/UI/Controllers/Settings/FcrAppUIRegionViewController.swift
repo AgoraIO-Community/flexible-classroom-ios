@@ -8,7 +8,7 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUIRegionViewController: FcrAppViewController, AgoraUIContentContainer {
+class FcrAppUIRegionViewController: FcrAppUIViewController, AgoraUIContentContainer {
     private let tableView = FcrAppUISettingTableView(frame: .zero,
                                                      style: .plain)
         

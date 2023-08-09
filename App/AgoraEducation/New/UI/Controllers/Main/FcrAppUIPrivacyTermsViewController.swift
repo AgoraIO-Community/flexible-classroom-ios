@@ -10,7 +10,7 @@ import AgoraUIBaseViews
 import WebKit
 import UIKit
 
-class FcrAppUIPrivacyTermsViewController: FcrAppViewController {
+class FcrAppUIPrivacyTermsViewController: FcrAppUIViewController {
     private lazy var termTitle = UILabel()
     private lazy var contentView = WKWebView(frame: .zero)
     private lazy var agreementView = FcrAppUIAgreementView(frame: .zero)

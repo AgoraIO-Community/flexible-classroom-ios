@@ -8,7 +8,7 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUISettingsViewController: FcrAppViewController {
+class FcrAppUISettingsViewController: FcrAppUIViewController {
     private enum Item: Int {
         case generalSetting
         case aboutUs

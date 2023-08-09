@@ -13,7 +13,7 @@ protocol FcrAppUIRoomListControllerDelegate: NSObjectProtocol {
     func onSelectedRoomToShare(roomInfo: FcrAppUIRoomListItem)
 }
 
-class FcrAppUIRoomListController: FcrAppViewController {
+class FcrAppUIRoomListController: FcrAppUIViewController {
     private lazy var refreshAction = UIRefreshControl()
     
     private let cornerRadiusView = FcrAppUIRoomListCornerRadiusView()

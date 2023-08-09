@@ -46,8 +46,8 @@ class FcrAppUITextField: UITextField, UITextFieldDelegate {
 }
 
 class FcrAppUIIconTextField: FcrAppUITextField, AgoraUIContentContainer {
-    private let lineView = UIView(frame: .zero)
     let iconImageView = UIImageView(frame: .zero)
+    let lineView = UIView(frame: .zero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -91,10 +91,17 @@ class FcrAppUIIconTextField: FcrAppUITextField, AgoraUIContentContainer {
     }
     
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRect(x: 0,
-                      y: 0,
-                      width: 36,
-                      height: bounds.height)
+        let horizontalSpace: CGFloat = 12
+        
+        let x: CGFloat = 10
+        let y: CGFloat = horizontalSpace
+        let height: CGFloat = bounds.height - (horizontalSpace * 2)
+        let width: CGFloat = height
+        
+        return CGRect(x: x,
+                      y: y,
+                      width: width,
+                      height: height)
     }
     
     override func clearButtonRect(forBounds bounds: CGRect) -> CGRect {
@@ -103,9 +110,47 @@ class FcrAppUIIconTextField: FcrAppUITextField, AgoraUIContentContainer {
         let x: CGFloat = bounds.width - width - 22
         let y: CGFloat = (bounds.height - height) * 0.5
         
-        return CGRect(x: x, y: y, width: width, height: height)
+        return CGRect(x: x,
+                      y: y,
+                      width: width,
+                      height: height)
     }
     
+    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        var x: CGFloat = 0
+        
+        if let view = leftView {
+            x = view.frame.maxX + 10
+        }
+        
+        var width: CGFloat = bounds.width - x
+        
+        if let view = rightView {
+            width -= (bounds.width - view.frame.minX)
+        }
+        
+        var frame = CGRect(x: x, y: 0, width: width, height: height)
+        
+        return frame
+    }
+        
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        var x: CGFloat = 0
+        
+        if let view = leftView {
+            x = view.frame.maxX + 10
+        }
+        
+        var width: CGFloat = bounds.width - x
+        
+        if let view = rightView {
+            width -= (bounds.width - view.frame.minX)
+        }
+        
+        var frame = CGRect(x: x, y: 0, width: width, height: height)
+        
+        return frame
+    }
 }
 
 class FcrAppUIRoomIdTextField: FcrAppUIIconTextField {

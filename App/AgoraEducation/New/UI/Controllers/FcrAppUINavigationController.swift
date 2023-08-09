@@ -1,5 +1,5 @@
 //
-//  FcrAppNavigationController.swift
+//  FcrAppUINavigationController.swift
 //
 //
 //  Created by CavanSu on 2018/6/29.
@@ -9,20 +9,20 @@
 import UIKit
 
 protocol FcrAppNavigationControllerDelegate: NSObjectProtocol {
-    func navigation(_ navigation: FcrAppNavigationController,
+    func navigation(_ navigation: FcrAppUINavigationController,
                     willPop from: UIViewController,
                     to: UIViewController?)
     
-    func navigation(_ navigation: FcrAppNavigationController,
+    func navigation(_ navigation: FcrAppUINavigationController,
                     didPopToRoot from: UIViewController)
 }
 
 extension FcrAppNavigationControllerDelegate {
-    func navigation(_ navigation: FcrAppNavigationController,
+    func navigation(_ navigation: FcrAppUINavigationController,
                     willPop from: UIViewController,
                     to: UIViewController?) {}
     
-    func navigation(_ navigation: FcrAppNavigationController,
+    func navigation(_ navigation: FcrAppUINavigationController,
                     didPopToRoot from: UIViewController) {}
 }
 
@@ -32,7 +32,7 @@ extension UINavigationBar {
     }
 }
 
-class FcrAppNavigationController: UINavigationController {
+class FcrAppUINavigationController: UINavigationController {
     var backButton: UIButton? {
         didSet {
             if let old = oldValue {
@@ -143,7 +143,7 @@ class FcrAppNavigationController: UINavigationController {
     }
 }
 
-extension FcrAppNavigationController {
+extension FcrAppUINavigationController {
     func setupBarClearColor() {
         navigationBar.setBackgroundImage(UIImage(),
                                          for: .default)
@@ -180,7 +180,7 @@ extension FcrAppNavigationController {
     }
 }
 
-private extension FcrAppNavigationController {
+private extension FcrAppUINavigationController {
     func setupBackButton(_ button: UIButton) {
         if let top = self.topViewController {
             top.navigationItem.setHidesBackButton(true,

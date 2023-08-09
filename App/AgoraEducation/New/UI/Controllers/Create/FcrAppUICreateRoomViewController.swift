@@ -8,7 +8,7 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUICreateRoomViewController: FcrAppViewController {
+class FcrAppUICreateRoomViewController: FcrAppUIViewController {
     // View
     private let backgroundImageView = UIImageView(frame: .zero)
     
