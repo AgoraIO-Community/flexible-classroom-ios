@@ -10,7 +10,6 @@
 		1A44BE7522BF863000766274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A44BE5722BF863000766274 /* Assets.xcassets */; };
 		1A44BE7A22BF863000766274 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A44BE5E22BF863000766274 /* main.m */; };
 		1A44BE7B22BF863000766274 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A44BE6022BF863000766274 /* AppDelegate.m */; };
-		2616FAB2271EC4530086397B /* TokenBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2616FAB1271EC4530086397B /* TokenBuilder.swift */; };
 		489330F749FFF2263BE9EF78 /* Pods_AgoraEducation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E41C30C2710CB486B9E7805 /* Pods_AgoraEducation.framework */; };
 		68403F83276C859800E88214 /* FcrAppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861D3CFA276AE05E00645D6A /* FcrAppExtension.swift */; };
 		75D36FB810CB94F4AEF8D9A2 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -18,8 +17,6 @@
 		7878B4C523FA72EE00AF1B4F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7878B4C723FA72EE00AF1B4F /* Localizable.strings */; };
 		7878B4CB23FA735700AF1B4F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7878B4CD23FA735700AF1B4F /* InfoPlist.strings */; };
 		787A004225D10FC10063456F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A004125D10FC10063456F /* AudioToolbox.framework */; };
-		78DFB69825AEE20B00B01906 /* RtmTokenTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78DFB68625AEE20B00B01906 /* RtmTokenTool.mm */; };
-		78DFB69925AEE20B00B01906 /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DFB68B25AEE20B00B01906 /* md5.cpp */; };
 		861978D92A69418100009890 /* FcrAppUISettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861978D82A69418100009890 /* FcrAppUISettingTableView.swift */; };
 		86292F1E28F6A41900E7F225 /* FcrAppUIAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AFBEA02854996B003EBC0C /* FcrAppUIAgreementView.swift */; };
 		8629C3462A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3452A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift */; };
@@ -28,11 +25,12 @@
 		8629C34E2A83497200DA97B7 /* FcrAppUIJoinRoomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C34D2A83497200DA97B7 /* FcrAppUIJoinRoomViews.swift */; };
 		8629C3522A83C16C00DA97B7 /* FcrAppUIQuickStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3512A83C16C00DA97B7 /* FcrAppUIQuickStartViewController.swift */; };
 		8629C3542A8482F900DA97B7 /* FcrAppUIFrameGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3532A8482F900DA97B7 /* FcrAppUIFrameGroup.swift */; };
-		8629C3562A84BA9500DA97B7 /* FcrAppUIQuickStartSubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3552A84BA9500DA97B7 /* FcrAppUIQuickStartSubViews.swift */; };
-		8629C3582A850DD200DA97B7 /* FcrAppUIQuickStartInputViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3572A850DD200DA97B7 /* FcrAppUIQuickStartInputViews.swift */; };
+		8629C3562A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3552A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift */; };
+		8629C3582A850DD200DA97B7 /* FcrAppUIQuickStartJoinRoomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3572A850DD200DA97B7 /* FcrAppUIQuickStartJoinRoomViews.swift */; };
 		8661A1A4270DA50E0047CB16 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78136271242C81ED00B7D1FE /* libz.tbd */; };
 		86820D8F2A613D2600ED4E54 /* FcrAppUIRoomListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86820D8E2A613D2600ED4E54 /* FcrAppUIRoomListItemCell.swift */; };
 		869026992A6E19C3006E0D44 /* FcrAppUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869026982A6E19C3006E0D44 /* FcrAppUITextField.swift */; };
+		869D42642A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D42632A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift */; };
 		86A15D732A735D35001CDAD7 /* FcrAppUICreateRoomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A15D722A735D35001CDAD7 /* FcrAppUICreateRoomViews.swift */; };
 		86A15D772A7A9765001CDAD7 /* FcrAppUIMoreSettingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A15D762A7A9765001CDAD7 /* FcrAppUIMoreSettingViews.swift */; };
 		86B81E5B2A5593A400BA631C /* FcrAppUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E5A2A5593A400BA631C /* FcrAppUIViewController.swift */; };
@@ -84,7 +82,6 @@
 		1AE0D0A222897EA60092AC5E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		1AE0D0A422897EC40092AC5E /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		1AE0D0A622897ECD0092AC5E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		2616FAB1271EC4530086397B /* TokenBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBuilder.swift; sourceTree = "<group>"; };
 		3327573F8A98D9B63A402151 /* Pods-AgoraEducation.devrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.devrelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.devrelease.xcconfig"; sourceTree = "<group>"; };
 		37B928C7F12A17713289F8D3 /* Pods-AgoraEducation.certificatec.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.certificatec.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.certificatec.xcconfig"; sourceTree = "<group>"; };
 		40B28313D80C71B4DA8D643D /* Pods-AgoraEducation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.debug.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.debug.xcconfig"; sourceTree = "<group>"; };
@@ -104,22 +101,6 @@
 		7878B4CE23FA735A00AF1B4F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		787A004125D10FC10063456F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		78A3EA5E25640261003067AB /* AgoraEducation-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AgoraEducation-Bridging-Header.h"; sourceTree = "<group>"; };
-		78DFB68625AEE20B00B01906 /* RtmTokenTool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RtmTokenTool.mm; sourceTree = "<group>"; };
-		78DFB68725AEE20B00B01906 /* RtmTokenTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtmTokenTool.h; sourceTree = "<group>"; };
-		78DFB68925AEE20B00B01906 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
-		78DFB68B25AEE20B00B01906 /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5.cpp; sourceTree = "<group>"; };
-		78DFB68C25AEE20B00B01906 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
-		78DFB68D25AEE20B00B01906 /* DynamicKey5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey5.h; sourceTree = "<group>"; };
-		78DFB68E25AEE20B00B01906 /* Packer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Packer.h; sourceTree = "<group>"; };
-		78DFB68F25AEE20B00B01906 /* generatorSignalToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generatorSignalToken.h; sourceTree = "<group>"; };
-		78DFB69025AEE20B00B01906 /* AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessToken.h; sourceTree = "<group>"; };
-		78DFB69125AEE20B00B01906 /* DynamicKey2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey2.h; sourceTree = "<group>"; };
-		78DFB69225AEE20B00B01906 /* RtmTokenBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtmTokenBuilder.h; sourceTree = "<group>"; };
-		78DFB69325AEE20B00B01906 /* DynamicKey3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey3.h; sourceTree = "<group>"; };
-		78DFB69425AEE20B00B01906 /* generatorSignalToken-Linux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "generatorSignalToken-Linux.h"; sourceTree = "<group>"; };
-		78DFB69525AEE20B00B01906 /* RtcTokenBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtcTokenBuilder.h; sourceTree = "<group>"; };
-		78DFB69625AEE20B00B01906 /* DynamicKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey.h; sourceTree = "<group>"; };
-		78DFB69725AEE20B00B01906 /* DynamicKey4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey4.h; sourceTree = "<group>"; };
 		7E41C30C2710CB486B9E7805 /* Pods_AgoraEducation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgoraEducation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		861978D82A69418100009890 /* FcrAppUISettingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUISettingTableView.swift; sourceTree = "<group>"; };
 		861D3CFA276AE05E00645D6A /* FcrAppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppExtension.swift; sourceTree = "<group>"; };
@@ -129,10 +110,11 @@
 		8629C34D2A83497200DA97B7 /* FcrAppUIJoinRoomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIJoinRoomViews.swift; sourceTree = "<group>"; };
 		8629C3512A83C16C00DA97B7 /* FcrAppUIQuickStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartViewController.swift; sourceTree = "<group>"; };
 		8629C3532A8482F900DA97B7 /* FcrAppUIFrameGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIFrameGroup.swift; sourceTree = "<group>"; };
-		8629C3552A84BA9500DA97B7 /* FcrAppUIQuickStartSubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartSubViews.swift; sourceTree = "<group>"; };
-		8629C3572A850DD200DA97B7 /* FcrAppUIQuickStartInputViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartInputViews.swift; sourceTree = "<group>"; };
+		8629C3552A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartViews.swift; sourceTree = "<group>"; };
+		8629C3572A850DD200DA97B7 /* FcrAppUIQuickStartJoinRoomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartJoinRoomViews.swift; sourceTree = "<group>"; };
 		86820D8E2A613D2600ED4E54 /* FcrAppUIRoomListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIRoomListItemCell.swift; sourceTree = "<group>"; };
 		869026982A6E19C3006E0D44 /* FcrAppUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUITextField.swift; sourceTree = "<group>"; };
+		869D42632A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartCreateRoomViews.swift; sourceTree = "<group>"; };
 		86A15D722A735D35001CDAD7 /* FcrAppUICreateRoomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICreateRoomViews.swift; sourceTree = "<group>"; };
 		86A15D762A7A9765001CDAD7 /* FcrAppUIMoreSettingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIMoreSettingViews.swift; sourceTree = "<group>"; };
 		86B81E5A2A5593A400BA631C /* FcrAppUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIViewController.swift; sourceTree = "<group>"; };
@@ -197,7 +179,6 @@
 			children = (
 				86E502402A5FF1DF003C04D8 /* UI */,
 				86E5023B2A5FF097003C04D8 /* Logic */,
-				78DFB67425AECAB700B01906 /* TokenBuilder */,
 				1A87571323581AEC009C55A8 /* Supporting Files */,
 			);
 			path = AgoraEducation;
@@ -250,54 +231,6 @@
 				7813B6F623FA5A0300265830 /* LaunchScreen.storyboard */,
 			);
 			path = LaunchScreen;
-			sourceTree = "<group>";
-		};
-		78DFB67425AECAB700B01906 /* TokenBuilder */ = {
-			isa = PBXGroup;
-			children = (
-				2616FAB1271EC4530086397B /* TokenBuilder.swift */,
-				78DFB68525AEE20B00B01906 /* RtmTokenTool */,
-			);
-			path = TokenBuilder;
-			sourceTree = "<group>";
-		};
-		78DFB68525AEE20B00B01906 /* RtmTokenTool */ = {
-			isa = PBXGroup;
-			children = (
-				78DFB68725AEE20B00B01906 /* RtmTokenTool.h */,
-				78DFB68625AEE20B00B01906 /* RtmTokenTool.mm */,
-				78DFB68825AEE20B00B01906 /* src */,
-			);
-			path = RtmTokenTool;
-			sourceTree = "<group>";
-		};
-		78DFB68825AEE20B00B01906 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				78DFB68925AEE20B00B01906 /* utils.h */,
-				78DFB68A25AEE20B00B01906 /* md5 */,
-				78DFB68D25AEE20B00B01906 /* DynamicKey5.h */,
-				78DFB68E25AEE20B00B01906 /* Packer.h */,
-				78DFB68F25AEE20B00B01906 /* generatorSignalToken.h */,
-				78DFB69025AEE20B00B01906 /* AccessToken.h */,
-				78DFB69125AEE20B00B01906 /* DynamicKey2.h */,
-				78DFB69225AEE20B00B01906 /* RtmTokenBuilder.h */,
-				78DFB69325AEE20B00B01906 /* DynamicKey3.h */,
-				78DFB69425AEE20B00B01906 /* generatorSignalToken-Linux.h */,
-				78DFB69525AEE20B00B01906 /* RtcTokenBuilder.h */,
-				78DFB69625AEE20B00B01906 /* DynamicKey.h */,
-				78DFB69725AEE20B00B01906 /* DynamicKey4.h */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		78DFB68A25AEE20B00B01906 /* md5 */ = {
-			isa = PBXGroup;
-			children = (
-				78DFB68B25AEE20B00B01906 /* md5.cpp */,
-				78DFB68C25AEE20B00B01906 /* md5.h */,
-			);
-			path = md5;
 			sourceTree = "<group>";
 		};
 		861978D62A69351500009890 /* Main */ = {
@@ -371,8 +304,9 @@
 			isa = PBXGroup;
 			children = (
 				8629C3512A83C16C00DA97B7 /* FcrAppUIQuickStartViewController.swift */,
-				8629C3572A850DD200DA97B7 /* FcrAppUIQuickStartInputViews.swift */,
-				8629C3552A84BA9500DA97B7 /* FcrAppUIQuickStartSubViews.swift */,
+				8629C3552A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift */,
+				8629C3572A850DD200DA97B7 /* FcrAppUIQuickStartJoinRoomViews.swift */,
+				869D42632A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift */,
 			);
 			path = QuickStart;
 			sourceTree = "<group>";
@@ -680,7 +614,6 @@
 				AB05CE9A28C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift in Sources */,
 				AB0A2DD228DAEF6A0048FA3C /* FcrAppUILoginViewController.swift in Sources */,
 				1A44BE7B22BF863000766274 /* AppDelegate.m in Sources */,
-				78DFB69925AEE20B00B01906 /* md5.cpp in Sources */,
 				86B81E6A2A56A2B400BA631C /* FcrAppLocalUser.swift in Sources */,
 				AB4F69D3286D8DE70012E6B3 /* FcrAppUIAboutViewController.swift in Sources */,
 				AB7B7B6F28C1E0B1001D327A /* FcrAppUIMainTitleView.swift in Sources */,
@@ -702,12 +635,11 @@
 				8629C3542A8482F900DA97B7 /* FcrAppUIFrameGroup.swift in Sources */,
 				86B81E662A566C5800BA631C /* FcrAppCenter.swift in Sources */,
 				AB4F69D5286DBE140012E6B3 /* FcrAppUINicknameViewController.swift in Sources */,
-				8629C3562A84BA9500DA97B7 /* FcrAppUIQuickStartSubViews.swift in Sources */,
+				8629C3562A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift in Sources */,
 				86E502442A5FFAE1003C04D8 /* FcrAppUIRoomListController.swift in Sources */,
 				AB4F69D1286D8C380012E6B3 /* FcrAppUIGeneralSettingsViewController.swift in Sources */,
 				68403F83276C859800E88214 /* FcrAppExtension.swift in Sources */,
 				86A15D772A7A9765001CDAD7 /* FcrAppUIMoreSettingViews.swift in Sources */,
-				2616FAB2271EC4530086397B /* TokenBuilder.swift in Sources */,
 				86B81E602A55AB8300BA631C /* FcrAppLocalStorage.swift in Sources */,
 				AB7B7B6C28C1D8A7001D327A /* FcrAppUIMainViewController.swift in Sources */,
 				86B81E682A568F4800BA631C /* FcrAppUINavigationController.swift in Sources */,
@@ -715,9 +647,9 @@
 				86B81E642A5667D500BA631C /* FcrAppServerObject.swift in Sources */,
 				86A15D732A735D35001CDAD7 /* FcrAppUICreateRoomViews.swift in Sources */,
 				861978D92A69418100009890 /* FcrAppUISettingTableView.swift in Sources */,
-				78DFB69825AEE20B00B01906 /* RtmTokenTool.mm in Sources */,
-				8629C3582A850DD200DA97B7 /* FcrAppUIQuickStartInputViews.swift in Sources */,
+				8629C3582A850DD200DA97B7 /* FcrAppUIQuickStartJoinRoomViews.swift in Sources */,
 				AB07A337287C549D0072A29F /* FcrAppUICloseAccountViewController.swift in Sources */,
+				869D42642A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift in Sources */,
 				86B81E6E2A57EBEA00BA631C /* FcrAppRoom.swift in Sources */,
 				8629C34E2A83497200DA97B7 /* FcrAppUIJoinRoomViews.swift in Sources */,
 				86B81E5B2A5593A400BA631C /* FcrAppUIViewController.swift in Sources */,

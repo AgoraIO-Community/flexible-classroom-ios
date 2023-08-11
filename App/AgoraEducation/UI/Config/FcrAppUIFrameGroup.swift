@@ -10,4 +10,6 @@ import Foundation
 
 struct FcrAppUIFrameGroup {
     static let cornerRadius: CGFloat = 12
+    
+    static let quickCornerRadius16: CGFloat = 16
 }

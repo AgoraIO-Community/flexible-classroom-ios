@@ -37,6 +37,10 @@ struct FcrAppUIColorGroup {
         return .white
     }
     
+    static var fcr_v2_green: UIColor {
+        return hexString("#16D1A4")
+    }
+    
     private static func hexString(_ text: String) -> UIColor {
         UIColor(hexString: text) ?? .clear
     }

@@ -78,6 +78,6 @@ extension FcrAppUIRoomState {
     }
 }
 
-enum FcrAppUIQuickStartOperation {
+enum FcrAppUIQuickStartSegmentOption {
     case join, create
 }

@@ -17,17 +17,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
-//#if DEBUG
-//    DebugViewController *vc = [[DebugViewController alloc] init];
-//    self.window.rootViewController = vc;
-//#else
-//    FcrNavigationController *nv = [[FcrNavigationController alloc] initWithRootViewController:[RoomListViewController new]];
-//    self.window.rootViewController = nv;
-//#endif
-    
-    
-    FcrAppPrivacyTermsViewController *vc = [[FcrAppPrivacyTermsViewController alloc] init];
+#if DEBUG
+    FcrAppUIQuickStartViewController *vc = [[FcrAppUIQuickStartViewController alloc] init];
     self.window.rootViewController = vc;
+#else
+    FcrAppUINavigationController *nv = [[FcrAppUINavigationController alloc] initWithRootViewController:[[FcrAppUIMainViewController alloc] init]];
+    self.window.rootViewController = nv;
+#endif
     
     [self.window makeKeyAndVisible];
     
