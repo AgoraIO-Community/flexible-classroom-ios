@@ -191,7 +191,7 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
         }
         
         joinButton.mas_makeConstraints { make in
-            make?.top.equalTo()(self.roleCollection.mas_bottom)?.offset()(29)
+            make?.top.equalTo()(self.roleCollection.mas_bottom)?.offset()(25)
             make?.left.equalTo()(25)
             make?.right.equalTo()(-25)
             make?.height.equalTo()(46)

@@ -20,7 +20,7 @@ class FcrAppUIQuickStartRoomNameTextField: FcrAppUIRoomNameTextField {
 class FcrAppUIQuickStartRoomTypeSelectView: UIView,
                                             AgoraUIContentContainer {
     private let leftLabel = UILabel(frame: .zero)
-    let lineView = UIView(frame: .zero)
+    private let lineView = UIView(frame: .zero)
     
     let rightButton = UIButton(frame: .zero)
     
@@ -51,6 +51,8 @@ class FcrAppUIQuickStartRoomTypeSelectView: UIView,
         
         // TODO: UI 变量名
         rightButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_light_input_background
+        // TODO: UI
+        rightButton.layer.cornerRadius = FcrAppUIFrameGroup.quickCornerRadius16
     }
     
     func initViewFrame() {
@@ -83,12 +85,68 @@ class FcrAppUIQuickStartRoomTypeSelectView: UIView,
         
         lineView.backgroundColor = UIColor(hexString: "#EFEFEF")
         
+        // TODO: UI 变量名
+        rightButton.setTitleColor(FcrAppUIColorGroup.fcr_black,
+                                  for: .normal)
+        
         updateButtonName(with: selectedRoomType)
     }
     
     func updateButtonName(with roomType: FcrAppUIRoomType) {
-        rightButton.setTitle(roomType.quickText(),
+        rightButton.setTitle(roomType.quickText() + "  >",
                              for: .normal)
+    }
+}
+
+class FcrAppUIQuickStartTimeView: UIView,
+                                  AgoraUIContentContainer {
+    private let titleLable = UILabel()
+    private let lineView = UIView(frame: .zero)
+    let timeLabel = UILabel()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initViews()
+        initViewFrame()
+        updateViewProperties()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func initViews() {
+        addSubview(titleLable)
+        addSubview(timeLabel)
+        addSubview(lineView)
+    }
+    
+    func initViewFrame() {
+        titleLable.mas_makeConstraints { make in
+            make?.left.equalTo()(20)
+            make?.top.equalTo()(20)
+            make?.right.equalTo()(-20)
+            make?.height.equalTo()(13)
+        }
+        
+        timeLabel.mas_makeConstraints { make in
+            make?.left.equalTo()(20)
+            make?.top.equalTo()(self.titleLable.mas_top)?.offset()(8)
+            make?.right.equalTo()(-20)
+            make?.height.equalTo()(15)
+        }
+        
+        lineView.mas_makeConstraints { make in
+            make?.left.equalTo()(0)
+            make?.right.equalTo()(0)
+            make?.height.equalTo()(1)
+            make?.bottom.equalTo()(self.mas_bottom)
+        }
+    }
+    
+    func updateViewProperties() {
+        // TODO: UI 变量名
+        lineView.backgroundColor = FcrAppUIColorGroup.fcr_v2_light_input_background
     }
 }
 
@@ -96,13 +154,11 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
                                              AgoraUIContentContainer {
     let roomRoomTextField = FcrAppUIQuickStartRoomNameTextField(leftViewType: .text)
     let userNameTextField = FcrAppUIQuickStartUserNameTextField(leftViewType: .text)
+    let timeView = FcrAppUIQuickStartTimeView(frame: .zero)
     let roomTypeView: FcrAppUIQuickStartRoomTypeSelectView
-    
     let createButton = UIButton(frame: .zero)
     
     let roomTypeList: [FcrAppUIRoomType]
-    
-    private var selectedUserRole = FcrAppUIUserRole.student
     
     init(roomTypeList: [FcrAppUIRoomType]) {
         self.roomTypeList = roomTypeList
@@ -121,6 +177,7 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
         addSubview(roomRoomTextField)
         addSubview(roomTypeView)
         addSubview(userNameTextField)
+        addSubview(timeView)
         addSubview(createButton)
         
         roomRoomTextField.leftLabel.font = UIFont.systemFont(ofSize: 15)
@@ -151,14 +208,18 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
             make?.height.equalTo()(54)
         }
         
+        timeView.mas_makeConstraints { make in
+            make?.top.equalTo()(self.userNameTextField.mas_bottom)
+            make?.left.right().equalTo()(0)
+            make?.height.equalTo()(80)
+        }
         
-        
-//        createButton.mas_makeConstraints { make in
-//            make?.top.equalTo()(self.roleCollection.mas_bottom)?.offset()(29)
-//            make?.left.equalTo()(25)
-//            make?.right.equalTo()(-25)
-//            make?.height.equalTo()(46)
-//        }
+        createButton.mas_makeConstraints { make in
+            make?.top.equalTo()(self.timeView.mas_bottom)?.offset()(25)
+            make?.left.equalTo()(25)
+            make?.right.equalTo()(-25)
+            make?.height.equalTo()(46)
+        }
     }
     
     func updateViewProperties() {
@@ -171,7 +232,7 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
         createButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
         
         createButton.setTitle("fcr_login_free_button_create".localized(),
-                            for: .normal)
+                              for: .normal)
     }
 }
 
