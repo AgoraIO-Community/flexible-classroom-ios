@@ -24,6 +24,7 @@ class FcrAppUIAboutViewController: FcrAppUIViewController {
                                       .disclaimer,
                                       .publish]
     
+    ///Publish-Time
     private let versionTime = ""
     
     override func viewDidLoad() {

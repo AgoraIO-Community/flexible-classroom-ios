@@ -5,16 +5,20 @@ echo pwd: `pwd`
 
 time=$(date "+%Y.%m.%d")
 
-filePath="../../../App/AgoraEducation/Main/Beans/BaseLoginObject.swift"
+filePath="../../../App/AgoraEducation/UI/Start/Controllers/Setting/FcrAppUIAboutViewController.swift"
 
-content="version_time:"
+content="///Publish-Time"
 
-publishLine=`grep -n $content $filePath | cut -d ":" -f 1`
+publishLine=`grep -n ${content} ${filePath} | cut -d ":" -f 1`
 
 echo $publishLine
 
 contentLine=$(($publishLine+1))
 
-echo "contentLine: $contentLine"
+echo "contentLine: ${contentLine}"
 
-sed -i '' "$contentLine s/return \".*\"/return \"$time\"/g" $filePath
+publishContent="$content \"$time\""
+
+echo publishContent
+
+sed -i '' "$contentLine s/private let versionTime = \".*\"/private let versionTime = \"$time\"/g" $filePath
