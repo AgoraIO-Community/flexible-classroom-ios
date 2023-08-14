@@ -21,6 +21,10 @@ struct FcrAppUIColorGroup {
         return hexString("#F9F9FC")
     }
     
+    static var fcr_v2_light_x: UIColor {
+        return hexString("#757575")
+    }
+    
     static var fcr_light_textline: UIColor {
         return hexString("#EFEFEF")
     }

@@ -18,8 +18,8 @@
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
 #if DEBUG
-    FcrAppUIQuickStartViewController *vc = [[FcrAppUIQuickStartViewController alloc] init];
-    self.window.rootViewController = vc;
+    FcrAppUINavigationController *nv = [[FcrAppUINavigationController alloc] initWithRootViewController:[[FcrAppUIQuickStartViewController alloc] init]];
+    self.window.rootViewController = nv;
 #else
     FcrAppUINavigationController *nv = [[FcrAppUINavigationController alloc] initWithRootViewController:[[FcrAppUIMainViewController alloc] init]];
     self.window.rootViewController = nv;

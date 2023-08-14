@@ -24,6 +24,8 @@ class FcrAppUIAboutViewController: FcrAppUIViewController {
                                       .disclaimer,
                                       .publish]
     
+    private let versionTime = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
@@ -87,9 +89,7 @@ extension FcrAppUIAboutViewController: UITableViewDelegate, UITableViewDataSourc
         case .publish:
             let cell = tableView.dequeueReusableCell(withClass: FcrAppUIDetailInfoCell.self)
             cell.infoLabel.text = "settings_publish_time".localized()
-            
-            // TODO:
-//            cell.detailLabel.text =
+            cell.detailLabel.text = versionTime
             return cell
         }
     }

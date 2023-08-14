@@ -34,14 +34,22 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
         super.viewDidLayoutSubviews()
         contentView.headerView.updateTopConstraints(topSafeArea: view.safeAreaInsets.top)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true,
+                                                     animated: true)
+    }
 }
 
 extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     func initViews() {
         view.addSubview(contentView)
         
-        
-        
+        contentView.headerView.settingButton.addTarget(self,
+                                                       action: #selector(onSettingsButtonPressed(_ :)),
+                                                       for: .touchUpInside)
+
         contentView.roomInputView.joinRoomView.userNameTextField.text = center.localUser?.nickname
         
         contentView.roomInputView.joinRoomView.joinButton.addTarget(self,
@@ -53,10 +61,6 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
         contentView.mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
-        
-        
-        
-        
     }
     
     func updateViewProperties() {
@@ -64,9 +68,14 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     }
     
     @objc func onJoinButtonPressed(_ sender: UIButton) {
+       
+    }
+    
+    @objc func onSettingsButtonPressed(_ sender: UIButton) {
+        let vc = FcrAppUISettingsViewController(center: center)
         
-        
-        
+        navigationController?.pushViewController(vc,
+                                                 animated: true)
     }
 }
 

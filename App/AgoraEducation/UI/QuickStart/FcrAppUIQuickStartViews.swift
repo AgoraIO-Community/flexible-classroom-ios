@@ -294,6 +294,7 @@ class FcrAppUIQuickStartInputView: UIView,
             make?.height.equalTo()(207 + 46 + 54)
         }
         
+        // TODO: UI 确定 join 与 create 不需要一样高吗？
         createRoomView.mas_makeConstraints { make in
             make?.top.equalTo()(self.segmentedControl.mas_bottom)?.offset()(23)
             make?.right.left().equalTo()(0)

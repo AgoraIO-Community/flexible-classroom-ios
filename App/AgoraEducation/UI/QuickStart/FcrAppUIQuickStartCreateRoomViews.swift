@@ -119,6 +119,9 @@ class FcrAppUIQuickStartTimeView: UIView,
         addSubview(titleLable)
         addSubview(timeLabel)
         addSubview(lineView)
+        
+        titleLable.font = FcrAppUIFrameGroup.font10
+        timeLabel.font = FcrAppUIFrameGroup.font15
     }
     
     func initViewFrame() {
@@ -131,7 +134,7 @@ class FcrAppUIQuickStartTimeView: UIView,
         
         timeLabel.mas_makeConstraints { make in
             make?.left.equalTo()(20)
-            make?.top.equalTo()(self.titleLable.mas_top)?.offset()(8)
+            make?.top.equalTo()(self.titleLable.mas_bottom)?.offset()(8)
             make?.right.equalTo()(-20)
             make?.height.equalTo()(15)
         }
@@ -145,8 +148,14 @@ class FcrAppUIQuickStartTimeView: UIView,
     }
     
     func updateViewProperties() {
+        titleLable.text = "fcr_login_free_label_duration_time".localized()
         // TODO: UI 变量名
-        lineView.backgroundColor = FcrAppUIColorGroup.fcr_v2_light_input_background
+        titleLable.textColor = FcrAppUIColorGroup.fcr_v2_light_x
+        
+        timeLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_x
+        
+        // TODO: UI 变量名
+        lineView.backgroundColor = FcrAppUIColorGroup.fcr_light_textline
     }
 }
 
@@ -228,6 +237,8 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
         
         userNameTextField.leftLabel.text = "fcr_login_free_label_nick_name".localized()
         userNameTextField.placeholder = "fcr_login_free_tips_nick_name".localized()
+        
+        timeView.timeLabel.text = "30mins"
         
         createButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
         
