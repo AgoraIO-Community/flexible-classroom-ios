@@ -9,25 +9,23 @@
 import AgoraUIBaseViews
 
 class FcrAppUISettingsViewController: FcrAppUIViewController {
-    private enum Item: Int {
-        case generalSetting
-        case aboutUs
-    }
-    
     private let tableView = FcrAppUISettingTableView(frame: .zero,
                                                      style: .plain)
     
     private let logoutButton = UIButton(type: .system)
     
-    private let dataSource: [Item] = [.generalSetting,
-                                      .aboutUs]
+    private let dataSource: [FcrAppUISettingItem]
     
     private var center: FcrAppCenter
     
-    init(center: FcrAppCenter) {
+    init(center: FcrAppCenter,
+         dataSource: [FcrAppUISettingItem],
+         needLougout: Bool = true) {
+        self.dataSource = dataSource
         self.center = center
         super.init(nibName: nil,
                    bundle: nil)
+        logoutButton.isHidden = !needLougout
     }
     
     required init?(coder: NSCoder) {
@@ -93,14 +91,15 @@ extension FcrAppUISettingsViewController: AgoraUIContentContainer {
 }
 
 private extension FcrAppUISettingsViewController {
-    func onClickGeneralSettings() {
-        let vc = FcrAppUIGeneralSettingsViewController(center: center)
+    func onClickGeneralSettings(_ itemList: [FcrAppUISettingItem.GeneralItem]) {
+        let vc = FcrAppUIGeneralSettingsViewController(center: center,
+                                                       dataSource: itemList)
         navigationController?.pushViewController(vc,
                                                  animated: true)
     }
     
-    func onClickAbout() {
-        let vc = FcrAppUIAboutViewController()
+    func onClickAbout(_ itemList: [FcrAppUISettingItem.AboutUsItem]) {
+        let vc = FcrAppUIAboutViewController(dataSource: itemList)
         navigationController?.pushViewController(vc,
                                                  animated: true)
     }
@@ -148,15 +147,16 @@ extension FcrAppUISettingsViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+        tableView.deselectRow(at: indexPath,
+                              animated: false)
         
         let type = dataSource[indexPath.row]
         
         switch type {
-        case .generalSetting:
-            onClickGeneralSettings()
-        case .aboutUs:
-            onClickAbout()
+        case .generalSetting(let list):
+            onClickGeneralSettings(list)
+        case .aboutUs(let list):
+            onClickAbout(list)
         }
     }
 }

@@ -9,27 +9,17 @@
 import AgoraUIBaseViews
 
 class FcrAppUIGeneralSettingsViewController: FcrAppUIViewController {
-    private enum Item: Int {
-        case nickname
-        case language
-        case region
-        case mode
-        case logoff
-    }
-    
     private let tableView = FcrAppUISettingTableView(frame: .zero,
                                                      style: .plain)
     
-    private let dataSource: [Item] = [.nickname,
-                                      .language,
-                                      .region,
-                                      .mode,
-                                      .logoff]
+    private let dataSource: [FcrAppUISettingItem.GeneralItem]
     
     private var center: FcrAppCenter
     
-    init(center: FcrAppCenter) {
+    init(center: FcrAppCenter,
+         dataSource: [FcrAppUISettingItem.GeneralItem]) {
         self.center = center
+        self.dataSource = dataSource
         super.init(nibName: nil,
                    bundle: nil)
     }
@@ -84,9 +74,9 @@ extension FcrAppUIGeneralSettingsViewController: UITableViewDelegate, UITableVie
             cell.infoLabel.text = "fcr_settings_label_language".localized()
         case .region:
             cell.infoLabel.text = "fcr_settings_label_region".localized()
-        case .mode:
+        case .theme:
             cell.infoLabel.text = "settings_theme".localized()
-        case .logoff:
+        case .closeAccount:
             cell.infoLabel.text = "settings_close_account".localized()
         }
         
@@ -113,11 +103,11 @@ extension FcrAppUIGeneralSettingsViewController: UITableViewDelegate, UITableVie
             let vc = FcrAppUIRegionViewController(center: center)
             navigationController?.pushViewController(vc,
                                                      animated: true)
-        case .mode:
+        case .theme:
             let vc = FcrAppUIModeViewController(center: center)
             navigationController?.pushViewController(vc,
                                                      animated: true)
-        case .logoff:
+        case .closeAccount:
             let vc = FcrAppUICloseAccountViewController(center: center)
             navigationController?.pushViewController(vc,
                                                      animated: true)

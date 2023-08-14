@@ -81,3 +81,29 @@ extension FcrAppUIRoomState {
 enum FcrAppUIQuickStartSegmentOption {
     case join, create
 }
+
+enum FcrAppUISettingItem {
+    enum GeneralItem: CaseIterable {
+        case nickname
+        case language
+        case region
+        case theme
+        case closeAccount
+        
+        static func quickStartList() -> [GeneralItem] {
+            return [.language,
+                    .region,
+                    .theme]
+        }
+    }
+    
+    enum AboutUsItem: CaseIterable {
+        case privacy
+        case terms
+        case disclaimer
+        case publish
+    }
+    
+    case generalSetting([GeneralItem])
+    case aboutUs([AboutUsItem])
+}

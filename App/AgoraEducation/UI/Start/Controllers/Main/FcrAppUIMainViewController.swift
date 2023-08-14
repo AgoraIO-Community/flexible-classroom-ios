@@ -22,6 +22,9 @@ class FcrAppUIMainViewController: FcrAppUIViewController {
     
     private let center = FcrAppCenter()
     
+    private let settingItems: [FcrAppUISettingItem] = [.generalSetting(FcrAppUISettingItem.GeneralItem.allCases),
+                                                       .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -161,7 +164,9 @@ extension FcrAppUIMainViewController: FcrAppUIMainTitleViewDelegate {
     }
     
     func onClickSetting() {
-        let vc = FcrAppUISettingsViewController(center: center)
+        let vc = FcrAppUISettingsViewController(center: center,
+                                                dataSource: settingItems)
+        
         navigationController?.pushViewController(vc,
                                                  animated: true)
     }

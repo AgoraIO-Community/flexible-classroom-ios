@@ -21,6 +21,9 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
                                                     .oneToOne,
                                                     .proctor]
     
+    private let settingItems: [FcrAppUISettingItem] = [.generalSetting(FcrAppUISettingItem.GeneralItem.quickStartList()),
+                                                       .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
+    
     private let center = FcrAppCenter()
     
     override func viewDidLoad() {
@@ -72,7 +75,9 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     }
     
     @objc func onSettingsButtonPressed(_ sender: UIButton) {
-        let vc = FcrAppUISettingsViewController(center: center)
+        let vc = FcrAppUISettingsViewController(center: center,
+                                                dataSource: settingItems,
+                                                needLougout: false)
         
         navigationController?.pushViewController(vc,
                                                  animated: true)

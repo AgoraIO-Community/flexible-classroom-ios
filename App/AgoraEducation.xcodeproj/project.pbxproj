@@ -251,12 +251,8 @@
 				AB4F69CE286D8BEE0012E6B3 /* FcrAppUISettingsViewController.swift */,
 				AB4F69D0286D8C380012E6B3 /* FcrAppUIGeneralSettingsViewController.swift */,
 				AB4F69D2286D8DE70012E6B3 /* FcrAppUIAboutViewController.swift */,
-				AB4F69D4286DBE140012E6B3 /* FcrAppUINicknameViewController.swift */,
-				AB4F69D6286DBE490012E6B3 /* FcrAppUIRegionViewController.swift */,
-				AB4F69E62874621F0012E6B3 /* FcrAppUIModeViewController.swift */,
-				AB4F69D8286DBE830012E6B3 /* FcrAppUILanguageViewController.swift */,
-				AB4F69E22872C2340012E6B3 /* FcrAppUIDisclaimerViewController.swift */,
-				AB07A336287C549D0072A29F /* FcrAppUICloseAccountViewController.swift */,
+				869D42652A8A2EA9004EE63E /* General */,
+				869D42662A8A2FE7004EE63E /* About */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -309,6 +305,26 @@
 				869D42632A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift */,
 			);
 			path = QuickStart;
+			sourceTree = "<group>";
+		};
+		869D42652A8A2EA9004EE63E /* General */ = {
+			isa = PBXGroup;
+			children = (
+				AB4F69D4286DBE140012E6B3 /* FcrAppUINicknameViewController.swift */,
+				AB4F69D8286DBE830012E6B3 /* FcrAppUILanguageViewController.swift */,
+				AB4F69D6286DBE490012E6B3 /* FcrAppUIRegionViewController.swift */,
+				AB4F69E62874621F0012E6B3 /* FcrAppUIModeViewController.swift */,
+				AB07A336287C549D0072A29F /* FcrAppUICloseAccountViewController.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		869D42662A8A2FE7004EE63E /* About */ = {
+			isa = PBXGroup;
+			children = (
+				AB4F69E22872C2340012E6B3 /* FcrAppUIDisclaimerViewController.swift */,
+			);
+			path = About;
 			sourceTree = "<group>";
 		};
 		86A15D712A72A059001CDAD7 /* Create */ = {
