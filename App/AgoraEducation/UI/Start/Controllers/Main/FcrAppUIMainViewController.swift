@@ -22,7 +22,7 @@ class FcrAppUIMainViewController: FcrAppUIViewController {
     
     private let center = FcrAppCenter()
     
-    private let settingItems: [FcrAppUISettingItem] = [.generalSetting(FcrAppUISettingItem.GeneralItem.allCases),
+    private let settingItems: [FcrAppUISettingItem] = [.generalSetting(FcrAppUISettingItem.GeneralItem.startList()),
                                                        .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
     
     override var prefersStatusBarHidden: Bool {

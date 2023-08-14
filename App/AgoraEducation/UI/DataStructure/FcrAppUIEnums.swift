@@ -9,12 +9,13 @@
 import AgoraClassroomSDK_iOS
 import Foundation
 
-typealias FcrAppUIRoomState = FcrAppRoomState
-typealias FcrAppUILanguage  = FcrAppLanguage
-typealias FcrAppUIRoomType  = FcrAppRoomType
-typealias FcrAppUIRegion    = FcrAppRegion
-typealias FcrAppUIUserRole  = FcrAppUserRole
-typealias FcrAppUIDateType  = Calendar.Component
+typealias FcrAppUIRoomState   = FcrAppRoomState
+typealias FcrAppUILanguage    = FcrAppLanguage
+typealias FcrAppUIRoomType    = FcrAppRoomType
+typealias FcrAppUIRegion      = FcrAppRegion
+typealias FcrAppUIUserRole    = FcrAppUserRole
+typealias FcrAppUIDateType    = Calendar.Component
+typealias FcrAppUIEnvironment = FcrAppEnvironment
 
 extension FcrAppUIRoomType {
     func text() -> String {
@@ -89,11 +90,28 @@ enum FcrAppUISettingItem {
         case region
         case theme
         case closeAccount
+        case environment
+        
+        static func startList() -> [GeneralItem] {
+            return [.nickname,
+                    .language,
+                    .region,
+                    .theme,
+                    .closeAccount]
+        }
         
         static func quickStartList() -> [GeneralItem] {
             return [.language,
                     .region,
-                    .theme]
+                    .theme,
+                    .environment]
+        }
+        
+        static func debugList() -> [GeneralItem] {
+            return [.language,
+                    .region,
+                    .theme,
+                    .environment]
         }
     }
     

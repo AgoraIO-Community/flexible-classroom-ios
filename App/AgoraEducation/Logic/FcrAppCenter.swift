@@ -30,20 +30,24 @@ class FcrAppCenter: NSObject {
     
     var uiMode = FcrAppUIMode.light {
         didSet {
-            localStorage.writeData(uiMode,
+            localStorage.writeData(uiMode.rawValue,
                                    key: .uiMode)
         }
     }
     
     var language = FcrAppLanguage.en {
         didSet {
-            localStorage.writeData(language,
+            localStorage.writeData(language.rawValue,
                                    key: .language)
-            
         }
     }
     
-    var isLogined = false
+    var isLogined = false {
+        didSet {
+            localStorage.writeData(isLogined,
+                                   key: .login)
+        }
+    }
     
     override init() {
         super.init()
@@ -86,7 +90,7 @@ class FcrAppCenter: NSObject {
         }, failure: failure)
     }
     
-    func createLocalUser(success: @escaping FcrAppSuccess,
+    func login(success: @escaping FcrAppSuccess,
                          failure: @escaping FcrAppFailure) {
         let url = urlGroup.userInfo()
         let headers = ["Authorization": "Bearer \(urlGroup.accessToken)"]

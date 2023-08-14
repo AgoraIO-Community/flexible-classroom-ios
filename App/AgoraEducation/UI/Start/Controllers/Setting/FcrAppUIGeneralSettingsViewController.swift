@@ -78,6 +78,8 @@ extension FcrAppUIGeneralSettingsViewController: UITableViewDelegate, UITableVie
             cell.infoLabel.text = "settings_theme".localized()
         case .closeAccount:
             cell.infoLabel.text = "settings_close_account".localized()
+        case .environment:
+            cell.infoLabel.text = "Environment"
         }
         
         return cell
@@ -90,27 +92,24 @@ extension FcrAppUIGeneralSettingsViewController: UITableViewDelegate, UITableVie
         
         let type = dataSource[indexPath.row]
         
+        var vc: UIViewController
+        
         switch type {
         case .nickname:
-            let vc = FcrAppUINicknameViewController(center: center)
-            navigationController?.pushViewController(vc,
-                                                     animated: true)
+            vc = FcrAppUINicknameViewController(center: center)
         case .language:
-            let vc = FcrAppUILanguageViewController(center: center)
-            navigationController?.pushViewController(vc,
-                                                     animated: true)
+            vc = FcrAppUILanguageViewController(center: center)
         case .region:
-            let vc = FcrAppUIRegionViewController(center: center)
-            navigationController?.pushViewController(vc,
-                                                     animated: true)
+            vc = FcrAppUIRegionViewController(center: center)
         case .theme:
-            let vc = FcrAppUIModeViewController(center: center)
-            navigationController?.pushViewController(vc,
-                                                     animated: true)
+            vc = FcrAppUIModeViewController(center: center)
+        case .environment:
+            vc = FcrAppUIEnvironmentViewController(center: center)
         case .closeAccount:
-            let vc = FcrAppUICloseAccountViewController(center: center)
-            navigationController?.pushViewController(vc,
-                                                     animated: true)
+            vc = FcrAppUICloseAccountViewController(center: center)
         }
+        
+        navigationController?.pushViewController(vc,
+                                                 animated: true)
     }
 }

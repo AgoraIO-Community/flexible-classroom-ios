@@ -66,14 +66,14 @@ class FcrAppUILoginWebViewController: FcrAppUIViewController {
         webView.load(request)
     }
     
-    private func createLocalUser(accessToken: String,
-                                 refreshToken: String) {
+    private func login(accessToken: String,
+                       refreshToken: String) {
         center.urlGroup.accessToken = accessToken
         center.urlGroup.refreshToken = refreshToken
         
         AgoraLoading.loading()
         
-        center.createLocalUser { [weak self] in
+        center.login { [weak self] in
             AgoraLoading.hide()
             
             self?.onLoginCompleted?(true)
@@ -174,8 +174,8 @@ extension FcrAppUILoginWebViewController: WKNavigationDelegate {
                 return
             }
             
-            createLocalUser(accessToken: accessToken,
-                            refreshToken: refreshToken)
+            login(accessToken: accessToken,
+                  refreshToken: refreshToken)
         } else {
             decisionHandler(.allow)
         }

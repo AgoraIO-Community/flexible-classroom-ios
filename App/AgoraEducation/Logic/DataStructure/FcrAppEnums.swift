@@ -16,7 +16,7 @@ enum FcrAppUIMode: Int, CaseIterable {
     case light, dark
 }
 
-enum FcrAppEnvironment: String {
+enum FcrAppEnvironment: String, CaseIterable {
     case dev, pre, pro
 }
 

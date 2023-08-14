@@ -11,6 +11,7 @@ import Foundation
 class FcrAppLocalStorage {
     enum Key: String, CaseIterable {
         case privacyAgreement = "com.agora.privacyTermsAgree"
+        case login            = "com.agora.login"
         
         case accessToken      = "com.agora.accessToken"
         case refreshToken     = "com.agora.refreshToken"

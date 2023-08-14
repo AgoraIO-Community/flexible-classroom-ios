@@ -1,27 +1,27 @@
 //
-//  FcrLanguageViewController.swift
-//  FlexibleClassroom
+//  FcrAppUIEnvironmentViewController.swift
+//  AgoraEducation
 //
-//  Created by Jonathan on 2022/6/30.
-//  Copyright © 2022 Agora. All rights reserved.
+//  Created by Cavan on 2023/8/14.
+//  Copyright © 2023 Agora. All rights reserved.
 //
 
 import AgoraUIBaseViews
 
-class FcrAppUILanguageViewController: FcrAppUIViewController,
-                                      AgoraUIContentContainer {
+class FcrAppUIEnvironmentViewController: FcrAppUIViewController,
+                                         AgoraUIContentContainer {
     private let tableView = FcrAppUISettingTableView(frame: .zero,
                                                      style: .plain)
+        
+    private let dataSource = FcrAppUIEnvironment.allCases
     
-    private let dataSource = FcrAppUILanguage.allCases
-    
-    private var selectedLanguage: FcrAppUILanguage
+    private var selected: FcrAppUIEnvironment
     
     private var center: FcrAppCenter
     
     init(center: FcrAppCenter) {
         self.center = center
-        self.selectedLanguage = center.language
+        self.selected = center.urlGroup.environment
         super.init(nibName: nil,
                    bundle: nil)
     }
@@ -38,13 +38,12 @@ class FcrAppUILanguageViewController: FcrAppUIViewController,
     }
     
     func initViews() {
-        view.addSubview(tableView)
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.bounces = false
-        
+       
         tableView.register(cellWithClass: FcrAppUICheckBoxCell.self)
+        view.addSubview(tableView)
     }
     
     func initViewFrame() {
@@ -54,13 +53,11 @@ class FcrAppUILanguageViewController: FcrAppUIViewController,
     }
     
     func updateViewProperties() {
-        title = "fcr_settings_label_language".localized()
-        
-        tableView.reloadData()
+        title = "fcr_settings_label_region".localized()
     }
 }
 
-extension FcrAppUILanguageViewController: UITableViewDelegate, UITableViewDataSource {
+extension FcrAppUIEnvironmentViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
@@ -70,21 +67,22 @@ extension FcrAppUILanguageViewController: UITableViewDelegate, UITableViewDataSo
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: FcrAppUICheckBoxCell.self)
         let type = dataSource[indexPath.row]
-        cell.infoLabel.text = type.text()
-        cell.aSelected = (selectedLanguage == type)
+        
+        cell.infoLabel.text = type.rawValue
+        cell.aSelected = (selected == type)
+
         return cell
     }
     
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath,
-                              animated: true)
+                              animated: false)
+        let type = dataSource[indexPath.row]
         
-        let selected = dataSource[indexPath.row]
-        
-        selectedLanguage = selected
-        center.language = selected
-        
+        selected = type
         tableView.reloadData()
+        
+        center.urlGroup.environment = type
     }
 }
