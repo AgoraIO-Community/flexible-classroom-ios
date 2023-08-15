@@ -33,6 +33,10 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
         updateViewProperties()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         contentView.headerView.updateTopConstraints(topSafeArea: view.safeAreaInsets.top)
@@ -49,15 +53,19 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     func initViews() {
         view.addSubview(contentView)
         
+        contentView.roomInputView.joinRoomView.userNameTextField.text = center.localUser?.nickname
+        
         contentView.headerView.settingButton.addTarget(self,
                                                        action: #selector(onSettingsButtonPressed(_ :)),
                                                        for: .touchUpInside)
-
-        contentView.roomInputView.joinRoomView.userNameTextField.text = center.localUser?.nickname
         
         contentView.roomInputView.joinRoomView.joinButton.addTarget(self,
                                                                     action: #selector(onJoinButtonPressed(_ :)),
                                                                     for: .touchUpInside)
+        
+        contentView.roomInputView.createRoomView.roomTypeView.rightButton.addTarget(self,
+                                                                                    action: #selector(onRoomTypeButtonPressed),
+                                                                                    for: .touchUpInside)
     }
     
     func initViewFrame() {
@@ -70,10 +78,6 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
         contentView.backgroundColor = .white
     }
     
-    @objc func onJoinButtonPressed(_ sender: UIButton) {
-       
-    }
-    
     @objc func onSettingsButtonPressed(_ sender: UIButton) {
         let vc = FcrAppUISettingsViewController(center: center,
                                                 dataSource: settingItems,
@@ -81,6 +85,30 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
         
         navigationController?.pushViewController(vc,
                                                  animated: true)
+    }
+    
+    @objc func onRoomTypeButtonPressed(_ sender: UIButton) {
+        let roomTypeView = contentView.roomInputView.createRoomView.roomTypeView
+        
+        let vc = FcrAppUIQuickStartClassModeViewController(roomTypeList: roomTypeList,
+                                                           selected: roomTypeView.selectedRoomType)
+        
+        vc.onDismissed = { [weak roomTypeView, weak vc] in
+            guard let `roomTypeView` = roomTypeView,
+                  let `vc` = vc
+            else {
+                return
+            }
+            
+            roomTypeView.selectedRoomType = vc.selected
+        }
+        
+        presentViewController(vc,
+                              animated: true)
+    }
+    
+    @objc func onJoinButtonPressed(_ sender: UIButton) {
+       
     }
 }
 

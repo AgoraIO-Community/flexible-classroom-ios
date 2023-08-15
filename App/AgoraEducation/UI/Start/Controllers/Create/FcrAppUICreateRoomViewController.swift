@@ -240,7 +240,7 @@ private extension FcrAppUICreateRoomViewController {
                 
         AgoraLoading.loading()
         
-        let config = FcrAppRoomCreateConfig(roomName: roomName,
+        let config = FcrAppCreateRoomConfig(roomName: roomName,
                                             roomType: roomType,
                                             userName: userName,
                                             startTime: startTime,

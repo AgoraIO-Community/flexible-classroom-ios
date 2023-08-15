@@ -25,6 +25,13 @@ extension Bundle {
     }
 }
 
+extension UIColor {
+    static func fcr_hex_string(_ string: String,
+                               transparency: CGFloat = 1) -> UIColor {
+        return UIColor.create(hexString: string, transparency: transparency) ?? .clear
+    }
+}
+
 extension UIDevice {
     var isSmallPhone: Bool {
         guard UIDevice.current.agora_is_pad else {

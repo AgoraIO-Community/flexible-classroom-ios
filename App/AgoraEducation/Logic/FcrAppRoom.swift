@@ -20,10 +20,16 @@ class FcrAppRoom {
         self.armin = armin
     }
     
-    func createRoom(config: FcrAppRoomCreateConfig,
+    func createRoom(config: FcrAppCreateRoomConfig,
                     success: @escaping FcrAppStringCompletion,
                     failure: @escaping FcrAppFailure) {
-        let url = urlGroup.createRoom()
+        var url: String
+        
+        if config.isQuickStart {
+            url = urlGroup.quickCreateRoom()
+        } else {
+            url = urlGroup.createRoom()
+        }
         
         let parameters = config.parameters()
         
@@ -37,18 +43,18 @@ class FcrAppRoom {
         }, failure: failure)
     }
     
-    func joinRoomPreCheck(roomId: String,
-                          userId: String,
-                          userName: String,
-                          userRole: FcrAppUserRole,
+    func joinRoomPreCheck(config: FcrAppJoinRoomConfig,
                           success: @escaping (FcrAppServerJoinRoomObject) -> Void,
                           failure: @escaping FcrAppFailure) {
-        let url = urlGroup.joinRoom()
+        var url: String
         
-        let parameters: [String: Any] = ["roomId": roomId,
-                                         "role": userRole.rawValue,
-                                         "userUuid": userId,
-                                         "userName": userName]
+        if config.isQuickStart {
+            url = urlGroup.quickJoinRoom()
+        } else {
+            url = urlGroup.joinRoom()
+        }
+        
+        let parameters = config.parameters()
         
         let headers = urlGroup.headers()
         

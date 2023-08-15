@@ -17,8 +17,7 @@ class FcrAppUIJoinRoomController: FcrAppUIPresentedViewController {
          completion: ((FcrAppUIJoinRoomConfig) -> Void)? = nil) {
         self.center = center
         self.completion = completion
-        super.init(nibName: nil,
-                   bundle: nil)
+        super.init()
     }
     
     required init?(coder: NSCoder) {
@@ -112,10 +111,12 @@ private extension FcrAppUIJoinRoomController {
         
         AgoraLoading.loading()
         
-        center.room.joinRoomPreCheck(roomId: roomId,
-                                     userId: userId,
-                                     userName: userName,
-                                     userRole: userRole) { [weak self] object in
+        let config = FcrAppJoinRoomConfig(roomId: roomId,
+                                          userId: userId,
+                                          userName: userName,
+                                          userRole: userRole)
+        
+        center.room.joinRoomPreCheck(config: config) { [weak self] object in
             let options = FcrAppUIJoinRoomConfig(userId: userId,
                                                  userName: userName,
                                                  userRole: userRole,

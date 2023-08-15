@@ -27,6 +27,15 @@ extension FcrAppUIRoomType {
         }
     }
     
+    func quickText() -> String {
+        switch self {
+        case .smallClass:   return "fcr_login_free_class_mode_option_small_classroom".localized()
+        case .oneToOne:     return "fcr_login_free_class_mode_option_1on1".localized()
+        case .lectureHall:  return "fcr_login_free_class_mode_option_lecture_hall".localized()
+        case .proctor:      return "fcr_login_free_class_mode_option_proctoring".localized()
+        }
+    }
+    
     func toClassroomType() -> AgoraEduRoomType {
         switch self {
         case .oneToOne:     return .oneToOne

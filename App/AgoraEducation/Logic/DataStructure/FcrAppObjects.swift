@@ -8,13 +8,14 @@
 
 import Foundation
 
-struct FcrAppRoomCreateConfig {
+struct FcrAppCreateRoomConfig {
     var roomName: String
     var roomType: FcrAppRoomType
     var userName: String
     var startTime: Int64  // ms
     var endTime: Int64    // ms
     var roomProperties: [String: Any]?
+    var isQuickStart: Bool = false
     
     func parameters() -> [String: Any] {
         var parameters = [String: Any]()
@@ -29,6 +30,25 @@ struct FcrAppRoomCreateConfig {
             parameters["properties"] = properties
         }
         
+        return parameters
+    }
+}
+
+struct FcrAppJoinRoomConfig {
+    var roomId: String
+    var userId: String
+    var userName: String
+    var userRole: FcrAppUserRole
+    var isQuickStart: Bool = false
+
+    func parameters() -> [String: Any] {
+        var parameters = [String: Any]()
+
+        parameters["roomId"] = roomId
+        parameters["userUuid"] = userId
+        parameters["userName"] = userName
+        parameters["role"] = userRole.rawValue
+
         return parameters
     }
 }

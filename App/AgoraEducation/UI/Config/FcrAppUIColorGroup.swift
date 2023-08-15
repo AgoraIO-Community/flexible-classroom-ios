@@ -10,7 +10,7 @@ import UIKit
 
 struct FcrAppUIColorGroup {
     static var fcr_v2_light1: UIColor {
-        return hexString("#F2F2FA")
+        return UIColor.fcr_hex_string("#F2F2FA")
     }
     
     static var fcr_v2_light_text1: UIColor {
@@ -18,19 +18,19 @@ struct FcrAppUIColorGroup {
     }
     
     static var fcr_v2_light_input_background: UIColor {
-        return hexString("#F9F9FC")
+        return UIColor.fcr_hex_string("#F9F9FC")
     }
     
     static var fcr_v2_light_x: UIColor {
-        return hexString("#757575")
+        return UIColor.fcr_hex_string("#757575")
     }
     
     static var fcr_light_textline: UIColor {
-        return hexString("#EFEFEF")
+        return UIColor.fcr_hex_string("#EFEFEF")
     }
     
     static var fcr_v2_brand6: UIColor {
-        return hexString("#4262FF")
+        return UIColor.fcr_hex_string("#4262FF")
     }
     
     static var fcr_black: UIColor {
@@ -42,10 +42,6 @@ struct FcrAppUIColorGroup {
     }
     
     static var fcr_v2_green: UIColor {
-        return hexString("#16D1A4")
-    }
-    
-    private static func hexString(_ text: String) -> UIColor {
-        UIColor(hexString: text) ?? .clear
+        return  UIColor.fcr_hex_string("#16D1A4")
     }
 }

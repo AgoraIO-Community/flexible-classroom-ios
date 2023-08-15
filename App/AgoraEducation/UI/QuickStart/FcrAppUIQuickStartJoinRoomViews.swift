@@ -77,7 +77,7 @@ class FcrAppUIQuickStartRoomIdTextField: FcrAppUIRoomIdTextField {
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         return CGRect(x: 20,
                       y: 0,
-                      width: 78,
+                      width: 80,
                       height: bounds.height)
     }
 }
@@ -86,7 +86,7 @@ class FcrAppUIQuickStartUserNameTextField: FcrAppUIUserNameTextField {
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         return CGRect(x: 20,
                       y: 0,
-                      width: 78,
+                      width: 80,
                       height: bounds.height)
     }
 }
