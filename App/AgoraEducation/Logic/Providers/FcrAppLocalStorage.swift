@@ -35,14 +35,27 @@ class FcrAppLocalStorage {
     
     func writeData(_ value: Any,
                    key: Key) {
+        printDebug("write data, key: \(key.rawValue), value: \(value)")
+        
         UserDefaults.standard.set(value,
                                   forKey: key.rawValue)
     }
     
-    func readData<T: Any>(key: Key,
-                          type: T.Type) throws -> T {
-        if let value = UserDefaults.standard.object(forKey: key.rawValue) as? T {
-            return value
+    func readData<T>(key: Key,
+                     type: T.Type) throws -> T {
+        if let value = UserDefaults.standard.object(forKey: key.rawValue) {
+            
+            if let StringRawRepresentable = T.self as? (any FcrAppStringRawRepresentable.Type) {
+                let value = StringRawRepresentable.init(rawValue: value as! String)
+                
+                return value as! T
+            } else if let IntRawRepresentable = T.self as? (any FcrAppIntRawRepresentable.Type) {
+                let value = IntRawRepresentable.init(rawValue: value as! Int)
+                
+                return value as! T
+            } else {
+                return value as! T
+            }
         } else {
             throw FcrAppError(code: -1,
                               message: "\(key.rawValue)'s value is nil")
@@ -81,3 +94,5 @@ class FcrAppLocalStorage {
         }
     }
 }
+
+

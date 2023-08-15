@@ -8,19 +8,19 @@
 
 import Foundation
 
-enum FcrAppRegion: String, CaseIterable {
+enum FcrAppRegion: String, FcrAppStringRawRepresentable, CaseIterable {
     case CN, NA
 }
 
-enum FcrAppUIMode: Int, CaseIterable {
+enum FcrAppUIMode: Int, FcrAppIntRawRepresentable, CaseIterable {
     case light, dark
 }
 
-enum FcrAppEnvironment: String, CaseIterable {
+enum FcrAppEnvironment: String, FcrAppStringRawRepresentable, CaseIterable {
     case dev, pre, pro
 }
 
-enum FcrAppLanguage: String, CaseIterable {
+enum FcrAppLanguage: String, FcrAppStringRawRepresentable, CaseIterable {
     case zh_cn, en
 }
 
@@ -40,3 +40,7 @@ enum FcrAppUserRole: Int, FcrAppCodable {
     case student
     case audience
 }
+
+protocol FcrAppStringRawRepresentable: RawRepresentable where Self.RawValue == String {}
+
+protocol FcrAppIntRawRepresentable: RawRepresentable where Self.RawValue == Int {}

@@ -50,10 +50,8 @@ extension FcrAppUIUserRole {
 extension FcrAppUILanguage {
     func text() -> String {
         switch self {
-        case .zh_cn:
-            return "fcr_settings_option_general_language_simplified".localized()
-        case .en:
-            return "fcr_settings_option_general_language_english".localized()
+        case .zh_cn: return "fcr_settings_option_general_language_simplified".localized()
+        case .en:    return "fcr_settings_option_general_language_english".localized()
         }
     }
 }
@@ -61,10 +59,8 @@ extension FcrAppUILanguage {
 extension FcrAppUIMode {
     func text() -> String {
         switch self {
-        case .light:
-            return "settings_theme_light".localized()
-        case .dark:
-            return "settings_theme_dark".localized()
+        case .light: return "settings_theme_light".localized()
+        case .dark:  return "settings_theme_dark".localized()
         }
     }
 }

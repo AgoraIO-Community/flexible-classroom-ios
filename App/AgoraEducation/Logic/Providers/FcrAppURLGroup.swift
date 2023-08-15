@@ -66,14 +66,14 @@ class FcrAppURLGroup {
     
     var environment = FcrAppEnvironment.pro {
         didSet {
-            localStorage.writeData(environment,
+            localStorage.writeData(environment.rawValue,
                                    key: .environment)
         }
     }
     
     var region = FcrAppRegion.CN {
         didSet {
-            localStorage.writeData(region,
+            localStorage.writeData(region.rawValue,
                                    key: .region)
         }
     }

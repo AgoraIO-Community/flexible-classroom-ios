@@ -11,11 +11,12 @@ import WebKit
 import Armin
 
 class FcrAppCenter: NSObject {
-    private lazy var armin = FcrAppArmin(logTube: self)
     private(set) lazy var urlGroup = FcrAppURLGroup(localStorage: localStorage)
     
     private(set) lazy var room = FcrAppRoom(urlGroup: urlGroup,
                                             armin: armin)
+    
+    private lazy var armin = FcrAppArmin(logTube: self)
     
     private let localStorage = FcrAppLocalStorage()
     
@@ -25,6 +26,13 @@ class FcrAppCenter: NSObject {
         didSet {
             localStorage.writeData(isAgreedPrivacy,
                                    key: .privacyAgreement)
+        }
+    }
+    
+    var isLogined = false {
+        didSet {
+            localStorage.writeData(isLogined,
+                                   key: .login)
         }
     }
     
@@ -42,16 +50,19 @@ class FcrAppCenter: NSObject {
         }
     }
     
-    var isLogined = false {
-        didSet {
-            localStorage.writeData(isLogined,
-                                   key: .login)
-        }
-    }
-    
     override init() {
         super.init()
         do {
+            if let mode = try? localStorage.readData(key: .uiMode,
+                                                     type: FcrAppUIMode.self) {
+                self.uiMode = mode
+            }
+            
+            if let language = try? localStorage.readData(key: .language,
+                                                         type: FcrAppLanguage.self) {
+                self.language = language
+            }
+            
             let privacy = try localStorage.readData(key: .privacyAgreement,
                                                     type: Bool.self)
             
@@ -67,7 +78,8 @@ class FcrAppCenter: NSObject {
                                              nickname: nickname,
                                              localStorage: localStorage)
             
-            self.isLogined = true
+            self.isLogined = try localStorage.readData(key: .login,
+                                                       type: Bool.self)
         } catch {
             isLogined = false
         }
