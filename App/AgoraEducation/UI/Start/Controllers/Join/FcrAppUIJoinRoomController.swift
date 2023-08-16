@@ -111,10 +111,10 @@ private extension FcrAppUIJoinRoomController {
         
         AgoraLoading.loading()
         
-        let config = FcrAppJoinRoomConfig(roomId: roomId,
-                                          userId: userId,
-                                          userName: userName,
-                                          userRole: userRole)
+        let config = FcrAppJoinRoomPreCheckConfig(roomId: roomId,
+                                                  userId: userId,
+                                                  userName: userName,
+                                                  userRole: userRole)
         
         center.room.joinRoomPreCheck(config: config) { [weak self] object in
             let options = FcrAppUIJoinRoomConfig(userId: userId,

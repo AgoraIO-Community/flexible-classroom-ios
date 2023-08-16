@@ -8,19 +8,12 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUIQuickStartRoomNameTextField: FcrAppUIRoomNameTextField {
-    override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRect(x: 20,
-                      y: 0,
-                      width: 80,
-                      height: bounds.height)
-    }
-}
-
 class FcrAppUIQuickStartRoomTypeSelectView: UIView,
                                             AgoraUIContentContainer {
     private let leftLabel = UILabel(frame: .zero)
     private let lineView = UIView(frame: .zero)
+    private let leftTextWidth: CGFloat
+    private let rightViewOffsetX: CGFloat
     
     let rightButton = UIButton(frame: .zero)
     
@@ -30,8 +23,13 @@ class FcrAppUIQuickStartRoomTypeSelectView: UIView,
         }
     }
     
-    init(selectedRoomType: FcrAppUIRoomType) {
+    init(selectedRoomType: FcrAppUIRoomType,
+         leftTextWidth: CGFloat,
+         rightViewOffsetX: CGFloat) {
         self.selectedRoomType = selectedRoomType
+        self.leftTextWidth = leftTextWidth
+        self.rightViewOffsetX = rightViewOffsetX
+        
         super.init(frame: .zero)
         initViews()
         initViewFrame()
@@ -60,17 +58,17 @@ class FcrAppUIQuickStartRoomTypeSelectView: UIView,
             make?.left.equalTo()(20)
             make?.top.equalTo()(0)
             make?.bottom.equalTo()(0)
-            make?.width.equalTo()(80)
+            make?.width.equalTo()(self.leftTextWidth)
         }
         
         rightButton.mas_makeConstraints { make in
-            make?.left.equalTo()(leftLabel.mas_right)?.offset()(10)
+            make?.left.equalTo()(leftLabel.mas_right)?.offset()(self.rightViewOffsetX)
             make?.right.equalTo()(-18)
             make?.top.equalTo()(7)
             make?.bottom.equalTo()(-7)
         }
         
-        lineView.mas_makeConstraints { make in
+        lineView.mas_makeConstraints { make in  
             make?.left.equalTo()(0)
             make?.right.equalTo()(0)
             make?.height.equalTo()(1)
@@ -161,17 +159,34 @@ class FcrAppUIQuickStartTimeView: UIView,
 
 class FcrAppUIQuickStartCreateRoomInputView: UIView,
                                              AgoraUIContentContainer {
-    let roomRoomTextField = FcrAppUIQuickStartRoomNameTextField(leftViewType: .text)
-    let userNameTextField = FcrAppUIQuickStartUserNameTextField(leftViewType: .text)
+    let roomRoomTextField: FcrAppUIRoomNameTextField
+    let userNameTextField: FcrAppUIUserNameTextField
+    
     let timeView = FcrAppUIQuickStartTimeView(frame: .zero)
     let roomTypeView: FcrAppUIQuickStartRoomTypeSelectView
     let createButton = UIButton(frame: .zero)
     
     let roomTypeList: [FcrAppUIRoomType]
     
-    init(roomTypeList: [FcrAppUIRoomType]) {
+    init(roomTypeList: [FcrAppUIRoomType],
+         leftTextWidth: CGFloat,
+         leftTextOffX: CGFloat,
+         rightViewOffsetX: CGFloat) {
         self.roomTypeList = roomTypeList
-        self.roomTypeView = FcrAppUIQuickStartRoomTypeSelectView(selectedRoomType: roomTypeList[0])
+        self.roomTypeView = FcrAppUIQuickStartRoomTypeSelectView(selectedRoomType: roomTypeList[0],
+                                                                 leftTextWidth: leftTextWidth,
+                                                                 rightViewOffsetX: rightViewOffsetX)
+        
+        self.roomRoomTextField = FcrAppUIRoomNameTextField(leftViewType: .text,
+                                                           leftTextWidth: leftTextWidth,
+                                                           leftAreaOffsetX: leftTextOffX,
+                                                           editAreaOffsetX: rightViewOffsetX)
+        
+        self.userNameTextField = FcrAppUIUserNameTextField(leftViewType: .text,
+                                                           leftTextWidth: leftTextWidth,
+                                                           leftAreaOffsetX: leftTextOffX,
+                                                           editAreaOffsetX: rightViewOffsetX)
+        
         super.init(frame: .zero)
         initViews()
         initViewFrame()
@@ -224,16 +239,16 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
         }
         
         createButton.mas_makeConstraints { make in
-            make?.top.equalTo()(self.timeView.mas_bottom)?.offset()(25)
             make?.left.equalTo()(25)
             make?.right.equalTo()(-25)
             make?.height.equalTo()(46)
+            make?.bottom.equalTo()(0)
         }
     }
     
     func updateViewProperties() {
-        roomRoomTextField.leftLabel.text = "fcr_login_free_label_room_id".localized()
-        roomRoomTextField.placeholder = "fcr_login_free_tips_room_id".localized()
+        roomRoomTextField.leftLabel.text = "fcr_login_free_label_room_name".localized()
+        roomRoomTextField.placeholder = "fcr_login_free_tips_room_name".localized()
         
         userNameTextField.leftLabel.text = "fcr_login_free_label_nick_name".localized()
         userNameTextField.placeholder = "fcr_login_free_tips_nick_name".localized()

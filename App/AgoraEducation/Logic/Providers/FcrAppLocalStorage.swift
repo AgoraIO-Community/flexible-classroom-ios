@@ -20,6 +20,9 @@ class FcrAppLocalStorage {
         case nickname         = "com.agora.nickname"
         case userId           = "com.agora.userId"
         
+        case roomId           = "com.agora.roomId"
+        case roomName         = "com.agora.roomName"
+        
         case environment      = "com.agora.environment"
         case language         = "com.agora.language"
         case region           = "com.agora.region"

@@ -11,18 +11,54 @@ import Foundation
 class FcrAppRoom {
     private var urlGroup: FcrAppURLGroup
     private var armin: FcrAppArmin
+    private let localStorage: FcrAppLocalStorage
     
-    private var nextRoomId: String?
+    private var nextRoomIdOfList: String?
+    
+    private(set) var lastRoomId: String? {
+        didSet {
+            guard let roomId = lastRoomId else {
+                return
+            }
+            
+            localStorage.writeData(roomId,
+                                   key: .roomId)
+        }
+    }
+    private(set) var lastRoomName: String? {
+        didSet {
+            guard let roomName = lastRoomName else {
+                return
+            }
+            
+            localStorage.writeData(roomName,
+                                   key: .roomName)
+        }
+    }
     
     init(urlGroup: FcrAppURLGroup,
-         armin: FcrAppArmin) {
+         armin: FcrAppArmin,
+         localStorage: FcrAppLocalStorage) {
         self.urlGroup = urlGroup
         self.armin = armin
+        self.localStorage = localStorage
+        
+        if let roomId = try? localStorage.readData(key: .roomId,
+                                                   type: String.self) {
+            self.lastRoomId = roomId
+        }
+        
+        if let roomName = try? localStorage.readData(key: .roomName,
+                                                     type: String.self) {
+            self.lastRoomName = roomName
+        }
     }
     
     func createRoom(config: FcrAppCreateRoomConfig,
                     success: @escaping FcrAppStringCompletion,
                     failure: @escaping FcrAppFailure) {
+        lastRoomName = config.roomName
+        
         var url: String
         
         if config.isQuickStart {
@@ -43,9 +79,11 @@ class FcrAppRoom {
         }, failure: failure)
     }
     
-    func joinRoomPreCheck(config: FcrAppJoinRoomConfig,
+    func joinRoomPreCheck(config: FcrAppJoinRoomPreCheckConfig,
                           success: @escaping (FcrAppServerJoinRoomObject) -> Void,
                           failure: @escaping FcrAppFailure) {
+        lastRoomId = config.roomId
+        
         var url: String
         
         if config.isQuickStart {
@@ -78,7 +116,7 @@ class FcrAppRoom {
     func incrementalRoomList(count: Int,
                              success: @escaping ([FcrAppServerRoomObject]) -> Void,
                              failure: @escaping FcrAppFailure) {
-        requestRoomList(nextRoomId: nextRoomId,
+        requestRoomList(nextRoomId: nextRoomIdOfList,
                         count: count,
                         success: success,
                         failure: failure)
@@ -104,7 +142,7 @@ class FcrAppRoom {
                 return
             }
             
-            self.nextRoomId = nextRoomId
+            self.nextRoomIdOfList = nextRoomId
             
             success(object.list)
         }, failure: failure)

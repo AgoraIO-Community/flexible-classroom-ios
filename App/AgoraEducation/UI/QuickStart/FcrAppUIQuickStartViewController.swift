@@ -6,6 +6,7 @@
 //  Copyright © 2023 Agora. All rights reserved.
 //
 
+import AgoraClassroomSDK_iOS
 import AgoraUIBaseViews
 
 class FcrAppUIQuickStartViewController: FcrAppUIViewController {
@@ -47,25 +48,79 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
         navigationController?.setNavigationBarHidden(true,
                                                      animated: true)
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>,
+                               with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func joinRoomPreCheck(config: FcrAppJoinRoomPreCheckConfig) {
+        AgoraLoading.loading()
+        
+        center.room.joinRoomPreCheck(config: config) { [weak self] object in
+            let options = FcrAppUIJoinRoomConfig(userId: config.userId,
+                                                 userName: config.userName,
+                                                 userRole: config.userRole,
+                                                 roomId: object.roomDetail.roomId,
+                                                 roomName: object.roomDetail.roomName,
+                                                 roomType: object.roomDetail.roomType,
+                                                 appId: object.appId,
+                                                 token: object.token)
+            
+            
+            self?.joinRoom(options: options)
+        } failure: { [weak self] error in
+            AgoraLoading.hide()
+            self?.showErrorToast(error)
+        }
+    }
+    
+    func joinRoom(options: FcrAppUIJoinRoomConfig) {
+        let config = AgoraEduLaunchConfig(userName: options.userName,
+                                          userUuid: options.userId,
+                                          userRole: options.userRole.toClassroomType(),
+                                          roomName: options.roomName,
+                                          roomUuid: options.roomId,
+                                          roomType: options.roomType.toClassroomType(),
+                                          appId: options.appId,
+                                          token: options.token)
+        
+        AgoraClassroomSDK.launch(config) {
+            AgoraLoading.hide()
+        } failure: { [weak self] error in
+            AgoraLoading.hide()
+            self?.showErrorToast(error)
+        }
+    }
 }
 
 extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     func initViews() {
         view.addSubview(contentView)
         
-        contentView.roomInputView.joinRoomView.userNameTextField.text = center.localUser?.nickname
-        
         contentView.headerView.settingButton.addTarget(self,
                                                        action: #selector(onSettingsButtonPressed(_ :)),
                                                        for: .touchUpInside)
         
-        contentView.roomInputView.joinRoomView.joinButton.addTarget(self,
-                                                                    action: #selector(onJoinButtonPressed(_ :)),
-                                                                    for: .touchUpInside)
+        // Join room view
+        let joinRoomView = contentView.roomInputView.joinRoomView
         
-        contentView.roomInputView.createRoomView.roomTypeView.rightButton.addTarget(self,
-                                                                                    action: #selector(onRoomTypeButtonPressed),
-                                                                                    for: .touchUpInside)
+        joinRoomView.roomIdTextField.text = center.room.lastRoomId
+        joinRoomView.userNameTextField.text = center.localUser?.nickname
+        
+        joinRoomView.joinButton.addTarget(self,
+                                          action: #selector(onJoinButtonPressed(_ :)),
+                                          for: .touchUpInside)
+       
+        // Create room view
+        let createRoomView = contentView.roomInputView.createRoomView
+        
+        createRoomView.roomRoomTextField.text = center.room.lastRoomName
+        createRoomView.userNameTextField.text = center.localUser?.nickname
+        
+        createRoomView.roomTypeView.rightButton.addTarget(self,
+                                                          action: #selector(onRoomTypeButtonPressed),
+                                                          for: .touchUpInside)
     }
     
     func initViewFrame() {
@@ -76,8 +131,14 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     
     func updateViewProperties() {
         contentView.backgroundColor = .white
+        
+        let attributedText = FcrAppUIPolicyString().getAttributedString(true)
+        
+        contentView.roomInputView.policyView.textView.attributedText = attributedText
     }
-    
+}
+
+private extension FcrAppUIQuickStartViewController {
     @objc func onSettingsButtonPressed(_ sender: UIButton) {
         let vc = FcrAppUISettingsViewController(center: center,
                                                 dataSource: settingItems,
@@ -108,10 +169,39 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     }
     
     @objc func onJoinButtonPressed(_ sender: UIButton) {
-       
+        let joinRoomView = contentView.roomInputView.joinRoomView
+        
+        // TODO: UI 需要文案提示吗？
+        guard let roomId = joinRoomView.roomIdTextField.getText() else {
+            return
+        }
+        
+        guard let userName = joinRoomView.userNameTextField.getText() else {
+            return
+        }
+        
+        let userRole = joinRoomView.selectedUserRole
+        
+        let userId = "\(userName)_\(userRole.rawValue)".md5()
+        
+        let config = FcrAppJoinRoomPreCheckConfig(roomId: roomId,
+                                                  userId: userId,
+                                                  userName: userName,
+                                                  userRole: userRole,
+                                                  isQuickStart: true)
+        
+        localStorage(with: config)
+        
+        joinRoomPreCheck(config: config)
     }
-}
-
-extension FcrAppUIQuickStartViewController {
     
+    func localStorage(with config: FcrAppJoinRoomPreCheckConfig) {
+        if let localUser = center.localUser {
+            localUser.userId = config.userId
+            localUser.nickname = config.userName
+        } else {
+            center.createLocalUser(userId: config.userId,
+                                   nickname: config.userName)
+        }
+    }
 }

@@ -33,6 +33,14 @@ struct FcrAppUIColorGroup {
         return UIColor.fcr_hex_string("#4262FF")
     }
     
+    static var fcr_v2_red6: UIColor {
+        return UIColor.fcr_hex_string("#F5655C")
+    }
+    
+    static var fcr_v2_main_purple6: UIColor {
+        return UIColor.fcr_hex_string("#5765FF")
+    }
+    
     static var fcr_black: UIColor {
         return .black
     }

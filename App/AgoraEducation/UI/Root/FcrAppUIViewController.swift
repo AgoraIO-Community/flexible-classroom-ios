@@ -84,4 +84,8 @@ class FcrAppUIViewController: UIViewController {
         
         UIApplication.shared.open(urlObject)
     }
+    
+    func openURL(_ url: URL) {
+        UIApplication.shared.open(url)
+    }
 }

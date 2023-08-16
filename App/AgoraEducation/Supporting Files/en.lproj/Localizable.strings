@@ -8,7 +8,7 @@ fcr_login_button_join_room = "Join";
 fcr_login_option_read_agree = "I have read and agree {zzz}";
 
 //xxx灵动课堂用户协议,yyy灵动课堂隐私政策,zzz 海外灵动课堂用户协议
-fcr_login_tips_read_agree = "Please read and agree  {zzz}";
+fcr_login_tips_read_agree = "Please read and agree {zzz}";
 
 //移动端弹窗
 fcr_login_popup_window_label_title = "Terms of service";

@@ -34,7 +34,7 @@ struct FcrAppCreateRoomConfig {
     }
 }
 
-struct FcrAppJoinRoomConfig {
+struct FcrAppJoinRoomPreCheckConfig {
     var roomId: String
     var userId: String
     var userName: String

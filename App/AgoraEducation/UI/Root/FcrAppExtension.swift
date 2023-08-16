@@ -15,6 +15,29 @@ func printDebug(_ text: String) {
     print(">>>>>>>>>> \(text)")
 }
 
+extension AgoraLoading {
+    static func initProperties() {
+        if let bundle = Bundle.agora_bundle("AgoraEduUI"),
+           let url = bundle.url(forResource: "img_loading",
+                                withExtension: "gif"),
+           let data = try? Data(contentsOf: url) {
+            AgoraLoading.setImageData(data)
+        }
+    }
+}
+
+extension AgoraToast {
+    static func initProperties() {
+        let noticeImage = UIImage(named: "toast_notice")!
+        let warningImage = UIImage(named: "toast_warning")!
+        let errorImage = UIImage(named: "toast_warning")!
+        
+        AgoraToast.setImages(noticeImage: noticeImage,
+                             warningImage: warningImage,
+                             errorImage: errorImage)
+    }
+}
+
 extension Bundle {
     var version: String {
         guard let infoDictionary = infoDictionary,

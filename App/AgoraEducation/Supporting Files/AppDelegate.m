@@ -16,12 +16,12 @@
 @implementation AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    
+        
 #if DEBUG
-    FcrAppUINavigationController *nv = [[FcrAppUINavigationController alloc] initWithRootViewController:[[FcrAppUIQuickStartViewController alloc] init]];
+    FcrAppUIRootViewController *nv = [[FcrAppUIRootViewController alloc] initWithIsQuickStart:YES];
     self.window.rootViewController = nv;
 #else
-    FcrAppUINavigationController *nv = [[FcrAppUINavigationController alloc] initWithRootViewController:[[FcrAppUIMainViewController alloc] init]];
+    FcrAppUIRootViewController *nv = [[FcrAppUIRootViewController alloc] initWithIsQuickStart:NO];
     self.window.rootViewController = nv;
 #endif
     

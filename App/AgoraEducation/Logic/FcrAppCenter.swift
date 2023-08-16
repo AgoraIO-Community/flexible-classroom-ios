@@ -14,13 +14,14 @@ class FcrAppCenter: NSObject {
     private(set) lazy var urlGroup = FcrAppURLGroup(localStorage: localStorage)
     
     private(set) lazy var room = FcrAppRoom(urlGroup: urlGroup,
-                                            armin: armin)
+                                            armin: armin,
+                                            localStorage: localStorage)
     
     private lazy var armin = FcrAppArmin(logTube: self)
     
     private let localStorage = FcrAppLocalStorage()
     
-    var localUser: FcrAppLocalUser?
+    private(set) var localUser: FcrAppLocalUser?
     
     var isAgreedPrivacy = false {
         didSet {
@@ -152,6 +153,23 @@ class FcrAppCenter: NSObject {
             
             completion?()
         }
+    }
+    
+    @discardableResult func createLocalUser(userId: String,
+                                            nickname: String) -> FcrAppLocalUser {
+        localStorage.writeData(userId,
+                               key: .nickname)
+        
+        localStorage.writeData(nickname,
+                               key: .userId)
+        
+        let localUser = FcrAppLocalUser(userId: userId,
+                                        nickname: nickname,
+                                        localStorage: localStorage)
+        
+        self.localUser = localUser
+        
+        return localUser
     }
     
     func closeAccount(success: FcrAppCompletion? = nil,

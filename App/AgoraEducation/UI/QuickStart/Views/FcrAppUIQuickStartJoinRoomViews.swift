@@ -73,54 +73,63 @@ fileprivate class FcrAppUIQuickStartUserRoleCell: UICollectionViewCell,
     }
 }
 
-class FcrAppUIQuickStartRoomIdTextField: FcrAppUIRoomIdTextField {
-    override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRect(x: 20,
-                      y: 0,
-                      width: 80,
-                      height: bounds.height)
-    }
-}
-
-class FcrAppUIQuickStartUserNameTextField: FcrAppUIUserNameTextField {
-    override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRect(x: 20,
-                      y: 0,
-                      width: 80,
-                      height: bounds.height)
-    }
-}
-
 class FcrAppUIQuickStartJoinRoomInputView: UIView,
                                            AgoraUIContentContainer,
                                            UICollectionViewDataSource,
                                            UICollectionViewDelegate {
-    let roomIdTextField = FcrAppUIQuickStartRoomIdTextField(leftViewType: .text)
-    let userNameTextField = FcrAppUIQuickStartUserNameTextField(leftViewType: .text)
-    let roleLabel = UILabel()
-    let roleCollection = UICollectionView(frame: .zero,
-                                          collectionViewLayout: UICollectionViewLayout())
+    // View
+    private let roleLabel = UILabel()
+    private let roleCollection = UICollectionView(frame: .zero,
+                                                  collectionViewLayout: UICollectionViewLayout())
+    
+    let roomIdTextField: FcrAppUIRoomIdTextField
+    
+    let userNameTextField: FcrAppUIUserNameTextField
+    
+    let joinButton = UIButton(frame: .zero)
     
     private let itemSize = CGSize(width: 114,
                                   height: 45)
     
-    private let sectionInset = UIEdgeInsets(top: 12,
-                                            left: 12,
-                                            bottom: 12,
-                                            right: 12)
+    private let sectionInset: UIEdgeInsets
     
     private let minimumInteritemSpacing: CGFloat = 8
     
     private let minimumLineSpacing: CGFloat = 14
     
+    private let leftTextWidth: CGFloat
+    private let leftTextOffX: CGFloat
+    private let rightViewOffsetX: CGFloat
+    
+    // Data
     private let userRoleList: [FcrAppUIUserRole]
     
-    let joinButton = UIButton(frame: .zero)
+    private(set) var selectedUserRole = FcrAppUIUserRole.student
     
-    private var selectedUserRole = FcrAppUIUserRole.student
-    
-    init(userRoleList: [FcrAppUIUserRole]) {
+    init(userRoleList: [FcrAppUIUserRole],
+         leftTextWidth: CGFloat,
+         leftTextOffX: CGFloat,
+         rightViewOffsetX: CGFloat) {
         self.userRoleList = userRoleList
+        
+        self.roomIdTextField = FcrAppUIRoomIdTextField(leftViewType: .text,
+                                                       leftTextWidth: leftTextWidth,
+                                                       leftAreaOffsetX: leftTextOffX,
+                                                       editAreaOffsetX: rightViewOffsetX)
+        
+        self.userNameTextField = FcrAppUIUserNameTextField(leftViewType: .text,
+                                                           leftTextWidth: leftTextWidth,
+                                                           leftAreaOffsetX: leftTextOffX,
+                                                           editAreaOffsetX: rightViewOffsetX)
+        
+        self.sectionInset = UIEdgeInsets(top: 12,
+                                         left: 0,
+                                         bottom: 12,
+                                         right: 12)
+        
+        self.leftTextWidth = leftTextWidth
+        self.leftTextOffX = leftTextOffX
+        self.rightViewOffsetX = rightViewOffsetX
         
         super.init(frame: .zero)
         initViews()
@@ -173,28 +182,28 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
             make?.height.equalTo()(54)
         }
         
+        roleLabel.mas_makeConstraints { make in
+            make?.top.equalTo()(self.userNameTextField.mas_bottom)?.offset()(22)
+            make?.left.equalTo()(self.leftTextOffX)
+            make?.width.equalTo()(self.leftTextWidth)
+            make?.height.equalTo()(23)
+        }
+        
         let collectionWidth = itemSize.width * 2 + minimumInteritemSpacing + sectionInset.right + sectionInset.left
         let collectionHeight = itemSize.height * 2 + minimumLineSpacing + sectionInset.top + sectionInset.bottom
         
         roleCollection.mas_makeConstraints { make in
-            make?.top.equalTo()(self.userNameTextField.mas_bottom)?.offset()(8)
-            make?.right.equalTo()(0)
+            make?.top.equalTo()(self.roleLabel.mas_top)?.offset()(-sectionInset.top)
+            make?.left.equalTo()(self.roleLabel.mas_right)?.offset()(self.rightViewOffsetX)
             make?.width.equalTo()(collectionWidth)
             make?.height.equalTo()(collectionHeight)
         }
         
-        roleLabel.mas_makeConstraints { make in
-            make?.top.equalTo()(self.roleCollection.mas_top)?.offset()(sectionInset.top)
-            make?.left.equalTo()(20)
-            make?.right.equalTo()(self.roleCollection.mas_left)?.offset()(-10)
-            make?.height.equalTo()(23)
-        }
-        
         joinButton.mas_makeConstraints { make in
-            make?.top.equalTo()(self.roleCollection.mas_bottom)?.offset()(25)
             make?.left.equalTo()(25)
             make?.right.equalTo()(-25)
             make?.height.equalTo()(46)
+            make?.bottom.equalTo()(0)
         }
     }
     

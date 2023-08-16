@@ -12,7 +12,12 @@ import WebKit
 class FcrAppLocalUser {
     private let localStorage: FcrAppLocalStorage
     
-    var userId: String
+    var userId: String {
+        didSet {
+            localStorage.writeData(userId,
+                                   key: .userId)
+        }
+    }
     
     var nickname: String {
         didSet {
@@ -27,5 +32,13 @@ class FcrAppLocalUser {
         self.userId = userId
         self.nickname = nickname
         self.localStorage = localStorage
+        storageInfo()
+    }
+    
+    private func storageInfo() {
+        localStorage.writeData(userId,
+                               key: .userId)
+        localStorage.writeData(nickname,
+                               key: .nickname)
     }
 }

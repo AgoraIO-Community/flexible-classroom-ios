@@ -37,18 +37,33 @@ class FcrAppUITextField: UITextField, UITextFieldDelegate {
     }
     
     func getText() -> String? {
-        if let string = text, !string.isEmpty {
-            return string
+        if let string = text,
+           !string.isEmpty {
+            
+            let finalText = string.replacingOccurrences(of: " ",
+                                                        with: "")
+            
+            if !finalText.isEmpty {
+                return finalText
+            } else {
+                return nil
+            }
         } else {
             return nil
         }
     }
 }
 
-class FcrAppUIIconTextField: FcrAppUITextField, AgoraUIContentContainer {
+class FcrAppUIIconTextField: FcrAppUITextField,
+                             AgoraUIContentContainer {
     enum LeftViewType {
         case image, text
     }
+    
+    let leftImageSize: CGSize
+    let leftTextWidth: CGFloat
+    let leftAreaOffsetX: CGFloat
+    let editAreaOffsetX: CGFloat
     
     let leftImageView = UIImageView(frame: .zero)
     let leftLabel = UILabel(frame: .zero)
@@ -57,8 +72,18 @@ class FcrAppUIIconTextField: FcrAppUITextField, AgoraUIContentContainer {
     
     let leftViewType: LeftViewType
     
-    init(leftViewType: LeftViewType) {
+    init(leftViewType: LeftViewType,
+         leftImageSize: CGSize = CGSize.zero,
+         leftTextWidth: CGFloat = 80,
+         leftAreaOffsetX: CGFloat = 0,
+         editAreaOffsetX: CGFloat = 10) {
         self.leftViewType = leftViewType
+        
+        self.leftImageSize = leftImageSize
+        self.leftTextWidth = leftTextWidth
+        self.leftAreaOffsetX = leftAreaOffsetX
+        self.editAreaOffsetX = editAreaOffsetX
+        
         super.init(frame: .zero)
         initViews()
         initViewFrame()
@@ -114,36 +139,35 @@ class FcrAppUIIconTextField: FcrAppUITextField, AgoraUIContentContainer {
     }
     
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
-        let horizontalSpace: CGFloat = 12
-        
-        let x: CGFloat = 10
-        let y: CGFloat = horizontalSpace
-        let height: CGFloat = bounds.height - (horizontalSpace * 2)
-        let width: CGFloat = height
-        
-        return CGRect(x: x,
-                      y: y,
-                      width: width,
-                      height: height)
-    }
-    
-    override func clearButtonRect(forBounds bounds: CGRect) -> CGRect {
-        let width: CGFloat = 16
-        let height: CGFloat = width
-        let x: CGFloat = bounds.width - width - 22
-        let y: CGFloat = (bounds.height - height) * 0.5
-        
-        return CGRect(x: x,
-                      y: y,
-                      width: width,
-                      height: height)
+        switch leftViewType {
+        case .image:
+            let x: CGFloat = leftAreaOffsetX
+            let y: CGFloat = (bounds.height - leftImageSize.height) / 2
+            let height: CGFloat = leftImageSize.height
+            let width: CGFloat = leftImageSize.width
+            
+            return CGRect(x: x,
+                          y: y,
+                          width: width,
+                          height: height)
+        case .text:
+            let x: CGFloat = leftAreaOffsetX
+            let y: CGFloat = 0
+            let height: CGFloat = bounds.height
+            let width: CGFloat = leftTextWidth
+            
+            return CGRect(x: x,
+                          y: y,
+                          width: width,
+                          height: height)
+        }
     }
     
     override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         var x: CGFloat = 0
         
         if let view = leftView {
-            x = view.frame.maxX + 10
+            x = view.frame.maxX + editAreaOffsetX
         }
         
         var width: CGFloat = bounds.width - x
@@ -162,7 +186,7 @@ class FcrAppUIIconTextField: FcrAppUITextField, AgoraUIContentContainer {
         var x: CGFloat = 0
         
         if let view = leftView {
-            x = view.frame.maxX + 10
+            x = view.frame.maxX + editAreaOffsetX
         }
         
         var width: CGFloat = bounds.width - x
@@ -176,9 +200,23 @@ class FcrAppUIIconTextField: FcrAppUITextField, AgoraUIContentContainer {
                       width: width,
                       height: height)
     }
+    
+    override func clearButtonRect(forBounds bounds: CGRect) -> CGRect {
+        let width: CGFloat = 16
+        let height: CGFloat = width
+        let x: CGFloat = bounds.width - width - 22
+        let y: CGFloat = (bounds.height - height) * 0.5
+        
+        return CGRect(x: x,
+                      y: y,
+                      width: width,
+                      height: height)
+    }
 }
 
 class FcrAppUIRoomIdTextField: FcrAppUIIconTextField {
+    private(set) var originalText: String?
+    
     override func textField(_ textField: UITextField,
                             shouldChangeCharactersIn range: NSRange,
                             replacementString string: String) -> Bool {
@@ -189,18 +227,44 @@ class FcrAppUIRoomIdTextField: FcrAppUIIconTextField {
             return false
         }
         
-        guard let text = textField.text else {
-            return true
-        }
+        // 只能输入数字
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
         
-        if text.count > 50 && string.count != 0 {
+        if !allowedCharacters.isSuperset(of: characterSet) {
             return false
         }
         
-        let regex = "^[0-9]*$"
-        let format = NSPredicate(format: "SELF MATCHES %@" , regex).evaluate(with: string)
+        // 每三个数字空一格
+        if let currentText = textField.text,
+            let rangeOfTextToReplace = Range(range, in: currentText) {
+            
+            var updatedText = currentText.replacingCharacters(in: rangeOfTextToReplace,
+                                                              with: string)
+            // 去除输入中的空格
+            updatedText = updatedText.replacingOccurrences(of: " ", with: "")
+            
+            var finalText = ""
+            let maxDigits = 3
+            
+            // 每三个数字空一格
+            while updatedText.count > 0 {
+                let subString = String(updatedText.prefix(maxDigits))
+                finalText += subString + " "
+                
+                updatedText = String(updatedText.dropFirst(maxDigits))
+            }
+            
+            // 去除最后的空格
+            finalText = finalText.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            // 更新文本框的内容
+            textField.text = finalText
+            
+            return false
+        }
         
-        return format
+        return true
     }
 }
 
