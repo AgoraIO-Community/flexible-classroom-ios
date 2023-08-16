@@ -170,7 +170,7 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
     
     init(roomTypeList: [FcrAppUIRoomType],
          leftTextWidth: CGFloat,
-         leftTextOffX: CGFloat,
+         leftTextOffsetX: CGFloat,
          rightViewOffsetX: CGFloat) {
         self.roomTypeList = roomTypeList
         self.roomTypeView = FcrAppUIQuickStartRoomTypeSelectView(selectedRoomType: roomTypeList[0],
@@ -179,12 +179,12 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
         
         self.roomRoomTextField = FcrAppUIRoomNameTextField(leftViewType: .text,
                                                            leftTextWidth: leftTextWidth,
-                                                           leftAreaOffsetX: leftTextOffX,
+                                                           leftAreaOffsetX: leftTextOffsetX,
                                                            editAreaOffsetX: rightViewOffsetX)
         
         self.userNameTextField = FcrAppUIUserNameTextField(leftViewType: .text,
                                                            leftTextWidth: leftTextWidth,
-                                                           leftAreaOffsetX: leftTextOffX,
+                                                           leftAreaOffsetX: leftTextOffsetX,
                                                            editAreaOffsetX: rightViewOffsetX)
         
         super.init(frame: .zero)

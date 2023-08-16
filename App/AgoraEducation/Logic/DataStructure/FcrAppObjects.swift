@@ -11,9 +11,12 @@ import Foundation
 struct FcrAppCreateRoomConfig {
     var roomName: String
     var roomType: FcrAppRoomType
+    
+    var userId: String
     var userName: String
-    var startTime: Int64  // ms
-    var endTime: Int64    // ms
+    
+    var startTime: Int64?  // ms
+    var endTime: Int64?    // ms
     var roomProperties: [String: Any]?
     var isQuickStart: Bool = false
     
@@ -23,8 +26,15 @@ struct FcrAppCreateRoomConfig {
         parameters["roomName"] = roomName
         parameters["roomType"] = roomType.rawValue
         parameters["userName"] = userName
-        parameters["startTime"] = startTime
-        parameters["endTime"] = endTime
+        parameters["userUuid"] = userId
+        
+        if let `startTime` = startTime {
+            parameters["startTime"] = startTime
+        }
+        
+        if let `endTime` = endTime {
+            parameters["endTime"] = endTime
+        }
         
         if let `properties` = roomProperties {
             parameters["properties"] = properties

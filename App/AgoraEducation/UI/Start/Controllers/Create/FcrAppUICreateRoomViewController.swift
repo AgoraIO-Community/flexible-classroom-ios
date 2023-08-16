@@ -56,6 +56,20 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
         
         UIApplication.shared.keyWindow?.endEditing(true)
     }
+    
+    func createRoom(_ config: FcrAppCreateRoomConfig) {
+        AgoraLoading.loading()
+        
+        center.room.createRoom(config: config) { [weak self] roomId in
+            AgoraLoading.hide()
+            self?.dismiss(animated: true)
+            self?.completion?()
+            self?.completion = nil
+        } failure: { [weak self] error in
+            AgoraLoading.hide()
+            self?.showErrorToast(error)
+        }
+    }
 }
 
 // MARK: - Creations
@@ -223,6 +237,10 @@ private extension FcrAppUICreateRoomViewController {
             return
         }
         
+        guard let userId = center.localUser?.userId else {
+            return
+        }
+        
         // Time
         var schedule: Date
         
@@ -237,24 +255,15 @@ private extension FcrAppUICreateRoomViewController {
         
         // Room type
         let roomType = headerView.selectedRoomType
-                
-        AgoraLoading.loading()
         
         let config = FcrAppCreateRoomConfig(roomName: roomName,
                                             roomType: roomType,
+                                            userId: userId,
                                             userName: userName,
                                             startTime: startTime,
                                             endTime: endTime)
         
-        center.room.createRoom(config: config) { [weak self] roomId in
-            AgoraLoading.hide()
-            self?.dismiss(animated: true)
-            self?.completion?()
-            self?.completion = nil
-        } failure: { [weak self] error in
-            AgoraLoading.hide()
-            self?.showErrorToast(error)
-        }
+        createRoom(config)
     }
 }
 

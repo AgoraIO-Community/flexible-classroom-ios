@@ -98,7 +98,7 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
     private let minimumLineSpacing: CGFloat = 14
     
     private let leftTextWidth: CGFloat
-    private let leftTextOffX: CGFloat
+    private let leftTextOffsetX: CGFloat
     private let rightViewOffsetX: CGFloat
     
     // Data
@@ -108,18 +108,18 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
     
     init(userRoleList: [FcrAppUIUserRole],
          leftTextWidth: CGFloat,
-         leftTextOffX: CGFloat,
+         leftTextOffsetX: CGFloat,
          rightViewOffsetX: CGFloat) {
         self.userRoleList = userRoleList
         
         self.roomIdTextField = FcrAppUIRoomIdTextField(leftViewType: .text,
                                                        leftTextWidth: leftTextWidth,
-                                                       leftAreaOffsetX: leftTextOffX,
+                                                       leftAreaOffsetX: leftTextOffsetX,
                                                        editAreaOffsetX: rightViewOffsetX)
         
         self.userNameTextField = FcrAppUIUserNameTextField(leftViewType: .text,
                                                            leftTextWidth: leftTextWidth,
-                                                           leftAreaOffsetX: leftTextOffX,
+                                                           leftAreaOffsetX: leftTextOffsetX,
                                                            editAreaOffsetX: rightViewOffsetX)
         
         self.sectionInset = UIEdgeInsets(top: 12,
@@ -128,7 +128,7 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
                                          right: 12)
         
         self.leftTextWidth = leftTextWidth
-        self.leftTextOffX = leftTextOffX
+        self.leftTextOffsetX = leftTextOffsetX
         self.rightViewOffsetX = rightViewOffsetX
         
         super.init(frame: .zero)
@@ -184,7 +184,7 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
         
         roleLabel.mas_makeConstraints { make in
             make?.top.equalTo()(self.userNameTextField.mas_bottom)?.offset()(22)
-            make?.left.equalTo()(self.leftTextOffX)
+            make?.left.equalTo()(self.leftTextOffsetX)
             make?.width.equalTo()(self.leftTextWidth)
             make?.height.equalTo()(23)
         }

@@ -39,15 +39,7 @@ class FcrAppUITextField: UITextField, UITextFieldDelegate {
     func getText() -> String? {
         if let string = text,
            !string.isEmpty {
-            
-            let finalText = string.replacingOccurrences(of: " ",
-                                                        with: "")
-            
-            if !finalText.isEmpty {
-                return finalText
-            } else {
-                return nil
-            }
+            return string
         } else {
             return nil
         }
@@ -163,6 +155,14 @@ class FcrAppUIIconTextField: FcrAppUITextField,
         }
     }
     
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        var rect = super.textRect(forBounds: bounds)
+        
+        rect.origin.x += editAreaOffsetX
+        
+        return rect
+    }
+    
     override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         var x: CGFloat = 0
         
@@ -215,7 +215,60 @@ class FcrAppUIIconTextField: FcrAppUITextField,
 }
 
 class FcrAppUIRoomIdTextField: FcrAppUIIconTextField {
-    private(set) var originalText: String?
+    private var maxCount = (9 + 2)
+    
+    override func getText() -> String? {
+        let text = super.getText()
+        
+        if let string = text {
+            let finalText = string.replacingOccurrences(of: " ",
+                                                        with: "")
+            
+            if !finalText.isEmpty {
+                return finalText
+            } else {
+                return nil
+            }
+        } else {
+            return text
+        }
+    }
+    
+    func setShowText(_ text: String?) {
+        guard let text = text else {
+            return
+        }
+        
+        let string = getShowText(text)
+        
+        guard string.count <= maxCount else {
+            return
+        }
+        
+        self.text = string
+    }
+    
+    func getShowText(_ text: String) -> String {
+        // 去除输入中的空格
+        var updatedText = text.replacingOccurrences(of: " ",
+                                                    with: "")
+        
+        var finalText = ""
+        let maxDigits = 3
+        
+        // 每三个数字空一格
+        while updatedText.count > 0 {
+            let subString = String(updatedText.prefix(maxDigits))
+            finalText += subString + " "
+            
+            updatedText = String(updatedText.dropFirst(maxDigits))
+        }
+        
+        // 去除最后的空格
+        finalText = finalText.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        return finalText
+    }
     
     override func textField(_ textField: UITextField,
                             shouldChangeCharactersIn range: NSRange,
@@ -224,6 +277,14 @@ class FcrAppUIRoomIdTextField: FcrAppUIIconTextField {
                               shouldChangeCharactersIn: range,
                               replacementString: string)
         else {
+            return false
+        }
+        
+        guard let text = textField.text else {
+            return true
+        }
+        
+        if text.count >= maxCount && string.count != 0 {
             return false
         }
         
@@ -239,28 +300,10 @@ class FcrAppUIRoomIdTextField: FcrAppUIIconTextField {
         if let currentText = textField.text,
             let rangeOfTextToReplace = Range(range, in: currentText) {
             
-            var updatedText = currentText.replacingCharacters(in: rangeOfTextToReplace,
+            let updatedText = currentText.replacingCharacters(in: rangeOfTextToReplace,
                                                               with: string)
-            // 去除输入中的空格
-            updatedText = updatedText.replacingOccurrences(of: " ", with: "")
             
-            var finalText = ""
-            let maxDigits = 3
-            
-            // 每三个数字空一格
-            while updatedText.count > 0 {
-                let subString = String(updatedText.prefix(maxDigits))
-                finalText += subString + " "
-                
-                updatedText = String(updatedText.dropFirst(maxDigits))
-            }
-            
-            // 去除最后的空格
-            finalText = finalText.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            // 更新文本框的内容
-            textField.text = finalText
-            
+            textField.text = getShowText(updatedText)
             return false
         }
         

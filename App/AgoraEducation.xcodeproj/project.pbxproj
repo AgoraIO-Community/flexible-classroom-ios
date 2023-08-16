@@ -53,6 +53,7 @@
 		86E502492A6002FD003C04D8 /* FcrAppUIEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E502482A6002FD003C04D8 /* FcrAppUIEnums.swift */; };
 		86E5024B2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5024A2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift */; };
 		86F5E31C2A8C677200AED16A /* FcrAppUIRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F5E31B2A8C677200AED16A /* FcrAppUIRootViewController.swift */; };
+		86F5E31E2A8CB4F700AED16A /* FcrAppUIQuickStartInputViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F5E31D2A8CB4F700AED16A /* FcrAppUIQuickStartInputViews.swift */; };
 		AB05CE9A28C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9928C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift */; };
 		AB07A337287C549D0072A29F /* FcrAppUICloseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07A336287C549D0072A29F /* FcrAppUICloseAccountViewController.swift */; };
 		AB08496128D1812700214B68 /* FcrAppUIJoinRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08496028D1812700214B68 /* FcrAppUIJoinRoomController.swift */; };
@@ -141,6 +142,7 @@
 		86E502482A6002FD003C04D8 /* FcrAppUIEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIEnums.swift; sourceTree = "<group>"; };
 		86E5024A2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIRoomListSubViews.swift; sourceTree = "<group>"; };
 		86F5E31B2A8C677200AED16A /* FcrAppUIRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIRootViewController.swift; sourceTree = "<group>"; };
+		86F5E31D2A8CB4F700AED16A /* FcrAppUIQuickStartInputViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartInputViews.swift; sourceTree = "<group>"; };
 		8CD382F7BF039504C1D49C53 /* Pods-AgoraEducation.qatestrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.qatestrelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.qatestrelease.xcconfig"; sourceTree = "<group>"; };
 		A5BFF93D50503E0756F47D98 /* Pods-AgoraEducation.qarelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.qarelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.qarelease.xcconfig"; sourceTree = "<group>"; };
 		AB05CE9928C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICreateRoomTimePickerController.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				8629C3552A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift */,
+				86F5E31D2A8CB4F700AED16A /* FcrAppUIQuickStartInputViews.swift */,
 				8629C3572A850DD200DA97B7 /* FcrAppUIQuickStartJoinRoomViews.swift */,
 				869D42632A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift */,
 			);
@@ -686,6 +689,7 @@
 				68403F83276C859800E88214 /* FcrAppExtension.swift in Sources */,
 				86A15D772A7A9765001CDAD7 /* FcrAppUIMoreSettingViews.swift in Sources */,
 				86B81E602A55AB8300BA631C /* FcrAppLocalStorage.swift in Sources */,
+				86F5E31E2A8CB4F700AED16A /* FcrAppUIQuickStartInputViews.swift in Sources */,
 				AB7B7B6C28C1D8A7001D327A /* FcrAppUIMainViewController.swift in Sources */,
 				869D426A2A8B2C84004EE63E /* FcrAppUIQuickStartClassModeViewController.swift in Sources */,
 				86B81E682A568F4800BA631C /* FcrAppUINavigationController.swift in Sources */,

@@ -25,7 +25,6 @@ class FcrAppUIRootViewController: FcrAppUINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         AgoraLoading.initProperties()
         AgoraToast.initProperties()
     }

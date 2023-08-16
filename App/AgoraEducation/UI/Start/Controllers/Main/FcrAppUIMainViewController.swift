@@ -90,23 +90,6 @@ private extension FcrAppUIMainViewController {
 
 extension FcrAppUIMainViewController: AgoraUIContentContainer {
     func initViews() {
-        // Loading view
-        if let bundle = Bundle.agora_bundle("AgoraEduUI"),
-           let url = bundle.url(forResource: "img_loading",
-                                withExtension: "gif"),
-           let data = try? Data(contentsOf: url) {
-            AgoraLoading.setImageData(data)
-        }
-        
-        // Toast view
-        let noticeImage = UIImage(named: "toast_notice")!
-        let warningImage = UIImage(named: "toast_warning")!
-        let errorImage = UIImage(named: "toast_warning")!
-        
-        AgoraToast.setImages(noticeImage: noticeImage,
-                             warningImage: warningImage,
-                             errorImage: errorImage)
-        
         if let navigation = navigationController as? FcrAppUINavigationController {
             navigation.csDelegate = self
         }
