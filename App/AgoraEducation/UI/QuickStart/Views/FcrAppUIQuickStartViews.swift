@@ -43,6 +43,10 @@ class FcrAppUIQuickStartHeaderView: UIView,
         addSubview(settingButton)
         addSubview(titleLabel)
         
+        titleLabel.titleLabel?.font = FcrAppUIFontGroup.font20
+        titleLabel.titleLabel?.textAlignment = .left
+        
+        signButton.titleLabel?.font = FcrAppUIFontGroup.font14
         signButton.layer.cornerRadius = 15
         signButton.layer.borderWidth = 1
         
@@ -62,7 +66,7 @@ class FcrAppUIQuickStartHeaderView: UIView,
         }
         
         signButton.mas_makeConstraints { make in
-            make?.top.equalTo()(self.titleLabel.mas_bottom)?.offset()(22)
+            make?.top.equalTo()(self.titleLabel.mas_bottom)?.offset()(12)
             make?.left.equalTo()(18)
             make?.width.equalTo()(87)
             make?.height.equalTo()(30)
@@ -78,10 +82,11 @@ class FcrAppUIQuickStartHeaderView: UIView,
     func updateViewProperties() {
         backgroundImageView.image = UIImage(named: "fcr-quick-bg")
         
-        titleLabel.setTitleColor(FcrAppUIColorGroup.fcr_v2_white,
+        // Title label
+        titleLabel.setTitleColor(FcrAppUIColorGroup.fcr_white,
                                  for: .normal)
         
-        titleLabel.setTitleColor(FcrAppUIColorGroup.fcr_v2_white,
+        titleLabel.setTitleColor(FcrAppUIColorGroup.fcr_white,
                                  for: .selected)
         
         titleLabel.setTitle("fcr_feedback_label_fcr".localized(),
@@ -90,17 +95,26 @@ class FcrAppUIQuickStartHeaderView: UIView,
         titleLabel.setTitle("fcr_feedback_label_fcr".localized(),
                             for: .normal)
         
-        titleLabel.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        titleLabel.titleLabel?.textAlignment = .left
-        
+        // Sign button
         signButton.setTitle("fcr_login_free_button_login_sign".localized(),
                             for: .normal)
         
-        signButton.layer.borderColor = FcrAppUIColorGroup.fcr_v2_white.cgColor
+        let size = signButton.titleLabel!.text!.agora_size(font: signButton.titleLabel!.font,
+                                                          height: 30)
         
+//        signButton.mas_updateConstraints { make in
+//            make?.width.equalTo()(size.width)
+//        }
+        
+        signButton.setTitleColor(FcrAppUIColorGroup.fcr_white,
+                                 for: .normal)
+        
+        signButton.layer.borderColor = FcrAppUIColorGroup.fcr_white.cgColor
+        
+        // Setting button
         settingButton.setImage(UIImage(named: "fcr-quick-setting"),
                                for: .normal)
-        // TODO: UI
+        
         settingButton.backgroundColor = UIColor.white.withAlphaComponent(0.5)
     }
     
@@ -116,7 +130,6 @@ class FcrAppUIQuickStartHeaderView: UIView,
         }
     }
 }
-
 
 // MARK: - Footer
 class FcrAppUIQuickStartFooterView: UIView,
@@ -141,14 +154,15 @@ class FcrAppUIQuickStartFooterView: UIView,
         addSubview(contentLabel)
         addSubview(signButton)
         
-        // TODO: UI 字体粗细
-        titleLabel.font = UIFont.systemFont(ofSize: 14)
-        contentLabel.font = UIFont.systemFont(ofSize: 13)
+        titleLabel.font = FcrAppUIFontGroup.font14
+        contentLabel.font = FcrAppUIFontGroup.font13
         contentLabel.numberOfLines = 0
         
-        signButton.layer.borderColor = FcrAppUIColorGroup.fcr_v2_white.cgColor
+        signButton.layer.borderColor = FcrAppUIColorGroup.fcr_white.cgColor
         signButton.layer.borderWidth = 1
         signButton.layer.cornerRadius = 15
+        
+        signButton.titleLabel?.font = FcrAppUIFontGroup.font15
     }
     
     func initViewFrame() {
@@ -180,18 +194,19 @@ class FcrAppUIQuickStartFooterView: UIView,
         
         contentLabel.text = "fcr_login_free_tips_login_guide".localized()
         
-        // TODO: UI 变量名是啥？
-//        contentLabel.textColor = FcrAppUIColorGroup.
+        contentLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
         
-        // TODO: UI
         signButton.setTitle("fcr_login_free_button_login_sign".localized(),
                             for: .normal)
         
-        signButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        signButton.setTitleColor(FcrAppUIColorGroup.fcr_black,
+                                 for: .normal)
+        
+        signButton.backgroundColor = FcrAppUIColorGroup.fcr_white
     }
 }
 
-class FcrAppUIQuickStartContentView: UIView,
+class FcrAppUIQuickStartContentView: UIScrollView,
                                      AgoraUIContentContainer {
     let headerView = FcrAppUIQuickStartHeaderView(frame: .zero)
     let roomInputView: FcrAppUIQuickStartInputView
@@ -212,11 +227,14 @@ class FcrAppUIQuickStartContentView: UIView,
     }
     
     func initViews() {
+        contentSize = CGSize(width: 0, height: 870)
+        
+        
         addSubview(headerView)
         addSubview(footerView)
         addSubview(roomInputView)
         
-        footerView.layer.cornerRadius = FcrAppUIFrameGroup.quickCornerRadius16
+        footerView.layer.cornerRadius = FcrAppUIFrameGroup.cornerRadius16
     }
     
     func initViewFrame() {
@@ -233,7 +251,7 @@ class FcrAppUIQuickStartContentView: UIView,
         }
         
         footerView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.roomInputView.mas_bottom)?.offset()(-50)
+            make?.top.equalTo()(self.roomInputView.mas_bottom)?.offset()(-35)
             make?.left.equalTo()(15)
             make?.right.equalTo()(-15)
             make?.height.equalTo()(234)

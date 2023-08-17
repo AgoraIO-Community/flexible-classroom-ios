@@ -10,10 +10,10 @@ import Foundation
 
 struct FcrAppUIPolicyString {
     let privacyPolicyLink = ""
-    let privacyPolicyText = ""
+    let privacyPolicyText = "fcr_login_label_privacy_policy".localized()
     
     let termsOfUseLink = "https://www.google.com"
-    let termsOfUseText = "tearms of use"
+    let termsOfUseText = "fcr_login_label_terms_of_service".localized()
     
     func getAttributedString(_ isEnglish: Bool) -> NSMutableAttributedString {
         

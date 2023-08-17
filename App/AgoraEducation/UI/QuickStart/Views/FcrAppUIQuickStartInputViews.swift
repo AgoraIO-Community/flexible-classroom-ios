@@ -37,12 +37,13 @@ class FcrAppUIQuickStartSegmentedControl: UIButton,
         addSubview(lineView)
         
         joinButton.isSelected = true
-        createButton.isSelected = false
-        
+        joinButton.titleLabel?.font = FcrAppUIFontGroup.font16
         joinButton.addTarget(self,
                              action: #selector(onSelected(_:)),
                              for: .touchUpInside)
         
+        createButton.isSelected = false
+        createButton.titleLabel?.font = FcrAppUIFontGroup.font16
         createButton.addTarget(self,
                                action: #selector(onSelected(_:)),
                                for: .touchUpInside)
@@ -62,7 +63,7 @@ class FcrAppUIQuickStartSegmentedControl: UIButton,
         lineView.mas_makeConstraints { make in
             make?.bottom.equalTo()(0)
             make?.width.equalTo()(self.mas_width)?.multipliedBy()(0.5)?.offset()(-40)
-            make?.height.equalTo()(2)
+            make?.height.equalTo()(3)
             make?.centerX.equalTo()(self.joinButton.mas_centerX)
         }
     }
@@ -77,9 +78,6 @@ class FcrAppUIQuickStartSegmentedControl: UIButton,
         joinButton.setTitle("fcr_login_free_option_join".localized(),
                             for: .normal)
         
-        joinButton.titleLabel?.font = UIFont.systemFont(ofSize: 16,
-                                                        weight: .medium)
-        
         createButton.setTitleColor(FcrAppUIColorGroup.fcr_black,
                                    for: .normal)
         
@@ -88,9 +86,6 @@ class FcrAppUIQuickStartSegmentedControl: UIButton,
         
         createButton.setTitle("fcr_login_free_option_create".localized(),
                               for: .normal)
-        
-        createButton.titleLabel?.font = UIFont.systemFont(ofSize: 16,
-                                                          weight: .medium)
         
         lineView.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
     }

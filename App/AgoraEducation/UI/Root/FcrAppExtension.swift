@@ -38,6 +38,17 @@ extension AgoraToast {
     }
 }
 
+extension Dictionary where Key == String, Value == Any {
+    func getValue<T: Any>(of key: String,
+                          type: T.Type) throws -> T {
+        guard let value = self[key] as? T else {
+            throw FcrAppError(code: -1,
+                              message: "Failed data type conversion, key: \(key)")
+        }
+        return value
+    }
+}
+
 extension Bundle {
     var version: String {
         guard let infoDictionary = infoDictionary,

@@ -58,7 +58,7 @@ fcr_login_free_role_option_teacher = "老师";
 fcr_login_free_role_option_audience = "观众";
 fcr_login_free_button_create = "快速创建课堂";
 fcr_login_free_button_join = "快速加入课堂";
-fcr_login_free_button_login_sign = "登录/注册";
+fcr_login_free_button_login_sign = "登录";
 fcr_login_free_button_setting = "设置";
 
 //****************** 帮助 help ******************

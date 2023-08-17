@@ -127,7 +127,7 @@ class FcrAppUIIconTextField: FcrAppUITextField,
         
         textColor = .black
         
-        lineView.backgroundColor = UIColor(hexString: "#EFEFEF")
+        lineView.backgroundColor = FcrAppUIColorGroup.fcr_v2_line
     }
     
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {

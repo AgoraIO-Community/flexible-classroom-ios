@@ -30,10 +30,14 @@ struct FcrAppCreateRoomConfig {
         
         if let `startTime` = startTime {
             parameters["startTime"] = startTime
+        } else {
+            parameters["startTime"] = UInt64(Date().timeIntervalSince1970 * 1000)
         }
         
         if let `endTime` = endTime {
             parameters["endTime"] = endTime
+        } else {
+            parameters["endTime"] = UInt64(Date().timeIntervalSince1970 * 1000 + 30 * 60)
         }
         
         if let `properties` = roomProperties {

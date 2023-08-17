@@ -54,6 +54,7 @@
 		86E5024B2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5024A2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift */; };
 		86F5E31C2A8C677200AED16A /* FcrAppUIRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F5E31B2A8C677200AED16A /* FcrAppUIRootViewController.swift */; };
 		86F5E31E2A8CB4F700AED16A /* FcrAppUIQuickStartInputViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F5E31D2A8CB4F700AED16A /* FcrAppUIQuickStartInputViews.swift */; };
+		86F5E3202A8CBF9E00AED16A /* FcrAppUIFontGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F5E31F2A8CBF9E00AED16A /* FcrAppUIFontGroup.swift */; };
 		AB05CE9A28C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9928C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift */; };
 		AB07A337287C549D0072A29F /* FcrAppUICloseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07A336287C549D0072A29F /* FcrAppUICloseAccountViewController.swift */; };
 		AB08496128D1812700214B68 /* FcrAppUIJoinRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08496028D1812700214B68 /* FcrAppUIJoinRoomController.swift */; };
@@ -143,6 +144,7 @@
 		86E5024A2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIRoomListSubViews.swift; sourceTree = "<group>"; };
 		86F5E31B2A8C677200AED16A /* FcrAppUIRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIRootViewController.swift; sourceTree = "<group>"; };
 		86F5E31D2A8CB4F700AED16A /* FcrAppUIQuickStartInputViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartInputViews.swift; sourceTree = "<group>"; };
+		86F5E31F2A8CBF9E00AED16A /* FcrAppUIFontGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIFontGroup.swift; sourceTree = "<group>"; };
 		8CD382F7BF039504C1D49C53 /* Pods-AgoraEducation.qatestrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.qatestrelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.qatestrelease.xcconfig"; sourceTree = "<group>"; };
 		A5BFF93D50503E0756F47D98 /* Pods-AgoraEducation.qarelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.qarelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.qarelease.xcconfig"; sourceTree = "<group>"; };
 		AB05CE9928C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICreateRoomTimePickerController.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 			children = (
 				8629C34A2A8114A900DA97B7 /* FcrAppUIColorGroup.swift */,
 				8629C3532A8482F900DA97B7 /* FcrAppUIFrameGroup.swift */,
+				86F5E31F2A8CBF9E00AED16A /* FcrAppUIFontGroup.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -311,8 +314,8 @@
 			children = (
 				8629C3512A83C16C00DA97B7 /* FcrAppUIQuickStartViewController.swift */,
 				869D42692A8B2C84004EE63E /* FcrAppUIQuickStartClassModeViewController.swift */,
-				869D426B2A8B5A35004EE63E /* Views */,
 				869D426C2A8B9328004EE63E /* FcrAppUIPolicyString.swift */,
+				869D426B2A8B5A35004EE63E /* Views */,
 			);
 			path = QuickStart;
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				AB05CE9A28C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift in Sources */,
 				AB0A2DD228DAEF6A0048FA3C /* FcrAppUILoginViewController.swift in Sources */,
 				1A44BE7B22BF863000766274 /* AppDelegate.m in Sources */,
+				86F5E3202A8CBF9E00AED16A /* FcrAppUIFontGroup.swift in Sources */,
 				86B81E6A2A56A2B400BA631C /* FcrAppLocalUser.swift in Sources */,
 				AB4F69D3286D8DE70012E6B3 /* FcrAppUIAboutViewController.swift in Sources */,
 				AB7B7B6F28C1E0B1001D327A /* FcrAppUIMainTitleView.swift in Sources */,

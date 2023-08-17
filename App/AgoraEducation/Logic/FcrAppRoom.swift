@@ -69,12 +69,17 @@ class FcrAppRoom {
         
         let parameters = config.parameters()
         
+        let headers = urlGroup.headers()
+        
         armin.request(url: url,
+                      headers: headers,
                       parameters: parameters,
                       method: .post,
                       event: "create-room",
                       success: { object in
-            let roomId = try object.dataConvert(type: String.self)
+            let data = try object.dataConvert(type: [String: Any].self)
+            let roomId = try data.getValue(of: "roomId",
+                                           type: String.self)
             success(roomId)
         }, failure: failure)
     }
@@ -100,7 +105,7 @@ class FcrAppRoom {
                                  headers: headers,
                                  parameters: parameters,
                                  method: .put,
-                                 event: "join-room",
+                                 event: "join-room-pre-check",
                                  success: success,
                                  failure: failure)
     }

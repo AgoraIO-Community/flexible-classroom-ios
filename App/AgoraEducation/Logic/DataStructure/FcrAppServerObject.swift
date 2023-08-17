@@ -35,26 +35,14 @@ struct FcrAppServerResponseObject {
     var data: Any
     
     init(json: [String: Any]) throws {
-        if let code = json["code"] as? Int {
-            self.code = code
-        } else {
-            throw FcrAppError(code: -1,
-                              message: "response's code nil")
-        }
+        self.code = try json.getValue(of: "code",
+                                     type: Int.self)
         
-        if let msg = json["msg"] as? String {
-            self.msg = msg
-        } else {
-            throw FcrAppError(code: -1,
-                              message: "response's msg nil")
-        }
+        self.msg = try json.getValue(of: "msg",
+                                     type: String.self)
         
-        if let data = json["data"] {
-            self.data = data
-        } else {
-            throw FcrAppError(code: -1,
-                              message: "response's data nil")
-        }
+        self.data = try json.getValue(of: "data",
+                                      type: Any.self)
     }
     
     func dataConvert<T: Any>(type: T.Type) throws -> T {

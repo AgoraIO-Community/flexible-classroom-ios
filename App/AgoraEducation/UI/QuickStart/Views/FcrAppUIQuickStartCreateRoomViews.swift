@@ -8,14 +8,50 @@
 
 import AgoraUIBaseViews
 
+fileprivate class FcrAppUIQuickStartRoomTypeButton: UIButton {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        guard let titleLabel = titleLabel,
+              let text = titleLabel.text else {
+            return
+        }
+
+        let size = text.agora_size(font: titleLabel.font,
+                                   height: bounds.height)
+
+        var x: CGFloat = (bounds.width - size.width) * 0.5
+        var y: CGFloat = 0
+        var width: CGFloat = size.width
+        var height: CGFloat = bounds.height
+
+        titleLabel.frame = CGRect(x: x,
+                                  y: y,
+                                  width: width,
+                                  height: height)
+        
+        width = 24
+        height = width
+
+        x = titleLabel.frame.maxX
+        y = (bounds.height - height) * 0.5
+
+        imageView?.frame = CGRect(x: x,
+                                  y: y,
+                                  width: width,
+                                  height: height)
+    }
+}
+
 class FcrAppUIQuickStartRoomTypeSelectView: UIView,
                                             AgoraUIContentContainer {
     private let leftLabel = UILabel(frame: .zero)
     private let lineView = UIView(frame: .zero)
     private let leftTextWidth: CGFloat
+    private let leftAreaOffsetX: CGFloat
     private let rightViewOffsetX: CGFloat
     
-    let rightButton = UIButton(frame: .zero)
+    let rightButton: UIButton = FcrAppUIQuickStartRoomTypeButton(frame: .zero)
     
     var selectedRoomType: FcrAppUIRoomType {
         didSet {
@@ -25,8 +61,10 @@ class FcrAppUIQuickStartRoomTypeSelectView: UIView,
     
     init(selectedRoomType: FcrAppUIRoomType,
          leftTextWidth: CGFloat,
+         leftAreaOffsetX: CGFloat,
          rightViewOffsetX: CGFloat) {
         self.selectedRoomType = selectedRoomType
+        self.leftAreaOffsetX = leftAreaOffsetX
         self.leftTextWidth = leftTextWidth
         self.rightViewOffsetX = rightViewOffsetX
         
@@ -45,24 +83,25 @@ class FcrAppUIQuickStartRoomTypeSelectView: UIView,
         addSubview(rightButton)
         addSubview(lineView)
         
-        leftLabel.font = UIFont.systemFont(ofSize: 15)
+        leftLabel.font = FcrAppUIFontGroup.font15
         
-        // TODO: UI 变量名
         rightButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_light_input_background
-        // TODO: UI
-        rightButton.layer.cornerRadius = FcrAppUIFrameGroup.quickCornerRadius16
+        rightButton.layer.cornerRadius = FcrAppUIFrameGroup.cornerRadius8
+        rightButton.titleLabel?.font = FcrAppUIFontGroup.font15
     }
     
     func initViewFrame() {
         leftLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(20)
+            make?.left.equalTo()(self.leftAreaOffsetX)
             make?.top.equalTo()(0)
             make?.bottom.equalTo()(0)
             make?.width.equalTo()(self.leftTextWidth)
         }
         
         rightButton.mas_makeConstraints { make in
-            make?.left.equalTo()(leftLabel.mas_right)?.offset()(self.rightViewOffsetX)
+            let left = self.leftAreaOffsetX + self.leftTextWidth + self.rightViewOffsetX
+            
+            make?.left.equalTo()(left)
             make?.right.equalTo()(-18)
             make?.top.equalTo()(7)
             make?.bottom.equalTo()(-7)
@@ -81,18 +120,22 @@ class FcrAppUIQuickStartRoomTypeSelectView: UIView,
         
         leftLabel.text = "fcr_login_free_label_class_mode".localized()
         
-        lineView.backgroundColor = UIColor(hexString: "#EFEFEF")
+        lineView.backgroundColor = FcrAppUIColorGroup.fcr_v2_line
         
-        // TODO: UI 变量名
         rightButton.setTitleColor(FcrAppUIColorGroup.fcr_black,
                                   for: .normal)
+        
+        rightButton.setImage(UIImage(named: "fcr_mobile_right"),
+                             for: .normal)
         
         updateButtonName(with: selectedRoomType)
     }
     
     func updateButtonName(with roomType: FcrAppUIRoomType) {
-        rightButton.setTitle(roomType.quickText() + "  >",
+        rightButton.setTitle(roomType.quickText(),
                              for: .normal)
+        
+        rightButton.layoutSubviews()
     }
 }
 
@@ -118,8 +161,8 @@ class FcrAppUIQuickStartTimeView: UIView,
         addSubview(timeLabel)
         addSubview(lineView)
         
-        titleLable.font = FcrAppUIFrameGroup.font10
-        timeLabel.font = FcrAppUIFrameGroup.font15
+        titleLable.font = FcrAppUIFontGroup.font10
+        timeLabel.font = FcrAppUIFontGroup.font15
     }
     
     func initViewFrame() {
@@ -147,13 +190,13 @@ class FcrAppUIQuickStartTimeView: UIView,
     
     func updateViewProperties() {
         titleLable.text = "fcr_login_free_label_duration_time".localized()
-        // TODO: UI 变量名
-        titleLable.textColor = FcrAppUIColorGroup.fcr_v2_light_x
         
-        timeLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_x
+        titleLable.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
+        
+        timeLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
         
         // TODO: UI 变量名
-        lineView.backgroundColor = FcrAppUIColorGroup.fcr_light_textline
+        lineView.backgroundColor = FcrAppUIColorGroup.fcr_v2_line
     }
 }
 
@@ -175,6 +218,7 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
         self.roomTypeList = roomTypeList
         self.roomTypeView = FcrAppUIQuickStartRoomTypeSelectView(selectedRoomType: roomTypeList[0],
                                                                  leftTextWidth: leftTextWidth,
+                                                                 leftAreaOffsetX: leftTextOffsetX,
                                                                  rightViewOffsetX: rightViewOffsetX)
         
         self.roomRoomTextField = FcrAppUIRoomNameTextField(leftViewType: .text,
@@ -343,7 +387,7 @@ class FcrAppUIQuickStartCheckBoxCell: UITableViewCell,
     
     private func updateTextColor(_ isSelected: Bool) {
         if isSelected {
-            infoLabel.textColor = FcrAppUIColorGroup.fcr_v2_white
+            infoLabel.textColor = FcrAppUIColorGroup.fcr_white
         } else {
             infoLabel.textColor = FcrAppUIColorGroup.fcr_black
         }

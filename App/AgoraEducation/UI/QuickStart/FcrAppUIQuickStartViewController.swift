@@ -63,7 +63,8 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
             let config = FcrAppJoinRoomPreCheckConfig(roomId: roomId,
                                                       userId: config.userId,
                                                       userName: config.userName,
-                                                      userRole: .teacher)
+                                                      userRole: .teacher,
+                                                      isQuickStart: true)
             
             self?.joinRoomPreCheck(config: config)
         } failure: { [weak self] error in

@@ -33,7 +33,7 @@ class FcrAppUIDisclaimerViewController: FcrAppUIViewController, AgoraUIContentCo
         textLabel.mas_makeConstraints { make in
             make?.left.equalTo()(10)
             make?.right.equalTo()(-10)
-            make?.top.equalTo()(10)
+            make?.top.equalTo()(self.mas_topLayoutGuideBottom)
         }
         
         infoLabel.mas_makeConstraints { make in

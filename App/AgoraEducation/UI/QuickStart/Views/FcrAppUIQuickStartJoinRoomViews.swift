@@ -68,8 +68,10 @@ fileprivate class FcrAppUIQuickStartUserRoleCell: UICollectionViewCell,
     func update(_ isSelected: Bool) {
         selectedImageView.isHidden = !isSelected
         
-        textLabel.textColor = (isSelected ? FcrAppUIColorGroup.fcr_v2_white : FcrAppUIColorGroup.fcr_black)
-        textLabel.backgroundColor = (isSelected ? FcrAppUIColorGroup.fcr_v2_brand6 : FcrAppUIColorGroup.fcr_v2_light_input_background)
+        textLabel.textColor = (isSelected ? FcrAppUIColorGroup.fcr_white : FcrAppUIColorGroup.fcr_black)
+        textLabel.backgroundColor = (isSelected ? FcrAppUIColorGroup.fcr_v2_brand5 : FcrAppUIColorGroup.fcr_v2_light_input_background)
+        textLabel.layer.borderColor = (isSelected ? FcrAppUIColorGroup.fcr_v2_brand6.cgColor : FcrAppUIColorGroup.fcr_v2_light_input_background.cgColor)
+        textLabel.layer.borderWidth = 2
     }
 }
 
@@ -148,10 +150,12 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
         addSubview(roleCollection)
         addSubview(joinButton)
         
-        roomIdTextField.leftLabel.font = UIFont.systemFont(ofSize: 15)
+        roomIdTextField.leftLabel.font = FcrAppUIFontGroup.font15
         roomIdTextField.leftLabel.textAlignment = .left
+        // TODO: UI
+//        roomIdTextField.font = UIFon
         
-        userNameTextField.leftLabel.font = UIFont.systemFont(ofSize: 15)
+        userNameTextField.leftLabel.font = FcrAppUIFontGroup.font15
         userNameTextField.leftLabel.textAlignment = .left
         
         let layout = UICollectionViewFlowLayout()
@@ -167,6 +171,7 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
         roleCollection.register(cellWithClass: FcrAppUIQuickStartUserRoleCell.self)
         
         joinButton.layer.cornerRadius = 23
+        joinButton.titleLabel?.font = FcrAppUIFontGroup.font15
     }
     
     func initViewFrame() {
@@ -220,6 +225,9 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
         
         joinButton.setTitle("fcr_login_free_button_join".localized(),
                             for: .normal)
+        
+        joinButton.setTitleColor(FcrAppUIColorGroup.fcr_white,
+                                 for: .normal)
     }
     
     func collectionView(_ collectionView: UICollectionView,
