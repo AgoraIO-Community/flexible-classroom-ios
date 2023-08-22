@@ -103,8 +103,6 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
             textBgView.agora_visible = false
         }
         
-        startButton.setBackgroundImage(UIImage(named: "fcr_login_get_start"),
-                                       for: .normal)
         startButton.addTarget(self,
                               action: #selector(onClickStart),
                               for: .touchUpInside)
@@ -157,16 +155,18 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
     }
     
     func updateViewProperties() {
-        view.backgroundColor = .black
+        view.backgroundColor = FcrAppUIColorGroup.fcr_black
         
-        // TODO:
-//        if FcrLocalization.shared.language == .zh_cn {
+        startButton.setBackgroundImage(UIImage(named: "fcr_login_get_start"),
+                                       for: .normal)
+        
+        if center.language == .zh_cn {
             logoView.image = UIImage(named: "fcr_login_logo_text_zh")
             textView.image = UIImage(named: "fcr_login_text_zh")
-//        } else {
-//            logoView.image = UIImage(named: "fcr_login_logo_text_en")
-//            textView.image = UIImage(named: "fcr_login_text_en")
-//        }
+        } else {
+            logoView.image = UIImage(named: "fcr_login_logo_text_en")
+            textView.image = UIImage(named: "fcr_login_text_en")
+        }
     }
     
     func createAnimation() {

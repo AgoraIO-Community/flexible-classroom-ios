@@ -13,7 +13,7 @@ protocol FcrAppTesterDelegate: NSObjectProtocol {
 }
 
 class FcrAppTester {
-    private var isTest: Bool = false {
+    private(set) var isTest: Bool = false {
         didSet {
             delegate?.onIsTestMode(isTest)
         }

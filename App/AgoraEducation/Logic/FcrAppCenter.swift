@@ -163,6 +163,8 @@ class FcrAppCenter: NSObject {
             
             self.localUser = localUser
             
+            self.isLogined = true
+            
             success()
         }, failure: failure)
     }

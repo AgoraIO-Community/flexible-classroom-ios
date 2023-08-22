@@ -72,6 +72,11 @@ class FcrAppUIJoinRoomController: FcrAppUIPresentedViewController {
         })
     }
     
+    override func updateViewProperties() {
+        super.updateViewProperties()
+        (contentView as! AgoraUIContentContainer).updateViewProperties()
+    }
+    
     func getContentView() -> FcrAppUIJoinRoomContentView {
         guard let content = contentView as? FcrAppUIJoinRoomContentView else {
             fatalError()

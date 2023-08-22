@@ -8,7 +8,8 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUIRoomListPlaceholderView: UIView, AgoraUIContentContainer {
+class FcrAppUIRoomListPlaceholderView: UIView,
+                                       AgoraUIContentContainer {
     private let imageView = UIImageView(frame: .zero)
     private let label = UILabel(frame: .zero)
     
@@ -16,7 +17,6 @@ class FcrAppUIRoomListPlaceholderView: UIView, AgoraUIContentContainer {
         super.init(frame: frame)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -47,7 +47,7 @@ class FcrAppUIRoomListPlaceholderView: UIView, AgoraUIContentContainer {
         imageView.image = UIImage(named: "fcr_room_list_empty")
         
         label.text = "fcr_room_list_empty".localized()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = FcrAppUIFontGroup.font12
         label.textColor = UIColor(hex: 0xACABB0)
         label.textAlignment = .center
     }
@@ -74,7 +74,6 @@ class FcrAppUIRoomListTitleView: UIView,
         super.init(frame: frame)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -108,7 +107,6 @@ class FcrAppUIRoomListAddedNoticeView: UIView,
     override init(frame: CGRect) {
         super.init(frame: frame)
         initViews()
-        updateViewProperties()
         initViewFrame()
     }
     
@@ -123,19 +121,13 @@ class FcrAppUIRoomListAddedNoticeView: UIView,
         label.clipsToBounds = true
         
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = FcrAppUIFontGroup.font12
     }
     
     func initViewFrame() {
-        guard let size = label.text?.agora_size(font: label.font) else {
-            return
-        }
-        
-        let width = size.width + 20
-        
         label.mas_remakeConstraints { make in
             make?.center.equalTo()(0)
-            make?.width.equalTo()(width)
+            make?.width.equalTo()(label.intrinsicContentSize.width + 20)
             make?.top.equalTo()(0)
             make?.bottom.equalTo()(0)
         }

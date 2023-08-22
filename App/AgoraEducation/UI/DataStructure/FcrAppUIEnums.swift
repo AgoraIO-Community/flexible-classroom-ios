@@ -96,6 +96,7 @@ enum FcrAppUISettingItem {
         case theme
         case closeAccount
         case environment
+        case quickStart
         
         static func startList() -> [GeneralItem] {
             return [.nickname,
@@ -111,7 +112,17 @@ enum FcrAppUISettingItem {
                     .theme]
         }
         
-        static func testList() -> [GeneralItem] {
+        static func startTestList() -> [GeneralItem] {
+            return [.nickname,
+                    .language,
+                    .region,
+                    .theme,
+                    .closeAccount,
+                    .environment,
+                    .quickStart]
+        }
+        
+        static func quickStartTestList() -> [GeneralItem] {
             return [.language,
                     .region,
                     .theme,

@@ -8,7 +8,8 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUIDetailInfoCell: UITableViewCell, AgoraUIContentContainer {
+class FcrAppUIDetailInfoCell: UITableViewCell,
+                              AgoraUIContentContainer {
     let detailLabel = UILabel()
     let infoLabel = UILabel()
     

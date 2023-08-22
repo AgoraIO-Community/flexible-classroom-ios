@@ -24,11 +24,9 @@ class FcrAppUICreateRoomHeaderView: UIView, AgoraUIContentContainer {
     
     init(roomTypeList: [FcrAppUIRoomType]) {
         self.roomTypeList = roomTypeList
-        
         super.init(frame: .zero)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
         
     required init?(coder: NSCoder) {
@@ -84,10 +82,11 @@ class FcrAppUICreateRoomHeaderView: UIView, AgoraUIContentContainer {
     }
     
     func updateViewProperties() {
-        backgroundColor = .white
+        roomNameTextField.updateViewProperties()
+        userNameTextField.updateViewProperties()
         
-        roomNameTextField.backgroundColor = .white
-        userNameTextField.backgroundColor = .white
+        roomNameTextField.backgroundColor = FcrAppUIColorGroup.fcr_white
+        userNameTextField.backgroundColor = FcrAppUIColorGroup.fcr_white
         
         if let imageView = roomNameTextField.leftView as? UIImageView {
             imageView.image = UIImage(named: "fcr_room_create_room_name")
@@ -137,7 +136,8 @@ extension FcrAppUICreateRoomHeaderView: UICollectionViewDelegate,
     }
 }
 
-class FcrAppUICreateRoomTypeCell: UICollectionViewCell {
+class FcrAppUICreateRoomTypeCell: UICollectionViewCell,
+                                  AgoraUIContentContainer {
     
     public let imageView = UIImageView()
     
@@ -160,53 +160,59 @@ class FcrAppUICreateRoomTypeCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        createViews()
-        createConstrains()
+        initViews()
+        initViewFrame()
+        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func createViews() {
-        backgroundColor = .clear
-        contentView.backgroundColor = .clear
-        
-        imageView.backgroundColor = UIColor.white
+    func initViews() {
         contentView.addSubview(imageView)
-        
-        titleLabel.textColor = UIColor.white
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
-        titleLabel.textAlignment = .center
         contentView.addSubview(titleLabel)
-        
-        subTitleLabel.textColor = UIColor.white
-        subTitleLabel.font = UIFont.systemFont(ofSize: 12)
-        subTitleLabel.textAlignment = .center
         contentView.addSubview(subTitleLabel)
+        contentView.addSubview(selectedView)
+        
+        titleLabel.font = FcrAppUIFontGroup.font14
+        titleLabel.textAlignment = .center
+        
+        subTitleLabel.font = FcrAppUIFontGroup.font12
+        subTitleLabel.textAlignment = .center
         
         selectedView.isHidden = true
-        contentView.addSubview(selectedView)
     }
     
-    private func createConstrains() {
+    func initViewFrame() {
         imageView.mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
+        
         titleLabel.mas_makeConstraints { make in
             make?.top.equalTo()(15)
             make?.left.right().equalTo()(0)
         }
+        
         subTitleLabel.mas_makeConstraints { make in
             make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(8)
             make?.left.right().equalTo()(0)
         }
+        
         selectedView.mas_makeConstraints { make in
             make?.width.height().equalTo()(30)
             make?.top.equalTo()(imageView)?.offset()(-8)
             make?.right.equalTo()(imageView)?.offset()(8)
         }
+    }
+    
+    func updateViewProperties() {
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        
+        imageView.backgroundColor = FcrAppUIColorGroup.fcr_white
+        titleLabel.textColor = FcrAppUIColorGroup.fcr_white
+        subTitleLabel.textColor = FcrAppUIColorGroup.fcr_white
     }
 }
 
@@ -252,7 +258,8 @@ fileprivate extension FcrAppUIRoomType {
 }
 
 // MARK: - Room time
-class FcrAppUICreateRoomTimeView: UIButton, AgoraUIContentContainer {
+class FcrAppUICreateRoomTimeView: UIButton,
+                                  AgoraUIContentContainer {
     private let startTitleLabel = UILabel()
     private let endTitleLabel = UILabel()
     private let startTimeLabel = UILabel()
@@ -277,7 +284,6 @@ class FcrAppUICreateRoomTimeView: UIButton, AgoraUIContentContainer {
         super.init(frame: frame)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -362,7 +368,6 @@ class FcrAppUICreateRoomFooterView: UIView,
         super.init(frame: frame)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {

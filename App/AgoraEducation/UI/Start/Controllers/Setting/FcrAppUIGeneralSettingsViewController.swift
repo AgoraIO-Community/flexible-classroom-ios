@@ -28,6 +28,12 @@ class FcrAppUIGeneralSettingsViewController: FcrAppUIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false,
+                                                     animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
@@ -82,6 +88,8 @@ extension FcrAppUIGeneralSettingsViewController: UITableViewDelegate, UITableVie
             cell.infoLabel.text = "settings_close_account".localized()
         case .environment:
             cell.infoLabel.text = "Environment"
+        case .quickStart:
+            cell.infoLabel.text = "QuickStart"
         }
         
         return cell
@@ -109,6 +117,8 @@ extension FcrAppUIGeneralSettingsViewController: UITableViewDelegate, UITableVie
             vc = FcrAppUIEnvironmentViewController(center: center)
         case .closeAccount:
             vc = FcrAppUICloseAccountViewController(center: center)
+        case .quickStart:
+            vc = FcrAppUIQuickStartViewController(center: center)
         }
         
         navigationController?.pushViewController(vc,

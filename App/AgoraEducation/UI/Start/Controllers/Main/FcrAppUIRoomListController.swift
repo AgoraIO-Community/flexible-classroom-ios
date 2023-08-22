@@ -45,6 +45,7 @@ class FcrAppUIRoomListController: FcrAppUIViewController {
         self.center = center
         super.init(nibName: nil,
                    bundle: nil)
+        
         fakeData()
         initViews()
         initViewFrame()
@@ -164,11 +165,17 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
     }
     
     func updateViewProperties() {
-        tableView.backgroundColor = .white
+        placeholderView.updateViewProperties()
+        titleView.updateViewProperties()
+        noticeView.updateViewProperties()
         
-        titleView.backgroundColor = .white
+        tableView.backgroundColor = FcrAppUIColorGroup.fcr_white
         
-        placeholderView.backgroundColor = .white
+        titleView.backgroundColor = FcrAppUIColorGroup.fcr_white
+        
+        placeholderView.backgroundColor = FcrAppUIColorGroup.fcr_white
+        
+        tableView.reloadData()
     }
     
     func fakeData() {

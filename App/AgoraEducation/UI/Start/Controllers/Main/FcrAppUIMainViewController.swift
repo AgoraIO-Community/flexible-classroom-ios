@@ -12,23 +12,24 @@ import AgoraProctorSDK
 import AgoraWidgets
 
 class FcrAppUIMainViewController: FcrAppUIViewController {
-    private lazy var roomListComponent = FcrAppUIRoomListController(center: center)
+    lazy var roomListComponent = FcrAppUIRoomListController(center: center)
     
-    private let backgroundView = UIImageView(image: UIImage(named: "fcr_room_list_bg"))
+    let backgroundView = UIImageView(frame: .zero)
     
-    private let titleView = FcrAppUIMainTitleView(frame: .zero)
+    let headerView = FcrAppUIMainHeaderView(frame: .zero)
     
-    private var proctor: AgoraProctor?
+    var settingItems: [FcrAppUISettingItem] = [.generalSetting(FcrAppUISettingItem.GeneralItem.startList()),
+                                               .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
     
-    private let settingItems: [FcrAppUISettingItem] = [.generalSetting(FcrAppUISettingItem.GeneralItem.startList()),
-                                                       .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
+    let center: FcrAppCenter
     
-    private let center: FcrAppCenter
+    var proctor: AgoraProctor?
     
     init(center: FcrAppCenter) {
         self.center = center
         super.init(nibName: nil,
                    bundle: nil)
+        center.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -44,15 +45,7 @@ class FcrAppUIMainViewController: FcrAppUIViewController {
         initViews()
         initViewFrame()
         updateViewProperties()
-        
-        // 1. Check if agreed privacy
-        privacyCheck { [weak self] in
-            // 2. Check if logined
-            self?.loginCheck { [weak self] in
-                // 3. Refresh data
-                self?.roomListComponent.refresh()
-            }
-        }
+        tester()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,122 +53,8 @@ class FcrAppUIMainViewController: FcrAppUIViewController {
         navigationController?.setNavigationBarHidden(true,
                                                      animated: true)
     }
-}
-
-private extension FcrAppUIMainViewController {
-    func privacyCheck(completion: @escaping FcrAppCompletion) {
-        guard center.isAgreedPrivacy == false else {
-            completion()
-            return
-        }
-        
-        let vc = FcrAppUIPrivacyTermsViewController()
-        
-        present(vc,
-                animated: true)
-        
-        vc.onAgreedCompleted = { [weak self] in
-            self?.center.isAgreedPrivacy = true
-            completion()
-        }
-    }
     
-    func loginCheck(completion: @escaping FcrAppCompletion) {
-        guard center.isLogined == false else {
-            return
-        }
-        
-        let vc = FcrAppUILoginViewController(center: center)
-        
-        let navigation = FcrAppUINavigationController(rootViewController: vc)
-        
-        present(navigation,
-                animated: true)
-        
-        vc.onCompleted = { [weak navigation] in
-            navigation?.dismiss(animated: true)
-        }
-    }
-}
-
-extension FcrAppUIMainViewController: AgoraUIContentContainer {
-    func initViews() {
-        if let navigation = navigationController as? FcrAppUINavigationController {
-            navigation.csDelegate = self
-        }
-        
-        view.addSubview(backgroundView)
-        view.addSubview(titleView)
-        view.addSubview(roomListComponent.view)
-        
-        titleView.delegate = self
-    }
-    
-    func initViewFrame() {
-        backgroundView.mas_makeConstraints { make in
-            make?.left.top().right().equalTo()(0)
-        }
-        
-        roomListComponent.view.mas_makeConstraints { make in
-            make?.top.equalTo()(198)
-            make?.left.right().bottom().equalTo()(0)
-        }
-        
-        titleView.mas_makeConstraints { make in
-            make?.left.top().right().equalTo()(0)
-            make?.height.equalTo()(198)
-        }
-    }
-    
-    func updateViewProperties() {
-        titleView.backgroundColor = .clear
-        view.backgroundColor = .white
-    }
-}
-
-extension FcrAppUIMainViewController: FcrAppUIMainTitleViewDelegate {
-    func onEnterDebugMode() {
-        
-    }
-    
-    func onClickJoin() {
-        let vc = FcrAppUIJoinRoomController(center: center) { [weak self] object in
-            self?.joinRoom(options: object)
-        }
-        
-        presentViewController(vc,
-                              animated: true)
-    }
-    
-    func onClickCreate() {
-        let vc = FcrAppUICreateRoomViewController(center: center) { [weak self] in
-            self?.roomListComponent.addedNotice()
-        }
-        
-        present(vc,
-                animated: true)
-    }
-    
-    func onClickSetting() {
-        let vc = FcrAppUISettingsViewController(center: center,
-                                                dataSource: settingItems)
-        
-        navigationController?.pushViewController(vc,
-                                                 animated: true)
-    }
-}
-
-private extension FcrAppUIMainViewController {
-    func joinRoom(options: FcrAppUIJoinRoomConfig) {
-        let config = AgoraEduLaunchConfig(userName: options.userName,
-                                          userUuid: options.userId,
-                                          userRole: options.userRole.toClassroomType(),
-                                          roomName: options.roomName,
-                                          roomUuid: options.roomId,
-                                          roomType: options.roomType.toClassroomType(),
-                                          appId: options.appId,
-                                          token: options.token)
-        
+    func joinRoom(config: AgoraEduLaunchConfig) {
         AgoraLoading.loading()
         
         AgoraClassroomSDK.launch(config) {
@@ -183,14 +62,6 @@ private extension FcrAppUIMainViewController {
         } failure: { [weak self] error in
             AgoraLoading.hide()
             self?.showErrorToast(error)
-        }
-    }
-}
-
-extension FcrAppUIMainViewController: FcrAppNavigationControllerDelegate {
-    func navigationWillPopToRoot(_ navigation: FcrAppUINavigationController) {
-        loginCheck { [weak self] in
-            self?.roomListComponent.refresh()
         }
     }
 }

@@ -8,8 +8,9 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUICheckBoxCell: UITableViewCell, AgoraUIContentContainer {
-    private var checkBox = UIImageView(image: UIImage(named: "ic_round_check_box_unsel"))
+class FcrAppUICheckBoxCell: UITableViewCell,
+                            AgoraUIContentContainer {
+    private var checkBox = UIImageView(frame: .zero)
     
     var aSelected = false {
         didSet {

@@ -9,7 +9,8 @@
 import AgoraUIBaseViews
 import UIKit
 
-class FcrAppUIAgreementView: UIView, AgoraUIContentContainer {
+class FcrAppUIAgreementView: UIView,
+                             AgoraUIContentContainer {
     private(set) lazy var checkButton = UIButton(type: .custom)
     private(set) lazy var agreeButton = UIButton(type: .custom)
     private(set) lazy var disagreeButton = UIButton(type: .custom)
@@ -24,7 +25,6 @@ class FcrAppUIAgreementView: UIView, AgoraUIContentContainer {
     override init(frame: CGRect) {
         super.init(frame: frame)
         initViews()
-        updateViewProperties()
         initViewFrame()
     }
     
@@ -44,12 +44,11 @@ class FcrAppUIAgreementView: UIView, AgoraUIContentContainer {
     func initViews() {
         addSubview(checkButton)
         addSubview(checkLabel)
+        addSubview(agreeButton)
+        addSubview(disagreeButton)
         
         agreeButton.isUserInteractionEnabled = true
-        addSubview(agreeButton)
-        
         disagreeButton.isUserInteractionEnabled = true
-        addSubview(disagreeButton)
     }
     
     func initViewFrame() {

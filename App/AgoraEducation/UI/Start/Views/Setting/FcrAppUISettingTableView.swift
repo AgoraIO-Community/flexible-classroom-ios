@@ -8,7 +8,8 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUISettingTableView: UITableView, AgoraUIContentContainer {
+class FcrAppUISettingTableView: UITableView,
+                                AgoraUIContentContainer {
     private let footer = UIView(frame: .zero)
     
     override init(frame: CGRect,

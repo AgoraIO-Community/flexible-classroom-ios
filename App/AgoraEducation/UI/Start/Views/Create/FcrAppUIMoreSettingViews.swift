@@ -56,23 +56,12 @@ class FcrAppUICreateRoomMoreTableView: UIView,
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        initOptions()
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func initOptions() {
-        let security = FcrAppUICreateRoomMoreSettingOption(iconImage: UIImage(named: "fcr_room_create_security"),
-                                                            title: "fcr_create_more_security".localized() + "·",
-                                                            subTitle: "fcr_create_more_security_detail".localized(),
-                                                            isSwitchOn: false)
-       
-        optionList.append(security)
     }
     
     func initViews() {
@@ -111,6 +100,21 @@ class FcrAppUICreateRoomMoreTableView: UIView,
         }
     }
     
+    func updateViewProperties() {
+        headerView.updateViewProperties()
+        
+        optionList.removeAll()
+        
+        let security = FcrAppUICreateRoomMoreSettingOption(iconImage: UIImage(named: "fcr_room_create_security"),
+                                                           title: "fcr_create_more_security".localized() + "·",
+                                                           subTitle: "fcr_create_more_security_detail".localized(),
+                                                           isSwitchOn: false)
+       
+        optionList.append(security)
+        
+        tableView.reloadData()
+    }
+    
     @objc func onHeaderPressed(_ sender: UIButton) {
         guard let header = sender as? FcrAppUICreateRoomMoreTitleButton else {
             return
@@ -122,11 +126,7 @@ class FcrAppUICreateRoomMoreTableView: UIView,
         tableView.reloadData()
         
         delegate?.tableView(self,
-                                didSpreadUpdated: isSpread)
-    }
-    
-    func updateViewProperties() {
-        
+                            didSpreadUpdated: isSpread)
     }
     
     func tableView(_ tableView: UITableView,
@@ -186,7 +186,6 @@ class FcrAppUICreateRoomMoreTitleButton: UIButton,
         super.init(frame: frame)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {

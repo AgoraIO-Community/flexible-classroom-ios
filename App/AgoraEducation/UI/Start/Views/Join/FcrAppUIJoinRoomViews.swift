@@ -17,7 +17,6 @@ class FcrAppUIJoinRoomRoleView: UIView,
         super.init(frame: frame)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -28,7 +27,7 @@ class FcrAppUIJoinRoomRoleView: UIView,
         button.isSelected = selected
         selectedImageView.isHidden = !selected
         
-        button.layer.cornerRadius = 12
+        button.layer.cornerRadius = FcrAppUIFrameGroup.cornerRadius12
         button.clipsToBounds = true
     }
     
@@ -36,7 +35,7 @@ class FcrAppUIJoinRoomRoleView: UIView,
         addSubview(button)
         addSubview(selectedImageView)
         
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.titleLabel?.font = FcrAppUIFontGroup.font15
     }
     
     func initViewFrame() {
@@ -89,7 +88,6 @@ class FcrAppUIJoinRoomInputView: UIView,
         super.init(frame: frame)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -123,6 +121,9 @@ class FcrAppUIJoinRoomInputView: UIView,
     }
     
     func updateViewProperties() {
+        idTextField.updateViewProperties()
+        nameTextField.updateViewProperties()
+        
         idTextField.leftImageView.image = UIImage(named: "fcr_v2_id")
         idTextField.placeholder = "fcr_room_join_room_id_ph".localized()
         idTextField.font = UIFont.boldSystemFont(ofSize: 15)
@@ -157,7 +158,6 @@ class FcrAppUIJoinRoomContentView: UIView,
         super.init(frame: frame)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -176,6 +176,18 @@ class FcrAppUIJoinRoomContentView: UIView,
         
         teacherView.selected(false)
         studentView.selected(true)
+        
+        titleLabel.font = FcrAppUIFontGroup.font16
+        
+        joinButton.titleLabel?.font = FcrAppUIFontGroup.font16
+        
+        roomInputView.layer.cornerRadius = 12
+        roomInputView.clipsToBounds = true
+        
+        roleTitleLabel.font = FcrAppUIFontGroup.font15
+        
+        joinButton.layer.cornerRadius = 23
+        joinButton.clipsToBounds = true
     }
     
     func initViewFrame() {
@@ -223,33 +235,34 @@ class FcrAppUIJoinRoomContentView: UIView,
     }
     
     func updateViewProperties() {
-        titleLabel.textColor = .black
-        titleLabel.text = "fcr_room_join_title".localized()
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        roomInputView.updateViewProperties()
+        studentView.updateViewProperties()
+        teacherView.updateViewProperties()
         
-        roomInputView.backgroundColor = UIColor.white
-        roomInputView.layer.cornerRadius = 12
-        roomInputView.clipsToBounds = true
+        titleLabel.textColor = FcrAppUIColorGroup.fcr_black
+        titleLabel.text = "fcr_room_join_title".localized()
+        
+        roomInputView.backgroundColor = FcrAppUIColorGroup.fcr_white
         
         roleTitleLabel.text = "fcr_room_join_room_role".localized()
-        roleTitleLabel.font = UIFont.systemFont(ofSize: 15)
         roleTitleLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text1
         
-        studentView.button.setTitleForAllStates("fcr_room_join_room_role_student".localized())
+        studentView.button.setTitle("fcr_room_join_room_role_student".localized(),
+                                    for: .normal)
        
-        teacherView.button.setTitleForAllStates("fcr_room_join_room_role_teacher".localized())
+        teacherView.button.setTitle("fcr_room_join_room_role_teacher".localized(),
+                                    for: .normal)
         
         closeButton.setImage(UIImage(named: "fcr_mobile_closeicon"),
                              for: .normal)
         
         joinButton.setTitle("fcr_alert_sure".localized(),
                               for: .normal)
-        joinButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
-        joinButton.setTitleColor(.white,
+        
+        joinButton.setTitleColor(FcrAppUIColorGroup.fcr_white,
                                    for: .normal)
-        joinButton.layer.cornerRadius = 23
-        joinButton.clipsToBounds = true
+        
         joinButton.backgroundColor = UIColor(hex: 0x357BF6)
     }
 }

@@ -153,6 +153,11 @@ extension FcrAppUICreateRoomViewController: AgoraUIContentContainer {
     }
     
     func updateViewProperties() {
+        headerView.updateViewProperties()
+        timeView.updateViewProperties()
+        moreTableView.updateViewProperties()
+        footerView.updateViewProperties()
+        
         view.backgroundColor = UIColor(hex: 0xF8FAFF)
         
         backgroundImageView.image = UIImage(named: "fcr_room_create_bg")

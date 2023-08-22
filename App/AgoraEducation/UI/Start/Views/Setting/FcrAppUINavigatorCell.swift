@@ -8,8 +8,9 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUINavigatorCell: UITableViewCell, AgoraUIContentContainer {
-    private var arrow = UIImageView(image: UIImage(named: "ic_right_arrow"))
+class FcrAppUINavigatorCell: UITableViewCell,
+                             AgoraUIContentContainer {
+    private var arrow = UIImageView(frame: .zero)
     
     let infoLabel = UILabel()
     
@@ -46,7 +47,9 @@ class FcrAppUINavigatorCell: UITableViewCell, AgoraUIContentContainer {
     }
     
     func updateViewProperties() {
-        infoLabel.font = UIFont.systemFont(ofSize: 14)
+        arrow.image = UIImage(named: "ic_right_arrow")
+        
+        infoLabel.font = FcrAppUIFontGroup.font14
         infoLabel.textColor = UIColor(hex: 0x191919)
         infoLabel.textAlignment = .left
     }
