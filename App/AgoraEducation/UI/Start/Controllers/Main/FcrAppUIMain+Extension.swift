@@ -12,7 +12,7 @@ import AgoraProctorSDK
 import AgoraWidgets
 
 extension FcrAppUIMainViewController {
-    func navigation() {
+    func launch() {
         // 1. Check if agreed privacy
         privacyCheck { [weak self] in
             // 2. Check if logined
@@ -184,8 +184,6 @@ extension FcrAppUIMainViewController: FcrAppCenterDelegate {
 // MARK: - Tester
 extension FcrAppUIMainViewController: FcrAppTesterDelegate {
     func tester() {
-        center.tester.delegate = self
-        
         headerView.titleLabel.addTarget(self,
                                        action: #selector(onTestButtonPressed(_ :)),
                                        for: .touchUpInside)
@@ -193,6 +191,11 @@ extension FcrAppUIMainViewController: FcrAppTesterDelegate {
     
     @objc func onTestButtonPressed(_ sender: UIButton) {
         center.tester.switchMode()
+    }
+    
+    func isTest() {
+        center.tester.delegate = self
+        onIsTestMode(center.tester.isTest)
     }
     
     func onIsTestMode(_ isTest: Bool) {

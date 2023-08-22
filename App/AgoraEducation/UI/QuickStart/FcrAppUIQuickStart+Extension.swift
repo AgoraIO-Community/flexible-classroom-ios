@@ -227,8 +227,6 @@ extension FcrAppUIQuickStartViewController: FcrAppCenterDelegate {
 // MARK: - Tester
 extension FcrAppUIQuickStartViewController: FcrAppTesterDelegate {
     func tester() {
-        center.tester.delegate = self
-        
         contentView.headerView.titleLabel.addTarget(self,
                                                     action: #selector(onTestButtonPressed(_ :)),
                                                     for: .touchUpInside)
@@ -236,6 +234,11 @@ extension FcrAppUIQuickStartViewController: FcrAppTesterDelegate {
     
     @objc func onTestButtonPressed(_ sender: UIButton) {
         center.tester.switchMode()
+    }
+    
+    func isTest() {
+        center.tester.delegate = self
+        onIsTestMode(center.tester.isTest)
     }
     
     func onIsTestMode(_ isTest: Bool) {

@@ -27,6 +27,7 @@ class FcrAppLocalStorage {
         case language         = "com.agora.language"
         case region           = "com.agora.region"
         case uiMode           = "com.agora.uiMode"
+        case testMode         = "com.agora.testMode"
         
         var isUserInfo: Bool {
             switch self {

@@ -15,13 +15,35 @@ protocol FcrAppTesterDelegate: NSObjectProtocol {
 class FcrAppTester {
     private(set) var isTest: Bool = false {
         didSet {
+            guard isTest != oldValue else {
+                return
+            }
+            
             delegate?.onIsTestMode(isTest)
+            
+            localStorage.writeData(isTest,
+                                   key: .testMode)
         }
     }
     
     private var count: Int = 0
     
+    private let localStorage: FcrAppLocalStorage
+    
     weak var delegate: FcrAppTesterDelegate?
+    
+    init(localStorage: FcrAppLocalStorage) {
+        self.localStorage = localStorage
+        
+        if let isTest = try? localStorage.readData(key: .testMode,
+                                                   type: Bool.self) {
+            self.isTest = isTest
+            
+            if isTest {
+                count = 10
+            }
+        }
+    }
     
     func switchMode() {
         if isTest {

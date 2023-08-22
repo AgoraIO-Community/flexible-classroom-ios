@@ -45,6 +45,7 @@ class FcrAppUIMainViewController: FcrAppUIViewController {
         initViews()
         initViewFrame()
         updateViewProperties()
+        launch()
         tester()
     }
     
@@ -52,6 +53,7 @@ class FcrAppUIMainViewController: FcrAppUIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true,
                                                      animated: true)
+        isTest()
     }
     
     func joinRoom(config: AgoraEduLaunchConfig) {

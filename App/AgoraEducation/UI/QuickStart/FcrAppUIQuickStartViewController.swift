@@ -62,6 +62,7 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true,
                                                      animated: true)
+        isTest()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>,

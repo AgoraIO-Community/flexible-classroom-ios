@@ -17,6 +17,8 @@ protocol FcrAppCenterDelegate: NSObjectProtocol {
 class FcrAppCenter: NSObject {
     private(set) lazy var urlGroup = FcrAppURLGroup(localStorage: localStorage)
     
+    private(set) lazy var tester = FcrAppTester(localStorage: localStorage)
+    
     private(set) lazy var room = FcrAppRoom(urlGroup: urlGroup,
                                             armin: armin,
                                             localStorage: localStorage)
@@ -26,8 +28,6 @@ class FcrAppCenter: NSObject {
     private let localStorage = FcrAppLocalStorage()
     
     private(set) var localUser: FcrAppLocalUser?
-    
-    let tester = FcrAppTester()
     
     weak var delegate: FcrAppCenterDelegate?
     

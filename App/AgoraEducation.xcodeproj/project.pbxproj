@@ -254,9 +254,6 @@
 		861978D62A69351500009890 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				AB8AC744287FEB5000B57B58 /* FcrAppUIPrivacyTermsViewController.swift */,
-				AB0A2DD128DAEF6A0048FA3C /* FcrAppUILoginViewController.swift */,
-				ABB1D15C287C00A600395A13 /* FcrAppLoginWebViewController.swift */,
 				AB7B7B6B28C1D8A7001D327A /* FcrAppUIMainViewController.swift */,
 				865746F32A94DA6C003FBF72 /* FcrAppUIMain+Extension.swift */,
 				86E502432A5FFAE1003C04D8 /* FcrAppUIRoomListController.swift */,
@@ -326,6 +323,16 @@
 				869D426B2A8B5A35004EE63E /* Views */,
 			);
 			path = QuickStart;
+			sourceTree = "<group>";
+		};
+		865746F72A94E005003FBF72 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				AB8AC744287FEB5000B57B58 /* FcrAppUIPrivacyTermsViewController.swift */,
+				AB0A2DD128DAEF6A0048FA3C /* FcrAppUILoginViewController.swift */,
+				ABB1D15C287C00A600395A13 /* FcrAppLoginWebViewController.swift */,
+			);
+			path = Launch;
 			sourceTree = "<group>";
 		};
 		869D42652A8A2EA9004EE63E /* General */ = {
@@ -439,6 +446,7 @@
 		86E502412A5FF1F1003C04D8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				865746F72A94E005003FBF72 /* Launch */,
 				861978D62A69351500009890 /* Main */,
 				86F0358B2A710AC4002B3852 /* Join */,
 				86F0358C2A710AD8002B3852 /* Create */,
