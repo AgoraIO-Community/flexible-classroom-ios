@@ -87,6 +87,8 @@ extension FcrAppUISettingsViewController: AgoraUIContentContainer {
                                    for: .normal)
         logoutButton.setTitle("settings_logout".localized(),
                               for: .normal)
+        
+        tableView.reloadData()
     }
 }
 

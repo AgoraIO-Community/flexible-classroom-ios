@@ -53,6 +53,8 @@ extension FcrAppUIGeneralSettingsViewController: AgoraUIContentContainer {
     
     func updateViewProperties() {
         title = "fcr_settings_option_general".localized()
+        
+        tableView.reloadData()
     }
 }
 

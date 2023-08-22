@@ -23,7 +23,6 @@ fileprivate class FcrAppUIQuickStartUserRoleCell: UICollectionViewCell,
         super.init(frame: frame)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -90,6 +89,7 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
     
     let joinButton = UIButton(frame: .zero)
     
+    // TODO: UI size 太大
     private let itemSize = CGSize(width: 114,
                                   height: 45)
     
@@ -136,7 +136,6 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
         super.init(frame: .zero)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -213,6 +212,9 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
     }
     
     func updateViewProperties() {
+        roomIdTextField.updateViewProperties()
+        userNameTextField.updateViewProperties()
+        
         roomIdTextField.leftLabel.text = "fcr_login_free_label_room_id".localized()
         roomIdTextField.placeholder = "fcr_login_free_tips_room_id".localized()
         
@@ -228,6 +230,8 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
         
         joinButton.setTitleColor(FcrAppUIColorGroup.fcr_white,
                                  for: .normal)
+        
+        roleCollection.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView,

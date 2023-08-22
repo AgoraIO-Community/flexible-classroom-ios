@@ -22,16 +22,28 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
                                                     .oneToOne,
                                                     .proctor]
     
-    private let settingItems: [FcrAppUISettingItem] = [.generalSetting(FcrAppUISettingItem.GeneralItem.quickStartList()),
+    private var settingItems: [FcrAppUISettingItem] = [.generalSetting(FcrAppUISettingItem.GeneralItem.quickStartList()),
                                                        .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
     
-    private let center = FcrAppCenter()
+    private let center: FcrAppCenter
+    
+    init(center: FcrAppCenter) {
+        self.center = center
+        super.init(nibName: nil,
+                   bundle: nil)
+        center.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
         initViewFrame()
         updateViewProperties()
+        tester()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -94,6 +106,9 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
     }
     
     func joinRoom(config: AgoraEduLaunchConfig) {
+        agora_ui_language = center.language.proj()
+        agora_ui_mode = center.uiMode.toAgoraType()
+        
         AgoraClassroomSDK.launch(config) {
             AgoraLoading.hide()
         } failure: { [weak self] error in
@@ -105,11 +120,20 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
 
 extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     func initViews() {
+        agora_ui_language = center.language.proj()
+        
         view.addSubview(contentView)
         
-        contentView.headerView.settingButton.addTarget(self,
-                                                       action: #selector(onSettingsButtonPressed(_ :)),
-                                                       for: .touchUpInside)
+        // Header view
+        let headerView = contentView.headerView
+        
+        headerView.settingButton.addTarget(self,
+                                           action: #selector(onSettingsButtonPressed(_ :)),
+                                           for: .touchUpInside)
+        
+        headerView.signButton.addTarget(self,
+                                        action: #selector(onSignInButtonPressed(_ :)),
+                                        for: .touchUpInside)
         
         // Join room view
         let joinRoomView = contentView.roomInputView.joinRoomView
@@ -124,7 +148,7 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
         // Create room view
         let createRoomView = contentView.roomInputView.createRoomView
         
-        createRoomView.roomRoomTextField.text = center.room.lastRoomName
+        createRoomView.roomNameTextField.text = center.room.lastRoomName
         createRoomView.userNameTextField.text = center.localUser?.nickname
         
         createRoomView.roomTypeView.rightButton.addTarget(self,
@@ -142,20 +166,27 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
         policyView.checkBox.addTarget(self,
                                       action: #selector(onPolicyButtonPressed(_ :)),
                                       for: .touchUpInside)
+        
+        // Footer view
+        contentView.footerView.signButton.addTarget(self,
+                                                    action: #selector(onSignInButtonPressed(_ :)),
+                                                    for: .touchUpInside)
     }
     
     func initViewFrame() {
         contentView.mas_makeConstraints { make in
-            make?.left.right().top().bottom().equalTo()(0)
+            make?.edges.equalTo()(self.view)
         }
     }
     
     func updateViewProperties() {
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = UIColor.fcr_hex_string("#F8FAFF")
         
         let attributedText = FcrAppUIPolicyString().getAttributedString(true)
         
         contentView.roomInputView.policyView.textView.attributedText = attributedText
+        
+        contentView.updateViewProperties()
     }
 }
 
@@ -189,6 +220,12 @@ private extension FcrAppUIQuickStartViewController {
                               animated: true)
     }
     
+    @objc func onSignInButtonPressed(_ sender: UIButton) {
+        let vc = FcrAppUIMainViewController(center: center)
+        present(vc,
+                animated: true)
+    }
+    
     @objc func onJoinButtonPressed(_ sender: UIButton) {
         let joinRoomView = contentView.roomInputView.joinRoomView
         
@@ -220,7 +257,7 @@ private extension FcrAppUIQuickStartViewController {
     @objc func onCreateButtonPressed(_ sender: UIButton) {
         let createRoomView = contentView.roomInputView.createRoomView
         
-        guard let roomName = createRoomView.roomRoomTextField.getText() else {
+        guard let roomName = createRoomView.roomNameTextField.getText() else {
             return
         }
         
@@ -259,6 +296,68 @@ private extension FcrAppUIQuickStartViewController {
         } else {
             center.createLocalUser(userId: userId,
                                    nickname: userName)
+        }
+    }
+}
+
+extension FcrAppUIQuickStartViewController: FcrAppCenterDelegate {
+    func onLanguageUpdated(_ language: FcrAppLanguage) {
+        agora_ui_language = language.proj()
+        
+        guard let navigation = navigationController else {
+            return
+        }
+        
+        for vc in navigation.viewControllers {
+            if let `vc` = vc as? AgoraUIContentContainer {
+                vc.updateViewProperties()
+                
+                printDebug("ui" + vc.description)
+            } else {
+                printDebug(vc.description)
+            }
+        }
+        
+        updateViewProperties()
+    }
+}
+
+extension UIView {
+    func updateSubViewProperties() {
+        for subView in subviews where subView is AgoraUIContentContainer  {
+            if subView.subviews.count > 0 {
+                subView.updateSubViewProperties()
+            } else {
+                let view = subView as! AgoraUIContentContainer
+                view.updateViewProperties()
+            }
+        }
+    }
+}
+
+// MARK: - Tester
+extension FcrAppUIQuickStartViewController: FcrAppTesterDelegate {
+    func tester() {
+        center.tester.delegate = self
+        
+        contentView.headerView.titleLabel.addTarget(self,
+                                                    action: #selector(onTestButtonPressed(_ :)),
+                                                    for: .touchUpInside)
+    }
+    
+    @objc func onTestButtonPressed(_ sender: UIButton) {
+        center.tester.switchMode()
+    }
+    
+    func onIsTestMode(_ isTest: Bool) {
+        contentView.headerView.testTag.isHidden = !isTest
+        
+        if isTest {
+            settingItems = [.generalSetting(FcrAppUISettingItem.GeneralItem.testList()),
+                            .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
+        } else {
+            settingItems = [.generalSetting(FcrAppUISettingItem.GeneralItem.quickStartList()),
+                            .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
         }
     }
 }

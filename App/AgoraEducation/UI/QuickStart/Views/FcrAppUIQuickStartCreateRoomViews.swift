@@ -67,11 +67,9 @@ class FcrAppUIQuickStartRoomTypeSelectView: UIView,
         self.leftAreaOffsetX = leftAreaOffsetX
         self.leftTextWidth = leftTextWidth
         self.rightViewOffsetX = rightViewOffsetX
-        
         super.init(frame: .zero)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -134,7 +132,7 @@ class FcrAppUIQuickStartRoomTypeSelectView: UIView,
     func updateButtonName(with roomType: FcrAppUIRoomType) {
         rightButton.setTitle(roomType.quickText(),
                              for: .normal)
-        
+        layoutIfNeeded()
         rightButton.layoutSubviews()
     }
 }
@@ -149,7 +147,6 @@ class FcrAppUIQuickStartTimeView: UIView,
         super.init(frame: frame)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -202,7 +199,7 @@ class FcrAppUIQuickStartTimeView: UIView,
 
 class FcrAppUIQuickStartCreateRoomInputView: UIView,
                                              AgoraUIContentContainer {
-    let roomRoomTextField: FcrAppUIRoomNameTextField
+    let roomNameTextField: FcrAppUIRoomNameTextField
     let userNameTextField: FcrAppUIUserNameTextField
     
     let timeView = FcrAppUIQuickStartTimeView(frame: .zero)
@@ -221,7 +218,7 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
                                                                  leftAreaOffsetX: leftTextOffsetX,
                                                                  rightViewOffsetX: rightViewOffsetX)
         
-        self.roomRoomTextField = FcrAppUIRoomNameTextField(leftViewType: .text,
+        self.roomNameTextField = FcrAppUIRoomNameTextField(leftViewType: .text,
                                                            leftTextWidth: leftTextWidth,
                                                            leftAreaOffsetX: leftTextOffsetX,
                                                            editAreaOffsetX: rightViewOffsetX)
@@ -234,7 +231,6 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
         super.init(frame: .zero)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -242,14 +238,14 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
     }
     
     func initViews() {
-        addSubview(roomRoomTextField)
+        addSubview(roomNameTextField)
         addSubview(roomTypeView)
         addSubview(userNameTextField)
         addSubview(timeView)
         addSubview(createButton)
         
-        roomRoomTextField.leftLabel.font = UIFont.systemFont(ofSize: 15)
-        roomRoomTextField.leftLabel.textAlignment = .left
+        roomNameTextField.leftLabel.font = UIFont.systemFont(ofSize: 15)
+        roomNameTextField.leftLabel.textAlignment = .left
         
         userNameTextField.leftLabel.font = UIFont.systemFont(ofSize: 15)
         userNameTextField.leftLabel.textAlignment = .left
@@ -258,14 +254,14 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
     }
     
     func initViewFrame() {
-        roomRoomTextField.mas_makeConstraints { make in
+        roomNameTextField.mas_makeConstraints { make in
             make?.top.equalTo()(0)
             make?.left.right().equalTo()(0)
             make?.height.equalTo()(54)
         }
         
         roomTypeView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.roomRoomTextField.mas_bottom)
+            make?.top.equalTo()(self.roomNameTextField.mas_bottom)
             make?.left.right().equalTo()(0)
             make?.height.equalTo()(54)
         }
@@ -291,8 +287,13 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
     }
     
     func updateViewProperties() {
-        roomRoomTextField.leftLabel.text = "fcr_login_free_label_room_name".localized()
-        roomRoomTextField.placeholder = "fcr_login_free_tips_room_name".localized()
+        roomNameTextField.updateViewProperties()
+        userNameTextField.updateViewProperties()
+        timeView.updateViewProperties()
+        roomTypeView.updateViewProperties()
+        
+        roomNameTextField.leftLabel.text = "fcr_login_free_label_room_name".localized()
+        roomNameTextField.placeholder = "fcr_login_free_tips_room_name".localized()
         
         userNameTextField.leftLabel.text = "fcr_login_free_label_nick_name".localized()
         userNameTextField.placeholder = "fcr_login_free_tips_nick_name".localized()

@@ -6,7 +6,7 @@
 //  Copyright © 2023 Agora. All rights reserved.
 //
 
-import Foundation
+import AgoraUIBaseViews
 
 enum FcrAppRegion: String, FcrAppStringRawRepresentable, CaseIterable {
     case CN, NA
@@ -14,6 +14,13 @@ enum FcrAppRegion: String, FcrAppStringRawRepresentable, CaseIterable {
 
 enum FcrAppUIMode: Int, FcrAppIntRawRepresentable, CaseIterable {
     case light, dark
+    
+    func toAgoraType() -> AgoraUIMode {
+        switch self {
+        case .dark:  return .agoraDark
+        case .light: return .agoraLight
+        }
+    }
 }
 
 enum FcrAppEnvironment: String, FcrAppStringRawRepresentable, CaseIterable {
@@ -22,6 +29,13 @@ enum FcrAppEnvironment: String, FcrAppStringRawRepresentable, CaseIterable {
 
 enum FcrAppLanguage: String, FcrAppStringRawRepresentable, CaseIterable {
     case zh_cn, en
+    
+    func proj() -> String {
+        switch self {
+        case .zh_cn: return "zh-Hans"
+        case .en:    return "en"
+        }
+    }
 }
 
 enum FcrAppRoomType: Int, FcrAppCodable {

@@ -24,7 +24,6 @@ class FcrAppUIQuickStartSegmentedControl: UIButton,
         super.init(frame: frame)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -47,6 +46,8 @@ class FcrAppUIQuickStartSegmentedControl: UIButton,
         createButton.addTarget(self,
                                action: #selector(onSelected(_:)),
                                for: .touchUpInside)
+        
+        lineView.layer.cornerRadius = 1.5
     }
     
     func initViewFrame() {
@@ -137,7 +138,6 @@ class FcrAppUIQuickStartPolicyView: UIView,
         super.init(frame: frame)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -200,7 +200,6 @@ class FcrAppUIQuickStartInputView: UIView,
         super.init(frame: .zero)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -254,6 +253,11 @@ class FcrAppUIQuickStartInputView: UIView,
     }
     
     func updateViewProperties() {
+        segmentedControl.updateViewProperties()
+        joinRoomView.updateViewProperties()
+        createRoomView.updateViewProperties()
+        policyView.updateViewProperties()
+        
         backgroundImageView.image = UIImage(named: "fcr-quick-input")
         
         backgroundImageView.transform = CGAffineTransform(scaleX: -1,

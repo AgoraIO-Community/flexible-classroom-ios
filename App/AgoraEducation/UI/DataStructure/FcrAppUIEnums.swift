@@ -108,11 +108,10 @@ enum FcrAppUISettingItem {
         static func quickStartList() -> [GeneralItem] {
             return [.language,
                     .region,
-                    .theme,
-                    .environment]
+                    .theme]
         }
         
-        static func debugList() -> [GeneralItem] {
+        static func testList() -> [GeneralItem] {
             return [.language,
                     .region,
                     .theme,

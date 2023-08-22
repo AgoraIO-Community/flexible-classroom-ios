@@ -10,6 +10,10 @@ import Foundation
 import WebKit
 import Armin
 
+protocol FcrAppCenterDelegate: NSObjectProtocol {
+    func onLanguageUpdated(_ language: FcrAppLanguage)
+}
+
 class FcrAppCenter: NSObject {
     private(set) lazy var urlGroup = FcrAppURLGroup(localStorage: localStorage)
     
@@ -23,8 +27,16 @@ class FcrAppCenter: NSObject {
     
     private(set) var localUser: FcrAppLocalUser?
     
+    let tester = FcrAppTester()
+    
+    weak var delegate: FcrAppCenterDelegate?
+    
     var isAgreedPrivacy = false {
         didSet {
+            guard isAgreedPrivacy != oldValue else {
+                return
+            }
+            
             localStorage.writeData(isAgreedPrivacy,
                                    key: .privacyAgreement)
         }
@@ -32,6 +44,10 @@ class FcrAppCenter: NSObject {
     
     var isLogined = false {
         didSet {
+            guard isLogined != oldValue else {
+                return
+            }
+            
             localStorage.writeData(isLogined,
                                    key: .login)
         }
@@ -39,6 +55,10 @@ class FcrAppCenter: NSObject {
     
     var uiMode = FcrAppUIMode.light {
         didSet {
+            guard uiMode != oldValue else {
+                return
+            }
+            
             localStorage.writeData(uiMode.rawValue,
                                    key: .uiMode)
         }
@@ -46,8 +66,14 @@ class FcrAppCenter: NSObject {
     
     var language = FcrAppLanguage.en {
         didSet {
+            guard language != oldValue else {
+                return
+            }
+            
             localStorage.writeData(language.rawValue,
                                    key: .language)
+            
+            delegate?.onLanguageUpdated(language)
         }
     }
     

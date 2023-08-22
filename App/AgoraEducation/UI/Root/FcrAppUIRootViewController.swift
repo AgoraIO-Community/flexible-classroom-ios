@@ -9,12 +9,14 @@
 import AgoraUIBaseViews
 
 class FcrAppUIRootViewController: FcrAppUINavigationController {
+    private let center = FcrAppCenter()
+    
     @objc init(isQuickStart: Bool) {
         if isQuickStart {
-            let vc = FcrAppUIQuickStartViewController()
+            let vc = FcrAppUIQuickStartViewController(center: center)
             super.init(rootViewController: vc)
         } else {
-            let vc = FcrAppUIMainViewController()
+            let vc = FcrAppUIMainViewController(center: center)
             super.init(rootViewController: vc)
         }
     }

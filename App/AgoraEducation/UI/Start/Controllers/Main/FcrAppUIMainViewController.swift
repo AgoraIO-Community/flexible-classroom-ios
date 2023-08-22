@@ -20,10 +20,20 @@ class FcrAppUIMainViewController: FcrAppUIViewController {
     
     private var proctor: AgoraProctor?
     
-    private let center = FcrAppCenter()
-    
     private let settingItems: [FcrAppUISettingItem] = [.generalSetting(FcrAppUISettingItem.GeneralItem.startList()),
                                                        .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
+    
+    private let center: FcrAppCenter
+    
+    init(center: FcrAppCenter) {
+        self.center = center
+        super.init(nibName: nil,
+                   bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override var prefersStatusBarHidden: Bool {
         return true

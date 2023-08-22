@@ -19,8 +19,9 @@ fileprivate class FcrAppUIQuickStartTitleButton: UIButton {
 class FcrAppUIQuickStartHeaderView: UIView,
                                     AgoraUIContentContainer {
     private let backgroundImageView = UIImageView(frame: .zero)
-    private let titleLabel = FcrAppUIQuickStartTitleButton(frame: .zero)
+    let titleLabel: UIButton = FcrAppUIQuickStartTitleButton(frame: .zero)
     
+    let testTag = UILabel()
     let settingButton = UIButton(frame: .zero)
     let signButton = UIButton(frame: .zero)
     
@@ -30,7 +31,6 @@ class FcrAppUIQuickStartHeaderView: UIView,
         super.init(frame: frame)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -42,6 +42,7 @@ class FcrAppUIQuickStartHeaderView: UIView,
         addSubview(signButton)
         addSubview(settingButton)
         addSubview(titleLabel)
+        addSubview(testTag)
         
         titleLabel.titleLabel?.font = FcrAppUIFontGroup.font20
         titleLabel.titleLabel?.textAlignment = .left
@@ -51,6 +52,10 @@ class FcrAppUIQuickStartHeaderView: UIView,
         signButton.layer.borderWidth = 1
         
         settingButton.layer.cornerRadius = 16
+        
+        testTag.font = FcrAppUIFontGroup.font20
+        testTag.textAlignment = .right
+        testTag.isHidden = true
     }
     
     func initViewFrame() {
@@ -65,17 +70,16 @@ class FcrAppUIQuickStartHeaderView: UIView,
             make?.height.equalTo()(48)
         }
         
-        signButton.mas_makeConstraints { make in
-            make?.top.equalTo()(self.titleLabel.mas_bottom)?.offset()(12)
-            make?.left.equalTo()(18)
-            make?.width.equalTo()(87)
-            make?.height.equalTo()(30)
-        }
-        
         settingButton.mas_makeConstraints { make in
             make?.centerY.equalTo()(self.titleLabel.mas_centerY)
             make?.right.equalTo()(-17)
             make?.width.height().equalTo()(32)
+        }
+        
+        testTag.mas_makeConstraints { make in
+            make?.centerY.equalTo()(self.titleLabel.mas_centerY)
+            make?.right.equalTo()(self.settingButton.mas_left)?.offset()(-10)
+            make?.width.equalTo()(100)
         }
     }
     
@@ -95,27 +99,31 @@ class FcrAppUIQuickStartHeaderView: UIView,
         titleLabel.setTitle("fcr_feedback_label_fcr".localized(),
                             for: .normal)
         
+        // Setting button
+        settingButton.setImage(UIImage(named: "fcr-quick-setting"),
+                               for: .normal)
+        
+        settingButton.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        
+        // Test tag
+        testTag.textColor = .white
+        testTag.text = "Tester"
+        
         // Sign button
         signButton.setTitle("fcr_login_free_button_login_sign".localized(),
                             for: .normal)
-        
-        let size = signButton.titleLabel!.text!.agora_size(font: signButton.titleLabel!.font,
-                                                          height: 30)
-        
-//        signButton.mas_updateConstraints { make in
-//            make?.width.equalTo()(size.width)
-//        }
         
         signButton.setTitleColor(FcrAppUIColorGroup.fcr_white,
                                  for: .normal)
         
         signButton.layer.borderColor = FcrAppUIColorGroup.fcr_white.cgColor
         
-        // Setting button
-        settingButton.setImage(UIImage(named: "fcr-quick-setting"),
-                               for: .normal)
-        
-        settingButton.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        signButton.mas_makeConstraints { make in
+            make?.top.equalTo()(self.titleLabel.mas_bottom)?.offset()(12)
+            make?.left.equalTo()(18)
+            make?.width.equalTo()(signButton.intrinsicContentSize.width + 40)
+            make?.height.equalTo()(30)
+        }
     }
     
     func updateTopConstraints(topSafeArea: CGFloat) {
@@ -142,7 +150,6 @@ class FcrAppUIQuickStartFooterView: UIView,
         super.init(frame: frame)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -179,13 +186,6 @@ class FcrAppUIQuickStartFooterView: UIView,
             make?.right.equalTo()(-25)
             make?.height.equalTo()(80)
         }
-        
-        signButton.mas_makeConstraints { make in
-            make?.top.equalTo()(self.contentLabel.mas_bottom)?.offset()(20)
-            make?.left.equalTo()(25)
-            make?.width.equalTo()(87)
-            make?.height.equalTo()(30)
-        }
     }
     
     func updateViewProperties() {
@@ -203,11 +203,20 @@ class FcrAppUIQuickStartFooterView: UIView,
                                  for: .normal)
         
         signButton.backgroundColor = FcrAppUIColorGroup.fcr_white
+        
+        signButton.mas_makeConstraints { make in
+            make?.top.equalTo()(self.contentLabel.mas_bottom)?.offset()(20)
+            make?.left.equalTo()(25)
+            make?.width.equalTo()(signButton.intrinsicContentSize.width + 40)
+            make?.height.equalTo()(30)
+        }
     }
 }
 
 class FcrAppUIQuickStartContentView: UIScrollView,
                                      AgoraUIContentContainer {
+    private let content = UIView()
+    
     let headerView = FcrAppUIQuickStartHeaderView(frame: .zero)
     let roomInputView: FcrAppUIQuickStartInputView
     let footerView = FcrAppUIQuickStartFooterView(frame: .zero)
@@ -219,7 +228,6 @@ class FcrAppUIQuickStartContentView: UIScrollView,
         super.init(frame: .zero)
         initViews()
         initViewFrame()
-        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -227,29 +235,40 @@ class FcrAppUIQuickStartContentView: UIScrollView,
     }
     
     func initViews() {
-        contentSize = CGSize(width: 0, height: 870)
+        bounces = false
+        contentInsetAdjustmentBehavior = .never
+        showsVerticalScrollIndicator = false
+        addSubview(content)
         
-        
-        addSubview(headerView)
-        addSubview(footerView)
-        addSubview(roomInputView)
-        
+        content.addSubview(headerView)
+        content.addSubview(footerView)
+        content.addSubview(roomInputView)
+
         footerView.layer.cornerRadius = FcrAppUIFrameGroup.cornerRadius16
     }
     
     func initViewFrame() {
-        headerView.mas_makeConstraints { make in
-            make?.left.right().top().equalTo()(0)
-            make?.height.equalTo()(263)
+        content.mas_makeConstraints { make in
+            make?.edges.equalTo()(self)
+            make?.width.equalTo()(self)
+            make?.height.equalTo()(870)
         }
         
+        contentSize = CGSize(width: 0,
+                             height: 870)
+        
+        headerView.mas_makeConstraints { make in
+            make?.left.right().top().equalTo()(content)
+            make?.height.equalTo()(263)
+        }
+
         roomInputView.mas_makeConstraints { make in
             make?.top.equalTo()(self.headerView.mas_bottom)?.offset()(-107)
             make?.left.equalTo()(15)
             make?.right.equalTo()(-15)
             make?.height.equalTo()(479)
         }
-        
+
         footerView.mas_makeConstraints { make in
             make?.top.equalTo()(self.roomInputView.mas_bottom)?.offset()(-35)
             make?.left.equalTo()(15)
@@ -259,6 +278,11 @@ class FcrAppUIQuickStartContentView: UIScrollView,
     }
     
     func updateViewProperties() {
+        headerView.updateViewProperties()
+        roomInputView.updateViewProperties()
+        footerView.updateViewProperties()
+        
+        content.backgroundColor = UIColor.fcr_hex_string("#F8FAFF")
         footerView.backgroundColor = UIColor.fcr_hex_string("#EBF6FA")
     }
 }
