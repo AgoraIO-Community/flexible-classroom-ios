@@ -129,12 +129,21 @@ private extension FcrAppUIQuickStartViewController {
     @objc func onJoinButtonPressed(_ sender: UIButton) {
         let joinRoomView = contentView.roomInputView.joinRoomView
         
-        // TODO: UI 需要文案提示吗？
         guard let roomId = joinRoomView.roomIdTextField.getText() else {
+            showToast("fcr_login_free_toast_room_id_null".localized(),
+                      type: .error)
             return
         }
         
         guard let userName = joinRoomView.userNameTextField.getText() else {
+            showToast("fcr_login_free_toast_nick_name_null".localized(),
+                      type: .error)
+            return
+        }
+        
+        if userName.count < 2 || userName.count > 20 {
+            showToast("fcr_home_toast_content_length".localized(),
+                      type: .error)
             return
         }
         
@@ -158,10 +167,20 @@ private extension FcrAppUIQuickStartViewController {
         let createRoomView = contentView.roomInputView.createRoomView
         
         guard let roomName = createRoomView.roomNameTextField.getText() else {
+            showToast("fcr_login_free_toast_room_name_null".localized(),
+                      type: .error)
             return
         }
         
         guard let userName = createRoomView.userNameTextField.getText() else {
+            showToast("fcr_login_free_toast_nick_name_null".localized(),
+                      type: .error)
+            return
+        }
+        
+        if userName.count < 2 || userName.count > 20 {
+            showToast("fcr_home_toast_content_length".localized(),
+                      type: .error)
             return
         }
      

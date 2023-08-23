@@ -183,3 +183,10 @@ settings_logoff_detail = "
 settings_logoff_agreenment = "我已阅读并确认注销账号";
 settings_logoff_submit = "确认注销";
 settings_logoff_alert = "是否确认注销账号？";
+
+// share link
+fcr_inshare_label_share = "分享";
+fcr_inshare_label_room_id = "房间ID：";
+fcr_inshare_label_invitation = "邀请：";
+fcr_inshare_button_share_friends = "分享给好友";
+fcr_joinroom_tips_copy = "复制成功";

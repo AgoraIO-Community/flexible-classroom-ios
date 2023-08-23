@@ -103,9 +103,11 @@ extension FcrAppUIAboutViewController: UITableViewDelegate, UITableViewDataSourc
         
         switch type {
         case .privacy:
-            openURL("settings_srivacy_url".localized())
+            let link = FcrAppUIPolicyString().privacykLink
+            openURL(link)
         case .terms:
-            openURL("settings_terms_url".localized())
+            let link = FcrAppUIPolicyString().tearmsLink
+            openURL(link)
         case .disclaimer:
             let vc = FcrAppUIDisclaimerViewController()
             navigationController?.pushViewController(vc,

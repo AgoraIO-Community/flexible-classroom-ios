@@ -117,6 +117,10 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
         
         AgoraLoading.loading()
         
+        let widgets = FcrAppWidgets()
+        
+        config.widgets[widgets.sharingLinkWidgetId] = widgets.createSharingLink()
+        
         AgoraClassroomSDK.launch(config) {
             AgoraLoading.hide()
         } failure: { [weak self] error in

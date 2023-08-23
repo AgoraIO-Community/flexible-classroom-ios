@@ -111,6 +111,12 @@ private extension FcrAppUIJoinRoomController {
             return
         }
         
+        if userName.count < 2 || userName.count > 20 {
+            showToast("fcr_home_toast_content_length".localized(),
+                      type: .error)
+            return
+        }
+        
         let userRole: FcrAppUIUserRole = (content.teacherView.button.isSelected ? .teacher : .student)
         
         guard let userId = center.localUser?.userId else {

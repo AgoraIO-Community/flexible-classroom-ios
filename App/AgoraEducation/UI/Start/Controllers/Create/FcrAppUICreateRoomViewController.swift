@@ -129,6 +129,12 @@ private extension FcrAppUICreateRoomViewController {
             return
         }
         
+        if userName.count < 2 || userName.count > 20 {
+            showToast("fcr_home_toast_content_length".localized(),
+                      type: .error)
+            return
+        }
+        
         guard let userId = center.localUser?.userId else {
             return
         }

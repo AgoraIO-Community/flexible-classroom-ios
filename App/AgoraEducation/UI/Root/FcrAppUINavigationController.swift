@@ -88,6 +88,18 @@ class FcrAppUINavigationController: UINavigationController {
         super.viewWillAppear(animated)
     }
     
+    public override var shouldAutorotate: Bool {
+        return true
+    }
+    
+    public override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return UIDevice.current.agora_is_pad ? .landscapeRight : .portrait
+    }
+
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIDevice.current.agora_is_pad ? .landscapeRight : .portrait
+    }
+    
     override func pushViewController(_ viewController: UIViewController,
                                      animated: Bool) {
         if let backButton = backButton {

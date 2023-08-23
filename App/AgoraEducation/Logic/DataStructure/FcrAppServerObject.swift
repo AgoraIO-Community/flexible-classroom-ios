@@ -96,6 +96,5 @@ struct FcrAppServerDetailRoomObject: FcrAppCodable {
 struct FcrAppServerJoinRoomObject: FcrAppCodable {
     var token: String
     var appId: String
-    var role: FcrAppUserRole
     var roomDetail: FcrAppServerDetailRoomObject
 }

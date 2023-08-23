@@ -9,6 +9,12 @@
 import Foundation
 
 struct FcrAppUIPolicyString {
+    let privacykLink = "fcr_login_label_terms_of_service_link".localized()
+    let tearmsLink = "fcr_login_label_privacy_policy_link".localized()
+    
+    let privacyText = "fcr_login_label_privacy_policy".localized()
+    let tearmsText = "fcr_login_label_terms_of_service".localized()
+    
     func loginString() -> NSMutableAttributedString {
         let text = "fcr_login_popup_window_label_content".localized()
         
@@ -22,12 +28,6 @@ struct FcrAppUIPolicyString {
     }
     
     private func string(_ string: String) -> NSMutableAttributedString {
-        let privacykLink = "fcr_login_label_terms_of_service_link".localized()
-        let tearmsLink = "fcr_login_label_privacy_policy_link".localized()
-        
-        let privacyText = "fcr_login_label_privacy_policy".localized()
-        let tearmsText = "fcr_login_label_terms_of_service".localized()
-        
         var text = string
         
         text = text.replacingOccurrences(of: "{xxx}",
