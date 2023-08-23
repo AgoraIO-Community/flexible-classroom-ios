@@ -80,9 +80,16 @@ class FcrAppUIJoinRoomRoleView: UIView,
  
 class FcrAppUIJoinRoomInputView: UIView,
                                  AgoraUIContentContainer {
-    let idTextField = FcrAppUIRoomIdTextField(leftViewType: .image)
+    private let imageSize = CGSize(width: 36,
+                                   height: 36)
     
-    let nameTextField = FcrAppUIRoomNameTextField(leftViewType: .image)
+    private(set) lazy var idTextField = FcrAppUIRoomIdTextField(leftViewType: .image,
+                                                                leftImageSize: imageSize,
+                                                                leftAreaOffsetX: 8)
+    
+    private(set) lazy var  nameTextField = FcrAppUIRoomNameTextField(leftViewType: .image,
+                                                                     leftImageSize: imageSize,
+                                                                     leftAreaOffsetX: 8)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -125,13 +132,13 @@ class FcrAppUIJoinRoomInputView: UIView,
         nameTextField.updateViewProperties()
         
         idTextField.leftImageView.image = UIImage(named: "fcr_v2_id")
-        idTextField.placeholder = "fcr_room_join_room_id_ph".localized()
+        idTextField.placeholder = "fcr_home_tips_room_id".localized()
         idTextField.font = UIFont.boldSystemFont(ofSize: 15)
         idTextField.textColor = UIColor.black
         idTextField.backgroundColor = FcrAppUIColorGroup.fcr_v2_light_input_background
         
         nameTextField.leftImageView.image = UIImage(named: "fcr_name")
-        nameTextField.placeholder = "fcr_room_join_room_name_ph".localized()
+        nameTextField.placeholder = "fcr_home_tips_nick_name".localized()
         nameTextField.font = UIFont.boldSystemFont(ofSize: 15)
         nameTextField.textColor = UIColor.black
         nameTextField.backgroundColor = FcrAppUIColorGroup.fcr_v2_light_input_background
@@ -240,25 +247,24 @@ class FcrAppUIJoinRoomContentView: UIView,
         teacherView.updateViewProperties()
         
         titleLabel.textColor = FcrAppUIColorGroup.fcr_black
-        titleLabel.text = "fcr_room_join_title".localized()
+        titleLabel.text = "fcr_home_label_join_classroom".localized()
         
         roomInputView.backgroundColor = FcrAppUIColorGroup.fcr_white
         
-        roleTitleLabel.text = "fcr_room_join_room_role".localized()
+        roleTitleLabel.text = "fcr_home_label_role".localized()
         roleTitleLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text1
         
-        studentView.button.setTitle("fcr_room_join_room_role_student".localized(),
+        studentView.button.setTitle("fcr_home_role_option_student".localized(),
                                     for: .normal)
        
-        teacherView.button.setTitle("fcr_room_join_room_role_teacher".localized(),
+        teacherView.button.setTitle("fcr_home_role_option_teacher".localized(),
                                     for: .normal)
         
         closeButton.setImage(UIImage(named: "fcr_mobile_closeicon"),
                              for: .normal)
         
-        joinButton.setTitle("fcr_alert_sure".localized(),
+        joinButton.setTitle("fcr_home_button_join".localized(),
                               for: .normal)
-        
         
         joinButton.setTitleColor(FcrAppUIColorGroup.fcr_white,
                                    for: .normal)

@@ -1,6 +1,6 @@
 //****************** 登录页 login ******************
 fcr_login_label_welcome = "欢迎使用灵动课堂";
-fcr_login_button_welcome = "登录/注册";
+fcr_login_button_welcome = "登录";
 fcr_login_button_create_room = "创建课堂";
 fcr_login_button_join_room = "加入课堂";
 
@@ -20,15 +20,52 @@ fcr_login_label_privacy_policy = "隐私政策";
 fcr_login_popup_window_button_agree = "同意并继续";
 fcr_login_popup_window_button_disagree = "不同意并退出";
 
+//****************** 首页 Home ******************
+fcr_home_label_roomlist = "房间列表";
+fcr_phone_home_label_welcome = "声网灵动课堂";
+fcr_home_label_status_upcoming = "待开始";
+fcr_home_label_status_live = "进行中";
+fcr_home_label_status_over = "已结束";
+fcr_home_label_class_mode_cloud_class = "云课堂";
+fcr_home_label_class_mode_webinar = "直播大讲堂";
+fcr_home_label_class_mode_small_classroom = "小班课堂";
+fcr_home_label_class_mode_lecture_hall = "大班课课堂";
+fcr_home_label_class_mode_1on1 = "1对1课堂";
+fcr_home_label_class_mode_proctoring = "在线监考";
+fcr_home_label_id = "房间号";
+fcr_home_label_create_classroom = "创建房间";
+fcr_home_label_join_classroom = "加入房间";
+fcr_home_tips_room_name = "请输入你的房间名";
+fcr_home_toast_content_length = "请输入2-20位长度的内容";
+fcr_home_tips_nick_name = "怎么称呼您？";
+fcr_home_toast_nick_name_null = "请输入昵称";
+fcr_home_label_starttime = "开始时间";
+fcr_home_label_endtime = "结束时间";
+fcr_home_tips_room_id = "请输入房间号";
+fcr_home_toast_room_name_null = "请输入房间名";
+fcr_home_toast_room_id_null = "请输入房间号";
+fcr_home_label_role = "角色";
+fcr_home_role_option_student = "学生";
+fcr_home_role_option_teacher = "老师";
+fcr_home_role_option_audience = "观众";
+fcr_home_button_create = "创建";
+fcr_home_button_join = "加入";
+fcr_home_button_cancel = "取消";
+
 //****************** 免登录页 Login free ******************
 fcr_login_free_label_quick_start = "快速体验";
 fcr_login_free_label_room_name = "房间名";
 fcr_login_free_label_class_mode = "教学模式";
 fcr_login_free_label_nick_name = "昵称";
+fcr_login_free_tips_content_length = "请输入2-20位长度的内容";
 fcr_login_free_label_duration_time = "课程时间";
 fcr_login_free_tips_room_name = "请输入你的房间名";
+fcr_login_free_tips_room_id = "请输入你的房间号";
 fcr_login_free_tips_nick_name = "怎么称呼您？";
 fcr_login_free_tips_duration_time = "30分钟";
+fcr_login_free_toast_nick_name_null = "请输入昵称";
+fcr_login_free_toast_room_name_null = "请输入房间名";
+fcr_login_free_toast_room_id_null = "请输入房间号";
 
 //xxx灵动课堂用户协议,yyy灵动课堂隐私政策,zzz 海外灵动课堂用户协议
 fcr_login_free_option_read_agree = "我已阅读并同意{xxx}和{yyy}";
@@ -81,10 +118,23 @@ fcr_feedback_label_content1 = "如果你想深入了解我们的产品，或在�
 fcr_feedback_label_content2 = "如无法添加，你也可以通过已下方式联系我们:";
 fcr_feedback_label_email = "企业邮箱";
 fcr_feedback_label_wecom = "企业微信";
-fcr_feedback_label_facebook = "Facebook";
+fcr_feedback_label_messenger = "Messenger";
 fcr_feedback_label_slack = "Slack";
 
-//Settings
+// Date format
+fcr_create_select_start_time = "选择开始时间";
+fcr_create_current_time = "当前时间";
+fcr_create_picker_today = "今天";
+fcr_create_table_time_format = "MMM d日 HH:mm";
+fcr_create_picker_time_format = "M月d日 EEEE";
+fcr_create_tips_starttime = "开始时间必须大于当前时间";
+fcr_create_end_time = "结束时间";
+fcr_create_end_time_info = "默认时长30分钟";
+
+// Others
+fcr_create_more_setting = "更多设置";
+
+// Settings
 fcr_alert_title = "提示";
 fcr_alert_submit = "确认";
 fcr_alert_sure = "确认";

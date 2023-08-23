@@ -162,7 +162,7 @@ extension FcrAppUICreateRoomViewController: AgoraUIContentContainer {
         
         backgroundImageView.image = UIImage(named: "fcr_room_create_bg")
         
-        titleLabel.text = "fcr_create_room".localized()
+        titleLabel.text = "fcr_home_label_create_classroom".localized()
         
         headerView.backgroundColor = .white
         
@@ -271,4 +271,3 @@ private extension FcrAppUICreateRoomViewController {
         createRoom(config)
     }
 }
-

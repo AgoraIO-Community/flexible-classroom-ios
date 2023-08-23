@@ -14,8 +14,14 @@ class FcrAppUICreateRoomHeaderView: UIView, AgoraUIContentContainer {
     private let collectionView = UICollectionView(frame: .zero,
                                                   collectionViewLayout: UICollectionViewLayout())
     
-    let roomNameTextField = FcrAppUIRoomNameTextField(leftViewType: .image)
-    let userNameTextField = FcrAppUIRoomNameTextField(leftViewType: .image)
+    private let imageSize = CGSize(width: 36,
+                                   height: 36)
+    
+    private(set) lazy var roomNameTextField = FcrAppUIRoomNameTextField(leftViewType: .image,
+                                                                        leftImageSize: imageSize)
+    
+    private(set) lazy var userNameTextField = FcrAppUIRoomNameTextField(leftViewType: .image,
+                                                                        leftImageSize: imageSize)
     
     // Data
     private(set) var selectedRoomType = FcrAppUIRoomType.smallClass
@@ -96,6 +102,10 @@ class FcrAppUICreateRoomHeaderView: UIView, AgoraUIContentContainer {
             imageView.image = UIImage(named: "fcr_room_create_user_name")
         }
         
+        roomNameTextField.placeholder = "fcr_home_tips_room_name".localized()
+        
+        userNameTextField.placeholder = "fcr_home_tips_nick_name".localized()
+        
         collectionView.backgroundColor = .clear
     }
 }
@@ -114,7 +124,7 @@ extension FcrAppUICreateRoomHeaderView: UICollectionViewDelegate,
         let roomType = roomTypeList[indexPath.row]
         
         cell.imageView.image = roomType.image()
-        cell.titleLabel.text = roomType.title()
+        cell.titleLabel.text = roomType.text()
         cell.subTitleLabel.text = roomType.subTitle()
         cell.aSelected = (roomType == selectedRoomType)
         
@@ -138,16 +148,17 @@ extension FcrAppUICreateRoomHeaderView: UICollectionViewDelegate,
 
 class FcrAppUICreateRoomTypeCell: UICollectionViewCell,
                                   AgoraUIContentContainer {
+    private let selectIcon = UIImageView()
     
-    public let imageView = UIImageView()
+    let imageView = UIImageView()
     
-    public let titleLabel = UILabel()
+    let titleLabel = UILabel()
     
-    public let subTitleLabel = UILabel()
+    let subTitleLabel = UILabel()
     
-    public let selectedView = UIImageView(image: UIImage(named: "fcr_mobile_check2"))
+    let selectedView = UIImageView(frame: .zero)
     
-    public var aSelected = false {
+    var aSelected = false {
         didSet {
             guard aSelected != oldValue else {
                 return
@@ -155,8 +166,6 @@ class FcrAppUICreateRoomTypeCell: UICollectionViewCell,
             selectedView.isHidden = !aSelected
         }
     }
-    
-    private let selectIcon = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -210,6 +219,8 @@ class FcrAppUICreateRoomTypeCell: UICollectionViewCell,
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         
+        selectedView.image = UIImage(named: "fcr_mobile_check2")
+        
         imageView.backgroundColor = FcrAppUIColorGroup.fcr_white
         titleLabel.textColor = FcrAppUIColorGroup.fcr_white
         subTitleLabel.textColor = FcrAppUIColorGroup.fcr_white
@@ -219,40 +230,19 @@ class FcrAppUICreateRoomTypeCell: UICollectionViewCell,
 fileprivate extension FcrAppUIRoomType {
     func image() -> UIImage? {
         switch self {
-        case .smallClass:
-            return UIImage(named: "fcr_room_create_small_bg")
-        case .lectureHall:
-            return UIImage(named: "fcr_room_create_lecture_bg")
-        case .oneToOne:
-            return UIImage(named: "fcr_room_create_1v1_bg")
-        case .proctor:
-            return nil
-        }
-    }
-    
-    func title() -> String? {
-        switch self {
-        case .smallClass:
-            return "fcr_create_small_title".localized()
-        case .lectureHall:
-            return "fcr_create_lecture_title".localized()
-        case .oneToOne:
-            return "fcr_create_onetoone_title".localized()
-        case .proctor:
-            return nil
+        case .smallClass:  return UIImage(named: "fcr_room_create_small_bg")
+        case .lectureHall: return UIImage(named: "fcr_room_create_lecture_bg")
+        case .oneToOne:    return UIImage(named: "fcr_room_create_1v1_bg")
+        case .proctor:     return UIImage(named: "fcr_room_create_proctor_bg")
         }
     }
     
     func subTitle() -> String? {
         switch self {
-        case .smallClass:
-            return "fcr_create_small_detail".localized()
-        case .lectureHall:
-            return "fcr_create_lecture_detail".localized()
-        case .oneToOne:
-            return "fcr_create_onetoone_detail".localized()
-        case .proctor:
-            return nil
+        case .smallClass:  return "fcr_create_small_detail".localized()
+        case .lectureHall: return "fcr_create_lecture_detail".localized()
+        case .oneToOne:    return "fcr_create_onetoone_detail".localized()
+        case .proctor:     return nil
         }
     }
 }
@@ -339,13 +329,13 @@ class FcrAppUICreateRoomTimeView: UIButton,
     }
     
     func updateViewProperties() {
-        arrowIcon.image = UIImage(named: "fcr_room_create_time_arrow")
+        arrowIcon.image = UIImage(named: "fcr_home_label_create_classroom")
         
         startTimeLabel.text = "fcr_create_current_time".localized()
-        startTitleLabel.text = "fcr_create_start_time".localized()
+        startTitleLabel.text = "fcr_home_label_starttime".localized()
         startTitleLabel.textColor = UIColor(hex: 0x757575)
         
-        endTitleLabel.text = "fcr_create_end_time".localized()
+        endTitleLabel.text = "fcr_home_label_endtime".localized()
         endTitleLabel.textColor = UIColor(hex: 0x757575)
         
         startTimeLabel.textColor = UIColor.black
@@ -404,7 +394,7 @@ class FcrAppUICreateRoomFooterView: UIView,
     }
     
     func updateViewProperties() {
-        createButton.setTitle("fcr_create_submit".localized(),
+        createButton.setTitle("fcr_home_button_create".localized(),
                               for: .normal)
         
         createButton.setTitleColor(.white,
@@ -412,7 +402,7 @@ class FcrAppUICreateRoomFooterView: UIView,
         
         createButton.backgroundColor = UIColor(hex: 0x357BF6)
         
-        cancelButton.setTitle("fcr_create_cancel".localized(),
+        cancelButton.setTitle("fcr_home_button_cancel".localized(),
                               for: .normal)
         
         cancelButton.setTitleColor(.black,

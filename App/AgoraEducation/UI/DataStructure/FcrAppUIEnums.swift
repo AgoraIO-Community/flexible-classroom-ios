@@ -20,10 +20,10 @@ typealias FcrAppUIEnvironment = FcrAppEnvironment
 extension FcrAppUIRoomType {
     func text() -> String {
         switch self {
-        case .oneToOne:     return "fcr_create_onetoone_title".localized()
-        case .smallClass:   return "fcr_create_small_title".localized()
-        case .lectureHall:  return "fcr_create_lecture_title".localized()
-        case .proctor:      return "pt_home_page_scene_option_online_proctoring".localized()
+        case .oneToOne:     return "fcr_home_label_class_mode_1on1".localized()
+        case .smallClass:   return "fcr_home_label_class_mode_small_classroom".localized()
+        case .lectureHall:  return "fcr_home_label_class_mode_lecture_hall".localized()
+        case .proctor:      return "fcr_home_label_class_mode_proctoring".localized()
         }
     }
     
@@ -77,9 +77,9 @@ extension FcrAppUIMode {
 extension FcrAppUIRoomState {
     func text() -> String {
         switch self {
-        case .unstarted:   return "fcr_room_list_upcoming".localized()
-        case .inProgress:  return "fcr_room_list_live_now".localized()
-        case .closed:      return "fcr_room_list_closed".localized()
+        case .unstarted:   return "fcr_home_label_status_upcoming".localized()
+        case .inProgress:  return "fcr_home_label_status_live".localized()
+        case .closed:      return "fcr_home_label_status_over".localized()
         }
     }
 }

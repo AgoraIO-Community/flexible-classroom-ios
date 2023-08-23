@@ -96,7 +96,7 @@ class FcrAppUIRoomListTitleView: UIView,
     func updateViewProperties() {
         label.font = UIFont.systemFont(ofSize: 16,
                                        weight: .medium)
-        label.text = "fcr_room_list_rooms".localized()
+        label.text = "fcr_home_label_roomlist".localized()
     }
 }
 

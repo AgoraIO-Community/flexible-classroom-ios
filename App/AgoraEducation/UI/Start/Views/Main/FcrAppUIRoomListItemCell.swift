@@ -208,7 +208,7 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
         enteredButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         enteredButton.layer.cornerRadius = 18
         enteredButton.clipsToBounds = true
-        enteredButton.setTitle("fcr_room_list_enter".localized(),
+        enteredButton.setTitle("fcr_home_button_join".localized(),
                              for: .normal)
         
         sharedButton.setImage(UIImage(named: "fcr_room_list_share_black"),

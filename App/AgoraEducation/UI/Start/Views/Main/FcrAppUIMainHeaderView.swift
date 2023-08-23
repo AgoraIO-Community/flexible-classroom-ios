@@ -8,6 +8,69 @@
 
 import AgoraUIBaseViews
 
+class FcrAppUIMainTitleActionView: UIView,
+                                   AgoraUIContentContainer {
+    private let contentView = UIImageView(frame: .zero )
+    private let iconBGView = UIImageView(frame: .zero )
+    
+    let iconView = UIImageView(frame: .zero )
+    let titleLabel = UILabel()
+    let button = UIButton(type: .custom)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initViews()
+        initViewFrame()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func initViews() {
+        addSubview(contentView)
+        addSubview(iconBGView)
+        addSubview(iconView)
+        addSubview(button)
+        addSubview(titleLabel)
+        
+        titleLabel.textAlignment = .center
+    }
+    
+    func initViewFrame() {
+        contentView.mas_makeConstraints { make in
+            make?.left.right().top().bottom().equalTo()(0)
+        }
+        
+        iconBGView.mas_makeConstraints { make in
+            make?.width.height().equalTo()(44)
+            make?.left.equalTo()(8)
+            make?.centerY.equalTo()(0)
+        }
+        
+        iconView.mas_makeConstraints { make in
+            make?.center.equalTo()(iconBGView)
+        }
+        
+        titleLabel.mas_makeConstraints { make in
+            make?.left.equalTo()(iconView.mas_right)
+            make?.right.top().bottom().equalTo()(0)
+        }
+        
+        button.mas_makeConstraints { make in
+            make?.left.right().top().bottom().equalTo()(0)
+        }
+    }
+    
+    func updateViewProperties() {
+        titleLabel.font = FcrAppUIFontGroup.font16
+        titleLabel.textColor = FcrAppUIColorGroup.fcr_black
+        
+        contentView.image = UIImage(named: "fcr_room_list_start_button_bg")
+        iconBGView.image = UIImage(named: "fcr_room_list_action_bg")
+    }
+}
+
 fileprivate class FcrAppUIMainTitleButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -104,7 +167,7 @@ class FcrAppUIMainHeaderView: UIView,
         titleLabel.setTitleColor(FcrAppUIColorGroup.fcr_black,
                                  for: .selected)
         
-        titleLabel.setTitle("fcr_login_label_welcome".localized(),
+        titleLabel.setTitle("fcr_phone_home_label_welcome".localized(),
                             for: .normal)
         
         joinActionView.iconView.image = UIImage(named: "fcr_room_list_join")
@@ -117,69 +180,5 @@ class FcrAppUIMainHeaderView: UIView,
                                for: .normal)
         
         testTag.textColor = FcrAppUIColorGroup.fcr_black
-    }
-}
-
-class FcrAppUIMainTitleActionView: UIView,
-                                   AgoraUIContentContainer {
-    private let contentView = UIImageView(frame: .zero )
-    private let iconBGView = UIImageView(frame: .zero )
-    
-    let iconView = UIImageView(frame: .zero )
-    let titleLabel = UILabel()
-    let button = UIButton(type: .custom)
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        initViews()
-        initViewFrame()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func initViews() {
-        addSubview(contentView)
-        addSubview(iconBGView)
-        addSubview(iconView)
-        addSubview(button)
-        addSubview(titleLabel)
-        
-        titleLabel.textAlignment = .center
-    }
-    
-    func initViewFrame() {
-        contentView.mas_makeConstraints { make in
-            make?.left.right().top().bottom().equalTo()(0)
-        }
-        
-        iconBGView.mas_makeConstraints { make in
-            make?.width.height().equalTo()(44)
-            make?.left.equalTo()(8)
-            make?.centerY.equalTo()(0)
-        }
-        
-        iconView.mas_makeConstraints { make in
-            make?.center.equalTo()(iconBGView)
-        }
-        
-        titleLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(iconView.mas_right)
-            make?.right.top().bottom().equalTo()(0)
-        }
-        
-        button.mas_makeConstraints { make in
-            make?.left.right().top().bottom().equalTo()(0)
-        }
-    }
-    
-    func updateViewProperties() {
-        titleLabel.font = FcrAppUIFontGroup.font16
-        titleLabel.textColor = FcrAppUIColorGroup.fcr_black
-        
-        contentView.image = UIImage(named: "fcr_room_list_start_button_bg")
-        iconBGView.image = UIImage(named: "fcr_room_list_action_bg")
-        
     }
 }
