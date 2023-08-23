@@ -193,47 +193,11 @@ class FcrAppUICreateRoomMoreTitleButton: UIButton,
     }
     
     func initViews() {
-        titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        titleLabel?.font = FcrAppUIFontGroup.font13
     }
     
     func initViewFrame() {
-        updateTitleViewFrame(isSpread: false)
-    }
-    
-    func updateTitleViewFrame(isSpread: Bool) {
-        imageView?.isHidden = isSpread
         
-        if isSpread {
-            let titleWidth: CGFloat = 110
-            let titleHeight: CGFloat = 30
-            let titleX: CGFloat = 18
-            let y: CGFloat = 16
-            
-            titleLabel?.frame = CGRect(x: titleX,
-                                      y: y,
-                                      width: titleWidth,
-                                      height: titleHeight)
-        } else {
-            let width: CGFloat = 110
-            let height: CGFloat = 30
-            let x = (bounds.width - width) * 0.5
-            let y: CGFloat = 16
-            
-            titleLabel?.frame = CGRect(x: x,
-                                      y: y,
-                                      width: width,
-                                      height: height)
-            
-            let imageWidth: CGFloat = 30
-            let imageHeight: CGFloat = imageWidth
-            
-            let imageX: CGFloat = bounds.width * 0.5 + 25
-            
-            imageView?.frame = CGRect(x: imageX,
-                                      y: y,
-                                      width: imageWidth,
-                                      height: imageHeight)
-        }
     }
     
     func updateViewProperties() {
@@ -243,8 +207,54 @@ class FcrAppUICreateRoomMoreTitleButton: UIButton,
         setTitle("fcr_create_more_setting".localized(),
                  for: .normal)
         
-        setTitleColor(UIColor.black,
+        setTitleColor(FcrAppUIColorGroup.fcr_black,
                       for: .normal)
+        
+        updateTitleViewFrame(isSpread: isSpread)
+    }
+    
+    func updateTitleViewFrame(isSpread: Bool) {
+        guard let `titleLabel` = titleLabel,
+              let text = titleLabel.text
+        else {
+            return
+        }
+        
+        imageView?.isHidden = isSpread
+        
+        let imageWidth: CGFloat = 30
+        let imageHeight: CGFloat = imageWidth
+        
+        let textWidth: CGFloat = text.agora_size(font: titleLabel.font).width
+        
+        if isSpread {
+            let titleWidth: CGFloat = textWidth
+            let titleHeight: CGFloat = 30
+            let titleX: CGFloat = 18
+            let y: CGFloat = 16
+            
+            titleLabel.frame = CGRect(x: titleX,
+                                      y: y,
+                                      width: titleWidth,
+                                      height: titleHeight)
+        } else {
+            let width: CGFloat = textWidth + 6 + imageWidth
+            let height: CGFloat = 30
+            let x = (bounds.width - width) * 0.5
+            let y: CGFloat = 16
+            
+            titleLabel.frame = CGRect(x: x,
+                                      y: y,
+                                      width: textWidth,
+                                      height: height)
+            
+            let imageX: CGFloat = titleLabel.frame.maxX
+            
+            imageView?.frame = CGRect(x: imageX,
+                                      y: y,
+                                      width: imageWidth,
+                                      height: imageHeight)
+        }
     }
 }
 
@@ -282,8 +292,8 @@ class FcrAppUICreateRoomSwitchCell: UITableViewCell,
         contentView.addSubview(detailLabel)
         contentView.addSubview(switchButton)
         
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 13)
-        detailLabel.font = UIFont.boldSystemFont(ofSize: 13)
+        titleLabel.font = FcrAppUIFontGroup.font13
+        detailLabel.font = FcrAppUIFontGroup.font13
     }
     
     func initViewFrame() {
@@ -316,11 +326,11 @@ class FcrAppUICreateRoomSwitchCell: UITableViewCell,
     }
     
     func updateViewProperties() {
-        lineView.backgroundColor = UIColor(hex: 0xEFEFEF)
+        lineView.backgroundColor = FcrAppUIColorGroup.fcr_v2_line
         
-        titleLabel.textColor = UIColor.black
+        titleLabel.textColor = FcrAppUIColorGroup.fcr_black
         
-        detailLabel.textColor = UIColor(hex: 0x757575)
+        detailLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
         
         switchButton.setImage(UIImage(named: "fcr_room_create_off"),
                               for: .normal)

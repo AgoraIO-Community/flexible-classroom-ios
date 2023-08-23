@@ -73,7 +73,7 @@ class FcrAppUIPresentedViewController: FcrAppUIViewController,
         contentView.backgroundColor = .white
     }
     
-    @objc private func onDismissPressed() {
+    @objc func onDismissPressed() {
         onDismissed?()
         dismiss(animated: true)
     }

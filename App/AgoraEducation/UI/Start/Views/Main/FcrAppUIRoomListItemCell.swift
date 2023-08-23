@@ -230,7 +230,7 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
                                  for: .normal)
             
             enteredButton.isHidden = false
-            enteredButton.backgroundColor = UIColor(hex: 0x357BF6)
+            enteredButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
             enteredButton.setTitleColor(.white,
                                       for: .normal)
             

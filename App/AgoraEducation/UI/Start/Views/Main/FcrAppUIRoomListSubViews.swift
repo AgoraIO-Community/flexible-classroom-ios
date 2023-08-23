@@ -94,8 +94,7 @@ class FcrAppUIRoomListTitleView: UIView,
     }
     
     func updateViewProperties() {
-        label.font = UIFont.systemFont(ofSize: 16,
-                                       weight: .medium)
+        label.font = FcrAppUIFontGroup.font16
         label.text = "fcr_home_label_roomlist".localized()
     }
 }
@@ -134,9 +133,9 @@ class FcrAppUIRoomListAddedNoticeView: UIView,
     }
     
     func updateViewProperties() {
-        label.backgroundColor = UIColor(hex: 0x357BF6)
+        label.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
         
         label.text = "fcr_room_list_room_created".localized()
-        label.textColor = .white
+        label.textColor = FcrAppUIColorGroup.fcr_white
     }
 }

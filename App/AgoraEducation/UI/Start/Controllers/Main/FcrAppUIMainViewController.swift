@@ -21,6 +21,11 @@ class FcrAppUIMainViewController: FcrAppUIViewController {
     var settingItems: [FcrAppUISettingItem] = [.generalSetting(FcrAppUISettingItem.GeneralItem.startList()),
                                                .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
     
+    let roomTypeList: [FcrAppUIRoomType] = [.lectureHall,
+                                            .smallClass,
+                                            .oneToOne,
+                                            .proctor]
+    
     let center: FcrAppCenter
     
     var proctor: AgoraProctor?

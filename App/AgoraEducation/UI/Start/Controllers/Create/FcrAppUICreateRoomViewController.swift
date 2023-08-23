@@ -10,15 +10,13 @@ import AgoraUIBaseViews
 
 class FcrAppUICreateRoomViewController: FcrAppUIViewController {
     // View
+    private let headerView: FcrAppUICreateRoomHeaderView
+    
     private let backgroundImageView = UIImageView(frame: .zero)
     
-    private let closeButton = UIButton(type: .custom)
+    private let closeButton = UIButton(frame: .zero)
     
     private let titleLabel = UILabel()
-    
-    private let headerView = FcrAppUICreateRoomHeaderView(roomTypeList: [.smallClass,
-                                                                         .lectureHall,
-                                                                         .oneToOne])
     
     private let timeView = FcrAppUICreateRoomTimeView(frame: .zero)
     
@@ -31,8 +29,10 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
     private var center: FcrAppCenter
     
     init(center: FcrAppCenter,
+         roomTypeList: [FcrAppUIRoomType],
          completion: FcrAppCompletion? = nil) {
         self.center = center
+        self.headerView = FcrAppUICreateRoomHeaderView(roomTypeList: roomTypeList)
         self.completion = completion
         super.init(nibName: nil,
                    bundle: nil)

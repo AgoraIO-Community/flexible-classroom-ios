@@ -37,19 +37,13 @@ fileprivate extension FcrAppUIDateType {
     }
 }
 
-class FcrAppUICreateRoomTimePickerController: FcrAppUIViewController {
-    // View
-    private let contentView = UIView()
-    
-    private let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
-    
-    private let backgroundImageView = UIImageView(frame: .zero)
-    
+class FcrAppUICreateRoomTimePickerController: FcrAppUIPresentedViewController {
+    // View    
     private let titleLabel = UILabel()
     
-    private let confirmButton = UIButton(type: .custom)
+    private let closeButton = UIButton(type: .custom)
     
-    private let cancelButton = UIButton(type: .custom)
+    private let confirmButton = UIButton(type: .custom)
     
     private let pickerView = UIPickerView(frame: .zero)
     
@@ -76,8 +70,7 @@ class FcrAppUICreateRoomTimePickerController: FcrAppUIViewController {
         self.selectedStartDate = date
         self.completion = completion
         
-        super.init(nibName: nil,
-                   bundle: nil)
+        super.init(contentHeight: 363)
         
         self.selectedStartDate = modifyDate(date)
         printDebug("init: \(selectedStartDate.desc())")
@@ -94,24 +87,22 @@ class FcrAppUICreateRoomTimePickerController: FcrAppUIViewController {
         initViewFrame()
         updateViewProperties()
     }
-}
-
-extension FcrAppUICreateRoomTimePickerController: AgoraUIContentContainer {
-    func initViews() {
-        view.addSubview(contentView)
-        contentView.addSubview(effectView)
-        contentView.addSubview(backgroundImageView)
+    
+    override func initViews() {
+        super.initViews()
+        
         contentView.addSubview(titleLabel)
+        contentView.addSubview(closeButton)
         contentView.addSubview(confirmButton)
-        contentView.addSubview(cancelButton)
         contentView.addSubview(pickerView)
         
-        contentView.layer.cornerRadius = 24
-        contentView.clipsToBounds = true
+        titleLabel.font = FcrAppUIFontGroup.font16
         
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        closeButton.addTarget(self,
+                              action: #selector(onDismissPressed),
+                              for: .touchUpInside)
         
-        confirmButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        confirmButton.titleLabel?.font = FcrAppUIFontGroup.font16
         
         confirmButton.addTarget(self,
                                action: #selector(onConfirmButtonPressed(_:)),
@@ -122,84 +113,67 @@ extension FcrAppUICreateRoomTimePickerController: AgoraUIContentContainer {
         confirmButton.layer.cornerRadius = 23
         confirmButton.clipsToBounds = true
         
-        cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        
-        cancelButton.addTarget(self,
-                               action: #selector(onClickCancel(_:)),
-                               for: .touchUpInside)
-        
-        cancelButton.setTitleColor(.black,
-                                   for: .normal)
-        
-        cancelButton.layer.cornerRadius = 23
-        cancelButton.clipsToBounds = true
-        
         pickerView.delegate = self
         pickerView.dataSource = self
         
         pickerView.reloadAllComponents()
     }
     
-    func initViewFrame() {
-        contentView.mas_makeConstraints { make in
-            make?.left.equalTo()(16)
-            make?.right.bottom().equalTo()(-16)
-            make?.height.equalTo()(354)
-        }
-        
-        effectView.mas_makeConstraints { make in
-            make?.left.right().top().bottom().equalTo()(0)
-        }
-        
-        backgroundImageView.mas_makeConstraints { make in
-            make?.top.left().equalTo()(0)
-        }
-        
+    override func initViewFrame() {
+        super.initViewFrame()
+                
         titleLabel.mas_makeConstraints { make in
             make?.left.top().equalTo()(24)
         }
         
         pickerView.mas_makeConstraints { make in
-            make?.top.equalTo()(60)
+            make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(8)
             make?.left.equalTo()(20)
             make?.right.equalTo()(-20)
             make?.bottom.equalTo()(-93)
         }
         
         confirmButton.mas_makeConstraints { make in
-            make?.bottom.equalTo()(-30)
-            make?.right.equalTo()(-12)
+            make?.bottom.equalTo()(-40)
+            make?.right.equalTo()(-20)
+            make?.left.equalTo()(20)
             make?.height.equalTo()(46)
-            make?.width.equalTo()(190)
         }
         
-        cancelButton.mas_makeConstraints { make in
-            make?.centerY.equalTo()(confirmButton)
-            make?.right.equalTo()(confirmButton.mas_left)?.offset()(-15)
-            make?.height.equalTo()(46)
-            make?.width.equalTo()(110)
+        closeButton.mas_makeConstraints { make in
+            make?.top.equalTo()(15)
+            make?.right.equalTo()(-15)
+            make?.width.height().equalTo()(24)
         }
     }
     
-    func updateViewProperties() {
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+    override func updateViewProperties() {
+        super.updateViewProperties()
         
-        contentView.backgroundColor = .white
-        
-        backgroundImageView.image = UIImage(named: "fcr_alert_bg")
-        
-        titleLabel.textColor = .black
+        titleLabel.textColor = FcrAppUIColorGroup.fcr_black
         titleLabel.text = "fcr_create_select_start_time".localized()
+        
+        closeButton.setImage(UIImage(named: "fcr_mobile_closeicon"),
+                             for: .normal)
         
         confirmButton.setTitle("fcr_alert_sure".localized(),
                               for: .normal)
         
-        confirmButton.backgroundColor = UIColor(hex: 0x357BF6)
+        confirmButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
+    }
+    
+    @objc private func onConfirmButtonPressed(_ sender: UIButton) {
+        var date = getDateFromPicker()
         
-        cancelButton.setTitle("fcr_alert_cancel".localized(),
-                              for: .normal)
+        if !valid(date: date) {
+            date = Date()
+        }
         
-        cancelButton.backgroundColor = UIColor(hex: 0xF8F8F8)
+        dismiss(animated: true)
+        
+        completion?(date)
+        
+        completion = nil
     }
 }
 
@@ -302,28 +276,6 @@ private extension FcrAppUICreateRoomTimePickerController {
         printDebug("getDateFromPicker: \(date.desc())")
         
         return date
-    }
-}
-
-// MARK: - Actions
-private extension FcrAppUICreateRoomTimePickerController {
-    @objc func onClickCancel(_ sender: UIButton) {
-        dismiss(animated: true)
-        completion = nil
-    }
-    
-    @objc func onConfirmButtonPressed(_ sender: UIButton) {
-        var date = getDateFromPicker()
-        
-        if !valid(date: date) {
-            date = Date()
-        }
-        
-        dismiss(animated: true)
-        
-        completion?(date)
-        
-        completion = nil
     }
 }
 

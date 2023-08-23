@@ -66,7 +66,7 @@ class FcrAppUIJoinRoomController: FcrAppUIPresentedViewController {
             guard let strongSelf = self else {
                 return
             }
-            
+
             strongSelf.updateInputViewFrame(keyBoardEndFrame: info.endFrame,
                                             duration: info.duration)
         })

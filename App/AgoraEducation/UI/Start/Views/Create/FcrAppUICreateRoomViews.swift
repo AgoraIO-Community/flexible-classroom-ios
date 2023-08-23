@@ -333,18 +333,18 @@ class FcrAppUICreateRoomTimeView: UIButton,
         
         startTimeLabel.text = "fcr_create_current_time".localized()
         startTitleLabel.text = "fcr_home_label_starttime".localized()
-        startTitleLabel.textColor = UIColor(hex: 0x757575)
+        startTitleLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
         
         endTitleLabel.text = "fcr_home_label_endtime".localized()
-        endTitleLabel.textColor = UIColor(hex: 0x757575)
+        endTitleLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
         
         startTimeLabel.textColor = UIColor.black
         
         endTimeLabel.text = "fcr_create_end_time".localized()
-        endTimeLabel.textColor = UIColor(hex: 0x757575)
+        endTimeLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
         
         endInfoLabel.text = "fcr_create_end_time_info".localized()
-        endInfoLabel.textColor = UIColor(hex: 0x757575)
+        endInfoLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
     }
 }
 
@@ -368,11 +368,11 @@ class FcrAppUICreateRoomFooterView: UIView,
         addSubview(createButton)
         addSubview(cancelButton)
         
-        createButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        createButton.titleLabel?.font = FcrAppUIFontGroup.font16
         createButton.layer.cornerRadius = 23
         createButton.clipsToBounds = true
         
-        cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        cancelButton.titleLabel?.font = FcrAppUIFontGroup.font16
         cancelButton.layer.cornerRadius = 23
         cancelButton.clipsToBounds = true
     }
@@ -400,7 +400,7 @@ class FcrAppUICreateRoomFooterView: UIView,
         createButton.setTitleColor(.white,
                                    for: .normal)
         
-        createButton.backgroundColor = UIColor(hex: 0x357BF6)
+        createButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
         
         cancelButton.setTitle("fcr_home_button_cancel".localized(),
                               for: .normal)

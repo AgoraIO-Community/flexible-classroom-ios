@@ -133,7 +133,8 @@ fcr_create_end_time_info = "Default 30mins";
 
 // Others
 fcr_create_more_setting = "More Setting";
-
+fcr_create_more_security = "Security";
+fcr_create_more_security_detail = "Watermark";
 
 // Settings
 fcr_alert_title = "Tips";

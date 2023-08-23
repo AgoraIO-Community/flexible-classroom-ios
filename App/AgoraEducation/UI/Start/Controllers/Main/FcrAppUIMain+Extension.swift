@@ -134,7 +134,8 @@ private extension FcrAppUIMainViewController {
     }
      
     @objc func onCreateButtonPressed(_ sender: UIButton) {
-        let vc = FcrAppUICreateRoomViewController(center: center) { [weak self] in
+        let vc = FcrAppUICreateRoomViewController(center: center,
+                                                  roomTypeList: roomTypeList) { [weak self] in
             self?.roomListComponent.addedNotice()
         }
         

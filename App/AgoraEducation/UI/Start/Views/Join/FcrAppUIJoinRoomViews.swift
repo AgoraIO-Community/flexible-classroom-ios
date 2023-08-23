@@ -231,6 +231,7 @@ class FcrAppUIJoinRoomContentView: UIView,
         closeButton.mas_makeConstraints { make in
             make?.top.equalTo()(15)
             make?.right.equalTo()(-15)
+            make?.width.height().equalTo()(24)
         }
         
         joinButton.mas_makeConstraints { make in
@@ -256,7 +257,7 @@ class FcrAppUIJoinRoomContentView: UIView,
         
         studentView.button.setTitle("fcr_home_role_option_student".localized(),
                                     for: .normal)
-       
+        
         teacherView.button.setTitle("fcr_home_role_option_teacher".localized(),
                                     for: .normal)
         
@@ -264,11 +265,11 @@ class FcrAppUIJoinRoomContentView: UIView,
                              for: .normal)
         
         joinButton.setTitle("fcr_home_button_join".localized(),
-                              for: .normal)
+                            for: .normal)
         
         joinButton.setTitleColor(FcrAppUIColorGroup.fcr_white,
-                                   for: .normal)
+                                 for: .normal)
         
-        joinButton.backgroundColor = UIColor(hex: 0x357BF6)
+        joinButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
     }
 }

@@ -111,7 +111,7 @@ class FcrAppUICloseAccountViewController: FcrAppUIViewController,
         
         closeAccountButton.setTitleColor(UIColor(hex: 0x677386),
                                    for: .disabled)
-        closeAccountButton.setTitleColor(UIColor(hex: 0x357BF6),
+        closeAccountButton.setTitleColor(FcrAppUIColorGroup.fcr_v2_brand6,
                                    for: .normal)
         
         closeAccountButton.setTitle("settings_logoff_submit".localized(),

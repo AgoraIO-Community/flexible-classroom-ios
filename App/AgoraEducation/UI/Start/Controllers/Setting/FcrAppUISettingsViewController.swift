@@ -83,7 +83,7 @@ extension FcrAppUISettingsViewController: AgoraUIContentContainer {
         logoutButton.layer.cornerRadius = 6
         logoutButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         
-        logoutButton.setTitleColor(UIColor(hex: 0x357BF6),
+        logoutButton.setTitleColor(FcrAppUIColorGroup.fcr_v2_brand6,
                                    for: .normal)
         logoutButton.setTitle("settings_logout".localized(),
                               for: .normal)
