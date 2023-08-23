@@ -12,21 +12,34 @@ class FcrAppUIPresentedViewController: FcrAppUIViewController,
                                        AgoraUIContentContainer {
     private let dimissButton = UIButton(frame: .zero)
     
-    var contentViewY: CGFloat {
-        return UIScreen.agora_height - contentHeight + 16
+    let contentViewOffY: CGFloat
+    
+    let contentViewHorizontalSpace: CGFloat
+    
+    var contentViewX: CGFloat {
+        return contentViewHorizontalSpace
     }
     
-    let contentViewX: CGFloat = 0
+    var contentViewY: CGFloat {
+        return UIScreen.agora_height - contentHeight + contentViewOffY
+    }
+    
+    var contentWith: CGFloat {
+        return UIScreen.agora_width - (contentViewHorizontalSpace * 2)
+    }
     
     let contentHeight: CGFloat
-    let contentWith: CGFloat = UIScreen.agora_width
     
     var contentView = UIView()
     
     var onDismissed: FcrAppCompletion?
     
-    init(contentHeight: CGFloat = 446) {
+    init(contentHeight: CGFloat = 446,
+         contentViewOffY: CGFloat = 24,
+         contentViewHorizontalSpace: CGFloat = 0) {
         self.contentHeight = contentHeight
+        self.contentViewOffY = contentViewOffY
+        self.contentViewHorizontalSpace = contentViewHorizontalSpace
         super.init(nibName: nil,
                    bundle: nil)
     }
@@ -46,7 +59,7 @@ class FcrAppUIPresentedViewController: FcrAppUIViewController,
         view.addSubview(contentView)
         view.addSubview(dimissButton)
         
-        contentView.layer.cornerRadius = 12
+        contentView.layer.cornerRadius = 24
         
         dimissButton.backgroundColor = .clear
         
@@ -63,7 +76,7 @@ class FcrAppUIPresentedViewController: FcrAppUIViewController,
         
         dimissButton.frame = CGRect(x: 0,
                                     y: 0,
-                                    width: contentWith,
+                                    width: UIScreen.agora_width,
                                     height: contentViewY)
     }
     

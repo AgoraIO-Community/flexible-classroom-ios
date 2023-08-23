@@ -83,13 +83,13 @@ class FcrAppUIJoinRoomInputView: UIView,
     private let imageSize = CGSize(width: 36,
                                    height: 36)
     
-    private(set) lazy var idTextField = FcrAppUIRoomIdTextField(leftViewType: .image,
-                                                                leftImageSize: imageSize,
-                                                                leftAreaOffsetX: 8)
+    private(set) lazy var roomIdTextField = FcrAppUIRoomIdTextField(leftViewType: .image,
+                                                                    leftImageSize: imageSize,
+                                                                    leftAreaOffsetX: 8)
     
-    private(set) lazy var  nameTextField = FcrAppUIRoomNameTextField(leftViewType: .image,
-                                                                     leftImageSize: imageSize,
-                                                                     leftAreaOffsetX: 8)
+    private(set) lazy var userNameTextField = FcrAppUIRoomNameTextField(leftViewType: .image,
+                                                                        leftImageSize: imageSize,
+                                                                        leftAreaOffsetX: 8)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -102,46 +102,46 @@ class FcrAppUIJoinRoomInputView: UIView,
     }
     
     func initViews() {
-        addSubview(idTextField)
-        addSubview(nameTextField)
+        addSubview(roomIdTextField)
+        addSubview(userNameTextField)
         
-        idTextField.leftViewMode = .always
+        roomIdTextField.leftViewMode = .always
         
-        idTextField.returnKeyType = .done
-        idTextField.keyboardType = .numberPad
+        roomIdTextField.returnKeyType = .done
+        roomIdTextField.keyboardType = .numberPad
         
-        nameTextField.leftViewMode = .always
-        nameTextField.returnKeyType = .done
-        nameTextField.lineView.isHidden = true
+        userNameTextField.leftViewMode = .always
+        userNameTextField.returnKeyType = .done
+        userNameTextField.lineView.isHidden = true
     }
     
     func initViewFrame() {
-        idTextField.mas_makeConstraints { make in
+        roomIdTextField.mas_makeConstraints { make in
             make?.left.top().right().equalTo()(0)
             make?.height.equalTo()(self.mas_height)?.multipliedBy()(0.5)
         }
         
-        nameTextField.mas_makeConstraints { make in
+        userNameTextField.mas_makeConstraints { make in
             make?.left.bottom().right().equalTo()(0)
             make?.height.equalTo()(self.mas_height)?.multipliedBy()(0.5)
         }
     }
     
     func updateViewProperties() {
-        idTextField.updateViewProperties()
-        nameTextField.updateViewProperties()
+        roomIdTextField.updateViewProperties()
+        userNameTextField.updateViewProperties()
         
-        idTextField.leftImageView.image = UIImage(named: "fcr_v2_id")
-        idTextField.placeholder = "fcr_home_tips_room_id".localized()
-        idTextField.font = UIFont.boldSystemFont(ofSize: 15)
-        idTextField.textColor = UIColor.black
-        idTextField.backgroundColor = FcrAppUIColorGroup.fcr_v2_light_input_background
+        roomIdTextField.leftImageView.image = UIImage(named: "fcr_v2_id")
+        roomIdTextField.placeholder = "fcr_home_tips_room_id".localized()
+        roomIdTextField.font = UIFont.boldSystemFont(ofSize: 15)
+        roomIdTextField.textColor = UIColor.black
+        roomIdTextField.backgroundColor = FcrAppUIColorGroup.fcr_v2_light_input_background
         
-        nameTextField.leftImageView.image = UIImage(named: "fcr_name")
-        nameTextField.placeholder = "fcr_home_tips_nick_name".localized()
-        nameTextField.font = UIFont.boldSystemFont(ofSize: 15)
-        nameTextField.textColor = UIColor.black
-        nameTextField.backgroundColor = FcrAppUIColorGroup.fcr_v2_light_input_background
+        userNameTextField.leftImageView.image = UIImage(named: "fcr_name")
+        userNameTextField.placeholder = "fcr_home_tips_nick_name".localized()
+        userNameTextField.font = UIFont.boldSystemFont(ofSize: 15)
+        userNameTextField.textColor = UIColor.black
+        userNameTextField.backgroundColor = FcrAppUIColorGroup.fcr_v2_light_input_background
     }
 }
 

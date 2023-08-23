@@ -29,12 +29,14 @@ extension FcrAppUIMainViewController {
             return
         }
         
-        let vc = FcrAppUIPrivacyTermsViewController()
+        let vc = FcrAppUIPrivacyTermsViewController(contentHeight: 456,
+                                                    contentViewOffY: -15,
+                                                    contentViewHorizontalSpace: 15)
         
         present(vc,
                 animated: true)
         
-        vc.onAgreedCompleted = { [weak self] in
+        vc.onAgreedCompletion = { [weak self] in
             self?.center.isAgreedPrivacy = true
             completion()
         }
@@ -60,8 +62,6 @@ extension FcrAppUIMainViewController {
 
 extension FcrAppUIMainViewController: AgoraUIContentContainer {
     func initViews() {
-        agora_ui_language = center.language.proj()
-        
         if let navigation = navigationController as? FcrAppUINavigationController {
             navigation.csDelegate = self
         }

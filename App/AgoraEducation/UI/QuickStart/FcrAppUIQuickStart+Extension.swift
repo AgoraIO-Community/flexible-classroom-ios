@@ -12,8 +12,6 @@ import AgoraProctorSDK
 
 extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     func initViews() {
-        agora_ui_language = center.language.proj()
-        
         view.addSubview(contentView)
         
         // Header view
@@ -74,7 +72,7 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     func updateViewProperties() {
         contentView.backgroundColor = UIColor.fcr_hex_string("#F8FAFF")
         
-        let attributedText = FcrAppUIPolicyString().getAttributedString(true)
+        let attributedText = FcrAppUIPolicyString().quickStartString()
         
         contentView.roomInputView.policyView.textView.attributedText = attributedText
         

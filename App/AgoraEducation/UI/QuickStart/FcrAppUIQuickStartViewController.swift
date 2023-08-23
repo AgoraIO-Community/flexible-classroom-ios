@@ -93,6 +93,8 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
         AgoraLoading.loading()
         
         center.room.joinRoomPreCheck(config: config) { [weak self] object in
+            AgoraLoading.hide()
+            
             let options = AgoraEduLaunchConfig(userName: config.userName,
                                                userUuid: config.userId,
                                                userRole: config.userRole.toClassroomType(),
@@ -113,6 +115,8 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
         agora_ui_language = center.language.proj()
         agora_ui_mode = center.uiMode.toAgoraType()
         
+        AgoraLoading.loading()
+        
         AgoraClassroomSDK.launch(config) {
             AgoraLoading.hide()
         } failure: { [weak self] error in
@@ -126,6 +130,8 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
         agora_ui_mode = center.uiMode.toAgoraType()
         
         proctor = AgoraProctor(config: config)
+        
+        AgoraLoading.loading()
         
         proctor?.launch {
             AgoraLoading.hide()

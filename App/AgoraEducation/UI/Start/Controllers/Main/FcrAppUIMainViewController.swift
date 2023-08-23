@@ -62,6 +62,9 @@ class FcrAppUIMainViewController: FcrAppUIViewController {
     }
     
     func joinRoom(config: AgoraEduLaunchConfig) {
+        agora_ui_language = center.language.proj()
+        agora_ui_mode = center.uiMode.toAgoraType()
+        
         AgoraLoading.loading()
         
         AgoraClassroomSDK.launch(config) {

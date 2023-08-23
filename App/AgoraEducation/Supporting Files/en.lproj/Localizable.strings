@@ -14,9 +14,11 @@ fcr_login_tips_read_agree = "Please read and agree  {zzz}";
 fcr_login_popup_window_label_title = "Terms of service";
 
 //自行处理吧
-fcr_login_popup_window_label_content = "Thank you for trusting and using flexible classroom.We will use the \"Terms of service\" to help you understand how we collect, use, and store your personal information, as well as the related rights you have.When you use flexible classroom, we will collect information such as your device information and operating logs. Additionally, to ensure a better class experience, you will need to grant flexible classroom access to your device\'s camera and microphone.You can learn more by reading the complete \"Terms of service\".";
+fcr_login_popup_window_label_content = "Thank you for trusting and using flexible classroom.We will use the {yyy} to help you understand how we collect, use, and store your personal information, as well as the related rights you have.When you use flexible classroom, we will collect information such as your device information and operating logs. Additionally, to ensure a better class experience, you will need to grant flexible classroom access to your device\'s camera and microphone.You can learn more by reading the complete {yyy}.";
 fcr_login_label_terms_of_service = "Terms of service";
 fcr_login_label_privacy_policy = "Privacy Policy";
+fcr_login_label_terms_of_service_link = "https://www.agora.io/en/terms-of-service/";
+fcr_login_label_privacy_policy_link = "";
 fcr_login_popup_window_button_agree = "Agree and continue";
 fcr_login_popup_window_button_disagree = "Disagree and exit";
 
@@ -68,10 +70,10 @@ fcr_login_free_toast_room_name_null = "Please input room name";
 fcr_login_free_toast_room_id_null = "Please input room ID";
 
 //xxx灵动课堂用户协议,yyy灵动课堂隐私政策,zzz 海外灵动课堂用户协议
-fcr_login_free_option_read_agree = "I have read and agree {zzz}";
+fcr_login_free_option_read_agree = "I have read and agree {yyy}";
 
 //xxx灵动课堂用户协议,yyy灵动课堂隐私政策,zzz 海外灵动课堂用户协议
-fcr_login_free_tips_read_agree = "Please read and agree  {zzz}";
+fcr_login_free_tips_read_agree = "Please read and agree  {yyy}";
 fcr_login_free_tips_read_agree_mobile = "Please check and agree";
 fcr_login_free_tips_login_guide_title = "Experience the full demo functionality";
 fcr_login_free_tips_login_guide = "Quick start can‘t save your course information and recordings. If you want to experience the full demo functionality, please register for a Agora account first.";

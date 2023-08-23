@@ -46,6 +46,9 @@ class FcrAppUIJoinRoomController: FcrAppUIPresentedViewController {
         
         let content = getContentView()
         
+        content.roomInputView.roomIdTextField.text = center.room.lastRoomId
+        content.roomInputView.userNameTextField.text = center.localUser?.nickname
+        
         content.studentView.button.addTarget(self,
                                              action: #selector(onPressedStudentButton(_:)),
                                              for: .touchUpInside)
@@ -96,13 +99,13 @@ private extension FcrAppUIJoinRoomController {
     @objc func onPressedJoinButton(_ sender: UIButton) {
         let content = getContentView()
         
-        guard let roomId = content.roomInputView.idTextField.getText() else {
+        guard let roomId = content.roomInputView.roomIdTextField.getText() else {
             showToast("fcr_joinroom_tips_roomid_empty".localized(),
                       type: .error)
             return
         }
         
-        guard let userName = content.roomInputView.nameTextField.getText() else {
+        guard let userName = content.roomInputView.userNameTextField.getText() else {
             showToast("fcr_joinroom_tips_username_empty".localized(),
                       type: .error)
             return

@@ -10,19 +10,7 @@ import AgoraUIBaseViews
 
 class FcrAppUICreateRoomViewController: FcrAppUIViewController {
     // View
-    private let headerView: FcrAppUICreateRoomHeaderView
-    
-    private let backgroundImageView = UIImageView(frame: .zero)
-    
-    private let closeButton = UIButton(frame: .zero)
-    
-    private let titleLabel = UILabel()
-    
-    private let timeView = FcrAppUICreateRoomTimeView(frame: .zero)
-    
-    private let moreTableView = FcrAppUICreateRoomMoreTableView(frame: .zero)
-    
-    private let footerView = FcrAppUICreateRoomFooterView(frame: .zero)
+    private let contentView: FcrAppUICreateRoomContentView
     
     private var completion: FcrAppCompletion?
     
@@ -32,7 +20,7 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
          roomTypeList: [FcrAppUIRoomType],
          completion: FcrAppCompletion? = nil) {
         self.center = center
-        self.headerView = FcrAppUICreateRoomHeaderView(roomTypeList: roomTypeList)
+        self.contentView = FcrAppUICreateRoomContentView(roomTypeList: roomTypeList)
         self.completion = completion
         super.init(nibName: nil,
                    bundle: nil)
@@ -75,136 +63,38 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
 // MARK: - Creations
 extension FcrAppUICreateRoomViewController: AgoraUIContentContainer {
     func initViews() {
-        view.addSubview(backgroundImageView)
-        view.addSubview(closeButton)
-        view.addSubview(titleLabel)
-        view.addSubview(headerView)
-        view.addSubview(timeView)
-        view.addSubview(moreTableView)
-        view.addSubview(footerView)
+        view.addSubview(contentView)
         
-        headerView.layer.cornerRadius = 24
+        contentView.headerView.roomNameTextField.text = center.room.lastRoomName
+        contentView.headerView.userNameTextField.text = center.localUser?.nickname
         
-        closeButton.addTarget(self,
-                              action: #selector(onClickCancel(_:)),
-                              for: .touchUpInside)
-        
-        titleLabel.font = UIFont.systemFont(ofSize: 14)
-        titleLabel.textAlignment = .center
-        
-        timeView.layer.cornerRadius = 12
-        
-        timeView.addTarget(self,
-                           action: #selector(onTimeButtonPressed),
-                           for: .touchUpInside)
-        
-        moreTableView.layer.cornerRadius = 12
-        moreTableView.delegate = self
-        
-        footerView.createButton.addTarget(self,
-                                          action: #selector(onClickCreate(_:)),
+        contentView.closeButton.addTarget(self,
+                                          action: #selector(onCancelButtonPressed(_:)),
                                           for: .touchUpInside)
         
-        footerView.cancelButton.addTarget(self,
-                                          action: #selector(onClickCancel(_:)),
-                                          for: .touchUpInside)
+        contentView.timeView.addTarget(self,
+                                       action: #selector(onTimeButtonPressed),
+                                       for: .touchUpInside)
+        
+        contentView.footerView.createButton.addTarget(self,
+                                                      action: #selector(onCreateButtonPressed(_:)),
+                                                      for: .touchUpInside)
+        
+        contentView.footerView.cancelButton.addTarget(self,
+                                                      action: #selector(onCancelButtonPressed(_:)),
+                                                      for: .touchUpInside)
     }
     
     func initViewFrame() {
-        closeButton.mas_makeConstraints { make in
-            make?.width.height().equalTo()(44)
-            make?.left.equalTo()(16)
-            make?.top.equalTo()(44)
+        contentView.mas_makeConstraints { make in
+            make?.left.right().top().bottom().equalTo()(0)
         }
-        
-        backgroundImageView.mas_makeConstraints { make in
-            make?.left.top().right().equalTo()(0)
-        }
-        
-        titleLabel.mas_makeConstraints { make in
-            make?.centerY.equalTo()(closeButton)
-            make?.left.right().equalTo()(0)
-        }
-        
-        headerView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.titleLabel.mas_bottom)?.offset()(27)
-            make?.left.equalTo()(15)
-            make?.right.equalTo()(-15)
-            make?.height.equalTo()(248)
-        }
-        
-        timeView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.headerView.mas_bottom)?.offset()(10)
-            make?.left.equalTo()(15)
-            make?.right.equalTo()(-15)
-            make?.height.equalTo()(83)
-        }
-        
-        footerView.mas_makeConstraints { make in
-            make?.left.right().bottom().equalTo()(0)
-            if #available(iOS 11.0, *) {
-                make?.top.equalTo()(self.view.mas_safeAreaLayoutGuideBottom)?.offset()(-90)
-            } else {
-                make?.height.equalTo()(90)
-            }
-        }
-        
-        updateMoreTableViewHeight()
     }
     
     func updateViewProperties() {
-        headerView.updateViewProperties()
-        timeView.updateViewProperties()
-        moreTableView.updateViewProperties()
-        footerView.updateViewProperties()
+        contentView.updateViewProperties()
         
         view.backgroundColor = UIColor(hex: 0xF8FAFF)
-        
-        backgroundImageView.image = UIImage(named: "fcr_room_create_bg")
-        
-        titleLabel.text = "fcr_home_label_create_classroom".localized()
-        
-        headerView.backgroundColor = .white
-        
-        timeView.backgroundColor = .white
-        
-        moreTableView.backgroundColor = .white
-        
-        footerView.backgroundColor = .white
-        
-        closeButton.setImage(UIImage(named: "fcr_room_create_cancel"),
-                             for: .normal)
-    }
-    
-    func updateMoreTableViewHeight(animated: Bool = false) {
-        let height = moreTableView.suitableHeight
-        
-        moreTableView.mas_remakeConstraints { make in
-            make?.left.equalTo()(15)
-            make?.right.equalTo()(-15)
-            make?.top.equalTo()(self.timeView.mas_bottom)?.offset()(10)
-            make?.height.equalTo()(height)
-        }
-        
-        guard animated else {
-            return
-        }
-        
-        UIView.animate(withDuration: TimeInterval.agora_animation) {
-            self.view.layoutIfNeeded()
-        }
-    }
-}
-
-extension FcrAppUICreateRoomViewController: FcrAppUICreateRoomMoreTableViewDelegate {
-    func tableView(_ tableView: FcrAppUICreateRoomMoreTableView,
-                   didSpreadUpdated isSpread: Bool) {
-        updateMoreTableViewHeight(animated: true)
-    }
-    
-    func tableView(_ tableView: FcrAppUICreateRoomMoreTableView,
-                   didSwitch option: FcrAppUICreateRoomMoreSettingOption) {
-        
     }
 }
 
@@ -212,32 +102,29 @@ extension FcrAppUICreateRoomViewController: FcrAppUICreateRoomMoreTableViewDeleg
 private extension FcrAppUICreateRoomViewController {
     @objc func onTimeButtonPressed(_ sender: UIButton) {
         let vc = FcrAppUICreateRoomTimePickerController(date: Date()) { [weak self] date in
-            self?.timeView.startDate = date
+            self?.contentView.timeView.startDate = date
         }
         
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
-        
-        present(vc,
-                animated: true)
+        presentViewController(vc,
+                              animated: true)
     }
     
-    @objc func onClickCancel(_ sender: UIButton) {
+    @objc func onCancelButtonPressed(_ sender: UIButton) {
         completion = nil
         dismiss(animated: true)
     }
     
-    @objc func onClickCreate(_ sender: UIButton) {
+    @objc func onCreateButtonPressed(_ sender: UIButton) {
         // Room name
-        guard let roomName = headerView.userNameTextField.getText() else {
-            showToast("fcr_create_label_roomname_empty".localized(),
+        guard let roomName = contentView.headerView.roomNameTextField.getText() else {
+            showToast("fcr_home_toast_room_name_null".localized(),
                       type: .error)
             return
         }
         
         // User name
-        guard let userName = headerView.userNameTextField.getText() else {
-            showToast("user name empty",
+        guard let userName = contentView.headerView.userNameTextField.getText() else {
+            showToast("fcr_home_toast_nick_name_null".localized(),
                       type: .error)
             return
         }
@@ -249,7 +136,7 @@ private extension FcrAppUICreateRoomViewController {
         // Time
         var schedule: Date
         
-        if let date = timeView.startDate {
+        if let date = contentView.timeView.startDate {
             schedule = date
         } else {
             schedule = Date()
@@ -259,7 +146,7 @@ private extension FcrAppUICreateRoomViewController {
         let endTime = (startTime + 30 * 60) * 1000
         
         // Room type
-        let roomType = headerView.selectedRoomType
+        let roomType = contentView.headerView.selectedRoomType
         
         let config = FcrAppCreateRoomConfig(roomName: roomName,
                                             roomType: roomType,

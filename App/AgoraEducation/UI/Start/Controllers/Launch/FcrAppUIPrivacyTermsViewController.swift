@@ -10,110 +10,111 @@ import AgoraUIBaseViews
 import WebKit
 import UIKit
 
-class FcrAppUIPrivacyTermsViewController: FcrAppUIViewController {
-    private lazy var termTitle = UILabel()
-    private lazy var contentView = WKWebView(frame: .zero)
-    private lazy var agreementView = FcrAppUIAgreementView(frame: .zero)
+class FcrAppUIPrivacyTermsViewController: FcrAppUIPresentedViewController {
+    private let titleLabel = UILabel()
     
-    var onAgreedCompleted: FcrAppCompletion?
+    private let textView = UITextView(frame: .zero,
+                                      textContainer: nil)
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initViews()
-        initViewFrame()
-        updateViewProperties()
-        
-        loadPrivacy()
-    }
-}
+    private let agreedButton = UIButton(frame: .zero)
 
-extension FcrAppUIPrivacyTermsViewController: AgoraUIContentContainer {
-    func initViews() {
-        view.addSubview(termTitle)
+    private let disagreedButton = UIButton(frame: .zero)
+    
+    var onAgreedCompletion: FcrAppCompletion?
+    
+    override func initViews() {
+        super.initViews()
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(textView)
+        contentView.addSubview(agreedButton)
+        contentView.addSubview(disagreedButton)
         
-        contentView.uiDelegate = self
+        titleLabel.textAlignment = .center
+        titleLabel.font = FcrAppUIFontGroup.font16
         
-        view.addSubview(contentView)
+        textView.font = FcrAppUIFontGroup.font12
+        textView.isEditable = false
+        textView.isSelectable = true
+        textView.dataDetectorTypes = .all
+        textView.textContainerInset = UIEdgeInsets(top: 2,
+                                                   left: 0,
+                                                   bottom: 0,
+                                                   right: 0)
         
-        agreementView.checkButton.addTarget(self,
-                                            action: #selector(onClickRead(_:)),
-                                            for: .touchUpInside)
+        // Agreed button
+        agreedButton.titleLabel?.font = FcrAppUIFontGroup.font14
+        agreedButton.layer.cornerRadius = 22
         
-        agreementView.agreeButton.addTarget(self,
-                                            action: #selector(onClickAgree(_:)),
-                                            for: .touchUpInside)
+        agreedButton.addTarget(self,
+                               action: #selector(onAgreedButtonPressed),
+                               for: .touchUpInside)
         
-        agreementView.disagreeButton.addTarget(self,
-                                               action: #selector(onClickDisagree(_:)),
-                                               for: .touchUpInside)
-        view.addSubview(agreementView)
+        // Disagreed button
+        disagreedButton.titleLabel?.font = FcrAppUIFontGroup.font14
+        
+        disagreedButton.addTarget(self,
+                                  action: #selector(onDisagreedButtonPressed),
+                                  for: .touchUpInside)
     }
     
-    func initViewFrame() {
-        termTitle.mas_makeConstraints { make in
-            make?.top.equalTo()(48)
+    override func initViewFrame() {
+        super.initViewFrame()
+        
+        titleLabel.mas_makeConstraints { make in
+            make?.top.equalTo()(36)
+            make?.centerX.equalTo()(0)
+            make?.left.right().equalTo()(0)
+            make?.height.equalTo()(16)
+        }
+        
+        textView.mas_makeConstraints { make in
+            make?.top.equalTo()(self.titleLabel.mas_bottom)?.offset()(21)
+            make?.left.equalTo()(30)
+            make?.bottom.equalTo()(self.disagreedButton.mas_top)?.offset()(10)
+            make?.right.equalTo()(-30)
+        }
+        
+        disagreedButton.mas_makeConstraints { make in
+            make?.bottom.equalTo()(-12)
+            make?.left.equalTo()(33)
+            make?.centerX.equalTo()(0)
+            make?.height.equalTo()(44)
+        }
+        
+        agreedButton.mas_makeConstraints { make in
+            make?.bottom.equalTo()(self.disagreedButton.mas_top)?.offset()(-10)
+            make?.left.equalTo()(33)
+            make?.height.equalTo()(44)
             make?.centerX.equalTo()(0)
         }
-        
-        agreementView.mas_makeConstraints { make in
-            make?.left.right().bottom().equalTo()(0)
-            make?.height.equalTo()(180)
-        }
-        
-        contentView.mas_makeConstraints { make in
-            make?.top.equalTo()(termTitle.mas_bottom)?.offset()(20)
-            make?.left.equalTo()(20)
-            make?.right.equalTo()(-20)
-            make?.bottom.equalTo()(agreementView.mas_top)?.offset()(10)
-        }
     }
     
-    func updateViewProperties() {
-        view.backgroundColor = .white
+    override func updateViewProperties() {
+        super.updateViewProperties()
+        titleLabel.text = "fcr_login_label_welcome".localized()
         
-        termTitle.text = "Service_title".localized()
-        termTitle.textColor = .black
-        termTitle.font = .boldSystemFont(ofSize: 14)
-    }
-    
-    func loadPrivacy() {
-        var url: String
+        textView.attributedText = FcrAppUIPolicyString().loginString()
         
-        if UIDevice.current.agora_is_chinese_language {
-            url = "https://agora-adc-artifacts.s3.cn-north-1.amazonaws.com.cn/demo/education/privacy.html"
-        } else {
-            url = "https://agora-adc-artifacts.s3.cn-north-1.amazonaws.com.cn/demo/education/privacy_en.html"
-        }
+        agreedButton.setTitle("fcr_login_popup_window_button_agree".localized(),
+                              for: .normal)
         
-        if let urlRequest = URLRequest(urlString: url) {
-            contentView.load(urlRequest)
-        }
+        agreedButton.setTitleColor(FcrAppUIColorGroup.fcr_white,
+                                   for: .normal)
+        
+        agreedButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
+        
+        disagreedButton.setTitle("fcr_login_popup_window_button_disagree".localized(),
+                                 for: .normal)
+        
+        disagreedButton.setTitleColor(FcrAppUIColorGroup.fcr_v2_light_text1,
+                                      for: .normal)
     }
     
-    @objc func onClickRead(_ sender: Any) {
-        agreementView.isAgreed.toggle()
+    @objc private func onAgreedButtonPressed() {
+        onAgreedCompletion?()
     }
     
-    @objc func onClickAgree(_ sender: Any) {
-        dismiss(animated: true,
-                completion: onAgreedCompleted)
-    }
-    
-    @objc func onClickDisagree(_ sender: UIButton) {
+    @objc private func onDisagreedButtonPressed() {
         exit(0)
     }
 }
-
-extension FcrAppUIPrivacyTermsViewController: WKUIDelegate {
-    public func webView(_ webView: WKWebView,
-                        createWebViewWith configuration: WKWebViewConfiguration,
-                        for navigationAction: WKNavigationAction,
-                        windowFeatures: WKWindowFeatures) -> WKWebView? {
-        if let targetFrame = navigationAction.targetFrame,
-           !targetFrame.isMainFrame {
-            webView.load(navigationAction.request)
-        }
-        return nil
-    }
-}
-

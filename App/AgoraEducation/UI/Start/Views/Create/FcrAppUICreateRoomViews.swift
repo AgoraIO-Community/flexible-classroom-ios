@@ -24,12 +24,13 @@ class FcrAppUICreateRoomHeaderView: UIView, AgoraUIContentContainer {
                                                                         leftImageSize: imageSize)
     
     // Data
-    private(set) var selectedRoomType = FcrAppUIRoomType.smallClass
+    private(set) var selectedRoomType: FcrAppUIRoomType
     
     private let roomTypeList: [FcrAppUIRoomType]
     
     init(roomTypeList: [FcrAppUIRoomType]) {
         self.roomTypeList = roomTypeList
+        self.selectedRoomType = roomTypeList[0]
         super.init(frame: .zero)
         initViews()
         initViewFrame()
@@ -409,5 +410,144 @@ class FcrAppUICreateRoomFooterView: UIView,
                                    for: .normal)
         
         cancelButton.backgroundColor = UIColor(hex: 0xF8F8F8)
+    }
+}
+
+// MARK: - Content view
+class FcrAppUICreateRoomContentView: UIView,
+                                     AgoraUIContentContainer,
+                                     FcrAppUICreateRoomMoreTableViewDelegate {
+    let headerView: FcrAppUICreateRoomHeaderView
+    
+    private let backgroundImageView = UIImageView(frame: .zero)
+    
+    let closeButton = UIButton(frame: .zero)
+    
+    private let titleLabel = UILabel()
+    
+    let timeView = FcrAppUICreateRoomTimeView(frame: .zero)
+    
+    private let moreTableView = FcrAppUICreateRoomMoreTableView(frame: .zero)
+    
+    let footerView = FcrAppUICreateRoomFooterView(frame: .zero)
+    
+    init(roomTypeList: [FcrAppUIRoomType]) {
+        self.headerView = FcrAppUICreateRoomHeaderView(roomTypeList: roomTypeList)
+        super.init(frame: .zero)
+        initViews()
+        initViewFrame()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func initViews() {
+        addSubview(backgroundImageView)
+        addSubview(closeButton)
+        addSubview(titleLabel)
+        addSubview(headerView)
+        addSubview(timeView)
+        addSubview(moreTableView)
+        addSubview(footerView)
+        
+        headerView.layer.cornerRadius = 24
+        
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
+        titleLabel.textAlignment = .center
+        
+        timeView.layer.cornerRadius = 12
+        
+        moreTableView.layer.cornerRadius = 12
+        moreTableView.delegate = self
+    }
+    
+    func initViewFrame() {
+        closeButton.mas_makeConstraints { make in
+            make?.width.height().equalTo()(44)
+            make?.left.equalTo()(16)
+            make?.top.equalTo()(44)
+        }
+        
+        backgroundImageView.mas_makeConstraints { make in
+            make?.left.top().right().equalTo()(0)
+        }
+        
+        titleLabel.mas_makeConstraints { make in
+            make?.centerY.equalTo()(closeButton)
+            make?.left.right().equalTo()(0)
+        }
+        
+        headerView.mas_makeConstraints { make in
+            make?.top.equalTo()(self.titleLabel.mas_bottom)?.offset()(27)
+            make?.left.equalTo()(15)
+            make?.right.equalTo()(-15)
+            make?.height.equalTo()(248)
+        }
+        
+        timeView.mas_makeConstraints { make in
+            make?.top.equalTo()(self.headerView.mas_bottom)?.offset()(10)
+            make?.left.equalTo()(15)
+            make?.right.equalTo()(-15)
+            make?.height.equalTo()(83)
+        }
+        
+        footerView.mas_makeConstraints { make in
+            make?.left.right().bottom().equalTo()(0)
+            make?.height.equalTo()(96)
+        }
+        
+        updateMoreTableViewHeight()
+    }
+    
+    func updateViewProperties() {
+        headerView.updateViewProperties()
+        timeView.updateViewProperties()
+        moreTableView.updateViewProperties()
+        footerView.updateViewProperties()
+        
+        backgroundImageView.image = UIImage(named: "fcr_room_create_bg")
+        
+        titleLabel.text = "fcr_home_label_create_classroom".localized()
+        
+        headerView.backgroundColor = .white
+        
+        timeView.backgroundColor = .white
+        
+        moreTableView.backgroundColor = .white
+        
+        footerView.backgroundColor = .white
+        
+        closeButton.setImage(UIImage(named: "fcr_room_create_cancel"),
+                             for: .normal)
+    }
+    
+    func updateMoreTableViewHeight(animated: Bool = false) {
+        let height = moreTableView.suitableHeight
+        
+        moreTableView.mas_remakeConstraints { make in
+            make?.left.equalTo()(15)
+            make?.right.equalTo()(-15)
+            make?.top.equalTo()(self.timeView.mas_bottom)?.offset()(10)
+            make?.height.equalTo()(height)
+        }
+        
+        guard animated else {
+            return
+        }
+        
+        UIView.animate(withDuration: TimeInterval.agora_animation) {
+            self.layoutIfNeeded()
+        }
+    }
+    
+    func tableView(_ tableView: FcrAppUICreateRoomMoreTableView,
+                   didSpreadUpdated isSpread: Bool) {
+        updateMoreTableViewHeight(animated: true)
+    }
+    
+    func tableView(_ tableView: FcrAppUICreateRoomMoreTableView,
+                   didSwitch option: FcrAppUICreateRoomMoreSettingOption) {
+        
     }
 }

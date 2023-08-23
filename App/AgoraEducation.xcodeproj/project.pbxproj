@@ -18,7 +18,6 @@
 		7878B4CB23FA735700AF1B4F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7878B4CD23FA735700AF1B4F /* InfoPlist.strings */; };
 		787A004225D10FC10063456F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A004125D10FC10063456F /* AudioToolbox.framework */; };
 		861978D92A69418100009890 /* FcrAppUISettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861978D82A69418100009890 /* FcrAppUISettingTableView.swift */; };
-		86292F1E28F6A41900E7F225 /* FcrAppUIAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AFBEA02854996B003EBC0C /* FcrAppUIAgreementView.swift */; };
 		8629C3462A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3452A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift */; };
 		8629C3482A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3472A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift */; };
 		8629C34B2A8114A900DA97B7 /* FcrAppUIColorGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C34A2A8114A900DA97B7 /* FcrAppUIColorGroup.swift */; };
@@ -80,7 +79,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		15AFBEA02854996B003EBC0C /* FcrAppUIAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIAgreementView.swift; sourceTree = "<group>"; };
 		1A44BE3522BF863000766274 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1A44BE5722BF863000766274 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A44BE5E22BF863000766274 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -276,7 +274,6 @@
 		861978DA2A6A599500009890 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				15AFBEA02854996B003EBC0C /* FcrAppUIAgreementView.swift */,
 				AB7B7B6E28C1E0B1001D327A /* FcrAppUIMainHeaderView.swift */,
 				86E5024A2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift */,
 				86820D8E2A613D2600ED4E54 /* FcrAppUIRoomListItemCell.swift */,
@@ -319,7 +316,6 @@
 				8629C3512A83C16C00DA97B7 /* FcrAppUIQuickStartViewController.swift */,
 				865746F52A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift */,
 				869D42692A8B2C84004EE63E /* FcrAppUIQuickStartClassModeViewController.swift */,
-				869D426C2A8B9328004EE63E /* FcrAppUIPolicyString.swift */,
 				869D426B2A8B5A35004EE63E /* Views */,
 			);
 			path = QuickStart;
@@ -460,6 +456,7 @@
 			children = (
 				86E502482A6002FD003C04D8 /* FcrAppUIEnums.swift */,
 				86E502462A60025A003C04D8 /* FcrAppUIObjects.swift */,
+				869D426C2A8B9328004EE63E /* FcrAppUIPolicyString.swift */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";
@@ -673,7 +670,6 @@
 			files = (
 				865746F62A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift in Sources */,
 				AB4F69E72874621F0012E6B3 /* FcrAppUIModeViewController.swift in Sources */,
-				86292F1E28F6A41900E7F225 /* FcrAppUIAgreementView.swift in Sources */,
 				AB4F69E32872C2340012E6B3 /* FcrAppUIDisclaimerViewController.swift in Sources */,
 				AB4F69DD286DC5D40012E6B3 /* FcrAppUINavigatorCell.swift in Sources */,
 				86B81E6C2A56B16500BA631C /* FcrAppEnums.swift in Sources */,

@@ -45,8 +45,6 @@ class FcrAppUIRoomListController: FcrAppUIViewController {
         self.center = center
         super.init(nibName: nil,
                    bundle: nil)
-        
-        fakeData()
         initViews()
         initViewFrame()
         updateViewProperties()
@@ -127,7 +125,7 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
 
         tableView.isHidden = isShowPlaceholder
         
-        placeholderView.isHidden = true
+        placeholderView.isHidden = false
     }
     
     func initViewFrame() {

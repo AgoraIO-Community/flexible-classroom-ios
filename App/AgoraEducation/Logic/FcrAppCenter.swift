@@ -129,8 +129,25 @@ class FcrAppCenter: NSObject {
         }, failure: failure)
     }
     
+    func needLogin(completion: @escaping FcrAppBoolCompletion) {
+        if let _ = try? localStorage.readData(key: .region,
+                                              type: FcrAppRegion.self) {
+            completion(false)
+        } else {
+            let url = urlGroup.needLogin()
+            
+            armin.request(url: url, method: .get, event: "ip-check") { object in
+                let need = try object.dataConvert(type: [String: Any].self).getValue(of: "loginType",
+                                                                                     type: Bool.self)
+                completion(need)
+            } failure: { _ in
+                completion(false)
+            }
+        }
+    }
+    
     func login(success: @escaping FcrAppSuccess,
-                         failure: @escaping FcrAppFailure) {
+               failure: @escaping FcrAppFailure) {
         let url = urlGroup.userInfo()
         let headers = ["Authorization": "Bearer \(urlGroup.accessToken)"]
         
@@ -142,7 +159,7 @@ class FcrAppCenter: NSObject {
             guard let `self` = self else {
                 return
             }
-
+            
             self.localStorage.writeData(object.companyId,
                                         key: .companyId)
             
@@ -185,12 +202,6 @@ class FcrAppCenter: NSObject {
     
     @discardableResult func createLocalUser(userId: String,
                                             nickname: String) -> FcrAppLocalUser {
-        localStorage.writeData(userId,
-                               key: .nickname)
-        
-        localStorage.writeData(nickname,
-                               key: .userId)
-        
         let localUser = FcrAppLocalUser(userId: userId,
                                         nickname: nickname,
                                         localStorage: localStorage)

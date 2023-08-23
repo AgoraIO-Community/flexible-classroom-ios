@@ -36,6 +36,7 @@ class FcrAppURLGroup {
     private let redirectUrl = "redirectUrl"
     private let refresh = "refresh"
     private let refreshTokenKey = "refreshToken"
+    private let preflight = "preflight"
     
     private let version1 = "v1"
     private let version2 = "v2"
@@ -111,6 +112,14 @@ class FcrAppURLGroup {
     
     func headers() -> [String: String] {
         return ["Authorization": accessToken]
+    }
+    
+    //
+    func needLogin() -> String {
+        let array = [host, edu, version1,
+                     preflight]
+        let url = array.joined(separator: "/")
+        return url
     }
     
     // Room
