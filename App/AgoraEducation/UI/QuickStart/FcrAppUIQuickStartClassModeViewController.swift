@@ -39,6 +39,7 @@ class FcrAppUIQuickStartClassModeViewController: FcrAppUIPresentedViewController
         lineView.layer.cornerRadius = 2.5
         
         titleLabel.textAlignment = .center
+        titleLabel.font = FcrAppUIFontGroup.font16
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -63,7 +64,7 @@ class FcrAppUIQuickStartClassModeViewController: FcrAppUIPresentedViewController
         titleLabel.mas_makeConstraints { make in
             make?.top.equalTo()(28)
             make?.left.right().equalTo()(0)
-            make?.height.equalTo()(14)
+            make?.height.equalTo()(15)
         }
         
         tableView.mas_makeConstraints { make in
@@ -80,7 +81,6 @@ class FcrAppUIQuickStartClassModeViewController: FcrAppUIPresentedViewController
         titleLabel.textColor = FcrAppUIColorGroup.fcr_black
         titleLabel.text = "fcr_login_free_class_mode_label_choose".localized()
         
-        // TODO: UI 变量名
         lineView.backgroundColor = UIColor(hexString: "#D9D9D9")
     }
 }

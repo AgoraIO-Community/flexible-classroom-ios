@@ -13,8 +13,8 @@ import UIKit
 class FcrAppUIPrivacyTermsViewController: FcrAppUIPresentedViewController {
     private let titleLabel = UILabel()
     
-    private let textView = UITextView(frame: .zero,
-                                      textContainer: nil)
+    private let textView = FcrAppUITextView(frame: .zero,
+                                            textContainer: nil)
     
     private let agreedButton = UIButton(frame: .zero)
 
@@ -33,13 +33,6 @@ class FcrAppUIPrivacyTermsViewController: FcrAppUIPresentedViewController {
         titleLabel.font = FcrAppUIFontGroup.font16
         
         textView.font = FcrAppUIFontGroup.font12
-        textView.isEditable = false
-        textView.isSelectable = true
-        textView.dataDetectorTypes = .all
-        textView.textContainerInset = UIEdgeInsets(top: 2,
-                                                   left: 0,
-                                                   bottom: 0,
-                                                   right: 0)
         
         // Agreed button
         agreedButton.titleLabel?.font = FcrAppUIFontGroup.font14

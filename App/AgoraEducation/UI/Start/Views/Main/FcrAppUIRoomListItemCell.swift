@@ -225,7 +225,7 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
             
             stateIcon.isHidden = true
             
-            sharedButton.isHidden = true
+            sharedButton.isHidden = false
             sharedButton.setImage(UIImage(named: "fcr_room_list_share_black"),
                                  for: .normal)
             
@@ -260,7 +260,7 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
             
             stateIcon.isHidden = false
             
-            sharedButton.isHidden = true
+            sharedButton.isHidden = false
             sharedButton.setImage(UIImage(named: "fcr_room_list_share_white"),
                                  for: .normal)
             

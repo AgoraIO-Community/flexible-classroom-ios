@@ -6,11 +6,9 @@
 //  Copyright © 2023 Agora. All rights reserved.
 //
 
-import AgoraClassroomSDK_iOS
 import AgoraUIBaseViews
-import AgoraProctorSDK
 
-class FcrAppUIQuickStartViewController: FcrAppUIViewController {
+class FcrAppUIQuickStartViewController: FcrAppUICoreViewController {
     lazy var contentView = FcrAppUIQuickStartContentView(userRoleList: userRoleList,
                                                          roomTypeList: roomTypeList)
     
@@ -25,21 +23,6 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
     
     var settingItems: [FcrAppUISettingItem] = [.generalSetting(FcrAppUISettingItem.GeneralItem.quickStartList()),
                                                .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
-    
-    let center: FcrAppCenter
-    
-    var proctor: AgoraProctor?
-    
-    init(center: FcrAppCenter) {
-        self.center = center
-        super.init(nibName: nil,
-                   bundle: nil)
-        center.delegate = self
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +53,15 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
         view.endEditing(true)
     }
     
+    override init(center: FcrAppCenter) {
+        super.init(center: center)
+        center.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func createRoom(config: FcrAppCreateRoomConfig) {
         AgoraLoading.loading()
         
@@ -88,61 +80,4 @@ class FcrAppUIQuickStartViewController: FcrAppUIViewController {
             self?.showErrorToast(error)
         }
     }
-    
-    func joinRoomPreCheck(config: FcrAppJoinRoomPreCheckConfig) {
-        AgoraLoading.loading()
-        
-        center.room.joinRoomPreCheck(config: config) { [weak self] object in
-            AgoraLoading.hide()
-            
-            let options = AgoraEduLaunchConfig(userName: config.userName,
-                                               userUuid: config.userId,
-                                               userRole: config.userRole.toClassroomType(),
-                                               roomName: object.roomDetail.roomName,
-                                               roomUuid: object.roomDetail.roomId,
-                                               roomType: object.roomDetail.roomType.toClassroomType(),
-                                               appId: object.appId,
-                                               token: object.token)
-            
-            self?.joinClassRoom(config: options)
-        } failure: { [weak self] error in
-            AgoraLoading.hide()
-            self?.showErrorToast(error)
-        }
-    }
-    
-    func joinClassRoom(config: AgoraEduLaunchConfig) {
-        agora_ui_language = center.language.proj()
-        agora_ui_mode = center.uiMode.toAgoraType()
-        
-        AgoraLoading.loading()
-        
-        let widgets = FcrAppWidgets()
-        
-        config.widgets[widgets.sharingLinkWidgetId] = widgets.createSharingLink()
-        
-        AgoraClassroomSDK.launch(config) {
-            AgoraLoading.hide()
-        } failure: { [weak self] error in
-            AgoraLoading.hide()
-            self?.showErrorToast(error)
-        }
-    }
-    
-    func joinProctorRoom(config: AgoraProctorLaunchConfig) {
-        agora_ui_language = center.language.proj()
-        agora_ui_mode = center.uiMode.toAgoraType()
-        
-        proctor = AgoraProctor(config: config)
-        
-        AgoraLoading.loading()
-        
-        proctor?.launch {
-            AgoraLoading.hide()
-        } failure: {[weak self] error in
-            AgoraLoading.hide()
-            self?.showErrorToast(error)
-        }
-    }
 }
-

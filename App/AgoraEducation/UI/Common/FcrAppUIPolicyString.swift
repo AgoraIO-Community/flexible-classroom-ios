@@ -27,14 +27,14 @@ struct FcrAppUIPolicyString {
         return string(text)
     }
     
+    func toastString() -> String {
+        var text = "fcr_login_free_tips_read_agree".localized()
+        
+        return replace(text)
+    }
+    
     private func string(_ string: String) -> NSMutableAttributedString {
-        var text = string
-        
-        text = text.replacingOccurrences(of: "{xxx}",
-                                         with: privacyText)
-        
-        text = text.replacingOccurrences(of: "{yyy}",
-                                         with: tearmsText)
+        let text = replace(string)
         
         let attributedString = NSMutableAttributedString(string: text)
         
@@ -52,5 +52,17 @@ struct FcrAppUIPolicyString {
         
         
         return attributedString
+    }
+    
+    private func replace(_ string: String) -> String {
+        var text = string
+        
+        text = text.replacingOccurrences(of: "{xxx}",
+                                         with: privacyText)
+        
+        text = text.replacingOccurrences(of: "{yyy}",
+                                         with: tearmsText)
+        
+        return text
     }
 }

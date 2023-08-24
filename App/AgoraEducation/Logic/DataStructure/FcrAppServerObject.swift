@@ -70,6 +70,8 @@ struct FcrAppServerRoomObject: FcrAppCodable {
     var roomType: FcrAppRoomType
     var roomState: FcrAppRoomState
     
+    var role: FcrAppUserRole
+    var userName: String
     var startTime: Int64
     var endTime: Int64
     
@@ -85,7 +87,6 @@ struct FcrAppServerRoomListObject: FcrAppCodable {
     var count: Int
     var list: [FcrAppServerRoomObject]
 }
-
 
 struct FcrAppServerDetailRoomObject: FcrAppCodable {
     var roomName: String

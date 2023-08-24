@@ -131,8 +131,8 @@ class FcrAppUIQuickStartSegmentedControl: UIButton,
 class FcrAppUIQuickStartPolicyView: UIView,
                                     AgoraUIContentContainer {
     let checkBox = UIButton(frame: .zero)
-    let textView = UITextView(frame: .zero,
-                              textContainer: nil)
+    let textView = FcrAppUITextView(frame: .zero,
+                                    textContainer: nil)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -147,14 +147,6 @@ class FcrAppUIQuickStartPolicyView: UIView,
     func initViews() {
         addSubview(checkBox)
         addSubview(textView)
-        
-        textView.isEditable = false
-        textView.isSelectable = true
-        textView.dataDetectorTypes = .all
-        textView.textContainerInset = UIEdgeInsets(top: 2,
-                                                   left: 0,
-                                                   bottom: 0,
-                                                   right: 0)
     }
     
     func initViewFrame() {
@@ -170,9 +162,9 @@ class FcrAppUIQuickStartPolicyView: UIView,
     }
     
     func updateViewProperties() {
-        checkBox.setImage(UIImage(named: "fcr_mobile_check1"),
-                          for: .normal)
         checkBox.setImage(UIImage(named: "fcr_mobile_check0"),
+                          for: .normal)
+        checkBox.setImage(UIImage(named: "fcr_mobile_check1"),
                           for: .selected)
     }
 }

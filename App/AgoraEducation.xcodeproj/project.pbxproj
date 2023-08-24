@@ -17,6 +17,8 @@
 		7878B4C523FA72EE00AF1B4F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7878B4C723FA72EE00AF1B4F /* Localizable.strings */; };
 		7878B4CB23FA735700AF1B4F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7878B4CD23FA735700AF1B4F /* InfoPlist.strings */; };
 		787A004225D10FC10063456F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A004125D10FC10063456F /* AudioToolbox.framework */; };
+		860CB3F42A97276700B03141 /* FcrAppUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860CB3F32A97276700B03141 /* FcrAppUITextView.swift */; };
+		860CB3F82A97428200B03141 /* FcrAppUICoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860CB3F72A97428200B03141 /* FcrAppUICoreViewController.swift */; };
 		861978D92A69418100009890 /* FcrAppUISettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861978D82A69418100009890 /* FcrAppUISettingTableView.swift */; };
 		8629C3462A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3452A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift */; };
 		8629C3482A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3472A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift */; };
@@ -31,7 +33,7 @@
 		865746F62A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865746F52A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift */; };
 		865746FD2A96368C003FBF72 /* AgoraWatermarkWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865746FA2A96368C003FBF72 /* AgoraWatermarkWidget.swift */; };
 		865746FE2A96368C003FBF72 /* AgoraSharingLinkWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865746FC2A96368C003FBF72 /* AgoraSharingLinkWidget.swift */; };
-		865747002A963B47003FBF72 /* FcrAppWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865746FF2A963B47003FBF72 /* FcrAppWidgets.swift */; };
+		865747002A963B47003FBF72 /* FcrAppWidgetSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865746FF2A963B47003FBF72 /* FcrAppWidgetSample.swift */; };
 		8661A1A4270DA50E0047CB16 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78136271242C81ED00B7D1FE /* libz.tbd */; };
 		86820D8F2A613D2600ED4E54 /* FcrAppUIRoomListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86820D8E2A613D2600ED4E54 /* FcrAppUIRoomListItemCell.swift */; };
 		869026992A6E19C3006E0D44 /* FcrAppUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869026982A6E19C3006E0D44 /* FcrAppUITextField.swift */; };
@@ -112,6 +114,8 @@
 		787A004125D10FC10063456F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		78A3EA5E25640261003067AB /* AgoraEducation-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AgoraEducation-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E41C30C2710CB486B9E7805 /* Pods_AgoraEducation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgoraEducation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		860CB3F32A97276700B03141 /* FcrAppUITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUITextView.swift; sourceTree = "<group>"; };
+		860CB3F72A97428200B03141 /* FcrAppUICoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICoreViewController.swift; sourceTree = "<group>"; };
 		861978D82A69418100009890 /* FcrAppUISettingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUISettingTableView.swift; sourceTree = "<group>"; };
 		861D3CFA276AE05E00645D6A /* FcrAppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppExtension.swift; sourceTree = "<group>"; };
 		8629C3452A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICreateRoomViewController.swift; sourceTree = "<group>"; };
@@ -127,7 +131,7 @@
 		865746F52A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FcrAppUIQuickStart+Extension.swift"; sourceTree = "<group>"; };
 		865746FA2A96368C003FBF72 /* AgoraWatermarkWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgoraWatermarkWidget.swift; sourceTree = "<group>"; };
 		865746FC2A96368C003FBF72 /* AgoraSharingLinkWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgoraSharingLinkWidget.swift; sourceTree = "<group>"; };
-		865746FF2A963B47003FBF72 /* FcrAppWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppWidgets.swift; sourceTree = "<group>"; };
+		865746FF2A963B47003FBF72 /* FcrAppWidgetSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppWidgetSample.swift; sourceTree = "<group>"; };
 		86820D8E2A613D2600ED4E54 /* FcrAppUIRoomListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIRoomListItemCell.swift; sourceTree = "<group>"; };
 		869026982A6E19C3006E0D44 /* FcrAppUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUITextField.swift; sourceTree = "<group>"; };
 		869D42632A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartCreateRoomViews.swift; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 				86E502402A5FF1DF003C04D8 /* UI */,
 				86E5023B2A5FF097003C04D8 /* Logic */,
 				865746F82A963623003FBF72 /* Widgets */,
+				860CB3F62A97305500B03141 /* Extension */,
 				1A87571323581AEC009C55A8 /* Supporting Files */,
 			);
 			path = AgoraEducation;
@@ -254,6 +259,24 @@
 				7813B6F623FA5A0300265830 /* LaunchScreen.storyboard */,
 			);
 			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		860CB3F52A972B3000B03141 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				869026982A6E19C3006E0D44 /* FcrAppUITextField.swift */,
+				860CB3F32A97276700B03141 /* FcrAppUITextView.swift */,
+				869D426C2A8B9328004EE63E /* FcrAppUIPolicyString.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		860CB3F62A97305500B03141 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				861D3CFA276AE05E00645D6A /* FcrAppExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		861978D62A69351500009890 /* Main */ = {
@@ -341,7 +364,7 @@
 		865746F82A963623003FBF72 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				865746FF2A963B47003FBF72 /* FcrAppWidgets.swift */,
+				865746FF2A963B47003FBF72 /* FcrAppWidgetSample.swift */,
 				865746FB2A96368C003FBF72 /* SharingLink */,
 				865746F92A96368C003FBF72 /* Watermark */,
 			);
@@ -465,6 +488,7 @@
 				86F5E31A2A8C675300AED16A /* Root */,
 				86B81E592A55918400BA631C /* Start */,
 				8629C3502A83BF5A00DA97B7 /* QuickStart */,
+				860CB3F52A972B3000B03141 /* Common */,
 				86E502452A600233003C04D8 /* DataStructure */,
 				8629C3492A81149000DA97B7 /* Config */,
 				7813B6F223FA5A0300265830 /* StoryBoards */,
@@ -489,7 +513,6 @@
 			children = (
 				86E502482A6002FD003C04D8 /* FcrAppUIEnums.swift */,
 				86E502462A60025A003C04D8 /* FcrAppUIObjects.swift */,
-				869D426C2A8B9328004EE63E /* FcrAppUIPolicyString.swift */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";
@@ -515,11 +538,10 @@
 			isa = PBXGroup;
 			children = (
 				86F5E31B2A8C677200AED16A /* FcrAppUIRootViewController.swift */,
+				860CB3F72A97428200B03141 /* FcrAppUICoreViewController.swift */,
 				86B81E5A2A5593A400BA631C /* FcrAppUIViewController.swift */,
 				86B81E672A568F4800BA631C /* FcrAppUINavigationController.swift */,
 				8629C3472A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift */,
-				861D3CFA276AE05E00645D6A /* FcrAppExtension.swift */,
-				869026982A6E19C3006E0D44 /* FcrAppUITextField.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -702,7 +724,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				865746F62A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift in Sources */,
-				865747002A963B47003FBF72 /* FcrAppWidgets.swift in Sources */,
+				865747002A963B47003FBF72 /* FcrAppWidgetSample.swift in Sources */,
 				AB4F69E72874621F0012E6B3 /* FcrAppUIModeViewController.swift in Sources */,
 				AB4F69E32872C2340012E6B3 /* FcrAppUIDisclaimerViewController.swift in Sources */,
 				AB4F69DD286DC5D40012E6B3 /* FcrAppUINavigatorCell.swift in Sources */,
@@ -738,6 +760,8 @@
 				AB4F69D5286DBE140012E6B3 /* FcrAppUINicknameViewController.swift in Sources */,
 				8629C3562A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift in Sources */,
 				869D42682A8A381A004EE63E /* FcrAppUIEnvironmentViewController.swift in Sources */,
+				860CB3F42A97276700B03141 /* FcrAppUITextView.swift in Sources */,
+				860CB3F82A97428200B03141 /* FcrAppUICoreViewController.swift in Sources */,
 				86E502442A5FFAE1003C04D8 /* FcrAppUIRoomListController.swift in Sources */,
 				AB4F69D1286D8C380012E6B3 /* FcrAppUIGeneralSettingsViewController.swift in Sources */,
 				68403F83276C859800E88214 /* FcrAppExtension.swift in Sources */,

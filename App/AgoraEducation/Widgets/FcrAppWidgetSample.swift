@@ -8,7 +8,9 @@
 
 import AgoraWidget
 
-struct FcrAppWidgets {
+///  TODO:
+
+struct FcrAppWidgetSample {
     let sharingLinkWidgetId = "sharingLink"
     let watermarkWidgetId = "watermark"
     
@@ -19,9 +21,11 @@ struct FcrAppWidgets {
         return config
     }
     
-    func createSharingLink() -> AgoraWidgetConfig {
+    func createSharingLink(_ link: String) -> AgoraWidgetConfig {
         let config = AgoraWidgetConfig(with: AgoraSharingLinkWidget.self,
                                        widgetId: sharingLinkWidgetId)
+        
+        config.extraInfo = ["sharingLink": link]
         
         return config
     }

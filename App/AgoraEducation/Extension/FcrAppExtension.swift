@@ -145,3 +145,18 @@ extension String {
         }
     }
 }
+
+extension Dictionary {
+    func jsonString() -> String? {
+        guard let data = try? JSONSerialization.data(withJSONObject: self,
+                                                     options: JSONSerialization.WritingOptions.prettyPrinted) else {
+            return nil
+        }
+        
+        guard let jsonString = String(data: data,
+                                      encoding: .utf8) else {
+            return nil
+        }
+        return jsonString
+    }
+}

@@ -9,7 +9,6 @@
 import AgoraClassroomSDK_iOS
 import AgoraUIBaseViews
 import AgoraProctorSDK
-import AgoraWidgets
 
 extension FcrAppUIMainViewController {
     func launch() {
@@ -62,13 +61,11 @@ extension FcrAppUIMainViewController {
 
 extension FcrAppUIMainViewController: AgoraUIContentContainer {
     func initViews() {
-        if let navigation = navigationController as? FcrAppUINavigationController {
-            navigation.csDelegate = self
-        }
-        
         view.addSubview(backgroundView)
         view.addSubview(headerView)
         view.addSubview(roomListComponent.view)
+        
+        roomListComponent.delegate = self
         
         // Join view
         headerView.joinActionView.button.addTarget(self,
@@ -112,6 +109,10 @@ extension FcrAppUIMainViewController: AgoraUIContentContainer {
         headerView.backgroundColor = .clear
         view.backgroundColor = .white
     }
+    
+    func refreshRoomList() {
+        roomListComponent.refresh()
+    }
 }
 
 private extension FcrAppUIMainViewController {
@@ -126,7 +127,7 @@ private extension FcrAppUIMainViewController {
                                               appId: object.appId,
                                               token: object.token)
             
-            self?.joinRoom(config: config)
+            self?.joinClassroom(config: config)
         }
         
         presentViewController(vc,
@@ -152,11 +153,19 @@ private extension FcrAppUIMainViewController {
     }
 }
 
-extension FcrAppUIMainViewController: FcrAppNavigationControllerDelegate {
-    func navigationWillPopToRoot(_ navigation: FcrAppUINavigationController) {
-        loginCheck { [weak self] in
-            self?.roomListComponent.refresh()
+extension FcrAppUIMainViewController: FcrAppUIRoomListControllerDelegate {
+    func onSelectedRoomToJoin(roomInfo: FcrAppUIRoomListItem) {
+        guard let userId = center.localUser?.userId else {
+            showToast("user id nil")
+            return
         }
+        
+        let config = FcrAppJoinRoomPreCheckConfig(roomId: roomInfo.roomId,
+                                                  userId: userId,
+                                                  userName: roomInfo.userName,
+                                                  userRole: roomInfo.userRole)
+        
+        joinRoomPreCheck(config: config)
     }
 }
 
@@ -171,10 +180,6 @@ extension FcrAppUIMainViewController: FcrAppCenterDelegate {
         for vc in navigation.viewControllers {
             if let `vc` = vc as? AgoraUIContentContainer {
                 vc.updateViewProperties()
-                
-                printDebug("ui" + vc.description)
-            } else {
-                printDebug(vc.description)
             }
         }
         

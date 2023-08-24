@@ -10,7 +10,6 @@ import AgoraUIBaseViews
 
 protocol FcrAppUIRoomListControllerDelegate: NSObjectProtocol {
     func onSelectedRoomToJoin(roomInfo: FcrAppUIRoomListItem)
-    func onSelectedRoomToShare(roomInfo: FcrAppUIRoomListItem)
 }
 
 class FcrAppUIRoomListController: FcrAppUIViewController {
@@ -181,6 +180,8 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
                                            roomId: "123456789",
                                            roomType: .oneToOne,
                                            roomState: .unstarted,
+                                           role: .teacher,
+                                           userName: "user-abe",
                                            startTime: 1689566769183,
                                            endTime: 1689586769183,
                                            creatorId: "test",
@@ -190,6 +191,8 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
                                            roomId: "123456789",
                                            roomType: .smallClass,
                                            roomState: .inProgress,
+                                           role: .teacher,
+                                           userName: "user-abe",
                                            startTime: 1689566769183,
                                            endTime: 1689586769183,
                                            creatorId: "test",
@@ -199,6 +202,8 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
                                            roomId: "123456789",
                                            roomType: .lectureHall,
                                            roomState: .closed,
+                                           role: .teacher,
+                                           userName: "user-abe",
                                            startTime: 1689566769183,
                                            endTime: 1689586769183,
                                            creatorId: "test",
@@ -338,7 +343,22 @@ extension FcrAppUIRoomListController: FcrAppUIRoomListItemCellDelegate {
     func onSharedButtonPressed(at indexPath: IndexPath) {
         let info = dataSource[indexPath.row]
         
-        delegate?.onSelectedRoomToShare(roomInfo: info)
+        var inviterName = ""
+        
+        if let name = center.localUser?.nickname {
+            inviterName = name
+        }
+        
+        let link = center.urlGroup.invitation(roomId: info.roomId,
+                                              inviterName: inviterName)
+        
+        printDebug("sharing link: \(link ?? "nil")")
+        
+        UIPasteboard.general.string = link
+        
+        let message = "fcr_sharingLink_tips_roomid".localized() + ": " + info.roomId
+        
+        showToast(message)
     }
     
     func onEnteredButtonPressed(at indexPath: IndexPath) {

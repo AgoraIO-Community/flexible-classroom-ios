@@ -143,7 +143,6 @@ fcr_alert_title = "提示";
 fcr_alert_submit = "确认";
 fcr_alert_sure = "确认";
 fcr_alert_cancel = "取消";
-fcr_alert_input_ph = "请输入...";
 fcr_settings_option_general_language_simplified = "简体中文";
 fcr_settings_option_general_language_traditional = "繁体中文";
 fcr_settings_option_general_language_english = "English";
@@ -166,9 +165,6 @@ settings_close_account = "账号注销";
 settings_disclaimer = "免责声明";
 settings_register = "注册声网账号";
 settings_publish_time = "发版时间";
-settings_srivacy_url = "https://www.agora.io/cn/privacy-policy/";
-settings_terms_url = "https://www.agora.io/cn/terms-of-service/";
-settings_signup_url = "https://sso.agora.io/cn/signup";
 settings_disclaimer_title = "产品免责声明";
 settings_disclaimer_detail = "灵动课堂（“本产品”）是由上海兆言网络科技有限公司（“上海兆言”）提供的一款测试产品，上海兆言享有本产品的著作权和所有权。特此免费授予获得本产品和相关文档文件（以下简称“软件”）副本的任何人无限制地使用软件的权利，包括但不限于使用，复制，修改，合并，发布，分发，但本产品不得用于任何商业用途，不得再许可和/或出售该软件的副本。
 本产品按“现状”提供，没有任何形式的明示担保，包括但不限于对适配性、特定目的的适用性和非侵权性的担保。无论是由于与本产品或本产品的使用或其他方式有关的任何合同、侵权或其他形式的行为，上海兆言均不对任何索赔、损害或其他责任负责。

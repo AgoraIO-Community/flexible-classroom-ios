@@ -6,9 +6,7 @@
 //  Copyright © 2023 Agora. All rights reserved.
 //
 
-import AgoraClassroomSDK_iOS
 import AgoraUIBaseViews
-import AgoraProctorSDK
 
 extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     func initViews() {
@@ -111,18 +109,12 @@ private extension FcrAppUIQuickStartViewController {
     }
     
     @objc func onSignInButtonPressed(_ sender: UIButton) {
-        if center.tester.isTest,
-           let navigation = navigationController,
-           let vc = navigation.viewControllers.first,
-           vc != self {
-            navigation.popViewController(animated: true)
+        if !center.tester.isTest {
+           presentMainViweController()
         } else {
-            let vc = FcrAppUIMainViewController(center: center)
-            
-            let navigation = FcrAppUINavigationController(rootViewController: vc)
-            
-            present(navigation,
-                    animated: true)
+            if !popToMainViweController() {
+                presentMainViweController()
+            }
         }
     }
     
@@ -135,6 +127,12 @@ private extension FcrAppUIQuickStartViewController {
             return
         }
         
+        if roomId.count != 9 {
+            showToast("fcr_login_free_tips_num_length".localized(),
+                      type: .error)
+            return
+        }
+        
         guard let userName = joinRoomView.userNameTextField.getText() else {
             showToast("fcr_login_free_toast_nick_name_null".localized(),
                       type: .error)
@@ -143,6 +141,12 @@ private extension FcrAppUIQuickStartViewController {
         
         if userName.count < 2 || userName.count > 20 {
             showToast("fcr_home_toast_content_length".localized(),
+                      type: .error)
+            return
+        }
+        
+        guard contentView.roomInputView.policyView.checkBox.isSelected else {
+            showToast(FcrAppUIPolicyString().toastString(),
                       type: .error)
             return
         }
@@ -183,6 +187,12 @@ private extension FcrAppUIQuickStartViewController {
                       type: .error)
             return
         }
+        
+        guard contentView.roomInputView.policyView.checkBox.isSelected else {
+            showToast(FcrAppUIPolicyString().toastString(),
+                      type: .error)
+            return
+        }
      
         let userRole = FcrAppUserRole.teacher
         
@@ -205,6 +215,15 @@ private extension FcrAppUIQuickStartViewController {
     @objc func onPolicyButtonPressed(_ sender: UIButton) {
         sender.isSelected.toggle()
         center.isAgreedPrivacy = sender.isSelected
+    }
+    
+    func presentMainViweController() {
+        let vc = FcrAppUIMainViewController(center: center)
+        
+        let navigation = FcrAppUINavigationController(rootViewController: vc)
+        
+        present(navigation,
+                animated: true)
     }
     
     func localStorage(with userId: String,
@@ -268,5 +287,18 @@ extension FcrAppUIQuickStartViewController: FcrAppTesterDelegate {
             settingItems = [.generalSetting(FcrAppUISettingItem.GeneralItem.quickStartList()),
                             .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
         }
+    }
+    
+    func popToMainViweController() -> Bool {
+        guard let navigation = navigationController else {
+            return false
+        }
+            
+        for vc in navigation.viewControllers where vc is FcrAppUIMainViewController {
+            navigation.popViewController(animated: true)
+            return true
+        }
+            
+        return false
     }
 }

@@ -25,11 +25,11 @@ class FcrAppUIViewController: UIViewController {
     }
     
     public override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        return UIDevice.current.agora_is_pad ? .landscapeRight : .portrait
+        return .portrait
     }
 
     public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return UIDevice.current.agora_is_pad ? .landscapeRight : .portrait
+        return .portrait
     }
     
     func showAlert(title: String = "",

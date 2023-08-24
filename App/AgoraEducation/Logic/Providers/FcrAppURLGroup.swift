@@ -189,6 +189,19 @@ class FcrAppURLGroup {
         return url
     }
     
+    func invitation(roomId: String,
+                    inviterName: String) -> String? {
+        let web = "https://solutions-apaas.agora.io/apaas/app/index.html#/invite?sc="
+        
+        let parameter: [String: Any] = ["roomId": roomId,
+                                        "owner": inviterName,
+                                        "region": region.rawValue,
+                                        "role": 2]
+        let json = parameter.jsonString()
+        
+        return json?.base64Encoded
+    }
+    
     // Token
     func refreshAccessToken() -> String {
         let array = [host, sso, version2,

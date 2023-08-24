@@ -105,6 +105,12 @@ private extension FcrAppUIJoinRoomController {
             return
         }
         
+        if roomId.count != 9 {
+            showToast("fcr_login_free_tips_num_length".localized(),
+                      type: .error)
+            return
+        }
+        
         guard let userName = content.roomInputView.userNameTextField.getText() else {
             showToast("fcr_joinroom_tips_username_empty".localized(),
                       type: .error)

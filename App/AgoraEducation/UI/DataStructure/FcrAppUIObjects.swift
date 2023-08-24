@@ -10,9 +10,11 @@ import UIKit
 
 struct FcrAppUIRoomListItem {
     var roomState: FcrAppUIRoomState
-    var roomType: FcrAppRoomType
+    var roomType: FcrAppUIRoomType
     var roomId: String
     var roomName: String
+    var userRole: FcrAppUIUserRole
+    var userName: String
     var time: String
     
     static func create(from: FcrAppServerRoomObject) -> FcrAppUIRoomListItem {
@@ -44,6 +46,8 @@ struct FcrAppUIRoomListItem {
                                         roomType: from.roomType,
                                         roomId: roomId,
                                         roomName: from.roomName,
+                                        userRole: from.role,
+                                        userName: from.userName,
                                         time: time)
         
         return item

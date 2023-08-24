@@ -39,8 +39,6 @@ class FcrAppLocalStorage {
     
     func writeData(_ value: Any,
                    key: Key) {
-        printDebug("write data, key: \(key.rawValue), value: \(value)")
-        
         UserDefaults.standard.set(value,
                                   forKey: key.rawValue)
     }

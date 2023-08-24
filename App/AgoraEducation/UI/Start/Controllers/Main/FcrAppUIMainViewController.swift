@@ -11,7 +11,7 @@ import AgoraUIBaseViews
 import AgoraProctorSDK
 import AgoraWidgets
 
-class FcrAppUIMainViewController: FcrAppUIViewController {
+class FcrAppUIMainViewController: FcrAppUICoreViewController {
     lazy var roomListComponent = FcrAppUIRoomListController(center: center)
     
     let backgroundView = UIImageView(frame: .zero)
@@ -26,23 +26,17 @@ class FcrAppUIMainViewController: FcrAppUIViewController {
                                             .oneToOne,
                                             .proctor]
     
-    let center: FcrAppCenter
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
-    var proctor: AgoraProctor?
-    
-    init(center: FcrAppCenter) {
-        self.center = center
-        super.init(nibName: nil,
-                   bundle: nil)
+    override init(center: FcrAppCenter) {
+        super.init(center: center)
         center.delegate = self
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override var prefersStatusBarHidden: Bool {
-        return true
     }
     
     override func viewDidLoad() {
@@ -59,33 +53,6 @@ class FcrAppUIMainViewController: FcrAppUIViewController {
         navigationController?.setNavigationBarHidden(true,
                                                      animated: true)
         isTest()
-    }
-    
-    func joinRoom(config: AgoraEduLaunchConfig) {
-        agora_ui_language = center.language.proj()
-        agora_ui_mode = center.uiMode.toAgoraType()
-        
-        AgoraLoading.loading()
-        
-        AgoraClassroomSDK.launch(config) {
-            AgoraLoading.hide()
-        } failure: { [weak self] error in
-            AgoraLoading.hide()
-            self?.showErrorToast(error)
-        }
-    }
-}
-
-// MARK: - AgoraProctorDelegate
-extension FcrAppUIMainViewController: AgoraProctorDelegate {
-    func onExit(reason: AgoraProctorExitReason) {
-        switch reason {
-        case .kickOut:
-            AgoraToast.toast(message: "kick out")
-        default:
-            break
-        }
-        
-        self.proctor = nil
+        refreshRoomList()
     }
 }

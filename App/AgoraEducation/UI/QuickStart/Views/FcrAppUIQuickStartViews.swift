@@ -143,7 +143,7 @@ class FcrAppUIQuickStartHeaderView: UIView,
 class FcrAppUIQuickStartFooterView: UIView,
                                     AgoraUIContentContainer {
     private let titleLabel = UILabel(frame: .zero)
-    private let contentLabel = UILabel(frame: .zero)
+    private let contentLabel = FcrAppUITextView(frame: .zero)
     let signButton = UIButton(frame: .zero)
     
     override init(frame: CGRect) {
@@ -163,7 +163,12 @@ class FcrAppUIQuickStartFooterView: UIView,
         
         titleLabel.font = FcrAppUIFontGroup.font14
         contentLabel.font = FcrAppUIFontGroup.font13
-        contentLabel.numberOfLines = 0
+        
+        contentLabel.isSelectable = false
+        contentLabel.textContainerInset = UIEdgeInsets(top: 2,
+                                                       left: -4,
+                                                       bottom: 0,
+                                                       right: 4)
         
         signButton.layer.borderColor = FcrAppUIColorGroup.fcr_white.cgColor
         signButton.layer.borderWidth = 1
@@ -193,8 +198,8 @@ class FcrAppUIQuickStartFooterView: UIView,
         titleLabel.text = "fcr_login_free_tips_login_guide_title".localized()
         
         contentLabel.text = "fcr_login_free_tips_login_guide".localized()
-        
         contentLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
+        contentLabel.backgroundColor = .clear
         
         signButton.setTitle("fcr_login_free_button_login_sign".localized(),
                             for: .normal)
