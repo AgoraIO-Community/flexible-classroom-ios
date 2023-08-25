@@ -130,18 +130,27 @@ class FcrAppCenter: NSObject {
     }
     
     func needLogin(completion: @escaping FcrAppBoolCompletion) {
-        if let _ = try? localStorage.readData(key: .region,
-                                              type: FcrAppRegion.self) {
-            completion(false)
+        if let region = try? localStorage.readData(key: .region,
+                                                   type: FcrAppRegion.self) {
+            if region == .CN {
+                completion(true)
+            } else {
+                completion(false)
+            }
         } else {
             let url = urlGroup.needLogin()
+            let headers = urlGroup.headers()
             
-            armin.request(url: url, method: .get, event: "ip-check") { object in
-                let need = try object.dataConvert(type: [String: Any].self).getValue(of: "loginType",
-                                                                                     type: Bool.self)
+            armin.request(url: url,
+                          headers: headers,
+                          method: .get,
+                          event: "ip-check") { object in
+                let data = try object.dataConvert(type: [String: Any].self)
+                let need = try data.getValue(of: "loginType",
+                                             type: Bool.self)
                 completion(need)
             } failure: { _ in
-                completion(false)
+                completion(true)
             }
         }
     }

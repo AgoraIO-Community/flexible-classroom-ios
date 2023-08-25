@@ -18,13 +18,11 @@
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
         
 #if DEBUG
-    FcrAppUIRootViewController *vc = [[FcrAppUIRootViewController alloc] initWithForcedQuickStart:YES];
-    FcrAppUINavigationController *navigation = [[FcrAppUINavigationController alloc] initWithRootViewController:vc];
-    self.window.rootViewController = navigation;
+    FcrAppUIRootViewController *vc = [[FcrAppUIRootViewController alloc] initWithFormalLoginProcess:YES];
+    self.window.rootViewController = vc;
 #else
-    FcrAppUIRootViewController *vc = [[FcrAppUIRootViewController alloc] initWithForcedQuickStart:NO];
-    FcrAppUINavigationController *navigation = [[FcrAppUINavigationController alloc] initWithRootViewController:vc];
-    self.window.rootViewController = navigation;
+    FcrAppUIRootViewController *vc = [[FcrAppUIRootViewController alloc] initWithFormalLoginProcess:YES];
+    self.window.rootViewController = vc;
 #endif
     
     [self.window makeKeyAndVisible];

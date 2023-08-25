@@ -16,8 +16,8 @@ class FcrAppUIQuickStartViewController: FcrAppUICoreViewController {
                                             .teacher,
                                             .audience]
     
-    let roomTypeList: [FcrAppUIRoomType] = [.lectureHall,
-                                            .smallClass,
+    let roomTypeList: [FcrAppUIRoomType] = [.smallClass,
+                                            .lectureHall,
                                             .oneToOne,
                                             .proctor]
     

@@ -106,6 +106,7 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.rowHeight = 152
+        tableView.showsVerticalScrollIndicator = false
         tableView.register(cellWithClass: FcrAppUIRoomListItemCell.self)
         
         tableView.addSubview(refreshAction)
@@ -173,49 +174,6 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
         placeholderView.backgroundColor = FcrAppUIColorGroup.fcr_white
         
         tableView.reloadData()
-    }
-    
-    func fakeData() {
-        let item1 = FcrAppServerRoomObject(roomName: "test1",
-                                           roomId: "123456789",
-                                           roomType: .oneToOne,
-                                           roomState: .unstarted,
-                                           role: .teacher,
-                                           userName: "user-abe",
-                                           startTime: 1689566769183,
-                                           endTime: 1689586769183,
-                                           creatorId: "test",
-                                           industry: "agora")
-        
-        let item2 = FcrAppServerRoomObject(roomName: "test2",
-                                           roomId: "123456789",
-                                           roomType: .smallClass,
-                                           roomState: .inProgress,
-                                           role: .teacher,
-                                           userName: "user-abe",
-                                           startTime: 1689566769183,
-                                           endTime: 1689586769183,
-                                           creatorId: "test",
-                                           industry: "agora")
-        
-        let item3 = FcrAppServerRoomObject(roomName: "test3",
-                                           roomId: "123456789",
-                                           roomType: .lectureHall,
-                                           roomState: .closed,
-                                           role: .teacher,
-                                           userName: "user-abe",
-                                           startTime: 1689566769183,
-                                           endTime: 1689586769183,
-                                           creatorId: "test",
-                                           industry: "agora")
-        
-        let object1 = FcrAppUIRoomListItem.create(from: item1)
-        let object2 = FcrAppUIRoomListItem.create(from: item2)
-        let object3 = FcrAppUIRoomListItem.create(from: item3)
-        
-        dataSource.append(object1)
-        dataSource.append(object2)
-        dataSource.append(object3)
     }
     
     @objc private func onPullRefreshDown() {
@@ -352,11 +310,9 @@ extension FcrAppUIRoomListController: FcrAppUIRoomListItemCellDelegate {
         let link = center.urlGroup.invitation(roomId: info.roomId,
                                               inviterName: inviterName)
         
-        printDebug("sharing link: \(link ?? "nil")")
-        
         UIPasteboard.general.string = link
         
-        let message = "fcr_sharingLink_tips_roomid".localized() + ": " + info.roomId
+        let message = "fcr_home_tips_invite_copy".localized()
         
         showToast(message)
     }

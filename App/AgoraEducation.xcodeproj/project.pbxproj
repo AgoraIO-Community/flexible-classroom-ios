@@ -261,14 +261,16 @@
 			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
-		860CB3F52A972B3000B03141 /* Common */ = {
+		860CB3F52A972B3000B03141 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				86B81E5A2A5593A400BA631C /* FcrAppUIViewController.swift */,
+				86B81E672A568F4800BA631C /* FcrAppUINavigationController.swift */,
+				8629C3472A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift */,
 				869026982A6E19C3006E0D44 /* FcrAppUITextField.swift */,
 				860CB3F32A97276700B03141 /* FcrAppUITextView.swift */,
-				869D426C2A8B9328004EE63E /* FcrAppUIPolicyString.swift */,
 			);
-			path = Common;
+			path = Base;
 			sourceTree = "<group>";
 		};
 		860CB3F62A97305500B03141 /* Extension */ = {
@@ -354,8 +356,8 @@
 		865746F72A94E005003FBF72 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
-				AB8AC744287FEB5000B57B58 /* FcrAppUIPrivacyTermsViewController.swift */,
 				AB0A2DD128DAEF6A0048FA3C /* FcrAppUILoginViewController.swift */,
+				AB8AC744287FEB5000B57B58 /* FcrAppUIPrivacyTermsViewController.swift */,
 				ABB1D15C287C00A600395A13 /* FcrAppLoginWebViewController.swift */,
 			);
 			path = Launch;
@@ -488,7 +490,7 @@
 				86F5E31A2A8C675300AED16A /* Root */,
 				86B81E592A55918400BA631C /* Start */,
 				8629C3502A83BF5A00DA97B7 /* QuickStart */,
-				860CB3F52A972B3000B03141 /* Common */,
+				860CB3F52A972B3000B03141 /* Base */,
 				86E502452A600233003C04D8 /* DataStructure */,
 				8629C3492A81149000DA97B7 /* Config */,
 				7813B6F223FA5A0300265830 /* StoryBoards */,
@@ -513,6 +515,7 @@
 			children = (
 				86E502482A6002FD003C04D8 /* FcrAppUIEnums.swift */,
 				86E502462A60025A003C04D8 /* FcrAppUIObjects.swift */,
+				869D426C2A8B9328004EE63E /* FcrAppUIPolicyString.swift */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";
@@ -539,9 +542,6 @@
 			children = (
 				86F5E31B2A8C677200AED16A /* FcrAppUIRootViewController.swift */,
 				860CB3F72A97428200B03141 /* FcrAppUICoreViewController.swift */,
-				86B81E5A2A5593A400BA631C /* FcrAppUIViewController.swift */,
-				86B81E672A568F4800BA631C /* FcrAppUINavigationController.swift */,
-				8629C3472A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";

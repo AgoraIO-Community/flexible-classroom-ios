@@ -46,7 +46,7 @@ class FcrAppUIRoomListPlaceholderView: UIView,
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "fcr_room_list_empty")
         
-        label.text = "fcr_room_list_empty".localized()
+        label.text = "fcr_home_label_room_list_empty".localized()
         label.font = FcrAppUIFontGroup.font12
         label.textColor = UIColor(hex: 0xACABB0)
         label.textAlignment = .center
@@ -124,12 +124,7 @@ class FcrAppUIRoomListAddedNoticeView: UIView,
     }
     
     func initViewFrame() {
-        label.mas_remakeConstraints { make in
-            make?.center.equalTo()(0)
-            make?.width.equalTo()(label.intrinsicContentSize.width + 20)
-            make?.top.equalTo()(0)
-            make?.bottom.equalTo()(0)
-        }
+        
     }
     
     func updateViewProperties() {
@@ -137,5 +132,12 @@ class FcrAppUIRoomListAddedNoticeView: UIView,
         
         label.text = "fcr_room_list_room_created".localized()
         label.textColor = FcrAppUIColorGroup.fcr_white
+        
+        label.mas_remakeConstraints { make in
+            make?.center.equalTo()(0)
+            make?.width.equalTo()(label.intrinsicContentSize.width + 20)
+            make?.top.equalTo()(0)
+            make?.bottom.equalTo()(0)
+        }
     }
 }

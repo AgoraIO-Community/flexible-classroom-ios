@@ -149,7 +149,7 @@ private extension FcrAppUICreateRoomViewController {
         }
         
         let startTime = Int64(schedule.timeIntervalSince1970) * 1000
-        let endTime = (startTime + 30 * 60) * 1000
+        let endTime = (startTime + 30 * 60)
         
         // Room type
         let roomType = contentView.headerView.selectedRoomType

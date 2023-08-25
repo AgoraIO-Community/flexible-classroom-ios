@@ -111,7 +111,7 @@ class FcrAppURLGroup {
     }
     
     func headers() -> [String: String] {
-        return ["Authorization": accessToken]
+        return ["Authorization": "Bearer \(accessToken)"]
     }
     
     //
@@ -190,16 +190,19 @@ class FcrAppURLGroup {
     }
     
     func invitation(roomId: String,
-                    inviterName: String) -> String? {
+                    inviterName: String) -> String {
         let web = "https://solutions-apaas.agora.io/apaas/app/index.html#/invite?sc="
         
         let parameter: [String: Any] = ["roomId": roomId,
                                         "owner": inviterName,
                                         "region": region.rawValue,
                                         "role": 2]
-        let json = parameter.jsonString()
         
-        return json?.base64Encoded
+        let json = parameter.jsonString()!
+        
+        let link = (web + json.base64Encoded!)
+        
+        return link
     }
     
     // Token

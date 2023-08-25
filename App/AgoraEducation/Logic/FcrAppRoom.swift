@@ -76,10 +76,13 @@ class FcrAppRoom {
                       parameters: parameters,
                       method: .post,
                       event: "create-room",
-                      success: { object in
+                      success: { [weak self] object in
             let data = try object.dataConvert(type: [String: Any].self)
             let roomId = try data.getValue(of: "roomId",
                                            type: String.self)
+            
+            self?.lastRoomId = roomId
+            
             success(roomId)
         }, failure: failure)
     }
@@ -138,7 +141,10 @@ class FcrAppRoom {
             parameters["nextId"] = nextId
         }
         
+        let headers = urlGroup.headers()
+        
         armin.convertableRequest(url: url,
+                                 headers: headers,
                                  parameters: parameters,
                                  method: .get,
                                  event: "room-list",

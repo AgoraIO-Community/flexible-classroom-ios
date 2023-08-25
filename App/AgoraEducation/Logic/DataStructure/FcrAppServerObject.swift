@@ -83,7 +83,7 @@ struct FcrAppServerRoomObject: FcrAppCodable {
 
 struct FcrAppServerRoomListObject: FcrAppCodable {
     var total: Int
-    var nextId: String
+    var nextId: String?
     var count: Int
     var list: [FcrAppServerRoomObject]
 }

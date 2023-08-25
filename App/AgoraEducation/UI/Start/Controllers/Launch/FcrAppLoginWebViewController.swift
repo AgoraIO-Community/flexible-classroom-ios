@@ -13,13 +13,9 @@ import UIKit
 class FcrAppUILoginWebViewController: FcrAppUIViewController {
     private var webView = WKWebView()
     
-    public var url: String
+    private var url: String
     
-    public var onLoginCompleted: FcrAppBoolCompletion?
-    
-    private var debugButton = UIButton(type: .custom)
-    
-    private var debugCount: Int = 0
+    private var onLoginCompleted: FcrAppBoolCompletion?
     
     private var center: FcrAppCenter
     
@@ -84,43 +80,23 @@ class FcrAppUILoginWebViewController: FcrAppUIViewController {
             self?.onLoginCompleted?(false)
         }
     }
-    
-    @objc private func onTouchDebug() {
-        guard debugCount >= 10 else {
-            debugCount += 1
-            return
-        }
-        
-        
-        dismiss(animated: true)
-    }
 }
 
 extension FcrAppUILoginWebViewController: AgoraUIContentContainer {
     func initViews() {
-        webView.navigationDelegate = self
         view.addSubview(webView)
         
-        debugButton.addTarget(self,
-                              action: #selector(onTouchDebug),
-                              for: .touchUpInside)
-        view.addSubview(debugButton)
+        webView.navigationDelegate = self
     }
     
     func initViewFrame() {
         webView.mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
-        
-        debugButton.mas_makeConstraints { make in
-            make?.height.equalTo()(60)
-            make?.width.equalTo()(40)
-            make?.left.bottom().equalTo()(0)
-        }
     }
     
     func updateViewProperties() {
-        debugButton.backgroundColor = .clear
+        
     }
 }
 

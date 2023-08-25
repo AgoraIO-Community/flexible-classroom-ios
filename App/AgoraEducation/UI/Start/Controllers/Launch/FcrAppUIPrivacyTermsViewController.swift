@@ -104,7 +104,9 @@ class FcrAppUIPrivacyTermsViewController: FcrAppUIPresentedViewController {
     }
     
     @objc private func onAgreedButtonPressed() {
+        dismiss(animated: true)
         onAgreedCompletion?()
+        onAgreedCompletion = nil
     }
     
     @objc private func onDisagreedButtonPressed() {

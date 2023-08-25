@@ -17,6 +17,10 @@ class FcrAppArmin: Armin {
                  event: String,
                  success: FcrAppRequestSuccess? = nil,
                  failure: FcrAppFailure? = nil) {
+        if let headers {
+            printDebug("event: \(event), headers: \(headers)")
+        }
+        
         let type = ArRequestType.http(method,
                                       url: url)
         

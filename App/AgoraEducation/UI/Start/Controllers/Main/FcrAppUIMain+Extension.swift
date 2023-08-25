@@ -10,34 +10,11 @@ import AgoraClassroomSDK_iOS
 import AgoraUIBaseViews
 import AgoraProctorSDK
 
-extension FcrAppUIMainViewController {
+// MARK: - Login check
+extension FcrAppUIMainViewController: FcrAppNavigationControllerDelegate {
     func launch() {
-        // 1. Check if agreed privacy
-        privacyCheck { [weak self] in
-            // 2. Check if logined
-            self?.loginCheck { [weak self] in
-                // 3. Refresh data
-                self?.roomListComponent.refresh()
-            }
-        }
-    }
-    
-    func privacyCheck(completion: @escaping FcrAppCompletion) {
-        guard center.isAgreedPrivacy == false else {
-            completion()
-            return
-        }
-        
-        let vc = FcrAppUIPrivacyTermsViewController(contentHeight: 456,
-                                                    contentViewOffY: -15,
-                                                    contentViewHorizontalSpace: 15)
-        
-        present(vc,
-                animated: true)
-        
-        vc.onAgreedCompletion = { [weak self] in
-            self?.center.isAgreedPrivacy = true
-            completion()
+        loginCheck { [weak self] in
+            self?.roomListComponent.refresh()
         }
     }
     
@@ -50,6 +27,9 @@ extension FcrAppUIMainViewController {
         
         let navigation = FcrAppUINavigationController(rootViewController: vc)
         
+        navigation.modalTransitionStyle = .crossDissolve
+        navigation.modalPresentationStyle = .fullScreen
+        
         present(navigation,
                 animated: true)
         
@@ -57,10 +37,25 @@ extension FcrAppUIMainViewController {
             navigation?.dismiss(animated: true)
         }
     }
+    
+    func navigation(_ navigation: FcrAppUINavigationController,
+                    didPopToRoot from: UIViewController) {
+        guard from is FcrAppUISettingsViewController else {
+            return
+        }
+        
+        loginCheck { [weak self] in
+            self?.roomListComponent.refresh()
+        }
+    }
 }
 
 extension FcrAppUIMainViewController: AgoraUIContentContainer {
     func initViews() {
+        if let navigation = navigationController as? FcrAppUINavigationController {
+            navigation.csDelegate = self
+        }
+        
         view.addSubview(backgroundView)
         view.addSubview(headerView)
         view.addSubview(roomListComponent.view)

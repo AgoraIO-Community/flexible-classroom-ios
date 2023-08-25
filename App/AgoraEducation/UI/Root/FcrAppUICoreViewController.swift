@@ -49,6 +49,16 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
         agora_ui_language = center.language.proj()
         agora_ui_mode = center.uiMode.toAgoraType()
         
+        insertWidgetSampleToClassroom(config)
+        
+        let sel = NSSelectorFromString("setEnvironment:")
+        AgoraClassroomSDK.perform(sel,
+                                  with: center.urlGroup.environment.intValue)
+        
+        let sel1 = NSSelectorFromString("setLogConsoleState:");
+        AgoraClassroomSDK.perform(sel1,
+                                  with: 1)
+        
         AgoraClassroomSDK.launch(config) {
             AgoraLoading.hide()
         } failure: { [weak self] error in
@@ -71,6 +81,15 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
         }
         
         self.proctor = proctor
+    }
+    
+    func insertWidgetSampleToClassroom(_ config: AgoraEduLaunchConfig) {
+        let sample = FcrAppWidgetSample()
+        
+        let link = center.urlGroup.invitation(roomId: config.roomUuid,
+                                              inviterName: config.userName)
+        
+        config.widgets[sample.sharingLinkWidgetId] = sample.createSharingLink(link)
     }
 }
 

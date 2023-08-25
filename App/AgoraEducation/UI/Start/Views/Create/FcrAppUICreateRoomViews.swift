@@ -126,7 +126,6 @@ extension FcrAppUICreateRoomHeaderView: UICollectionViewDelegate,
         
         cell.imageView.image = roomType.image()
         cell.titleLabel.text = roomType.text()
-        cell.subTitleLabel.text = roomType.subTitle()
         cell.aSelected = (roomType == selectedRoomType)
         
         return cell
@@ -155,8 +154,6 @@ class FcrAppUICreateRoomTypeCell: UICollectionViewCell,
     
     let titleLabel = UILabel()
     
-    let subTitleLabel = UILabel()
-    
     let selectedView = UIImageView(frame: .zero)
     
     var aSelected = false {
@@ -182,14 +179,10 @@ class FcrAppUICreateRoomTypeCell: UICollectionViewCell,
     func initViews() {
         contentView.addSubview(imageView)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(subTitleLabel)
         contentView.addSubview(selectedView)
         
         titleLabel.font = FcrAppUIFontGroup.font14
         titleLabel.textAlignment = .center
-        
-        subTitleLabel.font = FcrAppUIFontGroup.font12
-        subTitleLabel.textAlignment = .center
         
         selectedView.isHidden = true
     }
@@ -200,13 +193,7 @@ class FcrAppUICreateRoomTypeCell: UICollectionViewCell,
         }
         
         titleLabel.mas_makeConstraints { make in
-            make?.top.equalTo()(15)
-            make?.left.right().equalTo()(0)
-        }
-        
-        subTitleLabel.mas_makeConstraints { make in
-            make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(8)
-            make?.left.right().equalTo()(0)
+            make?.top.left().right().bottom().equalTo()(0)
         }
         
         selectedView.mas_makeConstraints { make in
@@ -224,7 +211,6 @@ class FcrAppUICreateRoomTypeCell: UICollectionViewCell,
         
         imageView.backgroundColor = FcrAppUIColorGroup.fcr_white
         titleLabel.textColor = FcrAppUIColorGroup.fcr_white
-        subTitleLabel.textColor = FcrAppUIColorGroup.fcr_white
     }
 }
 
@@ -235,15 +221,6 @@ fileprivate extension FcrAppUIRoomType {
         case .lectureHall: return UIImage(named: "fcr_room_create_lecture_bg")
         case .oneToOne:    return UIImage(named: "fcr_room_create_1v1_bg")
         case .proctor:     return UIImage(named: "fcr_room_create_proctor_bg")
-        }
-    }
-    
-    func subTitle() -> String? {
-        switch self {
-        case .smallClass:  return "fcr_create_small_detail".localized()
-        case .lectureHall: return "fcr_create_lecture_detail".localized()
-        case .oneToOne:    return "fcr_create_onetoone_detail".localized()
-        case .proctor:     return nil
         }
     }
 }

@@ -41,10 +41,10 @@ class FcrAppUIMainViewController: FcrAppUICoreViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        launch()
         initViews()
         initViewFrame()
         updateViewProperties()
-        launch()
         tester()
     }
     
@@ -53,6 +53,14 @@ class FcrAppUIMainViewController: FcrAppUICoreViewController {
         navigationController?.setNavigationBarHidden(true,
                                                      animated: true)
         isTest()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard center.isLogined else {
+            return
+        }
+        
         refreshRoomList()
     }
 }

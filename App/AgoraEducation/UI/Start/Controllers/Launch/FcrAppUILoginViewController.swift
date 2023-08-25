@@ -57,6 +57,24 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
         initViewFrame()
         updateViewProperties()
         createAnimation()
+        privacyCheck()
+    }
+    
+    private func privacyCheck() {
+        guard center.isAgreedPrivacy == false else {
+            return
+        }
+        
+        let vc = FcrAppUIPrivacyTermsViewController(contentHeight: 456,
+                                                    contentViewOffY: -15,
+                                                    contentViewHorizontalSpace: 15)
+        
+        presentViewController(vc,
+                              animated: true)
+        
+        vc.onAgreedCompletion = { [weak self] in
+            self?.center.isAgreedPrivacy = true
+        }
     }
     
     @objc func onClickStart() {

@@ -11,8 +11,8 @@ import Foundation
 class FcrAppLocalStorage {
     enum Key: String, CaseIterable {
         case privacyAgreement = "com.agora.privacyTermsAgree"
-        case login            = "com.agora.login"
         
+        case login            = "com.agora.login"
         case accessToken      = "com.agora.accessToken"
         case refreshToken     = "com.agora.refreshToken"
         case companyId        = "com.agora.companyId"
@@ -27,12 +27,17 @@ class FcrAppLocalStorage {
         case language         = "com.agora.language"
         case region           = "com.agora.region"
         case uiMode           = "com.agora.uiMode"
+        
         case testMode         = "com.agora.testMode"
         
         var isUserInfo: Bool {
             switch self {
-            case .environment, .language, .region, .uiMode: return true
-            default:                                        return false
+            case .privacyAgreement,
+                 .environment,
+                 .testMode:
+                return false
+            default:
+                return true
             }
         }
     }
@@ -59,6 +64,8 @@ class FcrAppLocalStorage {
                 return value as! T
             }
         } else {
+            printDebug("read key: \(key), nil")
+            
             throw FcrAppError(code: -1,
                               message: "\(key.rawValue)'s value is nil")
         }
@@ -73,6 +80,8 @@ class FcrAppLocalStorage {
     }
     
     func removeData(key: Key) {
+        printDebug("remove key: \(key)")
+        
         UserDefaults.standard.removeObject(forKey: key.rawValue)
     }
     
@@ -96,5 +105,3 @@ class FcrAppLocalStorage {
         }
     }
 }
-
-

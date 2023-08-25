@@ -53,6 +53,8 @@ fcr_home_role_option_audience = "Audience";
 fcr_home_button_create = "Create";
 fcr_home_button_join = "Join";
 fcr_home_button_cancel = "Cancel";
+fcr_home_label_room_list_empty = "No Course";
+fcr_home_tips_invite_copy = "Invitation link copied to clipboard.";
 
 //****************** 免登录页 Login free ******************
 fcr_login_free_label_quick_start = "Quick Start";
