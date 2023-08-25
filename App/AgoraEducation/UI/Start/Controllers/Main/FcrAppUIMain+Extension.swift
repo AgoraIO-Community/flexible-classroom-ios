@@ -162,7 +162,7 @@ extension FcrAppUIMainViewController: FcrAppUIRoomListControllerDelegate {
             return
         }
         
-        let config = FcrAppJoinRoomPreCheckConfig(roomId: roomInfo.roomId,
+        let config = FcrAppJoinRoomPreCheckConfig(roomId: roomInfo.getRoomId(),
                                                   userId: userId,
                                                   userName: roomInfo.userName,
                                                   userRole: roomInfo.userRole)

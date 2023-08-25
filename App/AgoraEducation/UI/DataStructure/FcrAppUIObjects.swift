@@ -52,6 +52,12 @@ struct FcrAppUIRoomListItem {
         
         return item
     }
+    
+    func getRoomId() -> String {
+        let text = roomId.replacingOccurrences(of: " ",
+                                               with: "")
+        return text
+    }
 }
 
 struct FcrAppUICreatedRoomResult {

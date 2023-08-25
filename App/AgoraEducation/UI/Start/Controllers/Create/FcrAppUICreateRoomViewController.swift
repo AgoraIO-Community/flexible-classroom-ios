@@ -56,7 +56,6 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
             }
             
             AgoraLoading.hide()
-            self.dismiss(animated: true)
             
             let result = FcrAppUICreatedRoomResult(userId: config.userId,
                                                    userName: config.userName,
@@ -66,6 +65,9 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
                                                    andJoin: self.andJoin)
             
             self.completion?(result)
+            
+            self.dismiss(animated: true)
+            
             self.completion = nil
         } failure: { [weak self] error in
             AgoraLoading.hide()
@@ -117,6 +119,7 @@ private extension FcrAppUICreateRoomViewController {
     @objc func onTimeButtonPressed(_ sender: UIButton) {
         let vc = FcrAppUICreateRoomTimePickerController(date: Date()) { [weak self] date in
             self?.contentView.timeView.startDate = date
+            self?.andJoin = false
         }
         
         presentViewController(vc,
@@ -163,7 +166,7 @@ private extension FcrAppUICreateRoomViewController {
         }
         
         let startTime = Int64(schedule.timeIntervalSince1970) * 1000
-        let endTime = (startTime + 30 * 60)
+        let endTime = (startTime + (30 * 60 * 1000))
         
         // Room type
         let roomType = contentView.headerView.selectedRoomType
