@@ -80,7 +80,7 @@ fileprivate class FcrAppUIMainTitleButton: UIButton {
 
 class FcrAppUIMainHeaderView: UIView,
                               AgoraUIContentContainer {
-    private let cardView = UIView()
+    private let backgroundView = UIImageView(frame: .zero)
     
     let titleLabel: UIButton = FcrAppUIMainTitleButton()
     
@@ -91,8 +91,6 @@ class FcrAppUIMainHeaderView: UIView,
     let settingButton = UIButton(type: .custom)
     
     let testTag = UILabel()
-    
-    private var debugCount: Int = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -105,12 +103,14 @@ class FcrAppUIMainHeaderView: UIView,
     }
     
     func initViews() {
-        addSubview(cardView)
+        addSubview(backgroundView)
         addSubview(titleLabel)
         addSubview(joinActionView)
         addSubview(createActionView)
         addSubview(settingButton)
         addSubview(testTag)
+        
+        backgroundView.contentMode = .scaleToFill
         
         // Title label
         titleLabel.titleLabel?.font = FcrAppUIFontGroup.font20
@@ -121,27 +121,29 @@ class FcrAppUIMainHeaderView: UIView,
     }
     
     func initViewFrame() {
-        cardView.mas_makeConstraints { make in
-            make?.left.right().top().bottom().equalTo()(0)
+        backgroundView.mas_makeConstraints { make in
+            make?.left.top().right().bottom().equalTo()(0)
         }
         
         titleLabel.mas_makeConstraints { make in
-            make?.top.equalTo()(68)
+            let top: CGFloat = (UIDevice.current.isSmallPhone ? 40 : 68)
+            
+            make?.top.equalTo()(top)
             make?.left.equalTo()(16)
         }
         
         joinActionView.mas_makeConstraints { make in
+            make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(28)
             make?.left.equalTo()(24)
-            make?.width.equalTo()(self)?.multipliedBy()(0.4)
+            make?.right.equalTo()(createActionView.mas_left)?.offset()(-15)
             make?.height.equalTo()(56)
-            make?.bottom.equalTo()(-20)
         }
         
         createActionView.mas_makeConstraints { make in
-            make?.left.equalTo()(joinActionView.mas_right)?.offset()(15)
-            make?.width.equalTo()(self)?.multipliedBy()(0.4)
-            make?.height.equalTo()(56)
-            make?.bottom.equalTo()(-20)
+            make?.top.equalTo()(joinActionView.mas_top)
+            make?.right.equalTo()(-24)
+            make?.width.equalTo()(self.joinActionView.mas_width)
+            make?.height.equalTo()(joinActionView.mas_height)
         }
         
         settingButton.mas_makeConstraints { make in
@@ -159,7 +161,7 @@ class FcrAppUIMainHeaderView: UIView,
         joinActionView.updateViewProperties()
         createActionView.updateViewProperties()
         
-        cardView.backgroundColor = .clear
+        backgroundView.image = UIImage(named: "fcr_room_list_bg")
         
         titleLabel.setTitleColor(FcrAppUIColorGroup.fcr_black,
                                  for: .normal)

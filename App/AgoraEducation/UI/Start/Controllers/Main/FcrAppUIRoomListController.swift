@@ -91,10 +91,10 @@ class FcrAppUIRoomListController: FcrAppUIViewController {
 extension FcrAppUIRoomListController: AgoraUIContentContainer {
     func initViews() {
         view.addSubview(cornerRadiusView)
-        view.addSubview(noticeView)
-        view.addSubview(titleView)
         view.addSubview(placeholderView)
         view.addSubview(tableView)
+        view.addSubview(noticeView)
+        view.addSubview(titleView)
         
         cornerRadiusView.backgroundColor = .white
         
@@ -157,7 +157,7 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
         }
         
         tableView.mas_makeConstraints { make in
-            make?.top.equalTo()(noticeView.mas_bottom)?.offset()(23)
+            make?.top.equalTo()(noticeView.mas_bottom)?.offset()(12)
             make?.left.right().bottom().equalTo()(0)
         }
     }
@@ -328,7 +328,7 @@ extension FcrAppUIRoomListController: FcrAppUIRoomListItemCellDelegate {
         
         UIPasteboard.general.string = info.roomId
         
-        let message = "fcr_sharingLink_tips_roomid".localized() + ": " + info.roomId
+        let message = "fcr_home_tips_invite_copy_room_id".localized()
         
         showToast(message)
     }

@@ -93,25 +93,12 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
 extension FcrAppUICoreViewController: AgoraEduClassroomSDKDelegate {
     func classroomSDK(_ classroom: AgoraClassroomSDK,
                       didExit reason: AgoraEduExitReason) {
-        switch reason {
-        case .kickOut:
-            showToast("kick out")
-        default:
-            break
-        }
     }
 }
 
 // MARK: - AgoraProctorDelegate
 extension FcrAppUICoreViewController: AgoraProctorDelegate {
     func onExit(reason: AgoraProctorExitReason) {
-        switch reason {
-        case .kickOut:
-            showToast("kick out")
-        default:
-            break
-        }
-        
         self.proctor = nil
     }
 }

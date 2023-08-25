@@ -9,20 +9,46 @@
 import AgoraUIBaseViews
 import UIKit
 
+fileprivate class StartButton: UIButton {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        guard let `imageView` = imageView else {
+            return
+        }
+        
+        let offset: CGFloat = 4
+        let height: CGFloat = bounds.height - (offset * 2)
+        let width: CGFloat = height
+        let x: CGFloat = offset
+        let y: CGFloat = offset
+        
+        imageView.frame = CGRect(x: x,
+                                 y: y,
+                                 width: width,
+                                 height: height)
+        
+        printDebug("width: \(width)")
+        printDebug("height: \(height)")
+    }
+}
+
 class FcrAppUILoginViewController: FcrAppUIViewController {
-    private let logoView = UIImageView(image: UIImage(named: "fcr_login_logo_text_en"))
+    private let logoView = UIButton(frame: .zero)
     
-    private let imageView = UIImageView(image: UIImage(named: "fcr_login_center_afc"))
+    private let backgroundView = UIImageView(frame: .zero)
     
-    private let textView = UIImageView(image: UIImage(named: "fcr_login_text_en"))
+    private let textBgView = UIImageView(frame: .zero)
     
-    private let textBgView = UIImageView(image: UIImage(named: "fcr_login_logo_text_bg"))
+    private let textView = UIImageView(frame: .zero)
     
-    private let haloView = UIImageView(image: UIImage(named: "fcr_login_halo"))
+    private let haloView = UIImageView(frame: .zero)
     
-    private let afcView = UIImageView(image: UIImage(named: "fcr_login_corner_afc"))
+    private let afcView = UIImageView(frame: .zero)
     
-    private let startButton = UIButton(type: .custom)
+    private let startButton = StartButton(frame: .zero)
+    
+    private let testTag = UIButton()
     
     private var center: FcrAppCenter
     
@@ -32,9 +58,9 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
          onCompleted: FcrAppCompletion? = nil) {
         self.center = center
         self.onCompleted = onCompleted
-        
         super.init(nibName: nil,
                    bundle: nil)
+        center.tester.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -45,6 +71,7 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true,
                                                      animated: true)
+        isTest()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -58,6 +85,7 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
         updateViewProperties()
         createAnimation()
         privacyCheck()
+        tester()
     }
     
     private func privacyCheck() {
@@ -77,7 +105,7 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
         }
     }
     
-    @objc func onClickStart() {
+    @objc private func onStartButtonPressed() {
         AgoraLoading.loading()
         
         center.getAgoraConsoleURL { [weak self] url in
@@ -109,88 +137,147 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
 // MARK: - AgoraUIContentContainer
 extension FcrAppUILoginViewController: AgoraUIContentContainer {
     func initViews() {
-        view.addSubview(imageView)
+        view.addSubview(backgroundView)
         view.addSubview(logoView)
-        view.addSubview(textBgView)
         view.addSubview(haloView)
+        view.addSubview(textBgView)
         view.addSubview(textView)
         view.addSubview(afcView)
         view.addSubview(startButton)
+        view.addSubview(testTag)
         
-        if UIDevice.current.isSmallPhone {
-            textBgView.agora_visible = false
+        if !UIDevice.current.isSmallPhone {
+            textBgView.isHidden = false
         }
         
+        textView.contentMode = .scaleAspectFit
+        
         startButton.addTarget(self,
-                              action: #selector(onClickStart),
+                              action: #selector(onStartButtonPressed),
                               for: .touchUpInside)
+        
+        startButton.layer.cornerRadius = 26
+        startButton.layer.masksToBounds = true
+        startButton.titleLabel?.font = FcrAppUIFontGroup.font16
+        
+        testTag.titleLabel?.font = FcrAppUIFontGroup.font20
+        testTag.setTitleColor(.white,
+                              for: .normal)
+        testTag.setTitle("Test",
+                         for: .normal)
+        testTag.isHidden = true
     }
     
     func initViewFrame() {
-        let isSmallDevice = false
+        let isSmallDevice = UIDevice.current.isSmallPhone
         
-        let leftSideSpace: CGFloat = 29
+        let leftSideSpace: CGFloat = 38
         
         logoView.mas_makeConstraints { make in
-            make?.top.equalTo()(isSmallDevice ? 24 : 55)
-            make?.left.equalTo()(leftSideSpace)
+            let top: CGFloat = (isSmallDevice ? 24 : 55)
+            let `left`: CGFloat = (leftSideSpace - 2)
+            
+            make?.top.equalTo()(top)
+            make?.left.equalTo()(`left`)
+            make?.width.equalTo()(178)
+            make?.height.equalTo()(32)
         }
         
-        imageView.mas_makeConstraints { make in
-            make?.top.equalTo()(logoView.mas_bottom)?.offset()(isSmallDevice ? 15 : 32)
+        testTag.mas_makeConstraints { make in
+            make?.right.equalTo()(-20)
+            make?.centerY.equalTo()(logoView.mas_centerY)
+            make?.right.equalTo()(0)
+            make?.height.equalTo()(20)
+        }
+        
+        backgroundView.mas_makeConstraints { make in
+            let offset: CGFloat = (isSmallDevice ? 18 : 32)
+            
             make?.left.equalTo()(leftSideSpace)
             make?.right.equalTo()(-leftSideSpace)
-            make?.height.equalTo()(imageView.mas_width)
+            make?.top.equalTo()(logoView.mas_bottom)?.offset()(offset)
+            make?.height.equalTo()(backgroundView.mas_width)
         }
         
-        afcView.mas_makeConstraints { make in
+        textView.mas_makeConstraints { make in
+            let offset: CGFloat = (isSmallDevice ? -50 : 36)
+            
+            make?.top.equalTo()(backgroundView.mas_bottom)?.offset()(offset)
             make?.left.equalTo()(leftSideSpace)
-            make?.bottom.equalTo()(-30)
-        }
-        
-        startButton.mas_makeConstraints { make in
-            make?.bottom.equalTo()(afcView.mas_top)?.offset()(isSmallDevice ? -47 : -81)
-            make?.left.equalTo()(leftSideSpace)
-            make?.width.equalTo()(isSmallDevice ? 160 : 190)
-            make?.height.equalTo()(isSmallDevice ? 44 : 52)
+            make?.width.equalTo()(232)
+            make?.height.equalTo()(113)
         }
         
         textBgView.mas_makeConstraints { make in
+            make?.top.equalTo()(textView.mas_top)?.offset()(-14)
             make?.left.right().equalTo()(0)
-            make?.bottom.equalTo()(startButton.mas_top)?.offset()(-22)
-            make?.height.equalTo()(isSmallDevice ? 120 : 135)
+            make?.height.equalTo()(textView.mas_height)?.offset()(77)
         }
         
-        let textViewSize = textView.size
-        let textViewRatio = textViewSize.width / textViewSize.height
-
-        textView.mas_makeConstraints { make in
-            make?.top.equalTo()(textBgView.mas_top)?.offset()(4)
-            make?.bottom.equalTo()(textBgView.mas_bottom)?.offset()(-20)
-            make?.left.equalTo()(32)
-            make?.width.equalTo()(textView.mas_height)?.multipliedBy()(textViewRatio)
+        startButton.mas_makeConstraints { make in
+            let offset: CGFloat = (isSmallDevice ? 55 : 55)
+            let width: CGFloat = 190
+            let height: CGFloat = 52
+            
+            make?.top.equalTo()(textView.mas_bottom)?.offset()(offset)
+            make?.left.equalTo()(leftSideSpace)
+            make?.width.equalTo()(width)
+            make?.height.equalTo()(height)
+        }
+        
+        afcView.mas_makeConstraints { make in
+            let offset: CGFloat = (isSmallDevice ? -20 : -30)
+            
+            make?.left.equalTo()(leftSideSpace)
+            make?.bottom.equalTo()(self.mas_bottomLayoutGuideBottom)?.offset()(offset)
+            make?.width.equalTo()(109)
+            make?.height.equalTo()(36)
         }
     }
     
     func updateViewProperties() {
         view.backgroundColor = FcrAppUIColorGroup.fcr_black
         
-        startButton.setBackgroundImage(UIImage(named: "fcr_login_get_start"),
-                                       for: .normal)
+        backgroundView.image = UIImage(named: "fcr_login_center_afc")
+        textView.image = UIImage(named: "fcr_login_text_en")
+        haloView.image = UIImage(named: "fcr_login_halo")
+        afcView.image = UIImage(named: "fcr_login_corner_afc")
+       
+        startButton.setImage(UIImage(named: "fcr_login_get_start"),
+                             for: .normal)
         
-        if center.language == .zh_cn {
-            logoView.image = UIImage(named: "fcr_login_logo_text_zh")
-            textView.image = UIImage(named: "fcr_login_text_zh")
-        } else {
-            logoView.image = UIImage(named: "fcr_login_logo_text_en")
-            textView.image = UIImage(named: "fcr_login_text_en")
-        }
+        startButton.setTitle("fcr_login_button_welcome".localized(),
+                             for: .normal)
+        
+        startButton.layoutSubviews()
+        startButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
+        
+        textBgView.image = UIImage(named: "fcr_login_logo_text_bg")
+        
+        let logoViewImage = (center.language.isEN ? "fcr_login_logo_text_en" : "fcr_login_logo_text_zh")
+        let textViewImage = (center.language.isEN ? "fcr_login_text_en" : "fcr_login_text_zh")
+        
+        logoView.setImage(UIImage(named: logoViewImage),
+                          for: .normal)
+        
+        logoView.setImage(UIImage(named: logoViewImage),
+                          for: .selected)
+        
+        logoView.setImage(UIImage(named: logoViewImage),
+                          for: .highlighted)
+        
+        textView.image = UIImage(named: textViewImage)
     }
     
-    func createAnimation() {
+    private func createAnimation() {
         guard let bounds = UIApplication.shared.keyWindow?.bounds else {
             return
         }
+        
+        haloView.frame = CGRect(x: 0,
+                                y: 0,
+                                width: 100,
+                                height: 100)
         
         let animation = CAKeyframeAnimation(keyPath: "position")
         
@@ -219,5 +306,46 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         
         haloView.layer.add(animation,
                            forKey: "com.agora.halo")
+    }
+}
+
+// MARK: - Tester
+extension FcrAppUILoginViewController: FcrAppTesterDelegate {
+    func tester() {
+        logoView.addTarget(self,
+                           action: #selector(onTestButtonPressed(_ :)),
+                           for: .touchUpInside)
+        
+        testTag.addTarget(self,
+                          action: #selector(onTestTagPressed(_ :)),
+                          for: .touchUpInside)
+    }
+    
+    @objc func onTestButtonPressed(_ sender: UIButton) {
+        center.tester.switchMode()
+    }
+    
+    @objc func onTestTagPressed(_ sender: UIButton) {
+        presentQuickStartViewController()
+    }
+    
+    func isTest() {
+        center.tester.delegate = self
+        onIsTestMode(center.tester.isTest)
+    }
+    
+    func onIsTestMode(_ isTest: Bool) {
+        testTag.isHidden = !isTest
+    }
+    
+    func presentQuickStartViewController() {
+        let vc = FcrAppUIQuickStartViewController(center: center)
+        let navigation = FcrAppUINavigationController(rootViewController: vc)
+
+        navigation.modalPresentationStyle = .fullScreen
+        navigation.modalTransitionStyle = .crossDissolve
+
+        present(navigation,
+                animated: true)
     }
 }

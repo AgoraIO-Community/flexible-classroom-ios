@@ -67,7 +67,7 @@ class FcrAppUIQuickStartHeaderView: UIView,
             make?.top.equalTo()(0)
             make?.left.equalTo()(22)
             make?.right.equalTo()(-100)
-            make?.height.equalTo()(48)
+            make?.height.equalTo()(26)
         }
         
         settingButton.mas_makeConstraints { make in
@@ -119,7 +119,7 @@ class FcrAppUIQuickStartHeaderView: UIView,
         signButton.layer.borderColor = FcrAppUIColorGroup.fcr_white.cgColor
         
         signButton.mas_makeConstraints { make in
-            make?.top.equalTo()(self.titleLabel.mas_bottom)?.offset()(12)
+            make?.top.equalTo()(self.titleLabel.mas_bottom)?.offset()(22)
             make?.left.equalTo()(18)
             make?.width.equalTo()(signButton.intrinsicContentSize.width + 40)
             make?.height.equalTo()(30)
@@ -134,7 +134,8 @@ class FcrAppUIQuickStartHeaderView: UIView,
         isTopConstraintsUpdated = true
         
         titleLabel.mas_updateConstraints { make in
-            make?.top.equalTo()(topSafeArea)
+            let top: CGFloat = (topSafeArea + 11 + 24)
+            make?.top.equalTo()(top)
         }
     }
 }

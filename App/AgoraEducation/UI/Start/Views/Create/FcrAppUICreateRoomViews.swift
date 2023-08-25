@@ -50,9 +50,9 @@ class FcrAppUICreateRoomHeaderView: UIView, AgoraUIContentContainer {
                                  height: 78)
         layout.minimumInteritemSpacing = 9
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 20,
+        layout.sectionInset = UIEdgeInsets(top: 30,
                                            left: 16,
-                                           bottom: 0,
+                                           bottom: 30,
                                            right: 16)
         
         collectionView.setCollectionViewLayout(layout,
@@ -307,16 +307,16 @@ class FcrAppUICreateRoomTimeView: UIButton,
     }
     
     func updateViewProperties() {
-        arrowIcon.image = UIImage(named: "fcr_home_label_create_classroom")
+        arrowIcon.image = UIImage(named: "fcr_room_create_time_arrow")
         
         startTimeLabel.text = "fcr_create_current_time".localized()
+        startTimeLabel.textColor = UIColor.black
+        
         startTitleLabel.text = "fcr_home_label_starttime".localized()
         startTitleLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
         
         endTitleLabel.text = "fcr_home_label_endtime".localized()
         endTitleLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
-        
-        startTimeLabel.textColor = UIColor.black
         
         endTimeLabel.text = "fcr_create_end_time".localized()
         endTimeLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
@@ -429,8 +429,9 @@ class FcrAppUICreateRoomContentView: UIView,
         addSubview(footerView)
         
         headerView.layer.cornerRadius = 24
+        headerView.layer.masksToBounds = true
         
-        titleLabel.font = UIFont.systemFont(ofSize: 14)
+        titleLabel.font = FcrAppUIFontGroup.font14
         titleLabel.textAlignment = .center
         
         timeView.layer.cornerRadius = 12

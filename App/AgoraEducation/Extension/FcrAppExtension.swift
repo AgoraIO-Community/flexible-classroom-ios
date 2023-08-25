@@ -68,8 +68,8 @@ extension UIColor {
 
 extension UIDevice {
     var isSmallPhone: Bool {
-        guard UIDevice.current.agora_is_pad else {
-            return false
+        if UIDevice.current.agora_is_pad {
+            return true
         }
         
         if UIScreen.main.bounds.size.height < 700 {

@@ -23,6 +23,7 @@ fileprivate class FcrAppUIQuickStartUserRoleCell: UICollectionViewCell,
         super.init(frame: frame)
         initViews()
         initViewFrame()
+        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -36,8 +37,7 @@ fileprivate class FcrAppUIQuickStartUserRoleCell: UICollectionViewCell,
         textLabel.textAlignment = .center
         textLabel.font = UIFont.systemFont(ofSize: 15)
         
-        // TODO: UI
-        textLabel.layer.cornerRadius = 16
+        textLabel.layer.cornerRadius = 10
         textLabel.layer.masksToBounds = true
     }
     
@@ -89,8 +89,7 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
     
     let joinButton = UIButton(frame: .zero)
     
-    // TODO: UI size 太大
-    private let itemSize = CGSize(width: 114,
+    private var itemSize = CGSize(width: 114,
                                   height: 45)
     
     private let sectionInset: UIEdgeInsets
@@ -157,14 +156,6 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
         userNameTextField.leftLabel.font = FcrAppUIFontGroup.font15
         userNameTextField.leftLabel.textAlignment = .left
         
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = minimumLineSpacing
-        layout.minimumInteritemSpacing = minimumInteritemSpacing
-        layout.itemSize = itemSize
-        layout.sectionInset = sectionInset
-        
-        roleCollection.setCollectionViewLayout(layout,
-                                               animated: false)
         roleCollection.dataSource = self
         roleCollection.delegate = self
         roleCollection.register(cellWithClass: FcrAppUIQuickStartUserRoleCell.self)
@@ -193,22 +184,17 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
             make?.height.equalTo()(23)
         }
         
-        let collectionWidth = itemSize.width * 2 + minimumInteritemSpacing + sectionInset.right + sectionInset.left
-        let collectionHeight = itemSize.height * 2 + minimumLineSpacing + sectionInset.top + sectionInset.bottom
-        
-        roleCollection.mas_makeConstraints { make in
-            make?.top.equalTo()(self.roleLabel.mas_top)?.offset()(-sectionInset.top)
-            make?.left.equalTo()(self.roleLabel.mas_right)?.offset()(self.rightViewOffsetX)
-            make?.width.equalTo()(collectionWidth)
-            make?.height.equalTo()(collectionHeight)
-        }
-        
         joinButton.mas_makeConstraints { make in
             make?.left.equalTo()(25)
             make?.right.equalTo()(-25)
             make?.height.equalTo()(46)
             make?.bottom.equalTo()(0)
         }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateCollectionViewFrame()
     }
     
     func updateViewProperties() {
@@ -232,6 +218,34 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
                                  for: .normal)
         
         roleCollection.reloadData()
+    }
+    
+    func updateCollectionViewFrame() {
+        let collectionWidth: CGFloat = (bounds.width - roleLabel.frame.maxX - rightViewOffsetX)
+        let collectionHeight = itemSize.height * 2 + minimumLineSpacing + sectionInset.top + sectionInset.bottom
+        
+        let x: CGFloat = roleLabel.frame.maxX + rightViewOffsetX
+        let y: CGFloat = userNameTextField.frame.maxY + 10
+        
+        let itemWidth = (collectionWidth - minimumInteritemSpacing - sectionInset.right - sectionInset.left) * 0.5
+        let itemHeight = itemSize.height
+         
+        itemSize = CGSize(width: itemWidth,
+                          height: itemHeight)
+        
+        roleCollection.frame = CGRect(x: x,
+                                      y: y,
+                                      width: collectionWidth,
+                                      height: collectionHeight)
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = minimumLineSpacing
+        layout.minimumInteritemSpacing = minimumInteritemSpacing
+        layout.itemSize = itemSize
+        layout.sectionInset = sectionInset
+        
+        roleCollection.setCollectionViewLayout(layout,
+                                               animated: false)
     }
     
     func collectionView(_ collectionView: UICollectionView,

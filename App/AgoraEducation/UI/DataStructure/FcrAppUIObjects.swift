@@ -54,6 +54,16 @@ struct FcrAppUIRoomListItem {
     }
 }
 
+struct FcrAppUICreatedRoomResult {
+    var userId: String
+    var userName: String
+    var userRole: FcrAppUIUserRole
+    
+    var roomId: String
+    var roomName: String
+    var andJoin: Bool
+}
+
 struct FcrAppUIJoinRoomConfig {
     var userId: String
     var userName: String

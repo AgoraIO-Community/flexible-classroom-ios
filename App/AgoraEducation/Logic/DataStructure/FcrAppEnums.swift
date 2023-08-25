@@ -38,6 +38,13 @@ enum FcrAppEnvironment: String, FcrAppStringRawRepresentable, CaseIterable {
 enum FcrAppLanguage: String, FcrAppStringRawRepresentable, CaseIterable {
     case zh_cn, en
     
+    var isEN: Bool {
+        switch self {
+        case .en:    return true
+        case .zh_cn: return false
+        }
+    }
+    
     func proj() -> String {
         switch self {
         case .zh_cn: return "zh-Hans"

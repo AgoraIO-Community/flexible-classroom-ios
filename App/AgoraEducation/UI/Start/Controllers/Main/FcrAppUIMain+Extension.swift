@@ -56,7 +56,6 @@ extension FcrAppUIMainViewController: AgoraUIContentContainer {
             navigation.csDelegate = self
         }
         
-        view.addSubview(backgroundView)
         view.addSubview(headerView)
         view.addSubview(roomListComponent.view)
         
@@ -79,18 +78,18 @@ extension FcrAppUIMainViewController: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        backgroundView.mas_makeConstraints { make in
+        headerView.mas_makeConstraints { make in
+            let height: CGFloat = (UIDevice.current.isSmallPhone ? 198 : 226)
+            
             make?.left.top().right().equalTo()(0)
+            make?.height.equalTo()(height)
         }
         
         roomListComponent.view.mas_makeConstraints { make in
-            make?.top.equalTo()(198)
+            let offset: CGFloat = FcrAppUIFrameGroup.cornerRadius24
+            
+            make?.top.equalTo()(headerView.mas_bottom)?.offset()(-offset)
             make?.left.right().bottom().equalTo()(0)
-        }
-        
-        headerView.mas_makeConstraints { make in
-            make?.left.top().right().equalTo()(0)
-            make?.height.equalTo()(198)
         }
     }
     
@@ -99,9 +98,8 @@ extension FcrAppUIMainViewController: AgoraUIContentContainer {
         
         roomListComponent.updateViewProperties()
         
-        backgroundView.image = UIImage(named: "fcr_room_list_bg")
-        
         headerView.backgroundColor = .clear
+        
         view.backgroundColor = .white
     }
     
@@ -131,8 +129,17 @@ private extension FcrAppUIMainViewController {
      
     @objc func onCreateButtonPressed(_ sender: UIButton) {
         let vc = FcrAppUICreateRoomViewController(center: center,
-                                                  roomTypeList: roomTypeList) { [weak self] in
+                                                  roomTypeList: roomTypeList) { [weak self] result in
             self?.roomListComponent.addedNotice()
+            
+            if result.andJoin {
+                let config = FcrAppJoinRoomPreCheckConfig(roomId: result.roomId,
+                                                          userId: result.userId,
+                                                          userName: result.userName,
+                                                          userRole: result.userRole)
+                
+                self?.joinRoomPreCheck(config: config)
+            }
         }
         
         present(vc,

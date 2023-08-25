@@ -6,6 +6,7 @@
 //  Copyright © 2023 Agora. All rights reserved.
 //
 
+import AgoraUIBaseViews
 import Foundation
 import WebKit
 import Armin
@@ -88,6 +89,8 @@ class FcrAppCenter: NSObject {
             if let language = try? localStorage.readData(key: .language,
                                                          type: FcrAppLanguage.self) {
                 self.language = language
+            } else {
+                self.language = (UIDevice.current.agora_is_chinese_language ? .zh_cn : .en)
             }
             
             let privacy = try localStorage.readData(key: .privacyAgreement,

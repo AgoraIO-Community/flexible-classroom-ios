@@ -12,13 +12,15 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
     // View
     private let contentView: FcrAppUICreateRoomContentView
     
-    private var completion: FcrAppCompletion?
+    private var completion: FcrAppUICreatedRoomResultCompletion?
     
     private var center: FcrAppCenter
     
+    private var andJoin: Bool = true
+    
     init(center: FcrAppCenter,
          roomTypeList: [FcrAppUIRoomType],
-         completion: FcrAppCompletion? = nil) {
+         completion: FcrAppUICreatedRoomResultCompletion? = nil) {
         self.center = center
         self.contentView = FcrAppUICreateRoomContentView(roomTypeList: roomTypeList)
         self.completion = completion
@@ -49,10 +51,22 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
         AgoraLoading.loading()
         
         center.room.createRoom(config: config) { [weak self] roomId in
+            guard let `self` = self else {
+                return
+            }
+            
             AgoraLoading.hide()
-            self?.dismiss(animated: true)
-            self?.completion?()
-            self?.completion = nil
+            self.dismiss(animated: true)
+            
+            let result = FcrAppUICreatedRoomResult(userId: config.userId,
+                                                   userName: config.userName,
+                                                   userRole: .teacher,
+                                                   roomId: roomId,
+                                                   roomName: config.roomName,
+                                                   andJoin: self.andJoin)
+            
+            self.completion?(result)
+            self.completion = nil
         } failure: { [weak self] error in
             AgoraLoading.hide()
             self?.showErrorToast(error)

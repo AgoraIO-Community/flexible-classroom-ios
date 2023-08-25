@@ -23,7 +23,7 @@ class FcrAppUIQuickStartClassModeViewController: FcrAppUIPresentedViewController
          selected: FcrAppUIRoomType) {
         self.dataSource = roomTypeList
         self.selected = selected
-        super.init()
+        super.init(contentHeight: (377 + 24))
     }
     
     required init?(coder: NSCoder) {
@@ -100,7 +100,8 @@ extension FcrAppUIQuickStartClassModeViewController: UITableViewDelegate, UITabl
         return UIView()
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView,
+                   heightForFooterInSection section: Int) -> CGFloat {
         return 15
     }
     

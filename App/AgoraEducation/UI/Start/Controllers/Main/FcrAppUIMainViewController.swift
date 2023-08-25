@@ -14,8 +14,6 @@ import AgoraWidgets
 class FcrAppUIMainViewController: FcrAppUICoreViewController {
     lazy var roomListComponent = FcrAppUIRoomListController(center: center)
     
-    let backgroundView = UIImageView(frame: .zero)
-    
     let headerView = FcrAppUIMainHeaderView(frame: .zero)
     
     var settingItems: [FcrAppUISettingItem] = [.generalSetting(FcrAppUISettingItem.GeneralItem.startList()),

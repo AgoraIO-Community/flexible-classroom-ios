@@ -130,7 +130,7 @@ class FcrAppUIRoomListAddedNoticeView: UIView,
     func updateViewProperties() {
         label.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
         
-        label.text = "fcr_room_list_room_created".localized()
+        label.text = "fcr_home_tips_room_created".localized()
         label.textColor = FcrAppUIColorGroup.fcr_white
         
         label.mas_remakeConstraints { make in
