@@ -12,15 +12,15 @@
 # AgoraUIBaseViews
 Artifactory_iOS_URL="https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS"
 
-AgoraClassroomSDK_iOS_URL="${Artifactory_iOS_URL}/AgoraClassroomSDK_iOS/release_2.8.40/dev/AgoraClassroomSDK_iOS_2.8.40.zip"
-AgoraEduUI_URL="${Artifactory_iOS_URL}/AgoraEduUI/release_2.8.40/dev/AgoraEduUI_2.8.40.zip"
+AgoraClassroomSDK_iOS_URL="${Artifactory_iOS_URL}/AgoraClassroomSDK_iOS/release_2.8.60/dev/AgoraClassroomSDK_iOS_2.8.60.zip"
+AgoraEduUI_URL="${Artifactory_iOS_URL}/AgoraEduUI/release_2.8.60/dev/AgoraEduUI_2.8.60.zip"
 
 AgoraProctorSDK_URL="${Artifactory_iOS_URL}/AgoraProctorSDK/release_1.0.1/dev/AgoraProctorSDK_1.0.1.zip"
 AgoraProctorUI_URL="${Artifactory_iOS_URL}/AgoraProctorUI/release_1.0.1/dev/AgoraProctorUI_1.0.0.zip"
 
-AgoraWidgets_URL="${Artifactory_iOS_URL}/AgoraWidgets/release_2.8.50/dev/AgoraWidgets_2.8.50.zip"
+AgoraWidgets_URL="${Artifactory_iOS_URL}/AgoraWidgets/release_2.8.60/dev/AgoraWidgets_2.8.60.zip"
 
-AgoraEduCore_URL="${Artifactory_iOS_URL}/AgoraEduCore/release_2.8.50/dev/AgoraEduCore_2.8.50.zip"
+AgoraEduCore_URL="${Artifactory_iOS_URL}/AgoraEduCore/release_2.8.60/dev/AgoraEduCore_2.8.60.zip"
 AgoraWidget_URL="${Artifactory_iOS_URL}/AgoraWidget/Flex/dev/AgoraWidget_2.8.0.zip"
 AgoraUIBaseViews_URL="${Artifactory_iOS_URL}/AgoraUIBaseViews/Flex/dev/AgoraUIBaseViews_2.8.0.zip"
 
