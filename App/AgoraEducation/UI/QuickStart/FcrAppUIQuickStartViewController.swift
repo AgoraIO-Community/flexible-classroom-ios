@@ -48,11 +48,6 @@ class FcrAppUIQuickStartViewController: FcrAppUICoreViewController {
         isTest()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>,
-                               with event: UIEvent?) {
-        view.endEditing(true)
-    }
-    
     override init(center: FcrAppCenter) {
         super.init(center: center)
         center.delegate = self

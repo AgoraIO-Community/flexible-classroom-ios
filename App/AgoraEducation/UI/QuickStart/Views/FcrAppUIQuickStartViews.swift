@@ -134,7 +134,8 @@ class FcrAppUIQuickStartHeaderView: UIView,
         isTopConstraintsUpdated = true
         
         titleLabel.mas_updateConstraints { make in
-            let top: CGFloat = (topSafeArea + 11 + 24)
+            let space: CGFloat = (UIDevice.current.isSmallPhone ? 35 : 11)
+            let top: CGFloat = (topSafeArea + space)
             make?.top.equalTo()(top)
         }
     }
@@ -290,5 +291,12 @@ class FcrAppUIQuickStartContentView: UIScrollView,
         
         content.backgroundColor = UIColor.fcr_hex_string("#F8FAFF")
         footerView.backgroundColor = UIColor.fcr_hex_string("#EBF6FA")
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>,
+                               with event: UIEvent?) {
+        super.touchesBegan(touches,
+                           with: event)
+        endEditing(true)
     }
 }

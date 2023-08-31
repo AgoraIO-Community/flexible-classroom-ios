@@ -92,6 +92,8 @@ class FcrAppUIQuickStartSegmentedControl: UIButton,
     }
     
     @objc private func onSelected(_ sender: UIButton) {
+        UIApplication.shared.keyWindow?.endEditing(true)
+        
         // deduplication
         guard !sender.isSelected else {
             return
