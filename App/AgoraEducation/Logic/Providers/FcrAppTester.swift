@@ -26,6 +26,8 @@ class FcrAppTester {
         }
     }
     
+    private let switchCount: Int = 10
+    
     private var count: Int = 0
     
     private let localStorage: FcrAppLocalStorage
@@ -40,7 +42,7 @@ class FcrAppTester {
             self.isTest = isTest
             
             if isTest {
-                count = 10
+                count = switchCount
             }
         }
     }
@@ -55,7 +57,7 @@ class FcrAppTester {
         } else {
             count += 1
             
-            if count == 10 {
+            if count == switchCount {
                 isTest = true
             }
         }
