@@ -39,7 +39,7 @@
 		869026992A6E19C3006E0D44 /* FcrAppUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869026982A6E19C3006E0D44 /* FcrAppUITextField.swift */; };
 		869D42642A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D42632A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift */; };
 		869D42682A8A381A004EE63E /* FcrAppUIEnvironmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D42672A8A381A004EE63E /* FcrAppUIEnvironmentViewController.swift */; };
-		869D426A2A8B2C84004EE63E /* FcrAppUIQuickStartClassModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D42692A8B2C84004EE63E /* FcrAppUIQuickStartClassModeViewController.swift */; };
+		869D426A2A8B2C84004EE63E /* FcrAppUIQuickStartRoomTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D42692A8B2C84004EE63E /* FcrAppUIQuickStartRoomTypeViewController.swift */; };
 		869D426D2A8B9328004EE63E /* FcrAppUIPolicyString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D426C2A8B9328004EE63E /* FcrAppUIPolicyString.swift */; };
 		86A15D732A735D35001CDAD7 /* FcrAppUICreateRoomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A15D722A735D35001CDAD7 /* FcrAppUICreateRoomViews.swift */; };
 		86A15D772A7A9765001CDAD7 /* FcrAppUIMoreSettingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A15D762A7A9765001CDAD7 /* FcrAppUIMoreSettingViews.swift */; };
@@ -136,7 +136,7 @@
 		869026982A6E19C3006E0D44 /* FcrAppUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUITextField.swift; sourceTree = "<group>"; };
 		869D42632A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartCreateRoomViews.swift; sourceTree = "<group>"; };
 		869D42672A8A381A004EE63E /* FcrAppUIEnvironmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIEnvironmentViewController.swift; sourceTree = "<group>"; };
-		869D42692A8B2C84004EE63E /* FcrAppUIQuickStartClassModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartClassModeViewController.swift; sourceTree = "<group>"; };
+		869D42692A8B2C84004EE63E /* FcrAppUIQuickStartRoomTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartRoomTypeViewController.swift; sourceTree = "<group>"; };
 		869D426C2A8B9328004EE63E /* FcrAppUIPolicyString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIPolicyString.swift; sourceTree = "<group>"; };
 		86A15D722A735D35001CDAD7 /* FcrAppUICreateRoomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICreateRoomViews.swift; sourceTree = "<group>"; };
 		86A15D762A7A9765001CDAD7 /* FcrAppUIMoreSettingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIMoreSettingViews.swift; sourceTree = "<group>"; };
@@ -347,7 +347,7 @@
 			children = (
 				8629C3512A83C16C00DA97B7 /* FcrAppUIQuickStartViewController.swift */,
 				865746F52A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift */,
-				869D42692A8B2C84004EE63E /* FcrAppUIQuickStartClassModeViewController.swift */,
+				869D42692A8B2C84004EE63E /* FcrAppUIQuickStartRoomTypeViewController.swift */,
 				869D426B2A8B5A35004EE63E /* Views */,
 			);
 			path = QuickStart;
@@ -769,7 +769,7 @@
 				86B81E602A55AB8300BA631C /* FcrAppLocalStorage.swift in Sources */,
 				86F5E31E2A8CB4F700AED16A /* FcrAppUIQuickStartInputViews.swift in Sources */,
 				AB7B7B6C28C1D8A7001D327A /* FcrAppUIMainViewController.swift in Sources */,
-				869D426A2A8B2C84004EE63E /* FcrAppUIQuickStartClassModeViewController.swift in Sources */,
+				869D426A2A8B2C84004EE63E /* FcrAppUIQuickStartRoomTypeViewController.swift in Sources */,
 				86B81E682A568F4800BA631C /* FcrAppUINavigationController.swift in Sources */,
 				AB4F69D9286DBE830012E6B3 /* FcrAppUILanguageViewController.swift in Sources */,
 				86B81E642A5667D500BA631C /* FcrAppServerObject.swift in Sources */,

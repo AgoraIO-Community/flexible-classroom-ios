@@ -1,5 +1,5 @@
 //
-//  FcrAppUIQuickStartClassModeViewController.swift
+//  FcrAppUIQuickStartRoomTypeViewController.swift
 //  FlexibleClassroom
 //
 //  Created by Cavan on 2023/8/15.
@@ -8,7 +8,7 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUIQuickStartClassModeViewController: FcrAppUIPresentedViewController {
+class FcrAppUIQuickStartRoomTypeViewController: FcrAppUIPresentedViewController {
     private let lineView = UIView()
     
     private let titleLabel = UILabel()
@@ -85,7 +85,7 @@ class FcrAppUIQuickStartClassModeViewController: FcrAppUIPresentedViewController
     }
 }
 
-extension FcrAppUIQuickStartClassModeViewController: UITableViewDelegate, UITableViewDataSource {
+extension FcrAppUIQuickStartRoomTypeViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return dataSource.count
     }
