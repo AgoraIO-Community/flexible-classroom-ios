@@ -24,7 +24,7 @@ struct FcrAppCreateRoomConfig {
         var parameters = [String: Any]()
         
         parameters["roomName"] = roomName
-        parameters["roomType"] = roomType.rawValue
+        parameters["sceneType"] = roomType.rawValue
         parameters["userName"] = userName
         parameters["userUuid"] = userId
         

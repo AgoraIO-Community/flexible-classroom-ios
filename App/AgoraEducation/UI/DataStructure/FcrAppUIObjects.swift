@@ -43,7 +43,7 @@ struct FcrAppUIRoomListItem {
         let time = "\(day), \(startTime)-\(endTime)"
         
         let item = FcrAppUIRoomListItem(roomState: from.roomState,
-                                        roomType: from.roomType,
+                                        roomType: from.sceneType,
                                         roomId: roomId,
                                         roomName: from.roomName,
                                         userRole: from.role,

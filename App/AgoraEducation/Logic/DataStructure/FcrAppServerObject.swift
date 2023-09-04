@@ -67,7 +67,7 @@ struct FcrAppServerUserInfoObject: FcrAppCodable {
 struct FcrAppServerRoomObject: FcrAppCodable {
     var roomName: String
     var roomId: String
-    var roomType: FcrAppRoomType
+    var sceneType: FcrAppRoomType
     var roomState: FcrAppRoomState
     
     var role: FcrAppUserRole
