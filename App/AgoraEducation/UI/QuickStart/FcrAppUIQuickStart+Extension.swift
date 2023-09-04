@@ -91,8 +91,8 @@ private extension FcrAppUIQuickStartViewController {
     @objc func onRoomTypeButtonPressed(_ sender: UIButton) {
         let roomTypeView = contentView.roomInputView.createRoomView.roomTypeView
         
-        let vc = FcrAppUIQuickStartClassModeViewController(roomTypeList: roomTypeList,
-                                                           selected: roomTypeView.selectedRoomType)
+        let vc = FcrAppUIQuickStartRoomTypeViewController(roomTypeList: roomTypeList,
+                                                          selected: roomTypeView.selectedRoomType)
         
         vc.onDismissed = { [weak roomTypeView, weak vc] in
             guard let `roomTypeView` = roomTypeView,
