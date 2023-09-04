@@ -24,13 +24,14 @@ enum FcrAppUIMode: Int, FcrAppIntRawRepresentable, CaseIterable {
 }
 
 enum FcrAppEnvironment: String, FcrAppStringRawRepresentable, CaseIterable {
-    case dev, pre, pro
+    case dev, pt, pre, pro
     
     var intValue: Int {
         switch self {
-        case .dev: return 0
-        case .pre: return 1
-        case .pro: return 2
+        case .dev: return 1
+        case .pt:  return 2
+        case .pre: return 3
+        case .pro: return 4
         }
     }
 }

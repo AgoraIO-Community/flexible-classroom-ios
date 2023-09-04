@@ -13,6 +13,8 @@ class FcrAppURLGroup {
         switch environment {
         case .dev:
            return "https://api-solutions-dev.bj2.agoralab.co"
+        case .pt:
+            return "https://api-solutions-dev.sh2.agoralab.co"
         case .pre:
             return "https://api-solutions-pre.bj2.agoralab.co"
         case .pro:

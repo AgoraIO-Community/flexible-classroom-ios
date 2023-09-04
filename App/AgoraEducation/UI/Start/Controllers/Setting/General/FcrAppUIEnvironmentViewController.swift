@@ -68,7 +68,7 @@ extension FcrAppUIEnvironmentViewController: UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withClass: FcrAppUICheckBoxCell.self)
         let type = dataSource[indexPath.row]
         
-        cell.infoLabel.text = type.rawValue
+        cell.infoLabel.text = type.text
         cell.aSelected = (selected == type)
 
         return cell
@@ -84,5 +84,16 @@ extension FcrAppUIEnvironmentViewController: UITableViewDelegate, UITableViewDat
         tableView.reloadData()
         
         center.urlGroup.environment = type
+    }
+}
+
+extension FcrAppUIEnvironment {
+    var text: String {
+        switch self {
+        case .dev: return "Development"
+        case .pt:  return "Performance test"
+        case .pre: return "Pre-production"
+        case .pro: return "Production"
+        }
     }
 }
