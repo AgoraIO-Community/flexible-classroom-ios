@@ -9,7 +9,13 @@
 import Foundation
 import Armin
 
+protocol FcrAppArminFailureDelegate: NSObjectProtocol {
+    func onRequestFailure(error: FcrAppError)
+}
+
 class FcrAppArmin: Armin {
+    weak var failureDelegate: FcrAppArminFailureDelegate?
+    
     func request(url: String,
                  headers: [String: String]? = nil,
                  parameters: [String: Any]? = nil,
@@ -41,9 +47,11 @@ class FcrAppArmin: Armin {
         
         request(task: requestTask,
                 responseOnMainQueue: true,
-                success: response) { (error) in
+                success: response) { [weak self] (error) in
             let appError = FcrAppError(code: error.code ?? -1,
                                        message: error.localizedDescription)
+            
+            self?.failureDelegate?.onRequestFailure(error: appError)
             
             failure?(appError)
                 

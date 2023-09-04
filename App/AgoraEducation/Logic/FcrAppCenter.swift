@@ -13,6 +13,11 @@ import Armin
 
 protocol FcrAppCenterDelegate: NSObjectProtocol {
     func onLanguageUpdated(_ language: FcrAppLanguage)
+    func onLoginExpired()
+}
+
+extension FcrAppCenterDelegate {
+    func onLoginExpired() {}
 }
 
 class FcrAppCenter: NSObject {
@@ -80,6 +85,9 @@ class FcrAppCenter: NSObject {
     
     override init() {
         super.init()
+        
+        armin.failureDelegate = self
+        
         do {
             if let mode = try? localStorage.readData(key: .uiMode,
                                                      type: FcrAppUIMode.self) {
@@ -241,6 +249,42 @@ class FcrAppCenter: NSObject {
                 success?()
             }, failure: failure)
         }
+    }
+    
+    private func refreshAccessToken() {
+        let url = urlGroup.refreshAccessToken()
+        
+        armin.request(url: url,
+                      method: .post,
+                      event: "refresh-access-token") { [weak self] object in
+            guard let `self` = self else {
+                return
+            }
+            
+            let data = try object.dataConvert(type: [String: Any].self)
+            
+            let accessToken = try data.getValue(of: "access_token",
+                                                type: String.self)
+            
+            let refreshToken = try data.getValue(of: "refresh_token",
+                                                 type: String.self)
+            
+            self.urlGroup.accessToken = accessToken
+            self.urlGroup.refreshToken = refreshToken
+        } failure: { [weak self] error in
+            self?.isLogined = false
+            self?.delegate?.onLoginExpired()
+        }
+    }
+}
+
+extension FcrAppCenter: FcrAppArminFailureDelegate {
+    func onRequestFailure(error: FcrAppError) {
+        guard error.code == 401 else {
+            return
+        }
+        
+        refreshAccessToken()
     }
 }
 

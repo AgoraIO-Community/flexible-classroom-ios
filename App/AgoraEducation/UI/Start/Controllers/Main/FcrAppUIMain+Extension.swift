@@ -187,6 +187,12 @@ extension FcrAppUIMainViewController: FcrAppCenterDelegate {
         
         updateViewProperties()
     }
+    
+    func onLoginExpired() {
+        loginCheck { [weak self] in
+            self?.roomListComponent.refresh()
+        }
+    }
 }
 
 // MARK: - Tester
