@@ -95,10 +95,6 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
         AgoraClassroomSDK.perform(sel,
                                   with: center.urlGroup.environment.intValue)
         
-        let sel1 = NSSelectorFromString("setLogConsoleState:");
-        AgoraClassroomSDK.perform(sel1,
-                                  with: 1)
-        
         AgoraClassroomSDK.launch(config) {
             AgoraLoading.hide()
         } failure: { [weak self] error in
