@@ -55,6 +55,17 @@ class FcrAppRoom {
         }
     }
     
+    var mediaStreamLatency: FcrAppMediaStreamLatency = .ultraLow {
+        didSet {
+            guard mediaStreamLatency != oldValue else {
+                return
+            }
+            
+            localStorage.writeData(mediaStreamLatency.rawValue,
+                                   key: .mediaStreamLatency)
+        }
+    }
+    
     weak var delegate: FcrAppRoomDelegate?
     
     init(urlGroup: FcrAppURLGroup,
@@ -77,6 +88,11 @@ class FcrAppRoom {
         if let roomDuration = try? localStorage.readData(key: .roomDuration,
                                                          type: UInt.self) {
             self.duration = roomDuration
+        }
+        
+        if let mediaStreamLatency = try? localStorage.readData(key: .mediaStreamLatency,
+                                                               type: FcrAppMediaStreamLatency.self) {
+            self.mediaStreamLatency = mediaStreamLatency
         }
     }
     

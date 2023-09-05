@@ -20,6 +20,7 @@
 		860CB3F42A97276700B03141 /* FcrAppUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860CB3F32A97276700B03141 /* FcrAppUITextView.swift */; };
 		860CB3F82A97428200B03141 /* FcrAppUICoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860CB3F72A97428200B03141 /* FcrAppUICoreViewController.swift */; };
 		86140D192AA6D2A800AC1E28 /* FcrAppUIRoomDurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86140D182AA6D2A800AC1E28 /* FcrAppUIRoomDurationViewController.swift */; };
+		86140D1B2AA720B200AC1E28 /* FcrAppUIStreamLatencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86140D1A2AA720B200AC1E28 /* FcrAppUIStreamLatencyViewController.swift */; };
 		861978D92A69418100009890 /* FcrAppUISettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861978D82A69418100009890 /* FcrAppUISettingTableView.swift */; };
 		8629C3462A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3452A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift */; };
 		8629C3482A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3472A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift */; };
@@ -118,6 +119,7 @@
 		860CB3F32A97276700B03141 /* FcrAppUITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUITextView.swift; sourceTree = "<group>"; };
 		860CB3F72A97428200B03141 /* FcrAppUICoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICoreViewController.swift; sourceTree = "<group>"; };
 		86140D182AA6D2A800AC1E28 /* FcrAppUIRoomDurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIRoomDurationViewController.swift; sourceTree = "<group>"; };
+		86140D1A2AA720B200AC1E28 /* FcrAppUIStreamLatencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIStreamLatencyViewController.swift; sourceTree = "<group>"; };
 		861978D82A69418100009890 /* FcrAppUISettingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUISettingTableView.swift; sourceTree = "<group>"; };
 		861D3CFA276AE05E00645D6A /* FcrAppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppExtension.swift; sourceTree = "<group>"; };
 		8629C3452A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICreateRoomViewController.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			children = (
 				869D42672A8A381A004EE63E /* FcrAppUIEnvironmentViewController.swift */,
 				86140D182AA6D2A800AC1E28 /* FcrAppUIRoomDurationViewController.swift */,
+				86140D1A2AA720B200AC1E28 /* FcrAppUIStreamLatencyViewController.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -763,6 +766,7 @@
 				86E5023E2A5FF145003C04D8 /* FcrAppClosure.swift in Sources */,
 				86B81E5E2A55AA4500BA631C /* FcrAppURLGroup.swift in Sources */,
 				865746F42A94DA6C003FBF72 /* FcrAppUIMain+Extension.swift in Sources */,
+				86140D1B2AA720B200AC1E28 /* FcrAppUIStreamLatencyViewController.swift in Sources */,
 				8629C34B2A8114A900DA97B7 /* FcrAppUIColorGroup.swift in Sources */,
 				8629C3482A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift in Sources */,
 				AB08496128D1812700214B68 /* FcrAppUIJoinRoomController.swift in Sources */,

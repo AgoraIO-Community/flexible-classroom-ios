@@ -54,6 +54,10 @@ enum FcrAppLanguage: String, FcrAppStringRawRepresentable, CaseIterable {
     }
 }
 
+enum FcrAppMediaStreamLatency: String, FcrAppStringRawRepresentable, CaseIterable {
+    case low, ultraLow
+}
+
 enum FcrAppRoomType: Int, FcrAppCodable {
     case oneToOne    = 0
     case lectureHall = 2

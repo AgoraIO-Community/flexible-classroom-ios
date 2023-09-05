@@ -64,7 +64,6 @@ class FcrAppUIRoomListPlaceholderCell: UITableViewCell,
     
     func updateViewProperties() {
         contentView.backgroundColor = FcrAppUIColorGroup.fcr_white
-        contentView.backgroundColor = .yellow
         
         backgroudImageView.contentMode = .scaleAspectFit
         backgroudImageView.image = UIImage(named: "fcr_room_list_empty")

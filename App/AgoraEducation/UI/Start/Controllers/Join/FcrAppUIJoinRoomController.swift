@@ -142,7 +142,7 @@ private extension FcrAppUIJoinRoomController {
                                                  userRole: userRole,
                                                  roomId: roomId,
                                                  roomName: object.roomDetail.roomName,
-                                                 roomType: object.roomDetail.roomType,
+                                                 roomType: object.roomDetail.sceneType,
                                                  appId: object.appId,
                                                  token: object.token)
             

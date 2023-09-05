@@ -90,6 +90,8 @@ extension FcrAppUIGeneralSettingsViewController: UITableViewDelegate, UITableVie
             cell.infoLabel.text = "Environment"
         case .roomDuration:
             cell.infoLabel.text = "Room duration"
+        case .mediaStreamLatency:
+            cell.infoLabel.text = "Media stream latency"
         case .quickStart:
             cell.infoLabel.text = "QuickStart"
         }
@@ -119,6 +121,8 @@ extension FcrAppUIGeneralSettingsViewController: UITableViewDelegate, UITableVie
             vc = FcrAppUIEnvironmentViewController(center: center)
         case .roomDuration:
             vc = FcrAppUIRoomDurationViewController(center: center)
+        case .mediaStreamLatency:
+            vc = FcrAppUIStreamLatencyViewController(center: center)
         case .closeAccount:
             vc = FcrAppUICloseAccountViewController(center: center)
         case .quickStart:

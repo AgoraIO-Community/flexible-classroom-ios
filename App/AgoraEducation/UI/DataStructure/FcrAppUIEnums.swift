@@ -7,15 +7,17 @@
 //
 
 import AgoraClassroomSDK_iOS
+import AgoraProctorSDK
 import Foundation
 
-typealias FcrAppUIRoomState   = FcrAppRoomState
-typealias FcrAppUILanguage    = FcrAppLanguage
-typealias FcrAppUIRoomType    = FcrAppRoomType
-typealias FcrAppUIRegion      = FcrAppRegion
-typealias FcrAppUIUserRole    = FcrAppUserRole
-typealias FcrAppUIDateType    = Calendar.Component
-typealias FcrAppUIEnvironment = FcrAppEnvironment
+typealias FcrAppUIRoomState              = FcrAppRoomState
+typealias FcrAppUILanguage               = FcrAppLanguage
+typealias FcrAppUIRoomType               = FcrAppRoomType
+typealias FcrAppUIRegion                 = FcrAppRegion
+typealias FcrAppUIUserRole               = FcrAppUserRole
+typealias FcrAppUIDateType               = Calendar.Component
+typealias FcrAppUIEnvironment            = FcrAppEnvironment
+typealias FcrAppUIMediaStreamLatency     = FcrAppMediaStreamLatency
 
 extension FcrAppUIRoomType {
     func text() -> String {
@@ -46,8 +48,32 @@ extension FcrAppUIRoomType {
     }
 }
 
+extension FcrAppUIRegion {
+    func toClassroomType() -> AgoraEduRegion {
+        switch self {
+        case .CN:  return .CN
+        case .NA:  return .NA
+        }
+    }
+    
+    func toProctorType() -> AgoraProctorRegion {
+        switch self {
+        case .CN:  return .CN
+        case .NA:  return .NA
+        }
+    }
+}
+
 extension FcrAppUIUserRole {
     func toClassroomType() -> AgoraEduUserRole {
+        switch self {
+        case .student:     return .student
+        case .teacher:     return .teacher
+        case .audience:    return .observer
+        }
+    }
+    
+    func toProctorType() -> AgoraProctorUserRole {
         switch self {
         case .student:     return .student
         case .teacher:     return .teacher
@@ -84,6 +110,22 @@ extension FcrAppUIRoomState {
     }
 }
 
+extension FcrAppMediaStreamLatency {
+    func toClassroomType() -> AgoraEduLatencyLevel {
+        switch self {
+        case .low:       return .low
+        case .ultraLow:  return .ultraLow
+        }
+    }
+    
+    func toProctorType() -> AgoraProctorLatencyLevel {
+        switch self {
+        case .low:       return .low
+        case .ultraLow:  return .ultraLow
+        }
+    }
+}
+
 enum FcrAppUIQuickStartSegmentOption {
     case join, create
 }
@@ -97,6 +139,7 @@ enum FcrAppUISettingItem {
         case closeAccount
         case environment
         case roomDuration
+        case mediaStreamLatency
         case quickStart
         
         static func startList() -> [GeneralItem] {
@@ -119,6 +162,8 @@ enum FcrAppUISettingItem {
                     .region,
                     .theme,
                     .closeAccount,
+                    .roomDuration,
+                    .mediaStreamLatency,
                     .environment,
                     .quickStart]
         }
@@ -128,6 +173,7 @@ enum FcrAppUISettingItem {
                     .region,
                     .theme,
                     .roomDuration,
+                    .mediaStreamLatency,
                     .environment]
         }
     }

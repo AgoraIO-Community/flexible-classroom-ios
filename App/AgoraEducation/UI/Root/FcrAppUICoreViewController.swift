@@ -29,16 +29,56 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
         AgoraLoading.loading()
         
         center.room.joinRoomPreCheck(config: config) { [weak self] object in
-            let options = AgoraEduLaunchConfig(userName: config.userName,
-                                               userUuid: config.userId,
-                                               userRole: config.userRole.toClassroomType(),
-                                               roomName: object.roomDetail.roomName,
-                                               roomUuid: object.roomDetail.roomId,
-                                               roomType: object.roomDetail.roomType.toClassroomType(),
-                                               appId: object.appId,
-                                               token: object.token)
+            guard let `self` = self else {
+                return
+            }
             
-            self?.joinClassroom(config: options)
+            let userId = config.userId
+            let userName = config.userName
+            let userRole = config.userRole
+            
+            let roomType = object.roomDetail.sceneType
+            let roomName = object.roomDetail.roomName
+            let roomId = object.roomDetail.roomId
+            
+            let appId = object.appId
+            let token = object.token
+            
+            let region = self.center.urlGroup.region
+            let streamLatency = self.center.room.mediaStreamLatency
+            
+            switch roomType {
+            case .oneToOne, .smallClass, .lectureHall:
+                let options = AgoraEduLaunchConfig(userName: config.userName,
+                                                   userUuid: config.userId,
+                                                   userRole: config.userRole.toClassroomType(),
+                                                   roomName: roomName,
+                                                   roomUuid: roomId,
+                                                   roomType: roomType.toClassroomType(),
+                                                   appId: appId,
+                                                   token: token)
+                
+                options.mediaOptions.latencyLevel = streamLatency.toClassroomType()
+                options.region = region.toClassroomType()
+                
+                self.joinClassroom(config: options)
+            case .proctor:
+                let video = AgoraProctorVideoEncoderConfig()
+                let media = AgoraProctorMediaOptions(videoEncoderConfig: video,
+                                                     latencyLevel: streamLatency.toClassroomType())
+                
+                let options = AgoraProctorLaunchConfig(userName: userName,
+                                                       userUuid: userId,
+                                                       userRole: userRole.toProctorType(),
+                                                       roomName: roomName,
+                                                       roomUuid: roomId,
+                                                       appId: appId,
+                                                       token: token,
+                                                       region: region.toProctorType(),
+                                                       mediaOptions: media)
+                
+                self.joinProctorRoom(config: options)
+            }
         } failure: { [weak self] error in
             AgoraLoading.hide()
             self?.showErrorToast(error)
@@ -54,6 +94,10 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
         let sel = NSSelectorFromString("setEnvironment:")
         AgoraClassroomSDK.perform(sel,
                                   with: center.urlGroup.environment.intValue)
+        
+        let sel1 = NSSelectorFromString("setLogConsoleState:");
+        AgoraClassroomSDK.perform(sel1,
+                                  with: 1)
         
         AgoraClassroomSDK.launch(config) {
             AgoraLoading.hide()

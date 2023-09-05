@@ -10,26 +10,27 @@ import Foundation
 
 class FcrAppLocalStorage {
     enum Key: String, CaseIterable {
-        case privacyAgreement = "com.agora.privacyTermsAgree"
-        
-        case login            = "com.agora.login"
-        case accessToken      = "com.agora.accessToken"
-        case refreshToken     = "com.agora.refreshToken"
-        case companyId        = "com.agora.companyId"
-        case companyName      = "com.agora.companyName"
-        case nickname         = "com.agora.nickname"
-        case userId           = "com.agora.userId"
-        
-        case roomId           = "com.agora.roomId"
-        case roomName         = "com.agora.roomName"
-        case roomDuration     = "com.agora.roomDuration"
-        
-        case environment      = "com.agora.environment"
-        case language         = "com.agora.language"
-        case region           = "com.agora.region"
-        case uiMode           = "com.agora.uiMode"
-        
-        case testMode         = "com.agora.testMode"
+        case privacyAgreement      = "com.agora.privacyTermsAgree"
+             
+        case login                 = "com.agora.login"
+        case accessToken           = "com.agora.accessToken"
+        case refreshToken          = "com.agora.refreshToken"
+        case companyId             = "com.agora.companyId"
+        case companyName           = "com.agora.companyName"
+        case nickname              = "com.agora.nickname"
+        case userId                = "com.agora.userId"
+             
+        case roomId                = "com.agora.roomId"
+        case roomName              = "com.agora.roomName"
+        case roomDuration          = "com.agora.roomDuration"
+        case mediaStreamLatency    = "com.agora.mediaStreamLatency"
+             
+        case environment           = "com.agora.environment"
+        case language              = "com.agora.language"
+        case region                = "com.agora.region"
+        case uiMode                = "com.agora.uiMode"
+             
+        case testMode              = "com.agora.testMode"
         
         var isUserInfo: Bool {
             switch self {
