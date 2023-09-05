@@ -91,10 +91,6 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
         
         insertWidgetSampleToClassroom(config)
         
-        let sel = NSSelectorFromString("setEnvironment:")
-        AgoraClassroomSDK.perform(sel,
-                                  with: center.urlGroup.environment.intValue)
-        
         AgoraClassroomSDK.launch(config) {
             AgoraLoading.hide()
         } failure: { [weak self] error in

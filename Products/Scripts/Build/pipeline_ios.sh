@@ -47,6 +47,9 @@ ${Build_Path}/podfile.sh 1
 # build date
 ${Build_Path}/build-date.sh
 
+# private method insert
+${Build_Path}/private_method.sh
+
 # build
 for Mode in ${App_Array[*]} 
 do
