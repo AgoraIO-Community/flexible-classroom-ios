@@ -15,8 +15,9 @@ struct FcrAppCreateRoomConfig {
     var userId: String
     var userName: String
     
-    var startTime: Int64?  // ms
-    var endTime: Int64?    // ms
+    var startTime: Int64  // ms
+    var duration: Int64   // ms
+    
     var roomProperties: [String: Any]?
     var isQuickStart: Bool = false
     
@@ -28,18 +29,9 @@ struct FcrAppCreateRoomConfig {
         parameters["userName"] = userName
         parameters["userUuid"] = userId
         
-        if let `startTime` = startTime {
-            parameters["startTime"] = startTime
-        } else {
-            parameters["startTime"] = UInt64(Date().timeIntervalSince1970 * 1000)
-        }
-        
-        if let `endTime` = endTime {
-            parameters["endTime"] = endTime
-        } else {
-            parameters["endTime"] = UInt64(Date().timeIntervalSince1970 * 1000 + 30 * 60)
-        }
-        
+        parameters["startTime"] = startTime
+        parameters["endTime"] = (startTime + duration)
+                
         if let `properties` = roomProperties {
             parameters["properties"] = properties
         }

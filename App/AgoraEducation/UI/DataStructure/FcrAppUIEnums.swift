@@ -96,6 +96,7 @@ enum FcrAppUISettingItem {
         case theme
         case closeAccount
         case environment
+        case roomDuration
         case quickStart
         
         static func startList() -> [GeneralItem] {
@@ -126,6 +127,7 @@ enum FcrAppUISettingItem {
             return [.language,
                     .region,
                     .theme,
+                    .roomDuration,
                     .environment]
         }
     }

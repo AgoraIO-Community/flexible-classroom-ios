@@ -10,7 +10,8 @@ import AgoraUIBaseViews
 
 class FcrAppUIQuickStartViewController: FcrAppUICoreViewController {
     lazy var contentView = FcrAppUIQuickStartContentView(userRoleList: userRoleList,
-                                                         roomTypeList: roomTypeList)
+                                                         roomTypeList: roomTypeList,
+                                                         roomDuration: center.room.duration)
     
     let userRoleList: [FcrAppUIUserRole] = [.student,
                                             .teacher,
@@ -46,15 +47,8 @@ class FcrAppUIQuickStartViewController: FcrAppUICoreViewController {
         navigationController?.setNavigationBarHidden(true,
                                                      animated: true)
         isTest()
-    }
-    
-    override init(center: FcrAppCenter) {
-        super.init(center: center)
         center.delegate = self
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        center.room.delegate = self
     }
     
     func createRoom(config: FcrAppCreateRoomConfig) {

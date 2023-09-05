@@ -46,7 +46,7 @@ class FcrAppUIJoinRoomController: FcrAppUIPresentedViewController {
         
         let content = getContentView()
         
-        content.roomInputView.roomIdTextField.text = center.room.lastRoomId
+        content.roomInputView.roomIdTextField.text = center.room.lastId
         content.roomInputView.userNameTextField.text = center.localUser?.nickname
         
         content.studentView.button.addTarget(self,

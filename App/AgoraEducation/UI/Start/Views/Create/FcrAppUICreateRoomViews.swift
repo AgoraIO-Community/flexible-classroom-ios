@@ -235,7 +235,7 @@ class FcrAppUICreateRoomTimeView: UIButton,
     private let endTimeLabel = UILabel()
     private let endInfoLabel = UILabel()
     
-    public var startDate: Date? {
+    var startDate: Date? {
         didSet {
             if let date = startDate {
                 startTimeLabel.text = date.string(withFormat: "fcr_create_table_time_format".localized())
@@ -248,8 +248,15 @@ class FcrAppUICreateRoomTimeView: UIButton,
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    var duration: UInt {
+        didSet {
+            updateDurationTime()
+        }
+    }
+    
+    init(duration: UInt) {
+        self.duration = duration
+        super.init(frame: .zero)
         initViews()
         initViewFrame()
     }
@@ -321,7 +328,14 @@ class FcrAppUICreateRoomTimeView: UIButton,
         endTimeLabel.text = "fcr_create_end_time".localized()
         endTimeLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
         
-        endInfoLabel.text = "fcr_create_end_time_info".localized()
+        updateDurationTime()
+    }
+    
+    private func updateDurationTime() {
+        let text = "fcr_create_end_time_info".localized()
+        
+        endInfoLabel.text = text.replacingOccurrences(of: "30",
+                                                      with: "\(duration)")
         endInfoLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
     }
 }
@@ -402,14 +416,16 @@ class FcrAppUICreateRoomContentView: UIView,
     
     private let titleLabel = UILabel()
     
-    let timeView = FcrAppUICreateRoomTimeView(frame: .zero)
+    private(set) var timeView: FcrAppUICreateRoomTimeView
     
     private let moreTableView = FcrAppUICreateRoomMoreTableView(frame: .zero)
     
     let footerView = FcrAppUICreateRoomFooterView(frame: .zero)
     
-    init(roomTypeList: [FcrAppUIRoomType]) {
+    init(roomTypeList: [FcrAppUIRoomType],
+         roomDuration: UInt) {
         self.headerView = FcrAppUICreateRoomHeaderView(roomTypeList: roomTypeList)
+        self.timeView = FcrAppUICreateRoomTimeView(duration: roomDuration)
         super.init(frame: .zero)
         initViews()
         initViewFrame()

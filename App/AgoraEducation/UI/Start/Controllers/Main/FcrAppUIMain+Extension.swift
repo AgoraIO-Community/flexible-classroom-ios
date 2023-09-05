@@ -104,6 +104,10 @@ extension FcrAppUIMainViewController: AgoraUIContentContainer {
     }
     
     func refreshRoomList() {
+        guard center.isLogined else {
+            return
+        }
+        
         roomListComponent.refresh()
     }
 }

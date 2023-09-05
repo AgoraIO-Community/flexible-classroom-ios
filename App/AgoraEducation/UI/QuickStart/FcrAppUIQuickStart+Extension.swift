@@ -26,7 +26,7 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
         // Join room view
         let joinRoomView = contentView.roomInputView.joinRoomView
         
-        joinRoomView.roomIdTextField.setShowText(center.room.lastRoomId)
+        joinRoomView.roomIdTextField.setShowText(center.room.lastId)
         joinRoomView.userNameTextField.text = center.localUser?.nickname
         
         joinRoomView.joinButton.addTarget(self,
@@ -36,7 +36,7 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
         // Create room view
         let createRoomView = contentView.roomInputView.createRoomView
         
-        createRoomView.roomNameTextField.text = center.room.lastRoomName
+        createRoomView.roomNameTextField.text = center.room.lastName
         createRoomView.userNameTextField.text = center.localUser?.nickname
         
         createRoomView.roomTypeView.rightButton.addTarget(self,
@@ -200,10 +200,15 @@ private extension FcrAppUIQuickStartViewController {
         
         let roomType = createRoomView.roomTypeView.selectedRoomType
         
+        let startTime = Int64(Date().timeIntervalSince1970 * 1000)
+        let duration = Int64(center.room.duration * 60 * 1000)
+        
         let config = FcrAppCreateRoomConfig(roomName: roomName,
                                             roomType: roomType,
                                             userId: userId,
                                             userName: userName,
+                                            startTime: startTime,
+                                            duration: duration,
                                             isQuickStart: true)
         
         localStorage(with: userId,
@@ -257,6 +262,12 @@ extension FcrAppUIQuickStartViewController: FcrAppCenterDelegate {
         }
         
         updateViewProperties()
+    }
+}
+
+extension FcrAppUIQuickStartViewController: FcrAppRoomDelegate {
+    func onRoomDurationUpdated(duration: UInt) {
+        contentView.roomInputView.createRoomView.roomDuration = duration
     }
 }
 

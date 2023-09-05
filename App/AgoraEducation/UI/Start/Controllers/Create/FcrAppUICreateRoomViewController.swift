@@ -22,7 +22,8 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
          roomTypeList: [FcrAppUIRoomType],
          completion: FcrAppUICreatedRoomResultCompletion? = nil) {
         self.center = center
-        self.contentView = FcrAppUICreateRoomContentView(roomTypeList: roomTypeList)
+        self.contentView = FcrAppUICreateRoomContentView(roomTypeList: roomTypeList,
+                                                         roomDuration: center.room.duration)
         self.completion = completion
         super.init(nibName: nil,
                    bundle: nil)
@@ -81,7 +82,7 @@ extension FcrAppUICreateRoomViewController: AgoraUIContentContainer {
     func initViews() {
         view.addSubview(contentView)
         
-        contentView.headerView.roomNameTextField.text = center.room.lastRoomName
+        contentView.headerView.roomNameTextField.text = center.room.lastName
         contentView.headerView.userNameTextField.text = center.localUser?.nickname
         
         contentView.closeButton.addTarget(self,
@@ -166,7 +167,7 @@ private extension FcrAppUICreateRoomViewController {
         }
         
         let startTime = Int64(schedule.timeIntervalSince1970) * 1000
-        let endTime = (startTime + (30 * 60 * 1000))
+        let duration = Int64(center.room.duration * 60 * 1000)
         
         // Room type
         let roomType = contentView.headerView.selectedRoomType
@@ -176,7 +177,7 @@ private extension FcrAppUICreateRoomViewController {
                                             userId: userId,
                                             userName: userName,
                                             startTime: startTime,
-                                            endTime: endTime)
+                                            duration: duration)
         
         createRoom(config)
     }

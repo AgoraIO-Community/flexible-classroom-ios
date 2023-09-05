@@ -17,7 +17,6 @@ class FcrAppUIRoomListController: FcrAppUIViewController {
     
     private let cornerRadiusView = FcrAppUIRoomListCornerRadiusView()
     
-    private let placeholderView = FcrAppUIRoomListPlaceholderView(frame: .zero)
     private let titleView = FcrAppUIRoomListTitleView(frame: .zero)
     private let noticeView = FcrAppUIRoomListAddedNoticeView(frame: .zero)
     private let tableView = UITableView(frame: .zero,
@@ -27,12 +26,7 @@ class FcrAppUIRoomListController: FcrAppUIViewController {
     
     weak var delegate: FcrAppUIRoomListControllerDelegate?
     
-    private var dataSource = [FcrAppUIRoomListItem]() {
-        didSet {
-            placeholderView.isHidden = !isShowPlaceholder
-            tableView.isHidden = isShowPlaceholder
-        }
-    }
+    private var dataSource = [FcrAppUIRoomListItem]()
     
     private var isShowPlaceholder: Bool {
         return (dataSource.count == 0)
@@ -51,6 +45,15 @@ class FcrAppUIRoomListController: FcrAppUIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        guard isShowPlaceholder else {
+            return
+        }
+        
+        tableView.reloadData()
     }
     
     override func observeValue(forKeyPath keyPath: String?,
@@ -91,7 +94,6 @@ class FcrAppUIRoomListController: FcrAppUIViewController {
 extension FcrAppUIRoomListController: AgoraUIContentContainer {
     func initViews() {
         view.addSubview(cornerRadiusView)
-        view.addSubview(placeholderView)
         view.addSubview(tableView)
         view.addSubview(noticeView)
         view.addSubview(titleView)
@@ -108,6 +110,7 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
         tableView.rowHeight = 152
         tableView.showsVerticalScrollIndicator = false
         tableView.register(cellWithClass: FcrAppUIRoomListItemCell.self)
+        tableView.register(cellWithClass: FcrAppUIRoomListPlaceholderCell.self)
         
         tableView.addSubview(refreshAction)
         
@@ -120,12 +123,6 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
         refreshAction.addTarget(self,
                                 action: #selector(onPullRefreshDown),
                                 for: .valueChanged)
-        
-        placeholderView.isHidden = !isShowPlaceholder
-
-        tableView.isHidden = isShowPlaceholder
-        
-        placeholderView.isHidden = false
     }
     
     func initViewFrame() {
@@ -136,11 +133,6 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
             make?.left.equalTo()(0)
             make?.right.equalTo()(0)?.offset()(radius)
             make?.bottom.equalTo()(0)?.offset()(radius)
-        }
-        
-        placeholderView.mas_makeConstraints { make in
-            make?.top.equalTo()(66)
-            make?.left.right().bottom().equalTo()(0)
         }
         
         titleView.mas_makeConstraints { make in
@@ -163,15 +155,12 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
     }
     
     func updateViewProperties() {
-        placeholderView.updateViewProperties()
         titleView.updateViewProperties()
         noticeView.updateViewProperties()
         
         tableView.backgroundColor = FcrAppUIColorGroup.fcr_white
         
         titleView.backgroundColor = FcrAppUIColorGroup.fcr_white
-        
-        placeholderView.backgroundColor = FcrAppUIColorGroup.fcr_white
         
         tableView.reloadData()
     }
@@ -268,32 +257,45 @@ private extension FcrAppUIRoomListController {
 extension FcrAppUIRoomListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        if isShowPlaceholder {
+            return 1
+        } else {
+            return dataSource.count
+        }
     }
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withClass: FcrAppUIRoomListItemCell.self)
-        
-        let item = dataSource[indexPath.item]
-        
-        cell.indexPath = indexPath
-        cell.type = item.roomState
-        cell.stateLabel.text = item.roomState.text()
-        cell.idLabel.text = item.roomId
-        cell.nameLabel.text = item.roomName
-        cell.timeLabel.text = item.time
-        cell.typeLabel.text = item.roomType.text()
-        cell.delegate = self
-        
-        return cell
+        if isShowPlaceholder {
+            let cell = tableView.dequeueReusableCell(withClass: FcrAppUIRoomListPlaceholderCell.self)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withClass: FcrAppUIRoomListItemCell.self)
+            
+            let item = dataSource[indexPath.item]
+            
+            cell.indexPath = indexPath
+            cell.type = item.roomState
+            cell.stateLabel.text = item.roomState.text()
+            cell.idLabel.text = item.roomId
+            cell.nameLabel.text = item.roomName
+            cell.timeLabel.text = item.time
+            cell.typeLabel.text = item.roomType.text()
+            cell.delegate = self
+            
+            return cell
+        }
     }
 }
 
 extension FcrAppUIRoomListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 152
+        if isShowPlaceholder {
+            return tableView.bounds.height
+        } else {
+            return 152
+        }
     }
 }
 

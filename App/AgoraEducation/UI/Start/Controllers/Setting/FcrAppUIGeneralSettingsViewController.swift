@@ -88,6 +88,8 @@ extension FcrAppUIGeneralSettingsViewController: UITableViewDelegate, UITableVie
             cell.infoLabel.text = "settings_close_account".localized()
         case .environment:
             cell.infoLabel.text = "Environment"
+        case .roomDuration:
+            cell.infoLabel.text = "Room duration"
         case .quickStart:
             cell.infoLabel.text = "QuickStart"
         }
@@ -115,6 +117,8 @@ extension FcrAppUIGeneralSettingsViewController: UITableViewDelegate, UITableVie
             vc = FcrAppUIModeViewController(center: center)
         case .environment:
             vc = FcrAppUIEnvironmentViewController(center: center)
+        case .roomDuration:
+            vc = FcrAppUIRoomDurationViewController(center: center)
         case .closeAccount:
             vc = FcrAppUICloseAccountViewController(center: center)
         case .quickStart:

@@ -208,11 +208,20 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
     
     let roomTypeList: [FcrAppUIRoomType]
     
+    var roomDuration: UInt {
+        didSet {
+            updateTimeLabel()
+        }
+    }
+    
     init(roomTypeList: [FcrAppUIRoomType],
+         roomDuration: UInt,
          leftTextWidth: CGFloat,
          leftTextOffsetX: CGFloat,
          rightViewOffsetX: CGFloat) {
         self.roomTypeList = roomTypeList
+        self.roomDuration = roomDuration
+        
         self.roomTypeView = FcrAppUIQuickStartRoomTypeSelectView(selectedRoomType: roomTypeList[0],
                                                                  leftTextWidth: leftTextWidth,
                                                                  leftAreaOffsetX: leftTextOffsetX,
@@ -298,12 +307,16 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
         userNameTextField.leftLabel.text = "fcr_login_free_label_nick_name".localized()
         userNameTextField.placeholder = "fcr_login_free_tips_nick_name".localized()
         
-        timeView.timeLabel.text = "30mins"
-        
         createButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
         
         createButton.setTitle("fcr_login_free_button_create".localized(),
                               for: .normal)
+        
+        updateTimeLabel()
+    }
+    
+    private func updateTimeLabel() {
+        timeView.timeLabel.text = "\(roomDuration)mins"
     }
 }
 

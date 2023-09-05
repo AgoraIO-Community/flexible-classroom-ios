@@ -28,15 +28,6 @@ class FcrAppUIMainViewController: FcrAppUICoreViewController {
         return true
     }
     
-    override init(center: FcrAppCenter) {
-        super.init(center: center)
-        center.delegate = self
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         launch()
@@ -51,14 +42,11 @@ class FcrAppUIMainViewController: FcrAppUICoreViewController {
         navigationController?.setNavigationBarHidden(true,
                                                      animated: true)
         isTest()
+        center.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard center.isLogined else {
-            return
-        }
-        
         refreshRoomList()
     }
 }

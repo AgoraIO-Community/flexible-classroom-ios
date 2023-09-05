@@ -181,13 +181,15 @@ class FcrAppUIQuickStartInputView: UIView,
     let policyView = FcrAppUIQuickStartPolicyView()
     
     init(userRoleList: [FcrAppUIUserRole],
-         roomTypeList: [FcrAppUIRoomType]) {
+         roomTypeList: [FcrAppUIRoomType],
+         roomDuration: UInt) {
         self.joinRoomView = FcrAppUIQuickStartJoinRoomInputView(userRoleList: userRoleList,
                                                                 leftTextWidth: 85,
                                                                 leftTextOffsetX: 20,
                                                                 rightViewOffsetX: 14)
         
         self.createRoomView = FcrAppUIQuickStartCreateRoomInputView(roomTypeList: roomTypeList,
+                                                                    roomDuration: roomDuration,
                                                                     leftTextWidth: 85,
                                                                     leftTextOffsetX: 20,
                                                                     rightViewOffsetX: 14)

@@ -22,6 +22,7 @@ class FcrAppLocalStorage {
         
         case roomId           = "com.agora.roomId"
         case roomName         = "com.agora.roomName"
+        case roomDuration     = "com.agora.roomDuration"
         
         case environment      = "com.agora.environment"
         case language         = "com.agora.language"

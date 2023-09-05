@@ -229,9 +229,11 @@ class FcrAppUIQuickStartContentView: UIScrollView,
     let footerView = FcrAppUIQuickStartFooterView(frame: .zero)
     
     init(userRoleList: [FcrAppUIUserRole],
-         roomTypeList: [FcrAppUIRoomType]) {
+         roomTypeList: [FcrAppUIRoomType],
+         roomDuration: UInt) {
         self.roomInputView = FcrAppUIQuickStartInputView(userRoleList: userRoleList,
-                                                         roomTypeList: roomTypeList)
+                                                         roomTypeList: roomTypeList,
+                                                         roomDuration: roomDuration)
         super.init(frame: .zero)
         initViews()
         initViewFrame()

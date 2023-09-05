@@ -8,16 +8,20 @@
 
 import Foundation
 
+protocol FcrAppRoomDelegate: NSObjectProtocol {
+    func onRoomDurationUpdated(duration: UInt)
+}
+
 class FcrAppRoom {
     private var urlGroup: FcrAppURLGroup
     private var armin: FcrAppArmin
     private let localStorage: FcrAppLocalStorage
     
-    private var nextRoomIdOfList: String?
+    private var nextIdOfList: String?
     
-    private(set) var lastRoomId: String? {
+    private(set) var lastId: String? {
         didSet {
-            guard let roomId = lastRoomId else {
+            guard let roomId = lastId else {
                 return
             }
             
@@ -25,9 +29,10 @@ class FcrAppRoom {
                                    key: .roomId)
         }
     }
-    private(set) var lastRoomName: String? {
+    
+    private(set) var lastName: String? {
         didSet {
-            guard let roomName = lastRoomName else {
+            guard let roomName = lastName else {
                 return
             }
             
@@ -35,6 +40,22 @@ class FcrAppRoom {
                                    key: .roomName)
         }
     }
+    
+    /// Minute
+    var duration: UInt = 30 {
+        didSet {
+            guard duration != oldValue else {
+                return
+            }
+            
+            localStorage.writeData(duration,
+                                   key: .roomDuration)
+            
+            delegate?.onRoomDurationUpdated(duration: duration)
+        }
+    }
+    
+    weak var delegate: FcrAppRoomDelegate?
     
     init(urlGroup: FcrAppURLGroup,
          armin: FcrAppArmin,
@@ -45,19 +66,24 @@ class FcrAppRoom {
         
         if let roomId = try? localStorage.readData(key: .roomId,
                                                    type: String.self) {
-            self.lastRoomId = roomId
+            self.lastId = roomId
         }
         
         if let roomName = try? localStorage.readData(key: .roomName,
                                                      type: String.self) {
-            self.lastRoomName = roomName
+            self.lastName = roomName
+        }
+        
+        if let roomDuration = try? localStorage.readData(key: .roomDuration,
+                                                         type: UInt.self) {
+            self.duration = roomDuration
         }
     }
     
     func createRoom(config: FcrAppCreateRoomConfig,
                     success: @escaping FcrAppStringCompletion,
                     failure: @escaping FcrAppFailure) {
-        lastRoomName = config.roomName
+        lastName = config.roomName
         
         var url: String
         
@@ -81,7 +107,7 @@ class FcrAppRoom {
             let roomId = try data.getValue(of: "roomId",
                                            type: String.self)
             
-            self?.lastRoomId = roomId
+            self?.lastId = roomId
             
             success(roomId)
         }, failure: failure)
@@ -90,7 +116,7 @@ class FcrAppRoom {
     func joinRoomPreCheck(config: FcrAppJoinRoomPreCheckConfig,
                           success: @escaping (FcrAppServerJoinRoomObject) -> Void,
                           failure: @escaping FcrAppFailure) {
-        lastRoomId = config.roomId
+        lastId = config.roomId
         
         var url: String
         
@@ -124,7 +150,7 @@ class FcrAppRoom {
     func incrementalRoomList(count: Int,
                              success: @escaping ([FcrAppServerRoomObject]) -> Void,
                              failure: @escaping FcrAppFailure) {
-        requestRoomList(nextRoomId: nextRoomIdOfList,
+        requestRoomList(nextRoomId: nextIdOfList,
                         count: count,
                         success: success,
                         failure: failure)
@@ -153,7 +179,7 @@ class FcrAppRoom {
                 return
             }
             
-            self.nextRoomIdOfList = nextRoomId
+            self.nextIdOfList = nextRoomId
             
             success(object.list)
         }, failure: failure)
