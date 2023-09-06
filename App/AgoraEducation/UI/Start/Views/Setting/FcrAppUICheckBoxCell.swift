@@ -18,11 +18,7 @@ class FcrAppUICheckBoxCell: UITableViewCell,
                 return
             }
             
-            if aSelected {
-                checkBox.image = UIImage(named: "ic_round_check_box_sel")
-            } else {
-                checkBox.image = UIImage(named: "ic_round_check_box_unsel")
-            }
+            updateCheckBox()
         }
     }
     
@@ -64,5 +60,15 @@ class FcrAppUICheckBoxCell: UITableViewCell,
         infoLabel.font = UIFont.systemFont(ofSize: 14)
         infoLabel.textColor = UIColor(hex: 0x191919)
         infoLabel.textAlignment = .left
+        
+        updateCheckBox()
+    }
+    
+    private func updateCheckBox() {
+        if aSelected {
+            checkBox.image = UIImage(named: "ic_round_check_box_sel")
+        } else {
+            checkBox.image = UIImage(named: "ic_round_check_box_unsel")
+        }
     }
 }
