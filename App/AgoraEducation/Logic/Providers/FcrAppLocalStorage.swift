@@ -50,74 +50,50 @@ class FcrAppLocalStorage {
                                   forKey: key.rawValue)
     }
     
-//    func readStringEnumData<T: FcrAppStringRawRepresentable>(key: Key,
-//                                                             type: T.Type) throws -> T {
-//        let stringValue = try readData(key: key,
-//                                       type: String.self)
-//
-//        if let value = T(rawValue: stringValue) {
-//            return value
-//        } else {
-//            throw FcrAppError(code: -1,
-//                              message: "FcrAppStringRawRepresentable \(key.rawValue)'s value is nil")
-//        }
-//    }
-//
-//    func readIntEnumData<T: FcrAppIntRawRepresentable>(key: Key,
-//                                                       type: T.Type) throws -> T {
-//        let intValue = try readData(key: key,
-//                                    type: Int.self)
-//
-//        if let value = T(rawValue: intValue) {
-//            return value
-//        } else {
-//            throw FcrAppError(code: -1,
-//                              message: "FcrAppIntRawRepresentable \(key.rawValue)'s value is nil")
-//        }
-//    }
-//
-//    func readData<T: Any>(key: Key,
-//                          type: T.Type) throws -> T {
-//        if let value = UserDefaults.standard.object(forKey: key.rawValue) {
-//            if let `value` = value as? T {
-//                return value
-//            } else {
-//                printDebug("read key: \(key), nil")
-//
-//                throw FcrAppError(code: -1,
-//                                  message: "\(key.rawValue)'s value is translated unsuccessfully")
-//            }
-//        } else {
-//            printDebug("read key: \(key), nil")
-//
-//            throw FcrAppError(code: -1,
-//                              message: "\(key.rawValue)'s value is nil")
-//        }
-//    }
-    
-    
-     func readData<T: Any>(key: Key,
-                           type: T.Type) throws -> T {
-         if let value = UserDefaults.standard.object(forKey: key.rawValue) {
-             
-             if let StringRawRepresentable = type.self as? any FcrAppStringRawRepresentable.Type {
-                 let value = StringRawRepresentable.init(rawValue: value as! String)
-                 
-                 return value as! T
-             } else if let IntRawRepresentable = type.self as? any FcrAppIntRawRepresentable.Type {
-                 let value = IntRawRepresentable.init(rawValue: value as! Int)
-                 
-                 return value as! T
-             } else {
-                 return value as! T
-             }
-         } else {
-             printDebug("read key: \(key), nil")
-             
-             throw FcrAppError(code: -1,
-                               message: "\(key.rawValue)'s value is nil")
-         }
-     }
+    func readStringEnumData<T: FcrAppStringRawRepresentable>(key: Key,
+                                                             type: T.Type) throws -> T {
+        let stringValue = try readData(key: key,
+                                       type: String.self)
+
+        if let value = T(rawValue: stringValue) {
+            return value
+        } else {
+            throw FcrAppError(code: -1,
+                              message: "FcrAppStringRawRepresentable \(key.rawValue)'s value is nil")
+        }
+    }
+
+    func readIntEnumData<T: FcrAppIntRawRepresentable>(key: Key,
+                                                       type: T.Type) throws -> T {
+        let intValue = try readData(key: key,
+                                    type: Int.self)
+
+        if let value = T(rawValue: intValue) {
+            return value
+        } else {
+            throw FcrAppError(code: -1,
+                              message: "FcrAppIntRawRepresentable \(key.rawValue)'s value is nil")
+        }
+    }
+
+    func readData<T: Any>(key: Key,
+                          type: T.Type) throws -> T {
+        if let value = UserDefaults.standard.object(forKey: key.rawValue) {
+            if let `value` = value as? T {
+                return value
+            } else {
+                printDebug("read key: \(key), nil")
+
+                throw FcrAppError(code: -1,
+                                  message: "\(key.rawValue)'s value is translated unsuccessfully")
+            }
+        } else {
+            printDebug("read key: \(key), nil")
+
+            throw FcrAppError(code: -1,
+                              message: "\(key.rawValue)'s value is nil")
+        }
+    }
     
     func hasData(key: Key) -> Bool {
         if let _ = UserDefaults.standard.object(forKey: key.rawValue) {

@@ -90,8 +90,8 @@ class FcrAppRoom {
             self.duration = roomDuration
         }
         
-        if let mediaStreamLatency = try? localStorage.readData(key: .mediaStreamLatency,
-                                                               type: FcrAppMediaStreamLatency.self) {
+        if let mediaStreamLatency = try? localStorage.readStringEnumData(key: .mediaStreamLatency,
+                                                                         type: FcrAppMediaStreamLatency.self) {
             self.mediaStreamLatency = mediaStreamLatency
         }
     }

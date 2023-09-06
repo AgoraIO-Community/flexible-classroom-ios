@@ -89,13 +89,13 @@ class FcrAppCenter: NSObject {
         armin.failureDelegate = self
         
         do {
-            if let mode = try? localStorage.readData(key: .uiMode,
-                                                     type: FcrAppUIMode.self) {
+            if let mode = try? localStorage.readStringEnumData(key: .uiMode,
+                                                               type: FcrAppUIMode.self) {
                 self.uiMode = mode
             }
             
-            if let language = try? localStorage.readData(key: .language,
-                                                         type: FcrAppLanguage.self) {
+            if let language = try? localStorage.readStringEnumData(key: .language,
+                                                                   type: FcrAppLanguage.self) {
                 self.language = language
             } else {
                 self.language = (UIDevice.current.agora_is_chinese_language ? .zh_cn : .en)
@@ -141,8 +141,8 @@ class FcrAppCenter: NSObject {
     }
     
     func needLogin(completion: @escaping FcrAppBoolCompletion) {
-        if let region = try? localStorage.readData(key: .region,
-                                                   type: FcrAppRegion.self) {
+        if let region = try? localStorage.readStringEnumData(key: .region,
+                                                             type: FcrAppRegion.self) {
             if region == .CN {
                 completion(true)
             } else {

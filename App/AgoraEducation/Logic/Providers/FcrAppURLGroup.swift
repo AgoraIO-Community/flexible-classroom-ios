@@ -101,13 +101,13 @@ class FcrAppURLGroup {
             self.refreshToken = refreshToken
         }
         
-        if let environment = try? localStorage.readData(key: .environment,
-                                                        type: FcrAppEnvironment.self) {
+        if let environment = try? localStorage.readStringEnumData(key: .environment,
+                                                                  type: FcrAppEnvironment.self) {
             self.environment = environment
         }
         
-        if let region = try? localStorage.readData(key: .region,
-                                                   type: FcrAppRegion.self) {
+        if let region = try? localStorage.readStringEnumData(key: .region,
+                                                             type: FcrAppRegion.self) {
             self.region = region
         }
     }
