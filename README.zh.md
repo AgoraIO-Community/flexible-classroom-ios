@@ -13,33 +13,7 @@
 
 ## 运行示例项目
 1. 在 open-flexible-classroom-ios/App文件夹中执行`pod install`。
-2. 若当前Build Configuration为Debug模式，则rootViewController为DebugViewController，项目使用默认的`AppId`和`AppCertificate`请求token，如下方代码所示
-```
-// DebugViewController
-func onClickEnter () {
-    ···
-    data.requestToken(roomId: info.roomId,
-                      userId: finalUserId,
-                      userRole: info.roleType.rawValue,
-                      success: tokenSuccessBlock,
-                      failure: failureBlock)
-    ···
-}
-```
-若需要使用自己的`AppId`和`AppCertificate`，可将`requestToken`方法的执行注释掉，使用下面的`buildToken`方法
-```
-// DebugViewController
-func onClickEnter () {
-    ···
-    data.buildToken(appId: "Your App Id",
-                    appCertificate: "Your App Certificate",
-                    userUuid: finalUserId,
-                    success: tokenSuccessBlock,
-                    failure: failureBlock)
-    ···
-}
-```
-
+2. 若当前Build Configuration为Debug模式，则rootViewController为FcrAppUIQuickStartViewController。你可以不需要登录就直接创建或加入房间。
 ## 联系我们
 
 - 如需阅读完整的文档和 API 注释，你可以访问[灵动课堂文档中心](https://docs.agora.io/cn/agora-class/landing-page?platform=iOS)。

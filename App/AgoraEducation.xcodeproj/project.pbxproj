@@ -7,112 +7,99 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1550F0C1289E167D00F6B80F /* DebugInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550F0C0289E167D00F6B80F /* DebugInfoCell.swift */; };
 		1A44BE7522BF863000766274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A44BE5722BF863000766274 /* Assets.xcassets */; };
 		1A44BE7A22BF863000766274 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A44BE5E22BF863000766274 /* main.m */; };
 		1A44BE7B22BF863000766274 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A44BE6022BF863000766274 /* AppDelegate.m */; };
-		2616FAB2271EC4530086397B /* TokenBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2616FAB1271EC4530086397B /* TokenBuilder.swift */; };
 		489330F749FFF2263BE9EF78 /* Pods_AgoraEducation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E41C30C2710CB486B9E7805 /* Pods_AgoraEducation.framework */; };
-		681528A4289CF0FB00EFD6F4 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681528A3289CF0FB00EFD6F4 /* DebugViewController.swift */; };
-		681528A6289CF10400EFD6F4 /* DebugDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681528A5289CF10400EFD6F4 /* DebugDataHandler.swift */; };
-		681528A8289CF4C500EFD6F4 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681528A7289CF4C500EFD6F4 /* DebugView.swift */; };
-		681528AA289D00CD00EFD6F4 /* DebugModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681528A9289D00CD00EFD6F4 /* DebugModels.swift */; };
-		681528AD289D0ED200EFD6F4 /* DebugOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681528AC289D0ED200EFD6F4 /* DebugOptionsView.swift */; };
-		6818977D28A259C200681DD9 /* DebugCoursewares.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6818977C28A259C200681DD9 /* DebugCoursewares.swift */; };
-		68362357262D30C20028F7F5 /* BaseLoginObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68362356262D30C20028F7F5 /* BaseLoginObject.swift */; };
-		68403F83276C859800E88214 /* AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861D3CFA276AE05E00645D6A /* AppExtension.swift */; };
-		6861691A26AEB1B800E26F69 /* Agora_Privacy_Policy_en.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6861691826AEB1B800E26F69 /* Agora_Privacy_Policy_en.rtf */; };
-		6861691B26AEB1B800E26F69 /* Agora_Privacy_Policy_cn.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6861691926AEB1B800E26F69 /* Agora_Privacy_Policy_cn.rtf */; };
-		688809E82629358800B5FB2A /* FcrNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688809E72629358800B5FB2A /* FcrNavigationController.swift */; };
+		68403F83276C859800E88214 /* FcrAppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861D3CFA276AE05E00645D6A /* FcrAppExtension.swift */; };
 		75D36FB810CB94F4AEF8D9A2 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		7813B70223FA5A0300265830 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7813B6F623FA5A0300265830 /* LaunchScreen.storyboard */; };
 		7878B4C523FA72EE00AF1B4F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7878B4C723FA72EE00AF1B4F /* Localizable.strings */; };
 		7878B4CB23FA735700AF1B4F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7878B4CD23FA735700AF1B4F /* InfoPlist.strings */; };
 		787A004225D10FC10063456F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A004125D10FC10063456F /* AudioToolbox.framework */; };
-		78DFB69825AEE20B00B01906 /* RtmTokenTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78DFB68625AEE20B00B01906 /* RtmTokenTool.mm */; };
-		78DFB69925AEE20B00B01906 /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DFB68B25AEE20B00B01906 /* md5.cpp */; };
-		86292F1E28F6A41900E7F225 /* AgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AFBEA02854996B003EBC0C /* AgreementView.swift */; };
+		860CB3F42A97276700B03141 /* FcrAppUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860CB3F32A97276700B03141 /* FcrAppUITextView.swift */; };
+		860CB3F82A97428200B03141 /* FcrAppUICoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860CB3F72A97428200B03141 /* FcrAppUICoreViewController.swift */; };
+		86140D192AA6D2A800AC1E28 /* FcrAppUIRoomDurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86140D182AA6D2A800AC1E28 /* FcrAppUIRoomDurationViewController.swift */; };
+		86140D1B2AA720B200AC1E28 /* FcrAppUIStreamLatencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86140D1A2AA720B200AC1E28 /* FcrAppUIStreamLatencyViewController.swift */; };
+		861978D92A69418100009890 /* FcrAppUISettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861978D82A69418100009890 /* FcrAppUISettingTableView.swift */; };
+		8629C3462A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3452A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift */; };
+		8629C3482A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3472A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift */; };
+		8629C34B2A8114A900DA97B7 /* FcrAppUIColorGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C34A2A8114A900DA97B7 /* FcrAppUIColorGroup.swift */; };
+		8629C34E2A83497200DA97B7 /* FcrAppUIJoinRoomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C34D2A83497200DA97B7 /* FcrAppUIJoinRoomViews.swift */; };
+		8629C3522A83C16C00DA97B7 /* FcrAppUIQuickStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3512A83C16C00DA97B7 /* FcrAppUIQuickStartViewController.swift */; };
+		8629C3542A8482F900DA97B7 /* FcrAppUIFrameGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3532A8482F900DA97B7 /* FcrAppUIFrameGroup.swift */; };
+		8629C3562A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3552A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift */; };
+		8629C3582A850DD200DA97B7 /* FcrAppUIQuickStartJoinRoomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3572A850DD200DA97B7 /* FcrAppUIQuickStartJoinRoomViews.swift */; };
+		865746F22A949494003FBF72 /* FcrAppTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865746F12A949494003FBF72 /* FcrAppTester.swift */; };
+		865746F42A94DA6C003FBF72 /* FcrAppUIMain+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865746F32A94DA6C003FBF72 /* FcrAppUIMain+Extension.swift */; };
+		865746F62A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865746F52A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift */; };
+		865746FD2A96368C003FBF72 /* AgoraWatermarkWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865746FA2A96368C003FBF72 /* AgoraWatermarkWidget.swift */; };
+		865746FE2A96368C003FBF72 /* AgoraSharingLinkWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865746FC2A96368C003FBF72 /* AgoraSharingLinkWidget.swift */; };
+		865747002A963B47003FBF72 /* FcrAppWidgetSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865746FF2A963B47003FBF72 /* FcrAppWidgetSample.swift */; };
 		8661A1A4270DA50E0047CB16 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78136271242C81ED00B7D1FE /* libz.tbd */; };
-		AB05CE9728C77387001239AD /* RoomCreateTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9528C77387001239AD /* RoomCreateTableCells.swift */; };
-		AB05CE9828C77387001239AD /* RoomCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9628C77387001239AD /* RoomCreateViewController.swift */; };
-		AB05CE9A28C89FAD001239AD /* RoomCreateTimeAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9928C89FAD001239AD /* RoomCreateTimeAlertController.swift */; };
-		AB07A337287C549D0072A29F /* FcrLogoffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07A336287C549D0072A29F /* FcrLogoffViewController.swift */; };
-		AB08496128D1812700214B68 /* RoomListJoinAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08496028D1812700214B68 /* RoomListJoinAlertController.swift */; };
-		AB08497128D5CCE100214B68 /* RoomCreateMoreInfoCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08497028D5CCE100214B68 /* RoomCreateMoreInfoCells.swift */; };
-		AB08497328D963C400214B68 /* FcrInputAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08497228D963C400214B68 /* FcrInputAlertController.swift */; };
-		AB0A2DD228DAEF6A0048FA3C /* LoginStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A2DD128DAEF6A0048FA3C /* LoginStartViewController.swift */; };
-		AB2AAFC5288A4BEE009D015C /* FcrOutsideClassBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2AAFC4288A4BEE009D015C /* FcrOutsideClassBaseController.swift */; };
-		AB4F69CF286D8BEE0012E6B3 /* FcrSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69CE286D8BEE0012E6B3 /* FcrSettingsViewController.swift */; };
-		AB4F69D1286D8C380012E6B3 /* FcrGeneralSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69D0286D8C380012E6B3 /* FcrGeneralSettingsViewController.swift */; };
-		AB4F69D3286D8DE70012E6B3 /* FcrAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69D2286D8DE70012E6B3 /* FcrAboutViewController.swift */; };
-		AB4F69D5286DBE140012E6B3 /* FcrNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69D4286DBE140012E6B3 /* FcrNickNameViewController.swift */; };
-		AB4F69D7286DBE490012E6B3 /* FcrRegionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69D6286DBE490012E6B3 /* FcrRegionViewController.swift */; };
-		AB4F69D9286DBE830012E6B3 /* FcrLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69D8286DBE830012E6B3 /* FcrLanguageViewController.swift */; };
-		AB4F69DD286DC5D40012E6B3 /* FcrNavigatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69DC286DC5D40012E6B3 /* FcrNavigatorCell.swift */; };
-		AB4F69DF286DC5F30012E6B3 /* FcrCheckBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69DE286DC5F30012E6B3 /* FcrCheckBoxCell.swift */; };
-		AB4F69E32872C2340012E6B3 /* FcrDisclaimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69E22872C2340012E6B3 /* FcrDisclaimerViewController.swift */; };
-		AB4F69E52872CA5E0012E6B3 /* FcrDetailInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69E42872CA5E0012E6B3 /* FcrDetailInfoCell.swift */; };
-		AB4F69E72874621F0012E6B3 /* FcrThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69E62874621F0012E6B3 /* FcrThemeViewController.swift */; };
-		AB4F69EA2876B3490012E6B3 /* FcrRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69E92876B3490012E6B3 /* FcrRequest.swift */; };
-		AB4F69EE2876D17A0012E6B3 /* FcrEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69ED2876D17A0012E6B3 /* FcrEnvironment.swift */; };
-		AB4F69F02876E5160012E6B3 /* FcrUserInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69EF2876E5160012E6B3 /* FcrUserInfoPresenter.swift */; };
-		AB7B7B6C28C1D8A7001D327A /* RoomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B7B6B28C1D8A7001D327A /* RoomListViewController.swift */; };
-		AB7B7B6F28C1E0B1001D327A /* RoomListTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B7B6E28C1E0B1001D327A /* RoomListTitleView.swift */; };
-		AB7B7B7128C1E151001D327A /* RoomListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B7B7028C1E151001D327A /* RoomListItemCell.swift */; };
-		AB80DBE628CB55320004E518 /* RoomItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80DBE528CB55320004E518 /* RoomItemModel.swift */; };
-		AB82D3AA28D0B11A00ADFC84 /* RoomListShareAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB82D3A928D0B11A00ADFC84 /* RoomListShareAlertController.swift */; };
-		AB8AC745287FEB5000B57B58 /* FcrPrivacyTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8AC744287FEB5000B57B58 /* FcrPrivacyTermsViewController.swift */; };
-		AB8AC7472886D13600B57B58 /* FcrLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8AC7462886D13600B57B58 /* FcrLocalization.swift */; };
-		ABB1D15D287C00A600395A13 /* LoginWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB1D15C287C00A600395A13 /* LoginWebViewController.swift */; };
+		86820D8F2A613D2600ED4E54 /* FcrAppUIRoomListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86820D8E2A613D2600ED4E54 /* FcrAppUIRoomListItemCell.swift */; };
+		869026992A6E19C3006E0D44 /* FcrAppUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869026982A6E19C3006E0D44 /* FcrAppUITextField.swift */; };
+		869D42642A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D42632A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift */; };
+		869D42682A8A381A004EE63E /* FcrAppUIEnvironmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D42672A8A381A004EE63E /* FcrAppUIEnvironmentViewController.swift */; };
+		869D426A2A8B2C84004EE63E /* FcrAppUIQuickStartRoomTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D42692A8B2C84004EE63E /* FcrAppUIQuickStartRoomTypeViewController.swift */; };
+		869D426D2A8B9328004EE63E /* FcrAppUIPolicyString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D426C2A8B9328004EE63E /* FcrAppUIPolicyString.swift */; };
+		86A15D732A735D35001CDAD7 /* FcrAppUICreateRoomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A15D722A735D35001CDAD7 /* FcrAppUICreateRoomViews.swift */; };
+		86A15D772A7A9765001CDAD7 /* FcrAppUIMoreSettingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A15D762A7A9765001CDAD7 /* FcrAppUIMoreSettingViews.swift */; };
+		86B81E5B2A5593A400BA631C /* FcrAppUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E5A2A5593A400BA631C /* FcrAppUIViewController.swift */; };
+		86B81E5E2A55AA4500BA631C /* FcrAppURLGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E5D2A55AA4500BA631C /* FcrAppURLGroup.swift */; };
+		86B81E602A55AB8300BA631C /* FcrAppLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E5F2A55AB8300BA631C /* FcrAppLocalStorage.swift */; };
+		86B81E622A5666B800BA631C /* FcrAppArmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E612A5666B800BA631C /* FcrAppArmin.swift */; };
+		86B81E642A5667D500BA631C /* FcrAppServerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E632A5667D500BA631C /* FcrAppServerObject.swift */; };
+		86B81E662A566C5800BA631C /* FcrAppCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E652A566C5800BA631C /* FcrAppCenter.swift */; };
+		86B81E682A568F4800BA631C /* FcrAppUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E672A568F4800BA631C /* FcrAppUINavigationController.swift */; };
+		86B81E6A2A56A2B400BA631C /* FcrAppLocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E692A56A2B400BA631C /* FcrAppLocalUser.swift */; };
+		86B81E6C2A56B16500BA631C /* FcrAppEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E6B2A56B16500BA631C /* FcrAppEnums.swift */; };
+		86B81E6E2A57EBEA00BA631C /* FcrAppRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E6D2A57EBEA00BA631C /* FcrAppRoom.swift */; };
+		86E5023A2A5FEC8C003C04D8 /* FcrAppObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E502392A5FEC8C003C04D8 /* FcrAppObjects.swift */; };
+		86E5023E2A5FF145003C04D8 /* FcrAppClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5023D2A5FF145003C04D8 /* FcrAppClosure.swift */; };
+		86E502442A5FFAE1003C04D8 /* FcrAppUIRoomListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E502432A5FFAE1003C04D8 /* FcrAppUIRoomListController.swift */; };
+		86E502472A60025A003C04D8 /* FcrAppUIObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E502462A60025A003C04D8 /* FcrAppUIObjects.swift */; };
+		86E502492A6002FD003C04D8 /* FcrAppUIEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E502482A6002FD003C04D8 /* FcrAppUIEnums.swift */; };
+		86E5024B2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5024A2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift */; };
+		86F5E31C2A8C677200AED16A /* FcrAppUIRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F5E31B2A8C677200AED16A /* FcrAppUIRootViewController.swift */; };
+		86F5E31E2A8CB4F700AED16A /* FcrAppUIQuickStartInputViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F5E31D2A8CB4F700AED16A /* FcrAppUIQuickStartInputViews.swift */; };
+		86F5E3202A8CBF9E00AED16A /* FcrAppUIFontGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F5E31F2A8CBF9E00AED16A /* FcrAppUIFontGroup.swift */; };
+		AB05CE9A28C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05CE9928C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift */; };
+		AB07A337287C549D0072A29F /* FcrAppUICloseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07A336287C549D0072A29F /* FcrAppUICloseAccountViewController.swift */; };
+		AB08496128D1812700214B68 /* FcrAppUIJoinRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08496028D1812700214B68 /* FcrAppUIJoinRoomController.swift */; };
+		AB0A2DD228DAEF6A0048FA3C /* FcrAppUILoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A2DD128DAEF6A0048FA3C /* FcrAppUILoginViewController.swift */; };
+		AB4F69CF286D8BEE0012E6B3 /* FcrAppUISettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69CE286D8BEE0012E6B3 /* FcrAppUISettingsViewController.swift */; };
+		AB4F69D1286D8C380012E6B3 /* FcrAppUIGeneralSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69D0286D8C380012E6B3 /* FcrAppUIGeneralSettingsViewController.swift */; };
+		AB4F69D3286D8DE70012E6B3 /* FcrAppUIAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69D2286D8DE70012E6B3 /* FcrAppUIAboutViewController.swift */; };
+		AB4F69D5286DBE140012E6B3 /* FcrAppUINicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69D4286DBE140012E6B3 /* FcrAppUINicknameViewController.swift */; };
+		AB4F69D7286DBE490012E6B3 /* FcrAppUIRegionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69D6286DBE490012E6B3 /* FcrAppUIRegionViewController.swift */; };
+		AB4F69D9286DBE830012E6B3 /* FcrAppUILanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69D8286DBE830012E6B3 /* FcrAppUILanguageViewController.swift */; };
+		AB4F69DD286DC5D40012E6B3 /* FcrAppUINavigatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69DC286DC5D40012E6B3 /* FcrAppUINavigatorCell.swift */; };
+		AB4F69DF286DC5F30012E6B3 /* FcrAppUICheckBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69DE286DC5F30012E6B3 /* FcrAppUICheckBoxCell.swift */; };
+		AB4F69E32872C2340012E6B3 /* FcrAppUIDisclaimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69E22872C2340012E6B3 /* FcrAppUIDisclaimerViewController.swift */; };
+		AB4F69E52872CA5E0012E6B3 /* FcrAppUIDetailInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69E42872CA5E0012E6B3 /* FcrAppUIDetailInfoCell.swift */; };
+		AB4F69E72874621F0012E6B3 /* FcrAppUIModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F69E62874621F0012E6B3 /* FcrAppUIModeViewController.swift */; };
+		AB7B7B6C28C1D8A7001D327A /* FcrAppUIMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B7B6B28C1D8A7001D327A /* FcrAppUIMainViewController.swift */; };
+		AB7B7B6F28C1E0B1001D327A /* FcrAppUIMainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B7B6E28C1E0B1001D327A /* FcrAppUIMainHeaderView.swift */; };
+		AB8AC745287FEB5000B57B58 /* FcrAppUIPrivacyTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8AC744287FEB5000B57B58 /* FcrAppUIPrivacyTermsViewController.swift */; };
+		ABB1D15D287C00A600395A13 /* FcrAppLoginWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB1D15C287C00A600395A13 /* FcrAppLoginWebViewController.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		1AE0D01D2283C5F40092AC5E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1AE0CFFC2283C5F20092AC5E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1AE0D0032283C5F20092AC5E;
-			remoteInfo = AgoraSmallClass;
-		};
-		1AE0D0282283C5F40092AC5E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1AE0CFFC2283C5F20092AC5E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1AE0D0032283C5F20092AC5E;
-			remoteInfo = AgoraSmallClass;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		1550F0C0289E167D00F6B80F /* DebugInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugInfoCell.swift; sourceTree = "<group>"; };
-		15AFBEA02854996B003EBC0C /* AgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementView.swift; sourceTree = "<group>"; };
 		1A44BE3522BF863000766274 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1A44BE5722BF863000766274 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A44BE5E22BF863000766274 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1A44BE6022BF863000766274 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1A44BE7E22BF874A00766274 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AE0D0042283C5F20092AC5E /* AgoraCloudClass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgoraCloudClass.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AE0D01C2283C5F40092AC5E /* AgoraEducationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgoraEducationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AE0D0272283C5F40092AC5E /* AgoraEducationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgoraEducationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AE0D0A022897E9A0092AC5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1AE0D0A222897EA60092AC5E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		1AE0D0A422897EC40092AC5E /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		1AE0D0A622897ECD0092AC5E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		2616FAB1271EC4530086397B /* TokenBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBuilder.swift; sourceTree = "<group>"; };
 		3327573F8A98D9B63A402151 /* Pods-AgoraEducation.devrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.devrelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.devrelease.xcconfig"; sourceTree = "<group>"; };
 		37B928C7F12A17713289F8D3 /* Pods-AgoraEducation.certificatec.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.certificatec.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.certificatec.xcconfig"; sourceTree = "<group>"; };
 		40B28313D80C71B4DA8D643D /* Pods-AgoraEducation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.debug.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.debug.xcconfig"; sourceTree = "<group>"; };
 		4EAA54960A24224AEAEC570D /* Pods-AgoraEducation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.release.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.release.xcconfig"; sourceTree = "<group>"; };
-		681528A3289CF0FB00EFD6F4 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
-		681528A5289CF10400EFD6F4 /* DebugDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDataHandler.swift; sourceTree = "<group>"; };
-		681528A7289CF4C500EFD6F4 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
-		681528A9289D00CD00EFD6F4 /* DebugModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugModels.swift; sourceTree = "<group>"; };
-		681528AC289D0ED200EFD6F4 /* DebugOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugOptionsView.swift; sourceTree = "<group>"; };
-		6818977C28A259C200681DD9 /* DebugCoursewares.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCoursewares.swift; sourceTree = "<group>"; };
-		68362356262D30C20028F7F5 /* BaseLoginObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLoginObject.swift; sourceTree = "<group>"; };
-		6861691826AEB1B800E26F69 /* Agora_Privacy_Policy_en.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Agora_Privacy_Policy_en.rtf; sourceTree = "<group>"; };
-		6861691926AEB1B800E26F69 /* Agora_Privacy_Policy_cn.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Agora_Privacy_Policy_cn.rtf; sourceTree = "<group>"; };
-		688809E72629358800B5FB2A /* FcrNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrNavigationController.swift; sourceTree = "<group>"; };
 		7710B25021320B9CCD7E9CE1 /* Pods-AgoraEducation.certificated.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.certificated.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.certificated.xcconfig"; sourceTree = "<group>"; };
 		78136271242C81ED00B7D1FE /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		78136273242C81FF00B7D1FE /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
@@ -128,57 +115,75 @@
 		7878B4CE23FA735A00AF1B4F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		787A004125D10FC10063456F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		78A3EA5E25640261003067AB /* AgoraEducation-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AgoraEducation-Bridging-Header.h"; sourceTree = "<group>"; };
-		78DFB68625AEE20B00B01906 /* RtmTokenTool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RtmTokenTool.mm; sourceTree = "<group>"; };
-		78DFB68725AEE20B00B01906 /* RtmTokenTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtmTokenTool.h; sourceTree = "<group>"; };
-		78DFB68925AEE20B00B01906 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
-		78DFB68B25AEE20B00B01906 /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5.cpp; sourceTree = "<group>"; };
-		78DFB68C25AEE20B00B01906 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
-		78DFB68D25AEE20B00B01906 /* DynamicKey5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey5.h; sourceTree = "<group>"; };
-		78DFB68E25AEE20B00B01906 /* Packer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Packer.h; sourceTree = "<group>"; };
-		78DFB68F25AEE20B00B01906 /* generatorSignalToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generatorSignalToken.h; sourceTree = "<group>"; };
-		78DFB69025AEE20B00B01906 /* AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessToken.h; sourceTree = "<group>"; };
-		78DFB69125AEE20B00B01906 /* DynamicKey2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey2.h; sourceTree = "<group>"; };
-		78DFB69225AEE20B00B01906 /* RtmTokenBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtmTokenBuilder.h; sourceTree = "<group>"; };
-		78DFB69325AEE20B00B01906 /* DynamicKey3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey3.h; sourceTree = "<group>"; };
-		78DFB69425AEE20B00B01906 /* generatorSignalToken-Linux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "generatorSignalToken-Linux.h"; sourceTree = "<group>"; };
-		78DFB69525AEE20B00B01906 /* RtcTokenBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtcTokenBuilder.h; sourceTree = "<group>"; };
-		78DFB69625AEE20B00B01906 /* DynamicKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey.h; sourceTree = "<group>"; };
-		78DFB69725AEE20B00B01906 /* DynamicKey4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey4.h; sourceTree = "<group>"; };
 		7E41C30C2710CB486B9E7805 /* Pods_AgoraEducation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgoraEducation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		861D3CFA276AE05E00645D6A /* AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtension.swift; sourceTree = "<group>"; };
+		860CB3F32A97276700B03141 /* FcrAppUITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUITextView.swift; sourceTree = "<group>"; };
+		860CB3F72A97428200B03141 /* FcrAppUICoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICoreViewController.swift; sourceTree = "<group>"; };
+		86140D182AA6D2A800AC1E28 /* FcrAppUIRoomDurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIRoomDurationViewController.swift; sourceTree = "<group>"; };
+		86140D1A2AA720B200AC1E28 /* FcrAppUIStreamLatencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIStreamLatencyViewController.swift; sourceTree = "<group>"; };
+		861978D82A69418100009890 /* FcrAppUISettingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUISettingTableView.swift; sourceTree = "<group>"; };
+		861D3CFA276AE05E00645D6A /* FcrAppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppExtension.swift; sourceTree = "<group>"; };
+		8629C3452A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICreateRoomViewController.swift; sourceTree = "<group>"; };
+		8629C3472A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIPresentedViewController.swift; sourceTree = "<group>"; };
+		8629C34A2A8114A900DA97B7 /* FcrAppUIColorGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIColorGroup.swift; sourceTree = "<group>"; };
+		8629C34D2A83497200DA97B7 /* FcrAppUIJoinRoomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIJoinRoomViews.swift; sourceTree = "<group>"; };
+		8629C3512A83C16C00DA97B7 /* FcrAppUIQuickStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartViewController.swift; sourceTree = "<group>"; };
+		8629C3532A8482F900DA97B7 /* FcrAppUIFrameGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIFrameGroup.swift; sourceTree = "<group>"; };
+		8629C3552A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartViews.swift; sourceTree = "<group>"; };
+		8629C3572A850DD200DA97B7 /* FcrAppUIQuickStartJoinRoomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartJoinRoomViews.swift; sourceTree = "<group>"; };
+		865746F12A949494003FBF72 /* FcrAppTester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppTester.swift; sourceTree = "<group>"; };
+		865746F32A94DA6C003FBF72 /* FcrAppUIMain+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FcrAppUIMain+Extension.swift"; sourceTree = "<group>"; };
+		865746F52A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FcrAppUIQuickStart+Extension.swift"; sourceTree = "<group>"; };
+		865746FA2A96368C003FBF72 /* AgoraWatermarkWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgoraWatermarkWidget.swift; sourceTree = "<group>"; };
+		865746FC2A96368C003FBF72 /* AgoraSharingLinkWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgoraSharingLinkWidget.swift; sourceTree = "<group>"; };
+		865746FF2A963B47003FBF72 /* FcrAppWidgetSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppWidgetSample.swift; sourceTree = "<group>"; };
+		86820D8E2A613D2600ED4E54 /* FcrAppUIRoomListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIRoomListItemCell.swift; sourceTree = "<group>"; };
+		869026982A6E19C3006E0D44 /* FcrAppUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUITextField.swift; sourceTree = "<group>"; };
+		869D42632A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartCreateRoomViews.swift; sourceTree = "<group>"; };
+		869D42672A8A381A004EE63E /* FcrAppUIEnvironmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIEnvironmentViewController.swift; sourceTree = "<group>"; };
+		869D42692A8B2C84004EE63E /* FcrAppUIQuickStartRoomTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartRoomTypeViewController.swift; sourceTree = "<group>"; };
+		869D426C2A8B9328004EE63E /* FcrAppUIPolicyString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIPolicyString.swift; sourceTree = "<group>"; };
+		86A15D722A735D35001CDAD7 /* FcrAppUICreateRoomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICreateRoomViews.swift; sourceTree = "<group>"; };
+		86A15D762A7A9765001CDAD7 /* FcrAppUIMoreSettingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIMoreSettingViews.swift; sourceTree = "<group>"; };
+		86B81E5A2A5593A400BA631C /* FcrAppUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIViewController.swift; sourceTree = "<group>"; };
+		86B81E5D2A55AA4500BA631C /* FcrAppURLGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppURLGroup.swift; sourceTree = "<group>"; };
+		86B81E5F2A55AB8300BA631C /* FcrAppLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppLocalStorage.swift; sourceTree = "<group>"; };
+		86B81E612A5666B800BA631C /* FcrAppArmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppArmin.swift; sourceTree = "<group>"; };
+		86B81E632A5667D500BA631C /* FcrAppServerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppServerObject.swift; sourceTree = "<group>"; };
+		86B81E652A566C5800BA631C /* FcrAppCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppCenter.swift; sourceTree = "<group>"; };
+		86B81E672A568F4800BA631C /* FcrAppUINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FcrAppUINavigationController.swift; sourceTree = "<group>"; };
+		86B81E692A56A2B400BA631C /* FcrAppLocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppLocalUser.swift; sourceTree = "<group>"; };
+		86B81E6B2A56B16500BA631C /* FcrAppEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppEnums.swift; sourceTree = "<group>"; };
+		86B81E6D2A57EBEA00BA631C /* FcrAppRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppRoom.swift; sourceTree = "<group>"; };
+		86E502392A5FEC8C003C04D8 /* FcrAppObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppObjects.swift; sourceTree = "<group>"; };
+		86E5023D2A5FF145003C04D8 /* FcrAppClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppClosure.swift; sourceTree = "<group>"; };
+		86E502432A5FFAE1003C04D8 /* FcrAppUIRoomListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIRoomListController.swift; sourceTree = "<group>"; };
+		86E502462A60025A003C04D8 /* FcrAppUIObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIObjects.swift; sourceTree = "<group>"; };
+		86E502482A6002FD003C04D8 /* FcrAppUIEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIEnums.swift; sourceTree = "<group>"; };
+		86E5024A2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIRoomListSubViews.swift; sourceTree = "<group>"; };
+		86F5E31B2A8C677200AED16A /* FcrAppUIRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIRootViewController.swift; sourceTree = "<group>"; };
+		86F5E31D2A8CB4F700AED16A /* FcrAppUIQuickStartInputViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartInputViews.swift; sourceTree = "<group>"; };
+		86F5E31F2A8CBF9E00AED16A /* FcrAppUIFontGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIFontGroup.swift; sourceTree = "<group>"; };
 		8CD382F7BF039504C1D49C53 /* Pods-AgoraEducation.qatestrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.qatestrelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.qatestrelease.xcconfig"; sourceTree = "<group>"; };
 		A5BFF93D50503E0756F47D98 /* Pods-AgoraEducation.qarelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.qarelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.qarelease.xcconfig"; sourceTree = "<group>"; };
-		AB05CE9528C77387001239AD /* RoomCreateTableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCreateTableCells.swift; sourceTree = "<group>"; };
-		AB05CE9628C77387001239AD /* RoomCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCreateViewController.swift; sourceTree = "<group>"; };
-		AB05CE9928C89FAD001239AD /* RoomCreateTimeAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCreateTimeAlertController.swift; sourceTree = "<group>"; };
-		AB07A336287C549D0072A29F /* FcrLogoffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrLogoffViewController.swift; sourceTree = "<group>"; };
-		AB08496028D1812700214B68 /* RoomListJoinAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListJoinAlertController.swift; sourceTree = "<group>"; };
-		AB08497028D5CCE100214B68 /* RoomCreateMoreInfoCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCreateMoreInfoCells.swift; sourceTree = "<group>"; };
-		AB08497228D963C400214B68 /* FcrInputAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrInputAlertController.swift; sourceTree = "<group>"; };
-		AB0A2DD128DAEF6A0048FA3C /* LoginStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartViewController.swift; sourceTree = "<group>"; };
-		AB2AAFC4288A4BEE009D015C /* FcrOutsideClassBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrOutsideClassBaseController.swift; sourceTree = "<group>"; };
-		AB4F69CE286D8BEE0012E6B3 /* FcrSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FcrSettingsViewController.swift; sourceTree = "<group>"; };
-		AB4F69D0286D8C380012E6B3 /* FcrGeneralSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrGeneralSettingsViewController.swift; sourceTree = "<group>"; };
-		AB4F69D2286D8DE70012E6B3 /* FcrAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAboutViewController.swift; sourceTree = "<group>"; };
-		AB4F69D4286DBE140012E6B3 /* FcrNickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrNickNameViewController.swift; sourceTree = "<group>"; };
-		AB4F69D6286DBE490012E6B3 /* FcrRegionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrRegionViewController.swift; sourceTree = "<group>"; };
-		AB4F69D8286DBE830012E6B3 /* FcrLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrLanguageViewController.swift; sourceTree = "<group>"; };
-		AB4F69DC286DC5D40012E6B3 /* FcrNavigatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrNavigatorCell.swift; sourceTree = "<group>"; };
-		AB4F69DE286DC5F30012E6B3 /* FcrCheckBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrCheckBoxCell.swift; sourceTree = "<group>"; };
-		AB4F69E22872C2340012E6B3 /* FcrDisclaimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrDisclaimerViewController.swift; sourceTree = "<group>"; };
-		AB4F69E42872CA5E0012E6B3 /* FcrDetailInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FcrDetailInfoCell.swift; sourceTree = "<group>"; };
-		AB4F69E62874621F0012E6B3 /* FcrThemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FcrThemeViewController.swift; sourceTree = "<group>"; };
-		AB4F69E92876B3490012E6B3 /* FcrRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrRequest.swift; sourceTree = "<group>"; };
-		AB4F69ED2876D17A0012E6B3 /* FcrEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrEnvironment.swift; sourceTree = "<group>"; };
-		AB4F69EF2876E5160012E6B3 /* FcrUserInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FcrUserInfoPresenter.swift; sourceTree = "<group>"; };
-		AB7B7B6B28C1D8A7001D327A /* RoomListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListViewController.swift; sourceTree = "<group>"; };
-		AB7B7B6E28C1E0B1001D327A /* RoomListTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListTitleView.swift; sourceTree = "<group>"; };
-		AB7B7B7028C1E151001D327A /* RoomListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListItemCell.swift; sourceTree = "<group>"; };
-		AB80DBE528CB55320004E518 /* RoomItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomItemModel.swift; sourceTree = "<group>"; };
-		AB82D3A928D0B11A00ADFC84 /* RoomListShareAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListShareAlertController.swift; sourceTree = "<group>"; };
-		AB8AC744287FEB5000B57B58 /* FcrPrivacyTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrPrivacyTermsViewController.swift; sourceTree = "<group>"; };
-		AB8AC7462886D13600B57B58 /* FcrLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrLocalization.swift; sourceTree = "<group>"; };
-		ABB1D15C287C00A600395A13 /* LoginWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebViewController.swift; sourceTree = "<group>"; };
+		AB05CE9928C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICreateRoomTimePickerController.swift; sourceTree = "<group>"; };
+		AB07A336287C549D0072A29F /* FcrAppUICloseAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICloseAccountViewController.swift; sourceTree = "<group>"; };
+		AB08496028D1812700214B68 /* FcrAppUIJoinRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIJoinRoomController.swift; sourceTree = "<group>"; };
+		AB0A2DD128DAEF6A0048FA3C /* FcrAppUILoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUILoginViewController.swift; sourceTree = "<group>"; };
+		AB4F69CE286D8BEE0012E6B3 /* FcrAppUISettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FcrAppUISettingsViewController.swift; sourceTree = "<group>"; };
+		AB4F69D0286D8C380012E6B3 /* FcrAppUIGeneralSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIGeneralSettingsViewController.swift; sourceTree = "<group>"; };
+		AB4F69D2286D8DE70012E6B3 /* FcrAppUIAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIAboutViewController.swift; sourceTree = "<group>"; };
+		AB4F69D4286DBE140012E6B3 /* FcrAppUINicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUINicknameViewController.swift; sourceTree = "<group>"; };
+		AB4F69D6286DBE490012E6B3 /* FcrAppUIRegionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIRegionViewController.swift; sourceTree = "<group>"; };
+		AB4F69D8286DBE830012E6B3 /* FcrAppUILanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUILanguageViewController.swift; sourceTree = "<group>"; };
+		AB4F69DC286DC5D40012E6B3 /* FcrAppUINavigatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUINavigatorCell.swift; sourceTree = "<group>"; };
+		AB4F69DE286DC5F30012E6B3 /* FcrAppUICheckBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUICheckBoxCell.swift; sourceTree = "<group>"; };
+		AB4F69E22872C2340012E6B3 /* FcrAppUIDisclaimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIDisclaimerViewController.swift; sourceTree = "<group>"; };
+		AB4F69E42872CA5E0012E6B3 /* FcrAppUIDetailInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FcrAppUIDetailInfoCell.swift; sourceTree = "<group>"; };
+		AB4F69E62874621F0012E6B3 /* FcrAppUIModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FcrAppUIModeViewController.swift; sourceTree = "<group>"; };
+		AB7B7B6B28C1D8A7001D327A /* FcrAppUIMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIMainViewController.swift; sourceTree = "<group>"; };
+		AB7B7B6E28C1E0B1001D327A /* FcrAppUIMainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIMainHeaderView.swift; sourceTree = "<group>"; };
+		AB8AC744287FEB5000B57B58 /* FcrAppUIPrivacyTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIPrivacyTermsViewController.swift; sourceTree = "<group>"; };
+		ABB1D15C287C00A600395A13 /* FcrAppLoginWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppLoginWebViewController.swift; sourceTree = "<group>"; };
 		C4C459442E746BCF4D5997C8 /* Pods-AgoraEducation.certificateb.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.certificateb.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.certificateb.xcconfig"; sourceTree = "<group>"; };
 		D07BBD028AA8C6FEF9294576 /* Pods-AgoraEducation.certificatea.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.certificatea.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.certificatea.xcconfig"; sourceTree = "<group>"; };
 		D58F6327530BE8AC6BB7A5A6 /* Pods-AgoraEducation.qatestnewrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.qatestnewrelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.qatestnewrelease.xcconfig"; sourceTree = "<group>"; };
@@ -196,32 +201,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1AE0D0192283C5F40092AC5E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AE0D0242283C5F40092AC5E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		1A44BE3322BF863000766274 /* AgoraEducation */ = {
 			isa = PBXGroup;
 			children = (
-				78D7312E23B38B0A00D2146C /* Main */,
-				AB4F69E82876B3230012E6B3 /* General */,
-				7813B6F223FA5A0300265830 /* StoryBoards */,
-				78DFB67425AECAB700B01906 /* TokenBuilder */,
-				7801A89925DB7D7100C63ABF /* Debug */,
-				78D730C423B3853200D2146C /* Utils */,
+				86E502402A5FF1DF003C04D8 /* UI */,
+				86E5023B2A5FF097003C04D8 /* Logic */,
+				865746F82A963623003FBF72 /* Widgets */,
+				860CB3F62A97305500B03141 /* Extension */,
 				1A87571323581AEC009C55A8 /* Supporting Files */,
 			);
 			path = AgoraEducation;
@@ -230,8 +219,6 @@
 		1A87571323581AEC009C55A8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6861691926AEB1B800E26F69 /* Agora_Privacy_Policy_cn.rtf */,
-				6861691826AEB1B800E26F69 /* Agora_Privacy_Policy_en.rtf */,
 				78A3EA5E25640261003067AB /* AgoraEducation-Bridging-Header.h */,
 				1A44BE5722BF863000766274 /* Assets.xcassets */,
 				1A44BE7E22BF874A00766274 /* Info.plist */,
@@ -258,49 +245,8 @@
 			isa = PBXGroup;
 			children = (
 				1AE0D0042283C5F20092AC5E /* AgoraCloudClass.app */,
-				1AE0D01C2283C5F40092AC5E /* AgoraEducationTests.xctest */,
-				1AE0D0272283C5F40092AC5E /* AgoraEducationUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		681528AB289D0E6700EFD6F4 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				681528A7289CF4C500EFD6F4 /* DebugView.swift */,
-				681528AC289D0ED200EFD6F4 /* DebugOptionsView.swift */,
-				1550F0C0289E167D00F6B80F /* DebugInfoCell.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		6818977B28A259A600681DD9 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				681528A9289D00CD00EFD6F4 /* DebugModels.swift */,
-				6818977C28A259C200681DD9 /* DebugCoursewares.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		6836221126296F660028F7F5 /* Beans */ = {
-			isa = PBXGroup;
-			children = (
-				68362356262D30C20028F7F5 /* BaseLoginObject.swift */,
-				AB80DBE528CB55320004E518 /* RoomItemModel.swift */,
-			);
-			path = Beans;
-			sourceTree = "<group>";
-		};
-		7801A89925DB7D7100C63ABF /* Debug */ = {
-			isa = PBXGroup;
-			children = (
-				6818977B28A259A600681DD9 /* Models */,
-				681528AB289D0E6700EFD6F4 /* Views */,
-				681528A3289CF0FB00EFD6F4 /* DebugViewController.swift */,
-				681528A5289CF10400EFD6F4 /* DebugDataHandler.swift */,
-			);
-			path = Debug;
 			sourceTree = "<group>";
 		};
 		7813B6F223FA5A0300265830 /* StoryBoards */ = {
@@ -319,91 +265,299 @@
 			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
-		78D730C423B3853200D2146C /* Utils */ = {
+		860CB3F52A972B3000B03141 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				861D3CFA276AE05E00645D6A /* AppExtension.swift */,
+				86B81E5A2A5593A400BA631C /* FcrAppUIViewController.swift */,
+				86B81E672A568F4800BA631C /* FcrAppUINavigationController.swift */,
+				8629C3472A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift */,
+				869026982A6E19C3006E0D44 /* FcrAppUITextField.swift */,
+				860CB3F32A97276700B03141 /* FcrAppUITextView.swift */,
 			);
-			path = Utils;
+			path = Base;
 			sourceTree = "<group>";
 		};
-		78D7312E23B38B0A00D2146C /* Main */ = {
+		860CB3F62A97305500B03141 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				AB05CE9428C77387001239AD /* CreateRoom */,
-				AB7B7B6D28C1E05B001D327A /* RoomList */,
-				6836221126296F660028F7F5 /* Beans */,
-				78D7313923B38B5700D2146C /* Controllers */,
-				78D7313523B38B5700D2146C /* View */,
-				AB4F69CD286D8BEE0012E6B3 /* Settings */,
+				861D3CFA276AE05E00645D6A /* FcrAppExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		86140D172AA6D27400AC1E28 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				869D42672A8A381A004EE63E /* FcrAppUIEnvironmentViewController.swift */,
+				86140D182AA6D2A800AC1E28 /* FcrAppUIRoomDurationViewController.swift */,
+				86140D1A2AA720B200AC1E28 /* FcrAppUIStreamLatencyViewController.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		861978D62A69351500009890 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				AB7B7B6B28C1D8A7001D327A /* FcrAppUIMainViewController.swift */,
+				865746F32A94DA6C003FBF72 /* FcrAppUIMain+Extension.swift */,
+				86E502432A5FFAE1003C04D8 /* FcrAppUIRoomListController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
 		};
-		78D7313523B38B5700D2146C /* View */ = {
+		861978D72A69352500009890 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				15AFBEA02854996B003EBC0C /* AgreementView.swift */,
+				AB4F69CE286D8BEE0012E6B3 /* FcrAppUISettingsViewController.swift */,
+				AB4F69D0286D8C380012E6B3 /* FcrAppUIGeneralSettingsViewController.swift */,
+				AB4F69D2286D8DE70012E6B3 /* FcrAppUIAboutViewController.swift */,
+				869D42652A8A2EA9004EE63E /* General */,
+				869D42662A8A2FE7004EE63E /* About */,
 			);
-			path = View;
+			path = Setting;
 			sourceTree = "<group>";
 		};
-		78D7313923B38B5700D2146C /* Controllers */ = {
+		861978DA2A6A599500009890 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				ABB1D15C287C00A600395A13 /* LoginWebViewController.swift */,
-				688809E72629358800B5FB2A /* FcrNavigationController.swift */,
-				AB0A2DD128DAEF6A0048FA3C /* LoginStartViewController.swift */,
+				AB7B7B6E28C1E0B1001D327A /* FcrAppUIMainHeaderView.swift */,
+				86E5024A2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift */,
+				86820D8E2A613D2600ED4E54 /* FcrAppUIRoomListItemCell.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		861978DB2A6A59A300009890 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				861978D82A69418100009890 /* FcrAppUISettingTableView.swift */,
+				AB4F69DC286DC5D40012E6B3 /* FcrAppUINavigatorCell.swift */,
+				AB4F69DE286DC5F30012E6B3 /* FcrAppUICheckBoxCell.swift */,
+				AB4F69E42872CA5E0012E6B3 /* FcrAppUIDetailInfoCell.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		8629C3492A81149000DA97B7 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				8629C34A2A8114A900DA97B7 /* FcrAppUIColorGroup.swift */,
+				8629C3532A8482F900DA97B7 /* FcrAppUIFrameGroup.swift */,
+				86F5E31F2A8CBF9E00AED16A /* FcrAppUIFontGroup.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		8629C34C2A83495B00DA97B7 /* Join */ = {
+			isa = PBXGroup;
+			children = (
+				8629C34D2A83497200DA97B7 /* FcrAppUIJoinRoomViews.swift */,
+			);
+			path = Join;
+			sourceTree = "<group>";
+		};
+		8629C3502A83BF5A00DA97B7 /* QuickStart */ = {
+			isa = PBXGroup;
+			children = (
+				8629C3512A83C16C00DA97B7 /* FcrAppUIQuickStartViewController.swift */,
+				865746F52A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift */,
+				869D42692A8B2C84004EE63E /* FcrAppUIQuickStartRoomTypeViewController.swift */,
+				869D426B2A8B5A35004EE63E /* Views */,
+			);
+			path = QuickStart;
+			sourceTree = "<group>";
+		};
+		865746F72A94E005003FBF72 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				AB0A2DD128DAEF6A0048FA3C /* FcrAppUILoginViewController.swift */,
+				AB8AC744287FEB5000B57B58 /* FcrAppUIPrivacyTermsViewController.swift */,
+				ABB1D15C287C00A600395A13 /* FcrAppLoginWebViewController.swift */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		865746F82A963623003FBF72 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				865746FF2A963B47003FBF72 /* FcrAppWidgetSample.swift */,
+				865746FB2A96368C003FBF72 /* SharingLink */,
+				865746F92A96368C003FBF72 /* Watermark */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		865746F92A96368C003FBF72 /* Watermark */ = {
+			isa = PBXGroup;
+			children = (
+				865746FA2A96368C003FBF72 /* AgoraWatermarkWidget.swift */,
+			);
+			path = Watermark;
+			sourceTree = "<group>";
+		};
+		865746FB2A96368C003FBF72 /* SharingLink */ = {
+			isa = PBXGroup;
+			children = (
+				865746FC2A96368C003FBF72 /* AgoraSharingLinkWidget.swift */,
+			);
+			path = SharingLink;
+			sourceTree = "<group>";
+		};
+		869D42652A8A2EA9004EE63E /* General */ = {
+			isa = PBXGroup;
+			children = (
+				AB4F69D4286DBE140012E6B3 /* FcrAppUINicknameViewController.swift */,
+				AB4F69D8286DBE830012E6B3 /* FcrAppUILanguageViewController.swift */,
+				AB4F69D6286DBE490012E6B3 /* FcrAppUIRegionViewController.swift */,
+				AB4F69E62874621F0012E6B3 /* FcrAppUIModeViewController.swift */,
+				AB07A336287C549D0072A29F /* FcrAppUICloseAccountViewController.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		869D42662A8A2FE7004EE63E /* About */ = {
+			isa = PBXGroup;
+			children = (
+				AB4F69E22872C2340012E6B3 /* FcrAppUIDisclaimerViewController.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		869D426B2A8B5A35004EE63E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8629C3552A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift */,
+				86F5E31D2A8CB4F700AED16A /* FcrAppUIQuickStartInputViews.swift */,
+				8629C3572A850DD200DA97B7 /* FcrAppUIQuickStartJoinRoomViews.swift */,
+				869D42632A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		86A15D712A72A059001CDAD7 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				86A15D722A735D35001CDAD7 /* FcrAppUICreateRoomViews.swift */,
+				86A15D762A7A9765001CDAD7 /* FcrAppUIMoreSettingViews.swift */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
+		86B81E592A55918400BA631C /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				86E502412A5FF1F1003C04D8 /* Controllers */,
+				86B81E5C2A55946100BA631C /* Views */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		86B81E5C2A55946100BA631C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				861978DA2A6A599500009890 /* Main */,
+				8629C34C2A83495B00DA97B7 /* Join */,
+				86A15D712A72A059001CDAD7 /* Create */,
+				861978DB2A6A59A300009890 /* Setting */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		86E5023B2A5FF097003C04D8 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				86B81E652A566C5800BA631C /* FcrAppCenter.swift */,
+				86B81E6D2A57EBEA00BA631C /* FcrAppRoom.swift */,
+				86B81E692A56A2B400BA631C /* FcrAppLocalUser.swift */,
+				86E5023F2A5FF1A9003C04D8 /* Providers */,
+				86E5023C2A5FF0CC003C04D8 /* DataStructure */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		86E5023C2A5FF0CC003C04D8 /* DataStructure */ = {
+			isa = PBXGroup;
+			children = (
+				86B81E6B2A56B16500BA631C /* FcrAppEnums.swift */,
+				86E502392A5FEC8C003C04D8 /* FcrAppObjects.swift */,
+				86B81E632A5667D500BA631C /* FcrAppServerObject.swift */,
+				86E5023D2A5FF145003C04D8 /* FcrAppClosure.swift */,
+			);
+			path = DataStructure;
+			sourceTree = "<group>";
+		};
+		86E5023F2A5FF1A9003C04D8 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				86B81E5F2A55AB8300BA631C /* FcrAppLocalStorage.swift */,
+				86B81E5D2A55AA4500BA631C /* FcrAppURLGroup.swift */,
+				86B81E612A5666B800BA631C /* FcrAppArmin.swift */,
+				865746F12A949494003FBF72 /* FcrAppTester.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		86E502402A5FF1DF003C04D8 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				86F5E31A2A8C675300AED16A /* Root */,
+				86B81E592A55918400BA631C /* Start */,
+				8629C3502A83BF5A00DA97B7 /* QuickStart */,
+				860CB3F52A972B3000B03141 /* Base */,
+				86E502452A600233003C04D8 /* DataStructure */,
+				8629C3492A81149000DA97B7 /* Config */,
+				86140D172AA6D27400AC1E28 /* Test */,
+				7813B6F223FA5A0300265830 /* StoryBoards */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		86E502412A5FF1F1003C04D8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				865746F72A94E005003FBF72 /* Launch */,
+				861978D62A69351500009890 /* Main */,
+				86F0358B2A710AC4002B3852 /* Join */,
+				86F0358C2A710AD8002B3852 /* Create */,
+				861978D72A69352500009890 /* Setting */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		78DFB67425AECAB700B01906 /* TokenBuilder */ = {
+		86E502452A600233003C04D8 /* DataStructure */ = {
 			isa = PBXGroup;
 			children = (
-				2616FAB1271EC4530086397B /* TokenBuilder.swift */,
-				78DFB68525AEE20B00B01906 /* RtmTokenTool */,
+				86E502482A6002FD003C04D8 /* FcrAppUIEnums.swift */,
+				86E502462A60025A003C04D8 /* FcrAppUIObjects.swift */,
+				869D426C2A8B9328004EE63E /* FcrAppUIPolicyString.swift */,
 			);
-			path = TokenBuilder;
+			path = DataStructure;
 			sourceTree = "<group>";
 		};
-		78DFB68525AEE20B00B01906 /* RtmTokenTool */ = {
+		86F0358B2A710AC4002B3852 /* Join */ = {
 			isa = PBXGroup;
 			children = (
-				78DFB68725AEE20B00B01906 /* RtmTokenTool.h */,
-				78DFB68625AEE20B00B01906 /* RtmTokenTool.mm */,
-				78DFB68825AEE20B00B01906 /* src */,
+				AB08496028D1812700214B68 /* FcrAppUIJoinRoomController.swift */,
 			);
-			path = RtmTokenTool;
+			path = Join;
 			sourceTree = "<group>";
 		};
-		78DFB68825AEE20B00B01906 /* src */ = {
+		86F0358C2A710AD8002B3852 /* Create */ = {
 			isa = PBXGroup;
 			children = (
-				78DFB68925AEE20B00B01906 /* utils.h */,
-				78DFB68A25AEE20B00B01906 /* md5 */,
-				78DFB68D25AEE20B00B01906 /* DynamicKey5.h */,
-				78DFB68E25AEE20B00B01906 /* Packer.h */,
-				78DFB68F25AEE20B00B01906 /* generatorSignalToken.h */,
-				78DFB69025AEE20B00B01906 /* AccessToken.h */,
-				78DFB69125AEE20B00B01906 /* DynamicKey2.h */,
-				78DFB69225AEE20B00B01906 /* RtmTokenBuilder.h */,
-				78DFB69325AEE20B00B01906 /* DynamicKey3.h */,
-				78DFB69425AEE20B00B01906 /* generatorSignalToken-Linux.h */,
-				78DFB69525AEE20B00B01906 /* RtcTokenBuilder.h */,
-				78DFB69625AEE20B00B01906 /* DynamicKey.h */,
-				78DFB69725AEE20B00B01906 /* DynamicKey4.h */,
+				8629C3452A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift */,
+				AB05CE9928C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift */,
 			);
-			path = src;
+			path = Create;
 			sourceTree = "<group>";
 		};
-		78DFB68A25AEE20B00B01906 /* md5 */ = {
+		86F5E31A2A8C675300AED16A /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				78DFB68B25AEE20B00B01906 /* md5.cpp */,
-				78DFB68C25AEE20B00B01906 /* md5.h */,
+				86F5E31B2A8C677200AED16A /* FcrAppUIRootViewController.swift */,
+				860CB3F72A97428200B03141 /* FcrAppUICoreViewController.swift */,
 			);
-			path = md5;
+			path = Root;
 			sourceTree = "<group>";
 		};
 		938D296AAD5470F95D0BD9D5 /* Pods */ = {
@@ -421,70 +575,6 @@
 				7710B25021320B9CCD7E9CE1 /* Pods-AgoraEducation.certificated.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		AB05CE9428C77387001239AD /* CreateRoom */ = {
-			isa = PBXGroup;
-			children = (
-				AB05CE9528C77387001239AD /* RoomCreateTableCells.swift */,
-				AB05CE9628C77387001239AD /* RoomCreateViewController.swift */,
-				AB05CE9928C89FAD001239AD /* RoomCreateTimeAlertController.swift */,
-				AB08497028D5CCE100214B68 /* RoomCreateMoreInfoCells.swift */,
-				AB08497228D963C400214B68 /* FcrInputAlertController.swift */,
-			);
-			path = CreateRoom;
-			sourceTree = "<group>";
-		};
-		AB4F69CD286D8BEE0012E6B3 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				AB4F69CE286D8BEE0012E6B3 /* FcrSettingsViewController.swift */,
-				AB4F69D0286D8C380012E6B3 /* FcrGeneralSettingsViewController.swift */,
-				AB4F69D2286D8DE70012E6B3 /* FcrAboutViewController.swift */,
-				AB4F69D4286DBE140012E6B3 /* FcrNickNameViewController.swift */,
-				AB4F69D6286DBE490012E6B3 /* FcrRegionViewController.swift */,
-				AB4F69E62874621F0012E6B3 /* FcrThemeViewController.swift */,
-				AB4F69D8286DBE830012E6B3 /* FcrLanguageViewController.swift */,
-				AB4F69E22872C2340012E6B3 /* FcrDisclaimerViewController.swift */,
-				AB07A336287C549D0072A29F /* FcrLogoffViewController.swift */,
-				AB8AC744287FEB5000B57B58 /* FcrPrivacyTermsViewController.swift */,
-				AB4F69DA286DC4260012E6B3 /* View */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
-		AB4F69DA286DC4260012E6B3 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				AB4F69DC286DC5D40012E6B3 /* FcrNavigatorCell.swift */,
-				AB4F69DE286DC5F30012E6B3 /* FcrCheckBoxCell.swift */,
-				AB4F69E42872CA5E0012E6B3 /* FcrDetailInfoCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		AB4F69E82876B3230012E6B3 /* General */ = {
-			isa = PBXGroup;
-			children = (
-				AB4F69EF2876E5160012E6B3 /* FcrUserInfoPresenter.swift */,
-				AB4F69E92876B3490012E6B3 /* FcrRequest.swift */,
-				AB4F69ED2876D17A0012E6B3 /* FcrEnvironment.swift */,
-				AB8AC7462886D13600B57B58 /* FcrLocalization.swift */,
-				AB2AAFC4288A4BEE009D015C /* FcrOutsideClassBaseController.swift */,
-			);
-			path = General;
-			sourceTree = "<group>";
-		};
-		AB7B7B6D28C1E05B001D327A /* RoomList */ = {
-			isa = PBXGroup;
-			children = (
-				AB7B7B6B28C1D8A7001D327A /* RoomListViewController.swift */,
-				AB7B7B7028C1E151001D327A /* RoomListItemCell.swift */,
-				AB7B7B6E28C1E0B1001D327A /* RoomListTitleView.swift */,
-				AB82D3A928D0B11A00ADFC84 /* RoomListShareAlertController.swift */,
-				AB08496028D1812700214B68 /* RoomListJoinAlertController.swift */,
-			);
-			path = RoomList;
 			sourceTree = "<group>";
 		};
 		E01323DE5BE7ACD24D968F1E /* Frameworks */ = {
@@ -528,42 +618,6 @@
 			productReference = 1AE0D0042283C5F20092AC5E /* AgoraCloudClass.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1AE0D01B2283C5F40092AC5E /* AgoraEducationTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1AE0D0332283C5F40092AC5E /* Build configuration list for PBXNativeTarget "AgoraEducationTests" */;
-			buildPhases = (
-				1AE0D0182283C5F40092AC5E /* Sources */,
-				1AE0D0192283C5F40092AC5E /* Frameworks */,
-				1AE0D01A2283C5F40092AC5E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1AE0D01E2283C5F40092AC5E /* PBXTargetDependency */,
-			);
-			name = AgoraEducationTests;
-			productName = AgoraSmallClassTests;
-			productReference = 1AE0D01C2283C5F40092AC5E /* AgoraEducationTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		1AE0D0262283C5F40092AC5E /* AgoraEducationUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1AE0D0362283C5F40092AC5E /* Build configuration list for PBXNativeTarget "AgoraEducationUITests" */;
-			buildPhases = (
-				1AE0D0232283C5F40092AC5E /* Sources */,
-				1AE0D0242283C5F40092AC5E /* Frameworks */,
-				1AE0D0252283C5F40092AC5E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1AE0D0292283C5F40092AC5E /* PBXTargetDependency */,
-			);
-			name = AgoraEducationUITests;
-			productName = AgoraSmallClassUITests;
-			productReference = 1AE0D0272283C5F40092AC5E /* AgoraEducationUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -582,14 +636,6 @@
 							};
 						};
 					};
-					1AE0D01B2283C5F40092AC5E = {
-						CreatedOnToolsVersion = 10.2.1;
-						TestTargetID = 1AE0D0032283C5F20092AC5E;
-					};
-					1AE0D0262283C5F40092AC5E = {
-						CreatedOnToolsVersion = 10.2.1;
-						TestTargetID = 1AE0D0032283C5F20092AC5E;
-					};
 				};
 			};
 			buildConfigurationList = 1AE0CFFF2283C5F20092AC5E /* Build configuration list for PBXProject "AgoraEducation" */;
@@ -607,8 +653,6 @@
 			projectRoot = "";
 			targets = (
 				1AE0D0032283C5F20092AC5E /* AgoraEducation */,
-				1AE0D01B2283C5F40092AC5E /* AgoraEducationTests */,
-				1AE0D0262283C5F40092AC5E /* AgoraEducationUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -621,23 +665,7 @@
 				7813B70223FA5A0300265830 /* LaunchScreen.storyboard in Resources */,
 				7878B4C523FA72EE00AF1B4F /* Localizable.strings in Resources */,
 				1A44BE7522BF863000766274 /* Assets.xcassets in Resources */,
-				6861691B26AEB1B800E26F69 /* Agora_Privacy_Policy_cn.rtf in Resources */,
-				6861691A26AEB1B800E26F69 /* Agora_Privacy_Policy_en.rtf in Resources */,
 				7878B4CB23FA735700AF1B4F /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AE0D01A2283C5F40092AC5E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AE0D0252283C5F40092AC5E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,7 +689,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd $SRCROOT/../Products/Scripts/Build\nchmod u+x ./build-date.sh\n\n./build-date.sh\n\ncd $SRCROOT/../\ngit config core.hooksPath .githooks\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd $SRCROOT/../Products/Scripts/Build\nchmod u+x ./build_date.sh\n\n./build_date.sh\n\ncd $SRCROOT/../\ngit config core.hooksPath .githooks\n";
 		};
 		9CCF3ABB7D45F972FD1E62D9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -709,84 +737,78 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB4F69E72874621F0012E6B3 /* FcrThemeViewController.swift in Sources */,
-				86292F1E28F6A41900E7F225 /* AgreementView.swift in Sources */,
-				AB80DBE628CB55320004E518 /* RoomItemModel.swift in Sources */,
-				AB4F69E32872C2340012E6B3 /* FcrDisclaimerViewController.swift in Sources */,
-				688809E82629358800B5FB2A /* FcrNavigationController.swift in Sources */,
-				6818977D28A259C200681DD9 /* DebugCoursewares.swift in Sources */,
-				AB4F69DD286DC5D40012E6B3 /* FcrNavigatorCell.swift in Sources */,
-				AB08497128D5CCE100214B68 /* RoomCreateMoreInfoCells.swift in Sources */,
-				AB82D3AA28D0B11A00ADFC84 /* RoomListShareAlertController.swift in Sources */,
-				AB05CE9A28C89FAD001239AD /* RoomCreateTimeAlertController.swift in Sources */,
-				AB0A2DD228DAEF6A0048FA3C /* LoginStartViewController.swift in Sources */,
-				AB4F69EA2876B3490012E6B3 /* FcrRequest.swift in Sources */,
+				865746F62A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift in Sources */,
+				865747002A963B47003FBF72 /* FcrAppWidgetSample.swift in Sources */,
+				AB4F69E72874621F0012E6B3 /* FcrAppUIModeViewController.swift in Sources */,
+				AB4F69E32872C2340012E6B3 /* FcrAppUIDisclaimerViewController.swift in Sources */,
+				AB4F69DD286DC5D40012E6B3 /* FcrAppUINavigatorCell.swift in Sources */,
+				86B81E6C2A56B16500BA631C /* FcrAppEnums.swift in Sources */,
+				86B81E622A5666B800BA631C /* FcrAppArmin.swift in Sources */,
+				86E502492A6002FD003C04D8 /* FcrAppUIEnums.swift in Sources */,
+				AB05CE9A28C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift in Sources */,
+				AB0A2DD228DAEF6A0048FA3C /* FcrAppUILoginViewController.swift in Sources */,
 				1A44BE7B22BF863000766274 /* AppDelegate.m in Sources */,
-				78DFB69925AEE20B00B01906 /* md5.cpp in Sources */,
-				AB4F69D3286D8DE70012E6B3 /* FcrAboutViewController.swift in Sources */,
-				AB7B7B6F28C1E0B1001D327A /* RoomListTitleView.swift in Sources */,
-				AB05CE9728C77387001239AD /* RoomCreateTableCells.swift in Sources */,
-				AB8AC745287FEB5000B57B58 /* FcrPrivacyTermsViewController.swift in Sources */,
-				681528A8289CF4C500EFD6F4 /* DebugView.swift in Sources */,
-				AB4F69DF286DC5F30012E6B3 /* FcrCheckBoxCell.swift in Sources */,
-				AB08497328D963C400214B68 /* FcrInputAlertController.swift in Sources */,
-				AB4F69D7286DBE490012E6B3 /* FcrRegionViewController.swift in Sources */,
-				1550F0C1289E167D00F6B80F /* DebugInfoCell.swift in Sources */,
-				681528A4289CF0FB00EFD6F4 /* DebugViewController.swift in Sources */,
-				ABB1D15D287C00A600395A13 /* LoginWebViewController.swift in Sources */,
-				AB05CE9828C77387001239AD /* RoomCreateViewController.swift in Sources */,
-				AB2AAFC5288A4BEE009D015C /* FcrOutsideClassBaseController.swift in Sources */,
-				AB08496128D1812700214B68 /* RoomListJoinAlertController.swift in Sources */,
-				AB4F69D5286DBE140012E6B3 /* FcrNickNameViewController.swift in Sources */,
-				681528A6289CF10400EFD6F4 /* DebugDataHandler.swift in Sources */,
-				AB7B7B7128C1E151001D327A /* RoomListItemCell.swift in Sources */,
-				AB4F69D1286D8C380012E6B3 /* FcrGeneralSettingsViewController.swift in Sources */,
-				68403F83276C859800E88214 /* AppExtension.swift in Sources */,
-				2616FAB2271EC4530086397B /* TokenBuilder.swift in Sources */,
-				AB4F69F02876E5160012E6B3 /* FcrUserInfoPresenter.swift in Sources */,
-				AB8AC7472886D13600B57B58 /* FcrLocalization.swift in Sources */,
-				AB7B7B6C28C1D8A7001D327A /* RoomListViewController.swift in Sources */,
-				AB4F69D9286DBE830012E6B3 /* FcrLanguageViewController.swift in Sources */,
-				681528AA289D00CD00EFD6F4 /* DebugModels.swift in Sources */,
-				78DFB69825AEE20B00B01906 /* RtmTokenTool.mm in Sources */,
-				AB07A337287C549D0072A29F /* FcrLogoffViewController.swift in Sources */,
-				68362357262D30C20028F7F5 /* BaseLoginObject.swift in Sources */,
-				681528AD289D0ED200EFD6F4 /* DebugOptionsView.swift in Sources */,
+				86F5E3202A8CBF9E00AED16A /* FcrAppUIFontGroup.swift in Sources */,
+				86B81E6A2A56A2B400BA631C /* FcrAppLocalUser.swift in Sources */,
+				AB4F69D3286D8DE70012E6B3 /* FcrAppUIAboutViewController.swift in Sources */,
+				AB7B7B6F28C1E0B1001D327A /* FcrAppUIMainHeaderView.swift in Sources */,
+				AB8AC745287FEB5000B57B58 /* FcrAppUIPrivacyTermsViewController.swift in Sources */,
+				AB4F69DF286DC5F30012E6B3 /* FcrAppUICheckBoxCell.swift in Sources */,
+				86E502472A60025A003C04D8 /* FcrAppUIObjects.swift in Sources */,
+				86E5024B2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift in Sources */,
+				AB4F69D7286DBE490012E6B3 /* FcrAppUIRegionViewController.swift in Sources */,
+				869026992A6E19C3006E0D44 /* FcrAppUITextField.swift in Sources */,
+				8629C3522A83C16C00DA97B7 /* FcrAppUIQuickStartViewController.swift in Sources */,
+				8629C3462A7CDB2800DA97B7 /* FcrAppUICreateRoomViewController.swift in Sources */,
+				86820D8F2A613D2600ED4E54 /* FcrAppUIRoomListItemCell.swift in Sources */,
+				865746FD2A96368C003FBF72 /* AgoraWatermarkWidget.swift in Sources */,
+				ABB1D15D287C00A600395A13 /* FcrAppLoginWebViewController.swift in Sources */,
+				86E5023E2A5FF145003C04D8 /* FcrAppClosure.swift in Sources */,
+				86B81E5E2A55AA4500BA631C /* FcrAppURLGroup.swift in Sources */,
+				865746F42A94DA6C003FBF72 /* FcrAppUIMain+Extension.swift in Sources */,
+				86140D1B2AA720B200AC1E28 /* FcrAppUIStreamLatencyViewController.swift in Sources */,
+				8629C34B2A8114A900DA97B7 /* FcrAppUIColorGroup.swift in Sources */,
+				8629C3482A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift in Sources */,
+				AB08496128D1812700214B68 /* FcrAppUIJoinRoomController.swift in Sources */,
+				8629C3542A8482F900DA97B7 /* FcrAppUIFrameGroup.swift in Sources */,
+				86B81E662A566C5800BA631C /* FcrAppCenter.swift in Sources */,
+				AB4F69D5286DBE140012E6B3 /* FcrAppUINicknameViewController.swift in Sources */,
+				8629C3562A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift in Sources */,
+				869D42682A8A381A004EE63E /* FcrAppUIEnvironmentViewController.swift in Sources */,
+				860CB3F42A97276700B03141 /* FcrAppUITextView.swift in Sources */,
+				860CB3F82A97428200B03141 /* FcrAppUICoreViewController.swift in Sources */,
+				86E502442A5FFAE1003C04D8 /* FcrAppUIRoomListController.swift in Sources */,
+				AB4F69D1286D8C380012E6B3 /* FcrAppUIGeneralSettingsViewController.swift in Sources */,
+				68403F83276C859800E88214 /* FcrAppExtension.swift in Sources */,
+				86A15D772A7A9765001CDAD7 /* FcrAppUIMoreSettingViews.swift in Sources */,
+				86B81E602A55AB8300BA631C /* FcrAppLocalStorage.swift in Sources */,
+				86F5E31E2A8CB4F700AED16A /* FcrAppUIQuickStartInputViews.swift in Sources */,
+				AB7B7B6C28C1D8A7001D327A /* FcrAppUIMainViewController.swift in Sources */,
+				869D426A2A8B2C84004EE63E /* FcrAppUIQuickStartRoomTypeViewController.swift in Sources */,
+				86B81E682A568F4800BA631C /* FcrAppUINavigationController.swift in Sources */,
+				AB4F69D9286DBE830012E6B3 /* FcrAppUILanguageViewController.swift in Sources */,
+				86B81E642A5667D500BA631C /* FcrAppServerObject.swift in Sources */,
+				86A15D732A735D35001CDAD7 /* FcrAppUICreateRoomViews.swift in Sources */,
+				861978D92A69418100009890 /* FcrAppUISettingTableView.swift in Sources */,
+				8629C3582A850DD200DA97B7 /* FcrAppUIQuickStartJoinRoomViews.swift in Sources */,
+				865746F22A949494003FBF72 /* FcrAppTester.swift in Sources */,
+				86F5E31C2A8C677200AED16A /* FcrAppUIRootViewController.swift in Sources */,
+				86140D192AA6D2A800AC1E28 /* FcrAppUIRoomDurationViewController.swift in Sources */,
+				AB07A337287C549D0072A29F /* FcrAppUICloseAccountViewController.swift in Sources */,
+				869D42642A860233004EE63E /* FcrAppUIQuickStartCreateRoomViews.swift in Sources */,
+				86B81E6E2A57EBEA00BA631C /* FcrAppRoom.swift in Sources */,
+				8629C34E2A83497200DA97B7 /* FcrAppUIJoinRoomViews.swift in Sources */,
+				86B81E5B2A5593A400BA631C /* FcrAppUIViewController.swift in Sources */,
+				865746FE2A96368C003FBF72 /* AgoraSharingLinkWidget.swift in Sources */,
 				1A44BE7A22BF863000766274 /* main.m in Sources */,
-				AB4F69E52872CA5E0012E6B3 /* FcrDetailInfoCell.swift in Sources */,
-				AB4F69CF286D8BEE0012E6B3 /* FcrSettingsViewController.swift in Sources */,
-				AB4F69EE2876D17A0012E6B3 /* FcrEnvironment.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AE0D0182283C5F40092AC5E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AE0D0232283C5F40092AC5E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				AB4F69E52872CA5E0012E6B3 /* FcrAppUIDetailInfoCell.swift in Sources */,
+				AB4F69CF286D8BEE0012E6B3 /* FcrAppUISettingsViewController.swift in Sources */,
+				869D426D2A8B9328004EE63E /* FcrAppUIPolicyString.swift in Sources */,
+				86E5023A2A5FEC8C003C04D8 /* FcrAppObjects.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		1AE0D01E2283C5F40092AC5E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1AE0D0032283C5F20092AC5E /* AgoraEducation */;
-			targetProxy = 1AE0D01D2283C5F40092AC5E /* PBXContainerItemProxy */;
-		};
-		1AE0D0292283C5F40092AC5E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1AE0D0032283C5F20092AC5E /* AgoraEducation */;
-			targetProxy = 1AE0D0282283C5F40092AC5E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7813B6F623FA5A0300265830 /* LaunchScreen.storyboard */ = {
@@ -986,7 +1008,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.60;
+				MARKETING_VERSION = 2.8.70;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraEducation;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1050,7 +1072,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.60;
+				MARKETING_VERSION = 2.8.70;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraFlexEduDis;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1062,80 +1084,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "AgoraEducation/Supporting Files/AgoraEducation-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		1AE0D0342283C5F40092AC5E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AgoraSmallClassTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSmallClassTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraCloudClass.app/AgoraCloudClass";
-			};
-			name = Debug;
-		};
-		1AE0D0352283C5F40092AC5E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AgoraSmallClassTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSmallClassTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraCloudClass.app/AgoraCloudClass";
-			};
-			name = Release;
-		};
-		1AE0D0372283C5F40092AC5E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AgoraSmallClassUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSmallClassUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AgoraSmallClass;
-			};
-			name = Debug;
-		};
-		1AE0D0382283C5F40092AC5E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AgoraSmallClassUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSmallClassUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AgoraSmallClass;
 			};
 			name = Release;
 		};
@@ -1244,7 +1192,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.60;
+				MARKETING_VERSION = 2.8.70;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.WayangQA;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1257,43 +1205,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "AgoraEducation/Supporting Files/AgoraEducation-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = CertificateC;
-		};
-		7868EA4725DE8F4300D95021 /* CertificateC */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AgoraSmallClassTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSmallClassTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraCloudClass.app/AgoraCloudClass";
-			};
-			name = CertificateC;
-		};
-		7868EA4825DE8F4300D95021 /* CertificateC */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AgoraSmallClassUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSmallClassUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AgoraSmallClass;
 			};
 			name = CertificateC;
 		};
@@ -1401,7 +1312,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.60;
+				MARKETING_VERSION = 2.8.70;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.CertificateA;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1413,43 +1324,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "AgoraEducation/Supporting Files/AgoraEducation-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = CertificateA;
-		};
-		78AED04823C58E5D00A24DDB /* CertificateA */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AgoraSmallClassTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSmallClassTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraCloudClass.app/AgoraCloudClass";
-			};
-			name = CertificateA;
-		};
-		78AED04923C58E5D00A24DDB /* CertificateA */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AgoraSmallClassUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSmallClassUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AgoraSmallClass;
 			};
 			name = CertificateA;
 		};
@@ -1557,7 +1431,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.60;
+				MARKETING_VERSION = 2.8.70;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.CertificateB;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1569,43 +1443,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "AgoraEducation/Supporting Files/AgoraEducation-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = CertificateB;
-		};
-		78CFE1DE257DE5AD0044F3D5 /* CertificateB */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AgoraSmallClassTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSmallClassTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraCloudClass.app/AgoraCloudClass";
-			};
-			name = CertificateB;
-		};
-		78CFE1DF257DE5AD0044F3D5 /* CertificateB */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AgoraSmallClassUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSmallClassUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AgoraSmallClass;
 			};
 			name = CertificateB;
 		};
@@ -1713,7 +1550,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.60;
+				MARKETING_VERSION = 2.8.70;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.CertificateD;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1725,43 +1562,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "AgoraEducation/Supporting Files/AgoraEducation-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = CertificateD;
-		};
-		862C3F7A28E41750002DEEBB /* CertificateD */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AgoraSmallClassTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSmallClassTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraCloudClass.app/AgoraCloudClass";
-			};
-			name = CertificateD;
-		};
-		862C3F7B28E41750002DEEBB /* CertificateD */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AgoraSmallClassUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSmallClassUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AgoraSmallClass;
 			};
 			name = CertificateD;
 		};
@@ -1790,32 +1590,6 @@
 				78CFE1DD257DE5AD0044F3D5 /* CertificateB */,
 				7868EA4625DE8F4300D95021 /* CertificateC */,
 				862C3F7928E41750002DEEBB /* CertificateD */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1AE0D0332283C5F40092AC5E /* Build configuration list for PBXNativeTarget "AgoraEducationTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1AE0D0342283C5F40092AC5E /* Debug */,
-				1AE0D0352283C5F40092AC5E /* Release */,
-				78AED04823C58E5D00A24DDB /* CertificateA */,
-				78CFE1DE257DE5AD0044F3D5 /* CertificateB */,
-				7868EA4725DE8F4300D95021 /* CertificateC */,
-				862C3F7A28E41750002DEEBB /* CertificateD */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1AE0D0362283C5F40092AC5E /* Build configuration list for PBXNativeTarget "AgoraEducationUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1AE0D0372283C5F40092AC5E /* Debug */,
-				1AE0D0382283C5F40092AC5E /* Release */,
-				78AED04923C58E5D00A24DDB /* CertificateA */,
-				78CFE1DF257DE5AD0044F3D5 /* CertificateB */,
-				7868EA4825DE8F4300D95021 /* CertificateC */,
-				862C3F7B28E41750002DEEBB /* CertificateD */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
