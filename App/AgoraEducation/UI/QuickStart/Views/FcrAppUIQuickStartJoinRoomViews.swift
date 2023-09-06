@@ -150,8 +150,6 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
         
         roomIdTextField.leftLabel.font = FcrAppUIFontGroup.font15
         roomIdTextField.leftLabel.textAlignment = .left
-        // TODO: UI
-//        roomIdTextField.font = UIFon
         
         userNameTextField.leftLabel.font = FcrAppUIFontGroup.font15
         userNameTextField.leftLabel.textAlignment = .left
@@ -216,6 +214,8 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
         
         joinButton.setTitleColor(FcrAppUIColorGroup.fcr_white,
                                  for: .normal)
+        
+        roleCollection.backgroundColor = .white
         
         roleCollection.reloadData()
     }

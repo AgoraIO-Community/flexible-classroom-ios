@@ -10,7 +10,6 @@ import AgoraUIBaseViews
 
 class FcrAppUIRoomDurationViewController: FcrAppUIViewController {
     private let textField = FcrAppUIIconTextField(leftViewType: .text)
-    private let line = UIView()
     private var center = FcrAppCenter()
     
     init(center: FcrAppCenter) {
@@ -67,7 +66,6 @@ extension FcrAppUIRoomDurationViewController: AgoraUIContentContainer {
         textField.clearButtonMode = .whileEditing
         
         view.addSubview(textField)
-//        view.addSubview(line)
     }
     
     func initViewFrame() {
@@ -77,12 +75,6 @@ extension FcrAppUIRoomDurationViewController: AgoraUIContentContainer {
             make?.right.equalTo()(-16)
             make?.height.equalTo()(52)
         }
-        
-//        line.mas_makeConstraints { make in
-//            make?.left.right().equalTo()(0)
-//            make?.height.equalTo()(1)
-//            make?.top.equalTo()(textField.mas_bottom)
-//        }
     }
     
     func updateViewProperties() {
