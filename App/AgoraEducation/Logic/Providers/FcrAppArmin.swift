@@ -23,7 +23,7 @@ class FcrAppArmin: Armin {
                  event: String,
                  success: FcrAppRequestSuccess? = nil,
                  failure: FcrAppFailure? = nil) {
-        if let headers {
+        if let headers = headers {
             printDebug("event: \(event), headers: \(headers)")
         }
         
