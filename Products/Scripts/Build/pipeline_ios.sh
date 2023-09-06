@@ -59,7 +59,7 @@ do
 done
 
 # publish
-if [ "${Package_Publish}" = true ]; then
+if [ "${Package_Publish}" = true ] || [[ "${Branch_Name}" =~ "release" ]]; then
     # sign
     ${CICD_Build_Path}/v1/sign_archive.sh ${App_Name} ${Repo_Name} ${is_official_build}
 
