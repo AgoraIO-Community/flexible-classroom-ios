@@ -30,7 +30,7 @@ class FcrAppUIPresentedViewController: FcrAppUIViewController,
     
     let contentHeight: CGFloat
     
-    var contentView = UIView()
+    let contentView = UIView()
     
     var onDismissed: FcrAppCompletion?
     
@@ -87,7 +87,81 @@ class FcrAppUIPresentedViewController: FcrAppUIViewController,
     }
     
     @objc func onDismissPressed() {
+        UIApplication.shared.keyWindow?.endEditing(true)
         onDismissed?()
         dismiss(animated: true)
+    }
+}
+
+class FcrAppStartUIPresentedViewController: FcrAppUIPresentedViewController {
+    // View
+    let titleLabel = UILabel()
+    
+    let closeButton = UIButton(type: .custom)
+    
+    let lineView = UIView(frame: .zero)
+    
+    let bottomButton = UIButton(type: .custom)
+    
+    override func initViews() {
+        super.initViews()
+        
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(closeButton)
+        contentView.addSubview(lineView)
+        contentView.addSubview(bottomButton)
+        
+        titleLabel.font = FcrAppUIFontGroup.font16
+        
+        closeButton.addTarget(self,
+                              action: #selector(onDismissPressed),
+                              for: .touchUpInside)
+        
+        bottomButton.titleLabel?.font = FcrAppUIFontGroup.font16
+        
+        bottomButton.layer.cornerRadius = 23
+        bottomButton.clipsToBounds = true
+    }
+    
+    override func initViewFrame() {
+        super.initViewFrame()
+        
+        titleLabel.mas_makeConstraints { make in
+            make?.left.top().equalTo()(24)
+        }
+        
+        closeButton.mas_makeConstraints { make in
+            make?.centerY.equalTo()(self.titleLabel.mas_centerY)
+            make?.right.equalTo()(-15)
+            make?.width.height().equalTo()(24)
+        }
+        
+        lineView.mas_makeConstraints { make in
+            make?.bottom.equalTo()(self.bottomButton.mas_top)?.offset()(-12)
+            make?.right.left().equalTo()(0)
+            make?.height.equalTo()(1)
+        }
+        
+        bottomButton.mas_makeConstraints { make in
+            make?.bottom.equalTo()(-(40 + self.contentViewOffY))
+            make?.right.equalTo()(-20)
+            make?.left.equalTo()(20)
+            make?.height.equalTo()(46)
+        }
+    }
+    
+    override func updateViewProperties() {
+        super.updateViewProperties()
+        titleLabel.textColor = FcrAppUIColorGroup.fcr_black
+        
+        lineView.backgroundColor = FcrAppUIColorGroup.fcr_v2_line
+        
+        closeButton.setImage(UIImage(named: "fcr_mobile_closeicon"),
+                             for: .normal)
+        
+        bottomButton.setTitleColor(.white,
+                                   for: .normal)
+        
+        bottomButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
     }
 }

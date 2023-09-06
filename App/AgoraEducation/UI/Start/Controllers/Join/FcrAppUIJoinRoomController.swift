@@ -8,10 +8,12 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUIJoinRoomController: FcrAppUIPresentedViewController {
-    var completion: ((FcrAppUIJoinRoomConfig) -> Void)?
+class FcrAppUIJoinRoomController: FcrAppStartUIPresentedViewController {
+    private let joinView = FcrAppUIJoinRoomView(frame: .zero)
     
     private var center: FcrAppCenter
+    
+    var completion: ((FcrAppUIJoinRoomConfig) -> Void)?
     
     init(center: FcrAppCenter,
          completion: ((FcrAppUIJoinRoomConfig) -> Void)? = nil) {
@@ -28,11 +30,6 @@ class FcrAppUIJoinRoomController: FcrAppUIPresentedViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
-    override func viewDidLoad() {
-        contentView = FcrAppUIJoinRoomContentView()
-        super.viewDidLoad()
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>,
                                with event: UIEvent?) {
         super.touchesBegan(touches,
@@ -44,26 +41,22 @@ class FcrAppUIJoinRoomController: FcrAppUIPresentedViewController {
     override func initViews() {
         super.initViews()
         
-        let content = getContentView()
+        contentView.addSubview(joinView)
         
-        content.roomInputView.roomIdTextField.text = center.room.lastId
-        content.roomInputView.userNameTextField.text = center.localUser?.nickname
+        joinView.roomInputView.roomIdTextField.setShowText(center.room.lastId)
+        joinView.roomInputView.userNameTextField.text = center.localUser?.nickname
         
-        content.studentView.button.addTarget(self,
-                                             action: #selector(onPressedStudentButton(_:)),
-                                             for: .touchUpInside)
+        joinView.studentView.button.addTarget(self,
+                                              action: #selector(onPressedStudentButton(_:)),
+                                              for: .touchUpInside)
         
-        content.teacherView.button.addTarget(self,
-                                             action: #selector(onPressedTeacherButton(_:)),
-                                             for: .touchUpInside)
+        joinView.teacherView.button.addTarget(self,
+                                              action: #selector(onPressedTeacherButton(_:)),
+                                              for: .touchUpInside)
         
-        content.closeButton.addTarget(self,
-                                      action: #selector(onPressedCloseButton(_:)),
-                                      for: .touchUpInside)
-        
-        content.joinButton.addTarget(self,
-                                     action: #selector(onPressedJoinButton(_:)),
-                                     for: .touchUpInside)
+        bottomButton.addTarget(self,
+                               action: #selector(onPressedJoinButton(_:)),
+                               for: .touchUpInside)
         
         NotificationCenter.default.observerKeyboard(listening: { [weak self] (info: (endFrame: CGRect, duration: Double)) in
             guard let strongSelf = self else {
@@ -75,31 +68,34 @@ class FcrAppUIJoinRoomController: FcrAppUIPresentedViewController {
         })
     }
     
-    override func updateViewProperties() {
-        super.updateViewProperties()
-        (contentView as! AgoraUIContentContainer).updateViewProperties()
+    override func initViewFrame() {
+        super.initViewFrame()
+        
+        joinView.mas_makeConstraints { make in
+            make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(30)
+            make?.left.equalTo()(20)
+            make?.right.equalTo()(-20)
+            make?.bottom.equalTo()(bottomButton.mas_top)?.offset()
+        }
     }
     
-    func getContentView() -> FcrAppUIJoinRoomContentView {
-        guard let content = contentView as? FcrAppUIJoinRoomContentView else {
-            fatalError()
-        }
+    override func updateViewProperties() {
+        super.updateViewProperties()
         
-        return content
+        joinView.updateViewProperties()
+        
+        titleLabel.text = "fcr_home_label_join_classroom".localized()
+        
+        
+        bottomButton.setTitle("fcr_home_button_join".localized(),
+                              for: .normal)
     }
 }
 
 // MARK: - Actions
 private extension FcrAppUIJoinRoomController {
-    @objc func onPressedCloseButton(_ sender: UIButton) {
-        UIApplication.shared.keyWindow?.endEditing(true)
-        dismiss(animated: true)
-    }
-    
     @objc func onPressedJoinButton(_ sender: UIButton) {
-        let content = getContentView()
-        
-        guard let roomId = content.roomInputView.roomIdTextField.getText() else {
+        guard let roomId = joinView.roomInputView.roomIdTextField.getText() else {
             showToast("fcr_joinroom_tips_roomid_empty".localized(),
                       type: .error)
             return
@@ -111,7 +107,7 @@ private extension FcrAppUIJoinRoomController {
             return
         }
         
-        guard let userName = content.roomInputView.userNameTextField.getText() else {
+        guard let userName = joinView.roomInputView.userNameTextField.getText() else {
             showToast("fcr_joinroom_tips_username_empty".localized(),
                       type: .error)
             return
@@ -123,7 +119,7 @@ private extension FcrAppUIJoinRoomController {
             return
         }
         
-        let userRole: FcrAppUIUserRole = (content.teacherView.button.isSelected ? .teacher : .student)
+        let userRole: FcrAppUIUserRole = (joinView.teacherView.button.isSelected ? .teacher : .student)
         
         guard let userId = center.localUser?.userId else {
             fatalError()
@@ -160,47 +156,41 @@ private extension FcrAppUIJoinRoomController {
     }
     
     @objc func onPressedTeacherButton(_ sender: UIButton) {
-        let content = getContentView()
+        let selected = !joinView.teacherView.button.isSelected
         
-        let selected = !content.teacherView.button.isSelected
+        joinView.teacherView.selected(selected)
         
-        content.teacherView.selected(selected)
-        
-        content.studentView.selected(!selected)
+        joinView.studentView.selected(!selected)
     }
     
     @objc func onPressedStudentButton(_ sender: UIButton) {
-        let content = getContentView()
+        let selected = !joinView.studentView.button.isSelected
         
-        let selected = !content.studentView.button.isSelected
+        joinView.studentView.selected(selected)
         
-        content.studentView.selected(selected)
-        
-        content.teacherView.selected(!selected)
+        joinView.teacherView.selected(!selected)
     }
     
     func updateInputViewFrame(keyBoardEndFrame: CGRect,
                               duration: Double) {
-        let content = getContentView()
-        
-        let viewFrame = view.convert(content.roomInputView.frame,
-                                     from: content)
+        let viewFrame = view.convert(joinView.roomInputView.frame,
+                                     from: contentView)
         
         let diff = viewFrame.maxY - keyBoardEndFrame.minY
    
-        var y: CGFloat = content.frame.origin.y - diff
-
+        var y: CGFloat = contentView.frame.origin.y - diff
+        
         if y > contentViewY {
             y = contentViewY
         }
         
-        let newFrame = CGRect(x: content.frame.origin.x,
+        let newFrame = CGRect(x: contentView.frame.origin.x,
                               y: y,
-                              width: content.frame.width,
-                              height: content.frame.height)
+                              width: contentView.frame.width,
+                              height: contentView.frame.height)
         
         UIView.animate(withDuration: TimeInterval.agora_animation) {
-            content.frame = newFrame
+            self.contentView.frame = newFrame
         }
     }
 }

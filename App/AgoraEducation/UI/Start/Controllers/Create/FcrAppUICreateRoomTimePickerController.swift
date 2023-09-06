@@ -37,14 +37,8 @@ fileprivate extension FcrAppUIDateType {
     }
 }
 
-class FcrAppUICreateRoomTimePickerController: FcrAppUIPresentedViewController {
-    // View    
-    private let titleLabel = UILabel()
-    
-    private let closeButton = UIButton(type: .custom)
-    
-    private let confirmButton = UIButton(type: .custom)
-    
+class FcrAppUICreateRoomTimePickerController: FcrAppStartUIPresentedViewController {
+    // View
     private let pickerView = UIPickerView(frame: .zero)
     
     // Data
@@ -91,28 +85,13 @@ class FcrAppUICreateRoomTimePickerController: FcrAppUIPresentedViewController {
     override func initViews() {
         super.initViews()
         
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(closeButton)
-        contentView.addSubview(confirmButton)
         contentView.addSubview(pickerView)
         
-        titleLabel.font = FcrAppUIFontGroup.font16
-        
-        closeButton.addTarget(self,
-                              action: #selector(onDismissPressed),
-                              for: .touchUpInside)
-        
-        confirmButton.titleLabel?.font = FcrAppUIFontGroup.font16
-        
-        confirmButton.addTarget(self,
+        bottomButton.addTarget(self,
                                action: #selector(onConfirmButtonPressed(_:)),
                                for: .touchUpInside)
         
-        confirmButton.setTitleColor(.white,
-                                   for: .normal)
-        confirmButton.layer.cornerRadius = 23
-        confirmButton.clipsToBounds = true
-        
+
         pickerView.delegate = self
         pickerView.dataSource = self
         
@@ -121,45 +100,21 @@ class FcrAppUICreateRoomTimePickerController: FcrAppUIPresentedViewController {
     
     override func initViewFrame() {
         super.initViewFrame()
-                
-        titleLabel.mas_makeConstraints { make in
-            make?.left.top().equalTo()(24)
-        }
-        
+            
         pickerView.mas_makeConstraints { make in
-            make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(8)
+            make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(0)
             make?.left.equalTo()(20)
             make?.right.equalTo()(-20)
-            make?.bottom.equalTo()(-93)
-        }
-        
-        confirmButton.mas_makeConstraints { make in
-            make?.bottom.equalTo()(-40)
-            make?.right.equalTo()(-20)
-            make?.left.equalTo()(20)
-            make?.height.equalTo()(46)
-        }
-        
-        closeButton.mas_makeConstraints { make in
-            make?.top.equalTo()(15)
-            make?.right.equalTo()(-15)
-            make?.width.height().equalTo()(24)
+            make?.bottom.equalTo()(bottomButton.mas_top)?.offset()
         }
     }
     
     override func updateViewProperties() {
         super.updateViewProperties()
-        
-        titleLabel.textColor = FcrAppUIColorGroup.fcr_black
         titleLabel.text = "fcr_create_select_start_time".localized()
         
-        closeButton.setImage(UIImage(named: "fcr_mobile_closeicon"),
-                             for: .normal)
-        
-        confirmButton.setTitle("fcr_alert_sure".localized(),
+        bottomButton.setTitle("fcr_home_button_create".localized(),
                               for: .normal)
-        
-        confirmButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
     }
     
     @objc private func onConfirmButtonPressed(_ sender: UIButton) {

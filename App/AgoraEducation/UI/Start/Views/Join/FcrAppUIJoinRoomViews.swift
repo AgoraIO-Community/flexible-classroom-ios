@@ -145,10 +145,8 @@ class FcrAppUIJoinRoomInputView: UIView,
     }
 }
 
-class FcrAppUIJoinRoomContentView: UIView,
-                                   AgoraUIContentContainer {
-    private let titleLabel = UILabel()
-    
+class FcrAppUIJoinRoomView: UIView,
+                            AgoraUIContentContainer {
     private let roleTitleLabel = UILabel()
     
     let roomInputView = FcrAppUIJoinRoomInputView()
@@ -156,10 +154,6 @@ class FcrAppUIJoinRoomContentView: UIView,
     let studentView = FcrAppUIJoinRoomRoleView()
     
     let teacherView = FcrAppUIJoinRoomRoleView()
-    
-    let closeButton = UIButton(type: .custom)
-    
-    let joinButton = UIButton(type: .custom)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -172,38 +166,23 @@ class FcrAppUIJoinRoomContentView: UIView,
     }
     
     func initViews() {
-        addSubview(titleLabel)
         addSubview(roomInputView)
-       
         addSubview(roleTitleLabel)
         addSubview(studentView)
         addSubview(teacherView)
-        addSubview(closeButton)
-        addSubview(joinButton)
         
         teacherView.selected(false)
         studentView.selected(true)
-        
-        titleLabel.font = FcrAppUIFontGroup.font16
-        
-        joinButton.titleLabel?.font = FcrAppUIFontGroup.font16
         
         roomInputView.layer.cornerRadius = 12
         roomInputView.clipsToBounds = true
         
         roleTitleLabel.font = FcrAppUIFontGroup.font15
-        
-        joinButton.layer.cornerRadius = 23
-        joinButton.clipsToBounds = true
     }
     
     func initViewFrame() {
-        titleLabel.mas_makeConstraints { make in
-            make?.left.top().equalTo()(24)
-        }
-        
         roomInputView.mas_makeConstraints { make in
-            make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(28)
+            make?.top.equalTo()(0)
             make?.left.equalTo()(15)
             make?.right.equalTo()(-15)
             make?.height.equalTo()(120)
@@ -227,19 +206,6 @@ class FcrAppUIJoinRoomContentView: UIView,
             make?.left.equalTo()(self.mas_centerX)?.offset()(6)
             make?.height.equalTo()(45)
         }
-        
-        closeButton.mas_makeConstraints { make in
-            make?.top.equalTo()(15)
-            make?.right.equalTo()(-15)
-            make?.width.height().equalTo()(24)
-        }
-        
-        joinButton.mas_makeConstraints { make in
-            make?.top.equalTo()(studentView.mas_bottom)?.offset()(49)
-            make?.left.equalTo()(12)
-            make?.right.equalTo()(-12)
-            make?.height.equalTo()(46)
-        }
     }
     
     func updateViewProperties() {
@@ -247,8 +213,6 @@ class FcrAppUIJoinRoomContentView: UIView,
         studentView.updateViewProperties()
         teacherView.updateViewProperties()
         
-        titleLabel.textColor = FcrAppUIColorGroup.fcr_black
-        titleLabel.text = "fcr_home_label_join_classroom".localized()
         
         roomInputView.backgroundColor = FcrAppUIColorGroup.fcr_white
         
@@ -260,16 +224,5 @@ class FcrAppUIJoinRoomContentView: UIView,
         
         teacherView.button.setTitle("fcr_home_role_option_teacher".localized(),
                                     for: .normal)
-        
-        closeButton.setImage(UIImage(named: "fcr_mobile_closeicon"),
-                             for: .normal)
-        
-        joinButton.setTitle("fcr_home_button_join".localized(),
-                            for: .normal)
-        
-        joinButton.setTitleColor(FcrAppUIColorGroup.fcr_white,
-                                 for: .normal)
-        
-        joinButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
     }
 }
