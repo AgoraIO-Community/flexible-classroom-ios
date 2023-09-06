@@ -266,7 +266,7 @@ class FcrAppUIQuickStartInputView: UIView,
             backgroundImageView.transform = CGAffineTransform(scaleX: -1,
                                                               y: 1)
         case .create:
-            backgroundImageView.transform = CGAffineTransformIdentity
+            backgroundImageView.transform = CGAffineTransform.identity
         }
     }
     
