@@ -9,8 +9,8 @@
 import Foundation
 
 struct FcrAppUIPolicyString {
-    let privacykLink = "fcr_login_label_terms_of_service_link".localized()
-    let tearmsLink = "fcr_login_label_privacy_policy_link".localized()
+    let privacykLink =  "fcr_login_label_privacy_policy_link".localized()
+    let tearmsLink = "fcr_login_label_terms_of_service_link".localized()
     
     let privacyText = "fcr_login_label_privacy_policy".localized()
     let tearmsText = "fcr_login_label_terms_of_service".localized()
@@ -28,7 +28,7 @@ struct FcrAppUIPolicyString {
     }
     
     func toastString() -> String {
-        var text = "fcr_login_free_tips_read_agree".localized()
+        let text = "fcr_login_free_tips_read_agree".localized()
         
         return replace(text)
     }
@@ -49,7 +49,6 @@ struct FcrAppUIPolicyString {
                                            value: tearmsLink,
                                            range: NSRange(range, in: text))
         }
-        
         
         return attributedString
     }

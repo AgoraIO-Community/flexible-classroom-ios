@@ -27,9 +27,6 @@ fileprivate class StartButton: UIButton {
                                  y: y,
                                  width: width,
                                  height: height)
-        
-        printDebug("width: \(width)")
-        printDebug("height: \(height)")
     }
 }
 
