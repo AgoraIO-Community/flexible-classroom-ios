@@ -19,13 +19,18 @@ extension FcrAppCodable {
                               message: "json: \(json) is invalid")
         }
         
-        let data = try JSONSerialization.data(withJSONObject: json,
-                                              options: [])
-        
-        let model = try JSONDecoder().decode(Self.self,
-                                             from: data)
-        
-        return model
+        do {
+            let data = try JSONSerialization.data(withJSONObject: json,
+                                                  options: [])
+            
+            let model = try JSONDecoder().decode(Self.self,
+                                                 from: data)
+            
+            return model
+        } catch {
+            throw FcrAppError(code: -1,
+                              message: "json convert to model unsuccessfully: \(json)")
+        }
     }
 }
 
