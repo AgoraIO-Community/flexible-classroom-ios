@@ -12,7 +12,7 @@ enum FcrAppRegion: String, FcrAppStringRawRepresentable, CaseIterable {
     case CN, NA
 }
 
-enum FcrAppUIMode: Int, FcrAppIntRawRepresentable, CaseIterable {
+enum FcrAppUIMode: String, FcrAppStringRawRepresentable, CaseIterable {
     case light, dark
     
     func toAgoraType() -> AgoraUIMode {
