@@ -94,8 +94,8 @@ class FcrAppCenter: NSObject {
                 self.uiMode = mode
             }
             
-            if let language = try? localStorage.readStringEnumData(key: .language,
-                                                                   type: FcrAppLanguage.self) {
+            if let language = try? localStorage.readData(key: .language,
+                                                         type: FcrAppLanguage.self) {
                 self.language = language
             } else {
                 self.language = (UIDevice.current.agora_is_chinese_language ? .zh_cn : .en)
