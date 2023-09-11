@@ -19,14 +19,14 @@ def insertPrivateMethod(findTag: str,
 
         # 插入新行
         if index != -1:
-            lines.insert(index + 1, content)
+            lines.insert(index - 1, content)
 
         # 写入修改后内容
         with open(file_path, "w") as file:
             file.writelines(lines)
 
 def insert1():
-    tag_code = "insertWidgetSampleToClassroom(config)"
+    tag_code = "AgoraClassroomSDK.launch(config)"
 
     insert_content_1 = "let sel = NSSelectorFromString(\"setEnvironment:\")"
     insert_content_2 = "AgoraClassroomSDK.perform(sel, with: center.urlGroup.environment.intValue)"
@@ -40,7 +40,7 @@ def insert1():
     
 
 def insert2():
-    tag_code = "let proctor = AgoraProctor(config: config)"
+    tag_code = "proctor.launch"
 
     insert_content_1 = "proctor.setParameters([\"environment\": center.urlGroup.environment.intValue])"
     
