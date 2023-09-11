@@ -26,6 +26,7 @@ extension FcrAppUIRoomType {
         case .smallClass:   return "fcr_home_label_class_mode_small_classroom".localized()
         case .lectureHall:  return "fcr_home_label_class_mode_lecture_hall".localized()
         case .proctor:      return "fcr_home_label_class_mode_proctoring".localized()
+        case .cloudClass:   fatalError()
         }
     }
     
@@ -35,6 +36,7 @@ extension FcrAppUIRoomType {
         case .oneToOne:     return "fcr_login_free_class_mode_option_1on1".localized()
         case .lectureHall:  return "fcr_login_free_class_mode_option_lecture_hall".localized()
         case .proctor:      return "fcr_login_free_class_mode_option_proctoring".localized()
+        case .cloudClass:   fatalError()
         }
     }
     

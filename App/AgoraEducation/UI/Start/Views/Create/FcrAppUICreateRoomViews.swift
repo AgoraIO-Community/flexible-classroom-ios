@@ -221,6 +221,7 @@ fileprivate extension FcrAppUIRoomType {
         case .lectureHall: return UIImage(named: "fcr_room_create_lecture_bg")
         case .oneToOne:    return UIImage(named: "fcr_room_create_1v1_bg")
         case .proctor:     return UIImage(named: "fcr_room_create_proctor_bg")
+        case .cloudClass:  fatalError()
         }
     }
 }

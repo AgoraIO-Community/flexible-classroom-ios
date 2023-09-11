@@ -87,6 +87,8 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
                                                        mediaOptions: media)
                 
                 self.joinProctorRoom(config: options)
+            default:
+                break
             }
         } failure: { [weak self] error in
             AgoraLoading.hide()
