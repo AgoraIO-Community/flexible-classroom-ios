@@ -40,7 +40,8 @@ class FcrAppArmin: Armin {
             do {
                 let responseObject = try FcrAppServerResponseObject(json: json)
                 try success?(responseObject)
-            } catch let error as FcrAppError {
+            } catch var error as FcrAppError {
+                error.message = event + ", " + error.message
                 failure?(error)
             }
         }

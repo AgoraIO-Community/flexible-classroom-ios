@@ -18,18 +18,29 @@ fileprivate class StartButton: UIButton {
         }
         
         let offset: CGFloat = 4
-        let height: CGFloat = bounds.height - (offset * 2)
-        let width: CGFloat = height
-        let x: CGFloat = offset
-        let y: CGFloat = offset
+        var height: CGFloat = bounds.height - (offset * 2)
+        var width: CGFloat = height
+        var x: CGFloat = offset
+        var y: CGFloat = offset
         
         imageView.frame = CGRect(x: x,
                                  y: y,
                                  width: width,
                                  height: height)
         
-        printDebug("width: \(width)")
-        printDebug("height: \(height)")
+        guard let label = titleLabel else {
+            return
+        }
+        
+        x = imageView.frame.maxX
+        y = 0
+        width = bounds.width - x
+        height = bounds.height
+        
+        label.frame = CGRect(x: x,
+                             y: y,
+                             width: width,
+                             height: height)
     }
 }
 
@@ -159,6 +170,7 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         startButton.layer.cornerRadius = 26
         startButton.layer.masksToBounds = true
         startButton.titleLabel?.font = FcrAppUIFontGroup.font16
+        startButton.titleLabel?.textAlignment = .center
         
         testTag.titleLabel?.font = FcrAppUIFontGroup.font20
         testTag.setTitleColor(.white,

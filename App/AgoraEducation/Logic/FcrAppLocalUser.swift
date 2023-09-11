@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import WebKit
 
 class FcrAppLocalUser {
     private let localStorage: FcrAppLocalStorage

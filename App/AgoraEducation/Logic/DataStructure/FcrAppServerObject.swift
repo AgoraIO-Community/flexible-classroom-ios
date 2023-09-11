@@ -19,13 +19,18 @@ extension FcrAppCodable {
                               message: "json: \(json) is invalid")
         }
         
-        let data = try JSONSerialization.data(withJSONObject: json,
-                                              options: [])
-        
-        let model = try JSONDecoder().decode(Self.self,
-                                             from: data)
-        
-        return model
+        do {
+            let data = try JSONSerialization.data(withJSONObject: json,
+                                                  options: [])
+            
+            let model = try JSONDecoder().decode(Self.self,
+                                                 from: data)
+            
+            return model
+        } catch {
+            throw FcrAppError(code: -1,
+                              message: "json convert to model unsuccessfully: \(json)")
+        }
     }
 }
 
@@ -88,10 +93,16 @@ struct FcrAppServerRoomListObject: FcrAppCodable {
     var list: [FcrAppServerRoomObject]
 }
 
+struct FcrAppServerDetailRoomPropertiesObject: FcrAppCodable {
+    var latencyLevel: FcrAppMediaStreamLatency
+    var watermark: Bool
+}
+
 struct FcrAppServerDetailRoomObject: FcrAppCodable {
     var roomName: String
     var roomId: String
     var sceneType: FcrAppRoomType
+    var roomProperties: FcrAppServerDetailRoomPropertiesObject
 }
 
 struct FcrAppServerJoinRoomObject: FcrAppCodable {

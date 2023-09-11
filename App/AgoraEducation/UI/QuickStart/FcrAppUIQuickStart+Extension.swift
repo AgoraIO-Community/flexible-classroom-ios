@@ -199,6 +199,7 @@ private extension FcrAppUIQuickStartViewController {
         let userId = "\(userName)_\(userRole.rawValue)".md5()
         
         let roomType = createRoomView.roomTypeView.selectedRoomType
+        let latency = center.room.mediaStreamLatency
         
         let startTime = Int64(Date().timeIntervalSince1970 * 1000)
         let duration = Int64(center.room.duration * 60 * 1000)
@@ -209,6 +210,7 @@ private extension FcrAppUIQuickStartViewController {
                                             userName: userName,
                                             startTime: startTime,
                                             duration: duration,
+                                            mediaStreamLatency: latency,
                                             isQuickStart: true)
         
         localStorage(with: userId,
@@ -309,7 +311,7 @@ extension FcrAppUIQuickStartViewController: FcrAppTesterDelegate {
             navigation.popViewController(animated: true)
             return true
         }
-            
+        
         return false
     }
 }

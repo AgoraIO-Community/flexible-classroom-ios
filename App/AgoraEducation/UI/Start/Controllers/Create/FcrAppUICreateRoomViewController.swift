@@ -16,14 +16,14 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
     
     private var center: FcrAppCenter
     
-    private var andJoin: Bool = true
-    
     init(center: FcrAppCenter,
          roomTypeList: [FcrAppUIRoomType],
+         optionList: [FcrAppUICreateRoomMoreSettingOption],
          completion: FcrAppUICreatedRoomResultCompletion? = nil) {
         self.center = center
         self.contentView = FcrAppUICreateRoomContentView(roomTypeList: roomTypeList,
-                                                         roomDuration: center.room.duration)
+                                                         roomDuration: center.room.duration,
+                                                         optionList: optionList)
         self.completion = completion
         super.init(nibName: nil,
                    bundle: nil)
@@ -48,7 +48,8 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
         UIApplication.shared.keyWindow?.endEditing(true)
     }
     
-    func createRoom(_ config: FcrAppCreateRoomConfig) {
+    func createRoom(_ config: FcrAppCreateRoomConfig,
+                    joinImmediately: Bool) {
         AgoraLoading.loading()
         
         center.room.createRoom(config: config) { [weak self] roomId in
@@ -63,7 +64,7 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
                                                    userRole: .teacher,
                                                    roomId: roomId,
                                                    roomName: config.roomName,
-                                                   andJoin: self.andJoin)
+                                                   joinImmediately: joinImmediately)
             
             self.completion?(result)
             
@@ -118,9 +119,14 @@ extension FcrAppUICreateRoomViewController: AgoraUIContentContainer {
 // MARK: - Actions
 private extension FcrAppUICreateRoomViewController {
     @objc func onTimeButtonPressed(_ sender: UIButton) {
-        let vc = FcrAppUICreateRoomTimePickerController(date: Date()) { [weak self] date in
-            self?.contentView.timeView.startDate = date
-            self?.andJoin = false
+        let vc = FcrAppUICreateRoomTimePickerController(date: Date())
+        
+        vc.onDismissed = { [weak self, weak vc] in
+            guard let `self` = self, let `vc` = vc else {
+                return
+            }
+            
+            self.contentView.timeView.startDate = vc.selectedDate
         }
         
         presentViewController(vc,
@@ -159,11 +165,14 @@ private extension FcrAppUICreateRoomViewController {
         
         // Time
         var schedule: Date
+        var joinImmediately: Bool
         
         if let date = contentView.timeView.startDate {
             schedule = date
+            joinImmediately = false
         } else {
             schedule = Date()
+            joinImmediately = true
         }
         
         let startTime = Int64(schedule.timeIntervalSince1970) * 1000
@@ -172,13 +181,28 @@ private extension FcrAppUICreateRoomViewController {
         // Room type
         let roomType = contentView.headerView.selectedRoomType
         
+        // Media stream latency
+        let latency = center.room.mediaStreamLatency
+        
+        // Watermark
+        var watermark: Bool = false
+        
+        for option in contentView.moreView.optionList where option.isSwitchOn == true {
+            switch option.type {
+            case .watermark: watermark = true
+            }
+        }
+        
         let config = FcrAppCreateRoomConfig(roomName: roomName,
                                             roomType: roomType,
                                             userId: userId,
                                             userName: userName,
                                             startTime: startTime,
-                                            duration: duration)
+                                            duration: duration,
+                                            mediaStreamLatency: latency,
+                                            watermark: watermark)
         
-        createRoom(config)
+        createRoom(config,
+                   joinImmediately: joinImmediately)
     }
 }

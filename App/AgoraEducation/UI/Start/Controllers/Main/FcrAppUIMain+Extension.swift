@@ -124,7 +124,8 @@ private extension FcrAppUIMainViewController {
                                               appId: object.appId,
                                               token: object.token)
             
-            self?.joinClassroom(config: config)
+            self?.joinClassroom(config: config,
+                                hasWatermark: false)
         }
         
         presentViewController(vc,
@@ -133,10 +134,11 @@ private extension FcrAppUIMainViewController {
      
     @objc func onCreateButtonPressed(_ sender: UIButton) {
         let vc = FcrAppUICreateRoomViewController(center: center,
-                                                  roomTypeList: roomTypeList) { [weak self] result in
+                                                  roomTypeList: roomTypeList,
+                                                  optionList: createRoomOptionList) { [weak self] result in
             self?.roomListComponent.addedNotice()
             
-            if result.andJoin {
+            if result.joinImmediately {
                 let config = FcrAppJoinRoomPreCheckConfig(roomId: result.roomId,
                                                           userId: result.userId,
                                                           userName: result.userName,
@@ -193,6 +195,16 @@ extension FcrAppUIMainViewController: FcrAppCenterDelegate {
     }
     
     func onLoginExpired() {
+        // Pop to FcrAppUIMainViewController
+        if let navigation = navigationController,
+            let displayedVC = navigation.viewControllers.last,
+            displayedVC != self {
+            navigation.popToViewController(self,
+                                           animated: true)
+        }
+        
+        printDebug("login expired")
+        
         loginCheck { [weak self] in
             self?.roomListComponent.refresh()
         }

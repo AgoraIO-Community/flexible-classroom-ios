@@ -153,12 +153,13 @@ class FcrAppUIQuickStartPolicyView: UIView,
     
     func initViewFrame() {
         checkBox.mas_makeConstraints { make in
-            make?.left.top().equalTo()(0)
+            make?.top.equalTo()(1)
+            make?.left.equalTo()(0)
             make?.width.height().equalTo()(16)
         }
         
         textView.mas_makeConstraints { make in
-            make?.left.equalTo()(self.checkBox.mas_right)?.offset()(5)
+            make?.left.equalTo()(self.checkBox.mas_right)?.offset()(3)
             make?.right.top().bottom().equalTo()(0)
         }
     }

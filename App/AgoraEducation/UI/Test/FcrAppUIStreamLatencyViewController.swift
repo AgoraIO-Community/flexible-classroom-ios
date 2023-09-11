@@ -68,9 +68,9 @@ extension FcrAppUIStreamLatencyViewController: UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withClass: FcrAppUICheckBoxCell.self)
         let type = dataSource[indexPath.row]
         
-        cell.infoLabel.text = type.rawValue
+        cell.infoLabel.text = type.text()
         cell.aSelected = (selected == type)
-
+        
         return cell
     }
     

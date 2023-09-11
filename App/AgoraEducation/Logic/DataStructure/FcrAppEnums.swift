@@ -54,8 +54,8 @@ enum FcrAppLanguage: String, FcrAppStringRawRepresentable, CaseIterable {
     }
 }
 
-enum FcrAppMediaStreamLatency: String, FcrAppStringRawRepresentable, CaseIterable {
-    case low, ultraLow
+enum FcrAppMediaStreamLatency: Int, FcrAppIntRawRepresentable, CaseIterable, FcrAppCodable {
+    case low = 1, ultraLow = 2
 }
 
 enum FcrAppRoomType: Int, FcrAppCodable {
@@ -63,6 +63,14 @@ enum FcrAppRoomType: Int, FcrAppCodable {
     case lectureHall = 2
     case smallClass  = 4
     case proctor     = 6
+    case cloudClass  = 10
+    
+    var isValid: Bool {
+        switch self {
+        case .cloudClass: return false
+        default:          return true
+        }
+    }
 }
 
 enum FcrAppRoomState: Int, FcrAppCodable {

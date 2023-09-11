@@ -162,7 +162,7 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
         
         timeLabel.mas_makeConstraints { make in
             make?.centerY.equalTo()(timeIcon)
-            make?.left.equalTo()(timeIcon.mas_right)?.offset()(8)
+            make?.left.equalTo()(timeIcon.mas_right)?.offset()(5)
         }
         
         typeIcon.mas_makeConstraints { make in
@@ -172,7 +172,7 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
         
         typeLabel.mas_makeConstraints { make in
             make?.centerY.equalTo()(typeIcon)
-            make?.left.equalTo()(typeIcon.mas_right)?.offset()(8)
+            make?.left.equalTo()(typeIcon.mas_right)?.offset()(5)
         }
         
         enteredButton.mas_makeConstraints { make in
@@ -188,31 +188,33 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
         cardView.layer.cornerRadius = 16
         cardView.clipsToBounds = true
         
-        stateLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        stateLabel.font = FcrAppUIFontGroup.font12
         stateLabel.text = "   "
         
         idTitleLabel.text = "ID"
-        idTitleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        idTitleLabel.font = UIFont.systemFont(ofSize: 10,
+                                              weight: .bold)
         
-        idLabel.font = UIFont.systemFont(ofSize: 10)
+        idLabel.font = FcrAppUIFontGroup.font10
         
         copiedButton.setImage(UIImage(named: "fcr_room_list_copy_black"),
                             for: .normal)
         
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        nameLabel.font = FcrAppUIFontGroup.font16
         
-        timeLabel.font = UIFont.systemFont(ofSize: 10)
+        timeLabel.font = FcrAppUIFontGroup.font10
         
-        typeLabel.font = UIFont.systemFont(ofSize: 10)
+        typeLabel.font = FcrAppUIFontGroup.font10
         
-        enteredButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        enteredButton.titleLabel?.font = UIFont.systemFont(ofSize: 12,
+                                                           weight: .heavy)
         enteredButton.layer.cornerRadius = 18
         enteredButton.clipsToBounds = true
         enteredButton.setTitle("fcr_home_button_join".localized(),
-                             for: .normal)
+                               for: .normal)
         
         sharedButton.setImage(UIImage(named: "fcr_room_list_share_black"),
-                             for: .normal)
+                              for: .normal)
         
         updateType()
     }

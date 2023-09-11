@@ -229,11 +229,13 @@ private extension FcrAppUIRoomListController {
                 
         center.room.refreshRoomList(count: count,
                                     success: { [weak self] list in
-            let newDataSource = list.map { objet in
-                return FcrAppUIRoomListItem.create(from: objet)
+            var new = list.filtered { object in
+                return object.sceneType.isValid
+            } map: { object in
+                return FcrAppUIRoomListItem.create(from: object)
             }
             
-            self?.dataSource = newDataSource
+            self?.dataSource = new
             
             success()
         }, failure: failure)
@@ -243,11 +245,13 @@ private extension FcrAppUIRoomListController {
                           failure: @escaping FcrAppFailure) {
         center.room.incrementalRoomList(count: 10,
                                         success: { [weak self] list in
-            let newDataSource = list.map { objet in
-                return FcrAppUIRoomListItem.create(from: objet)
+            var new = list.filtered { object in
+                return object.sceneType.isValid
+            } map: { object in
+                return FcrAppUIRoomListItem.create(from: object)
             }
             
-            self?.dataSource.append(contentsOf: newDataSource)
+            self?.dataSource.append(contentsOf: new)
             
             success()
         }, failure: failure)

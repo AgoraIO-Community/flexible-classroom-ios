@@ -358,7 +358,7 @@ class FcrAppUIQuickStartCheckBoxCell: UITableViewCell,
         contentView.addSubview(checkBox)
         
         contentView.layer.cornerRadius = 16
-        infoLabel.font = UIFont.systemFont(ofSize: 14)
+        infoLabel.font = FcrAppUIFontGroup.font15
         infoLabel.textAlignment = .center
     }
     
