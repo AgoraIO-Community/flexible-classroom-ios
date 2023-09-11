@@ -129,6 +129,7 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
 extension FcrAppUICoreViewController: AgoraEduClassroomSDKDelegate {
     func classroomSDK(_ classroom: AgoraClassroomSDK,
                       didExit reason: AgoraEduExitReason) {
+        AgoraLoading.initProperties()
     }
 }
 
@@ -136,5 +137,7 @@ extension FcrAppUICoreViewController: AgoraEduClassroomSDKDelegate {
 extension FcrAppUICoreViewController: AgoraProctorDelegate {
     func onExit(reason: AgoraProctorExitReason) {
         self.proctor = nil
+        
+        AgoraLoading.initProperties()
     }
 }

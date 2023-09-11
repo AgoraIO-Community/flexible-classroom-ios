@@ -57,14 +57,14 @@ class FcrAppUICreateRoomTimePickerController: FcrAppStartUIPresentedViewControll
         }
     }
     
-    private var completion: FcrAppDateCompletion? = nil
+    private(set) var selectedDate: Date?
     
     init(date: Date,
-         completion: FcrAppDateCompletion? = nil) {
+         onDismissed: FcrAppCompletion? = nil) {
         self.selectedStartDate = date
-        self.completion = completion
         
-        super.init(contentHeight: 363)
+        super.init(contentHeight: 363,
+                   onDismissed: onDismissed)
         
         self.selectedStartDate = modifyDate(date)
         printDebug("init: \(selectedStartDate.desc())")
@@ -124,11 +124,9 @@ class FcrAppUICreateRoomTimePickerController: FcrAppStartUIPresentedViewControll
             date = Date()
         }
         
-        dismiss(animated: true)
+        selectedDate = date
         
-        completion?(date)
-        
-        completion = nil
+        dismissSelf()
     }
 }
 

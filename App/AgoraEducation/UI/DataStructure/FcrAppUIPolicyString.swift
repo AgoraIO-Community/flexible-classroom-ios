@@ -38,6 +38,10 @@ struct FcrAppUIPolicyString {
         
         let attributedString = NSMutableAttributedString(string: text)
         
+        attributedString.addAttribute(.foregroundColor,
+                                      value: FcrAppUIColorGroup.fcr_v2_light_text2,
+                                      range: NSRange(location: 0, length: text.count))
+        
         if let range = text.range(of: privacyText) {
             attributedString.addAttribute(.link,
                                            value: privacykLink,

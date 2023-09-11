@@ -55,7 +55,6 @@ class FcrAppUICreateRoomMoreTableView: UIView,
             
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         initViews()
         initViewFrame()
     }
@@ -76,6 +75,8 @@ class FcrAppUICreateRoomMoreTableView: UIView,
         
         tableView.rowHeight = 55
         tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.isScrollEnabled = false
         tableView.register(cellWithClass: FcrAppUICreateRoomSwitchCell.self)
         tableView.reloadData()
     }
@@ -140,11 +141,13 @@ class FcrAppUICreateRoomMoreTableView: UIView,
                                                  for: indexPath)
         
         let option = optionList[indexPath.row]
+        let isLastest = (indexPath.row == (optionList.count - 1))
         
         cell.iconView.image = option.iconImage
         cell.titleLabel.text = option.title
         cell.detailLabel.text = option.subTitle
         cell.switchButton.isSelected = option.isSwitchOn
+        cell.lineView.isHidden = isLastest
         
         return cell
     }
@@ -260,7 +263,7 @@ class FcrAppUICreateRoomMoreTitleButton: UIButton,
 
 class FcrAppUICreateRoomSwitchCell: UITableViewCell,
                                     AgoraUIContentContainer {
-    private let lineView = UIView()
+    let lineView = UIView()
     
     let iconView = UIImageView(frame: .zero)
     
@@ -326,7 +329,7 @@ class FcrAppUICreateRoomSwitchCell: UITableViewCell,
     }
     
     func updateViewProperties() {
-        lineView.backgroundColor = FcrAppUIColorGroup.fcr_v2_line
+        lineView.backgroundColor = .yellow // FcrAppUIColorGroup.fcr_v2_line
         
         titleLabel.textColor = FcrAppUIColorGroup.fcr_black
         

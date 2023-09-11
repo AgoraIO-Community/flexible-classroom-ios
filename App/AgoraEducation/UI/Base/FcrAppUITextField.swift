@@ -52,6 +52,8 @@ class FcrAppUIIconTextField: FcrAppUITextField,
         case image, text
     }
     
+    private var clearButtonFrame = CGRect.zero
+    
     let leftImageSize: CGSize
     let leftTextWidth: CGFloat
     let leftAreaOffsetX: CGFloat
@@ -193,6 +195,8 @@ class FcrAppUIIconTextField: FcrAppUITextField,
         
         if let view = rightView {
             width -= (bounds.width - view.frame.minX)
+        } else {
+            width -= (bounds.width - clearButtonFrame.minX)
         }
         
         return CGRect(x: x,
@@ -207,10 +211,12 @@ class FcrAppUIIconTextField: FcrAppUITextField,
         let x: CGFloat = bounds.width - width - 22
         let y: CGFloat = (bounds.height - height) * 0.5
         
-        return CGRect(x: x,
-                      y: y,
-                      width: width,
-                      height: height)
+        clearButtonFrame = CGRect(x: x,
+                                  y: y,
+                                  width: width,
+                                  height: height)
+        
+        return clearButtonFrame
     }
 }
 

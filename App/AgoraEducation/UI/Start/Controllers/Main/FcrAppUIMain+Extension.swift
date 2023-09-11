@@ -136,7 +136,7 @@ private extension FcrAppUIMainViewController {
                                                   roomTypeList: roomTypeList) { [weak self] result in
             self?.roomListComponent.addedNotice()
             
-            if result.andJoin {
+            if result.joinImmediately {
                 let config = FcrAppJoinRoomPreCheckConfig(roomId: result.roomId,
                                                           userId: result.userId,
                                                           userName: result.userName,
@@ -193,6 +193,16 @@ extension FcrAppUIMainViewController: FcrAppCenterDelegate {
     }
     
     func onLoginExpired() {
+        // Pop to FcrAppUIMainViewController
+        if let navigation = navigationController,
+            let displayedVC = navigation.viewControllers.last,
+            displayedVC != self {
+            navigation.popToViewController(self,
+                                           animated: true)
+        }
+        
+        printDebug("login expired")
+        
         loginCheck { [weak self] in
             self?.roomListComponent.refresh()
         }

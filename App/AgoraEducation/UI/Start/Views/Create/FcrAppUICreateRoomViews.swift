@@ -233,21 +233,19 @@ class FcrAppUICreateRoomTimeView: UIButton,
     private let startTimeLabel = UILabel()
     private let arrowIcon = UIImageView()
     private let endTimeLabel = UILabel()
-    private let endInfoLabel = UILabel()
+    private let durationLabel = UILabel()
     
     var startDate: Date? {
         didSet {
             if let date = startDate {
-                startTimeLabel.text = date.string(withFormat: "fcr_create_table_time_format".localized())
-                let endDate = date.addingTimeInterval(30 * 60)
-                endTimeLabel.text = endDate.string(withFormat: "HH:mm")
+                updateTimeText(startTime: date)
             } else {
-                startTimeLabel.text = "fcr_create_current_time".localized()
-                endTimeLabel.text = ""
+                defaultTimeText()
             }
         }
     }
     
+    /// Minute
     var duration: UInt {
         didSet {
             updateDurationTime()
@@ -271,13 +269,13 @@ class FcrAppUICreateRoomTimeView: UIButton,
         addSubview(startTimeLabel)
         addSubview(arrowIcon)
         addSubview(endTimeLabel)
-        addSubview(endInfoLabel)
+        addSubview(durationLabel)
         
-        startTitleLabel.font = UIFont.systemFont(ofSize: 13)
-        startTimeLabel.font = UIFont.boldSystemFont(ofSize: 14)
-        endTitleLabel.font = UIFont.systemFont(ofSize: 13)
-        endTimeLabel.font = UIFont.boldSystemFont(ofSize: 14)
-        endInfoLabel.font = UIFont.systemFont(ofSize: 10)
+        startTitleLabel.font = FcrAppUIFontGroup.font13
+        startTimeLabel.font = FcrAppUIFontGroup.font14
+        endTitleLabel.font = FcrAppUIFontGroup.font13
+        endTimeLabel.font = FcrAppUIFontGroup.font14
+        durationLabel.font = FcrAppUIFontGroup.font10
     }
     
     func initViewFrame() {
@@ -307,7 +305,7 @@ class FcrAppUICreateRoomTimeView: UIButton,
             make?.height.greaterThanOrEqualTo()(10)
         }
         
-        endInfoLabel.mas_makeConstraints { make in
+        durationLabel.mas_makeConstraints { make in
             make?.left.equalTo()(endTimeLabel.mas_right)?.offset()(8)
             make?.bottom.equalTo()(endTimeLabel)
         }
@@ -316,27 +314,41 @@ class FcrAppUICreateRoomTimeView: UIButton,
     func updateViewProperties() {
         arrowIcon.image = UIImage(named: "fcr_room_create_time_arrow")
         
-        startTimeLabel.text = "fcr_create_current_time".localized()
-        startTimeLabel.textColor = UIColor.black
-        
         startTitleLabel.text = "fcr_home_label_starttime".localized()
         startTitleLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
         
         endTitleLabel.text = "fcr_home_label_endtime".localized()
         endTitleLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
         
-        endTimeLabel.text = "fcr_create_end_time".localized()
+        startTimeLabel.textColor = FcrAppUIColorGroup.fcr_black
         endTimeLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
+        durationLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
+        
+        if let date = startDate {
+            updateTimeText(startTime: date)
+        } else {
+            defaultTimeText()
+        }
         
         updateDurationTime()
+    }
+    
+    private func updateTimeText(startTime: Date) {
+        startTimeLabel.text = startTime.string(withFormat: "fcr_create_table_time_format".localized())
+        let endDate = startTime.addingTimeInterval(Double(duration) * 60)
+        endTimeLabel.text = endDate.string(withFormat: "HH:mm")
+    }
+    
+    private func defaultTimeText() {
+        startTimeLabel.text = "fcr_create_current_time".localized()
+        endTimeLabel.text = "fcr_create_end_time".localized()
     }
     
     private func updateDurationTime() {
         let text = "fcr_create_end_time_info".localized()
         
-        endInfoLabel.text = text.replacingOccurrences(of: "30",
-                                                      with: "\(duration)")
-        endInfoLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
+        durationLabel.text = text.replacingOccurrences(of: "30",
+                                                       with: "\(duration)")
     }
 }
 
@@ -371,17 +383,17 @@ class FcrAppUICreateRoomFooterView: UIView,
     
     func initViewFrame() {
         createButton.mas_makeConstraints { make in
-            make?.top.equalTo()(16)
-            make?.right.equalTo()(-30)
+            make?.top.equalTo()(15)
+            make?.right.equalTo()(-15)
             make?.height.equalTo()(46)
-            make?.width.equalTo()(190)
+            make?.width.equalTo()(cancelButton.mas_width)?.multipliedBy()(2)
         }
         
         cancelButton.mas_makeConstraints { make in
             make?.centerY.equalTo()(createButton)
+            make?.left.equalTo()(15)
             make?.right.equalTo()(createButton.mas_left)?.offset()(-15)
-            make?.height.equalTo()(46)
-            make?.width.equalTo()(110)
+            make?.height.equalTo()(createButton.mas_height)
         }
     }
     

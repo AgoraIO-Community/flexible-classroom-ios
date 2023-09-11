@@ -309,7 +309,7 @@ extension FcrAppUIQuickStartViewController: FcrAppTesterDelegate {
             navigation.popViewController(animated: true)
             return true
         }
-            
+        
         return false
     }
 }

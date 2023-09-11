@@ -16,8 +16,6 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
     
     private var center: FcrAppCenter
     
-    private var andJoin: Bool = true
-    
     init(center: FcrAppCenter,
          roomTypeList: [FcrAppUIRoomType],
          completion: FcrAppUICreatedRoomResultCompletion? = nil) {
@@ -48,7 +46,8 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
         UIApplication.shared.keyWindow?.endEditing(true)
     }
     
-    func createRoom(_ config: FcrAppCreateRoomConfig) {
+    func createRoom(_ config: FcrAppCreateRoomConfig,
+                    joinImmediately: Bool) {
         AgoraLoading.loading()
         
         center.room.createRoom(config: config) { [weak self] roomId in
@@ -63,7 +62,7 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
                                                    userRole: .teacher,
                                                    roomId: roomId,
                                                    roomName: config.roomName,
-                                                   andJoin: self.andJoin)
+                                                   joinImmediately: joinImmediately)
             
             self.completion?(result)
             
@@ -118,9 +117,14 @@ extension FcrAppUICreateRoomViewController: AgoraUIContentContainer {
 // MARK: - Actions
 private extension FcrAppUICreateRoomViewController {
     @objc func onTimeButtonPressed(_ sender: UIButton) {
-        let vc = FcrAppUICreateRoomTimePickerController(date: Date()) { [weak self] date in
-            self?.contentView.timeView.startDate = date
-            self?.andJoin = false
+        let vc = FcrAppUICreateRoomTimePickerController(date: Date())
+        
+        vc.onDismissed = { [weak self, weak vc] in
+            guard let `self` = self, let `vc` = vc else {
+                return
+            }
+            
+            self.contentView.timeView.startDate = vc.selectedDate
         }
         
         presentViewController(vc,
@@ -159,11 +163,14 @@ private extension FcrAppUICreateRoomViewController {
         
         // Time
         var schedule: Date
+        var joinImmediately: Bool
         
         if let date = contentView.timeView.startDate {
             schedule = date
+            joinImmediately = false
         } else {
             schedule = Date()
+            joinImmediately = true
         }
         
         let startTime = Int64(schedule.timeIntervalSince1970) * 1000
@@ -179,6 +186,7 @@ private extension FcrAppUICreateRoomViewController {
                                             startTime: startTime,
                                             duration: duration)
         
-        createRoom(config)
+        createRoom(config,
+                   joinImmediately: joinImmediately)
     }
 }

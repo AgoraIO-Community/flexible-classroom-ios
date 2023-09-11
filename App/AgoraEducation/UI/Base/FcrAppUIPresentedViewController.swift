@@ -36,10 +36,12 @@ class FcrAppUIPresentedViewController: FcrAppUIViewController,
     
     init(contentHeight: CGFloat = 446,
          contentViewOffY: CGFloat = 24,
-         contentViewHorizontalSpace: CGFloat = 0) {
+         contentViewHorizontalSpace: CGFloat = 0,
+         onDismissed: FcrAppCompletion? = nil) {
         self.contentHeight = contentHeight
         self.contentViewOffY = contentViewOffY
         self.contentViewHorizontalSpace = contentViewHorizontalSpace
+        self.onDismissed = onDismissed
         super.init(nibName: nil,
                    bundle: nil)
     }
@@ -55,9 +57,14 @@ class FcrAppUIPresentedViewController: FcrAppUIViewController,
         updateViewProperties()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        animation(isShow: true)
+    }
+    
     func initViews() {
-        view.addSubview(contentView)
         view.addSubview(dimissButton)
+        view.addSubview(contentView)
         
         contentView.layer.cornerRadius = 24
         
@@ -69,15 +76,12 @@ class FcrAppUIPresentedViewController: FcrAppUIViewController,
     }
     
     func initViewFrame() {
-        contentView.frame = CGRect(x: contentViewX,
-                                   y: contentViewY,
-                                   width: contentWith,
-                                   height: contentHeight)
+        contentView.frame = hideFrame()
         
         dimissButton.frame = CGRect(x: 0,
                                     y: 0,
                                     width: UIScreen.agora_width,
-                                    height: contentViewY)
+                                    height: UIScreen.agora_height)
     }
     
     func updateViewProperties() {
@@ -86,10 +90,47 @@ class FcrAppUIPresentedViewController: FcrAppUIViewController,
         contentView.backgroundColor = .white
     }
     
+    func hideFrame() -> CGRect {
+        return CGRect(x: contentViewX,
+                      y: UIScreen.agora_height,
+                      width: contentWith,
+                      height: contentHeight)
+    }
+    
+    func showFrame() -> CGRect {
+        return CGRect(x: self.contentViewX,
+                      y: self.contentViewY,
+                      width: self.contentWith,
+                      height: self.contentHeight)
+    }
+    
+    func animation(isShow: Bool,
+                   completion: FcrAppBoolCompletion? = nil) {
+        UIView.animate(withDuration: TimeInterval.agora_animation,
+                       animations: {
+            if isShow {
+                self.contentView.frame = self.showFrame()
+            } else {
+                self.contentView.frame = self.hideFrame()
+            }
+        }, completion: completion)
+    }
+    
     @objc func onDismissPressed() {
-        UIApplication.shared.keyWindow?.endEditing(true)
-        onDismissed?()
-        dismiss(animated: true)
+        dismissSelf()
+    }
+    
+    func dismissSelf() {
+        animation(isShow: false) { isFinish in
+            guard isFinish else {
+                return
+            }
+            
+            UIApplication.shared.keyWindow?.endEditing(true)
+            self.dismiss(animated: true)
+            self.onDismissed?()
+            self.onDismissed = nil
+        }
     }
 }
 
