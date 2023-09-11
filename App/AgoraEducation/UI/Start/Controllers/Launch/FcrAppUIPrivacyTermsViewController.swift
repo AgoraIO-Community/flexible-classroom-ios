@@ -7,7 +7,6 @@
 //
 
 import AgoraUIBaseViews
-import WebKit
 import UIKit
 
 class FcrAppUIPrivacyTermsViewController: FcrAppUIPresentedViewController {
