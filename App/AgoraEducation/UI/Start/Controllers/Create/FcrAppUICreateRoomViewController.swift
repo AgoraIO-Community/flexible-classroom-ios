@@ -18,10 +18,12 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
     
     init(center: FcrAppCenter,
          roomTypeList: [FcrAppUIRoomType],
+         optionList: [FcrAppUICreateRoomMoreSettingOption],
          completion: FcrAppUICreatedRoomResultCompletion? = nil) {
         self.center = center
         self.contentView = FcrAppUICreateRoomContentView(roomTypeList: roomTypeList,
-                                                         roomDuration: center.room.duration)
+                                                         roomDuration: center.room.duration,
+                                                         optionList: optionList)
         self.completion = completion
         super.init(nibName: nil,
                    bundle: nil)
@@ -179,12 +181,26 @@ private extension FcrAppUICreateRoomViewController {
         // Room type
         let roomType = contentView.headerView.selectedRoomType
         
+        // Media stream latency
+        let latency = center.room.mediaStreamLatency
+        
+        // Watermark
+        var watermark: Bool = false
+        
+        for option in contentView.moreView.optionList where option.isSwitchOn == true {
+            switch option.type {
+            case .watermark: watermark = true
+            }
+        }
+        
         let config = FcrAppCreateRoomConfig(roomName: roomName,
                                             roomType: roomType,
                                             userId: userId,
                                             userName: userName,
                                             startTime: startTime,
-                                            duration: duration)
+                                            duration: duration,
+                                            mediaStreamLatency: latency,
+                                            watermark: watermark)
         
         createRoom(config,
                    joinImmediately: joinImmediately)

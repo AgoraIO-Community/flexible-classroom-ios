@@ -110,7 +110,14 @@ extension FcrAppUIRoomState {
     }
 }
 
-extension FcrAppMediaStreamLatency {
+extension FcrAppUIMediaStreamLatency {
+    func text() -> String {
+        switch self {
+        case .low:       return "Low"
+        case .ultraLow:  return "Ultra low"
+        }
+    }
+    
     func toClassroomType() -> AgoraEduLatencyLevel {
         switch self {
         case .low:       return .low

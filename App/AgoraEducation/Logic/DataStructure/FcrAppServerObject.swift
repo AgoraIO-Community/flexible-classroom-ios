@@ -93,10 +93,16 @@ struct FcrAppServerRoomListObject: FcrAppCodable {
     var list: [FcrAppServerRoomObject]
 }
 
+struct FcrAppServerDetailRoomPropertiesObject: FcrAppCodable {
+    var latencyLevel: FcrAppMediaStreamLatency
+    var watermark: Bool
+}
+
 struct FcrAppServerDetailRoomObject: FcrAppCodable {
     var roomName: String
     var roomId: String
     var sceneType: FcrAppRoomType
+    var roomProperties: FcrAppServerDetailRoomPropertiesObject
 }
 
 struct FcrAppServerJoinRoomObject: FcrAppCodable {

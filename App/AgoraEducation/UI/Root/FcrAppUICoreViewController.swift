@@ -45,7 +45,15 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
             let token = object.token
             
             let region = self.center.urlGroup.region
-            let streamLatency = self.center.room.mediaStreamLatency
+            let streamLatency = object.roomDetail.roomProperties.latencyLevel
+            
+            // The language and mode displayed in the room are determined by
+            // the global variables `agora_ui_language` and `agora_ui_mode`.
+            agora_ui_language = self.center.language.proj()
+            agora_ui_mode = self.center.uiMode.toAgoraType()
+            
+            // Is the watermark displayed in the room
+            let hasWatermark = object.roomDetail.roomProperties.watermark
             
             switch roomType {
             case .oneToOne, .smallClass, .lectureHall:
@@ -61,7 +69,8 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
                 options.mediaOptions.latencyLevel = streamLatency.toClassroomType()
                 options.region = region.toClassroomType()
                 
-                self.joinClassroom(config: options)
+                self.joinClassroom(config: options,
+                                   hasWatermark: hasWatermark)
             case .proctor:
                 let video = AgoraProctorVideoEncoderConfig()
                 let media = AgoraProctorMediaOptions(videoEncoderConfig: video,
@@ -85,11 +94,10 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
         }
     }
 
-    func joinClassroom(config: AgoraEduLaunchConfig) {
-        agora_ui_language = center.language.proj()
-        agora_ui_mode = center.uiMode.toAgoraType()
-        
-        insertWidgetSampleToClassroom(config)
+    func joinClassroom(config: AgoraEduLaunchConfig,
+                       hasWatermark: Bool) {
+        insertWidgetSampleToClassroom(config,
+                                      hasWatermark: hasWatermark)
         
         AgoraClassroomSDK.launch(config) {
             AgoraLoading.hide()
@@ -100,9 +108,6 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
     }
 
     func joinProctorRoom(config: AgoraProctorLaunchConfig) {
-        agora_ui_language = center.language.proj()
-        agora_ui_mode = center.uiMode.toAgoraType()
-        
         let proctor = AgoraProctor(config: config)
         
         proctor.launch {
@@ -115,13 +120,19 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
         self.proctor = proctor
     }
     
-    func insertWidgetSampleToClassroom(_ config: AgoraEduLaunchConfig) {
+    func insertWidgetSampleToClassroom(_ config: AgoraEduLaunchConfig,
+                                       hasWatermark: Bool) {
+        // TODO: 写注释
         let sample = FcrAppWidgetSample()
         
         let link = center.urlGroup.invitation(roomId: config.roomUuid,
                                               inviterName: config.userName)
         
         config.widgets[sample.sharingLinkWidgetId] = sample.createSharingLink(link)
+        
+        if hasWatermark {
+            config.widgets[sample.watermarkWidgetId] = sample.createWatermark()
+        }
     }
 }
 

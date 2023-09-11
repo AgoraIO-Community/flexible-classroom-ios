@@ -29,7 +29,7 @@ class FcrAppUICreateRoomMoreTableView: UIView,
                                         style: .plain)
     
     // Data
-    private(set) var optionList = [FcrAppUICreateRoomMoreSettingOption]()
+    private(set) var optionList: [FcrAppUICreateRoomMoreSettingOption]
     
     private var rowHeight: CGFloat {
         get {
@@ -53,8 +53,9 @@ class FcrAppUICreateRoomMoreTableView: UIView,
         }
     }
             
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(optionList: [FcrAppUICreateRoomMoreSettingOption]) {
+        self.optionList = optionList
+        super.init(frame: .zero)
         initViews()
         initViewFrame()
     }
@@ -75,6 +76,7 @@ class FcrAppUICreateRoomMoreTableView: UIView,
         
         tableView.rowHeight = 55
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.isScrollEnabled = false
         tableView.register(cellWithClass: FcrAppUICreateRoomSwitchCell.self)
@@ -103,15 +105,6 @@ class FcrAppUICreateRoomMoreTableView: UIView,
     
     func updateViewProperties() {
         headerView.updateViewProperties()
-        
-        optionList.removeAll()
-        
-        let security = FcrAppUICreateRoomMoreSettingOption(iconImage: UIImage(named: "fcr_room_create_security"),
-                                                           title: "fcr_create_more_security".localized() + "·",
-                                                           subTitle: "fcr_create_more_security_detail".localized(),
-                                                           isSwitchOn: false)
-       
-        optionList.append(security)
         
         tableView.reloadData()
     }
@@ -143,9 +136,9 @@ class FcrAppUICreateRoomMoreTableView: UIView,
         let option = optionList[indexPath.row]
         let isLastest = (indexPath.row == (optionList.count - 1))
         
-        cell.iconView.image = option.iconImage
-        cell.titleLabel.text = option.title
-        cell.detailLabel.text = option.subTitle
+        cell.iconView.image = option.type.iconImage
+        cell.titleLabel.text = option.type.title
+        cell.detailLabel.text = option.type.subTitle
         cell.switchButton.isSelected = option.isSwitchOn
         cell.lineView.isHidden = isLastest
         
@@ -267,7 +260,7 @@ class FcrAppUICreateRoomSwitchCell: UITableViewCell,
     
     let iconView = UIImageView(frame: .zero)
     
-    let switchButton = UIButton(type: .custom)
+    let switchButton = UIButton(frame: .zero)
     
     let titleLabel = UILabel()
     
@@ -323,13 +316,14 @@ class FcrAppUICreateRoomSwitchCell: UITableViewCell,
         }
         
         switchButton.mas_makeConstraints { make in
-            make?.right.equalTo()(contentView.mas_right)?.offset()(-16)
-            make?.centerY.equalTo()(0)
+            make?.right.equalTo()(contentView.mas_right)?.offset()(-18)
+            make?.centerY.equalTo()(iconView)
+            make?.width.height().equalTo()(48)
         }
     }
     
     func updateViewProperties() {
-        lineView.backgroundColor = .yellow // FcrAppUIColorGroup.fcr_v2_line
+        lineView.backgroundColor = FcrAppUIColorGroup.fcr_v2_line
         
         titleLabel.textColor = FcrAppUIColorGroup.fcr_black
         
@@ -340,5 +334,7 @@ class FcrAppUICreateRoomSwitchCell: UITableViewCell,
         
         switchButton.setImage(UIImage(named: "fcr_room_create_on"),
                               for: .selected)
+        
+        switchButton.isUserInteractionEnabled = false
     }
 }

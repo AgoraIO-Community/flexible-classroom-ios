@@ -420,24 +420,27 @@ class FcrAppUICreateRoomFooterView: UIView,
 class FcrAppUICreateRoomContentView: UIView,
                                      AgoraUIContentContainer,
                                      FcrAppUICreateRoomMoreTableViewDelegate {
-    let headerView: FcrAppUICreateRoomHeaderView
-    
     private let backgroundImageView = UIImageView(frame: .zero)
-    
-    let closeButton = UIButton(frame: .zero)
     
     private let titleLabel = UILabel()
     
-    private(set) var timeView: FcrAppUICreateRoomTimeView
+    let headerView: FcrAppUICreateRoomHeaderView
     
-    private let moreTableView = FcrAppUICreateRoomMoreTableView(frame: .zero)
+    let closeButton = UIButton(frame: .zero)
+    
+    let timeView: FcrAppUICreateRoomTimeView
+    
+    let moreView: FcrAppUICreateRoomMoreTableView
     
     let footerView = FcrAppUICreateRoomFooterView(frame: .zero)
     
     init(roomTypeList: [FcrAppUIRoomType],
-         roomDuration: UInt) {
+         roomDuration: UInt,
+         optionList: [FcrAppUICreateRoomMoreSettingOption]) {
         self.headerView = FcrAppUICreateRoomHeaderView(roomTypeList: roomTypeList)
         self.timeView = FcrAppUICreateRoomTimeView(duration: roomDuration)
+        self.moreView = FcrAppUICreateRoomMoreTableView(optionList: optionList)
+        
         super.init(frame: .zero)
         initViews()
         initViewFrame()
@@ -453,7 +456,7 @@ class FcrAppUICreateRoomContentView: UIView,
         addSubview(titleLabel)
         addSubview(headerView)
         addSubview(timeView)
-        addSubview(moreTableView)
+        addSubview(moreView)
         addSubview(footerView)
         
         headerView.layer.cornerRadius = 24
@@ -464,8 +467,8 @@ class FcrAppUICreateRoomContentView: UIView,
         
         timeView.layer.cornerRadius = 12
         
-        moreTableView.layer.cornerRadius = 12
-        moreTableView.delegate = self
+        moreView.layer.cornerRadius = 12
+        moreView.delegate = self
     }
     
     func initViewFrame() {
@@ -509,7 +512,7 @@ class FcrAppUICreateRoomContentView: UIView,
     func updateViewProperties() {
         headerView.updateViewProperties()
         timeView.updateViewProperties()
-        moreTableView.updateViewProperties()
+        moreView.updateViewProperties()
         footerView.updateViewProperties()
         
         backgroundImageView.image = UIImage(named: "fcr_room_create_bg")
@@ -520,7 +523,7 @@ class FcrAppUICreateRoomContentView: UIView,
         
         timeView.backgroundColor = .white
         
-        moreTableView.backgroundColor = .white
+        moreView.backgroundColor = .white
         
         footerView.backgroundColor = .white
         
@@ -529,9 +532,9 @@ class FcrAppUICreateRoomContentView: UIView,
     }
     
     func updateMoreTableViewHeight(animated: Bool = false) {
-        let height = moreTableView.suitableHeight
+        let height = moreView.suitableHeight
         
-        moreTableView.mas_remakeConstraints { make in
+        moreView.mas_remakeConstraints { make in
             make?.left.equalTo()(15)
             make?.right.equalTo()(-15)
             make?.top.equalTo()(self.timeView.mas_bottom)?.offset()(10)

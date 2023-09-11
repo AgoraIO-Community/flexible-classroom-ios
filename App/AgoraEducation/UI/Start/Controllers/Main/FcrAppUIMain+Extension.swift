@@ -124,7 +124,8 @@ private extension FcrAppUIMainViewController {
                                               appId: object.appId,
                                               token: object.token)
             
-            self?.joinClassroom(config: config)
+            self?.joinClassroom(config: config,
+                                hasWatermark: false)
         }
         
         presentViewController(vc,
@@ -133,7 +134,8 @@ private extension FcrAppUIMainViewController {
      
     @objc func onCreateButtonPressed(_ sender: UIButton) {
         let vc = FcrAppUICreateRoomViewController(center: center,
-                                                  roomTypeList: roomTypeList) { [weak self] result in
+                                                  roomTypeList: roomTypeList,
+                                                  optionList: createRoomOptionList) { [weak self] result in
             self?.roomListComponent.addedNotice()
             
             if result.joinImmediately {

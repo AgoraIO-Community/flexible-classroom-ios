@@ -24,6 +24,8 @@ class FcrAppUIMainViewController: FcrAppUICoreViewController {
                                             .oneToOne,
                                             .proctor]
     
+    let createRoomOptionList: [FcrAppUICreateRoomMoreSettingOption] = [.init(type: .watermark)]
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }

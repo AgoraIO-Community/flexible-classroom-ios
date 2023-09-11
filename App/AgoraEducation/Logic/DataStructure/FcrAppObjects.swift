@@ -18,7 +18,9 @@ struct FcrAppCreateRoomConfig {
     var startTime: Int64  // ms
     var duration: Int64   // ms
     
-    var roomProperties: [String: Any]?
+    var mediaStreamLatency: FcrAppMediaStreamLatency
+    var watermark: Bool = false
+    
     var isQuickStart: Bool = false
     
     func parameters() -> [String: Any] {
@@ -31,10 +33,11 @@ struct FcrAppCreateRoomConfig {
         
         parameters["startTime"] = startTime
         parameters["endTime"] = (startTime + duration)
-                
-        if let `properties` = roomProperties {
-            parameters["properties"] = properties
-        }
+        
+        let properties: [String: Any] = ["watermark": watermark,
+                                         "latencyLevel": mediaStreamLatency.rawValue]
+        
+        parameters["roomProperties"] = properties
         
         return parameters
     }

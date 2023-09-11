@@ -54,8 +54,8 @@ enum FcrAppLanguage: String, FcrAppStringRawRepresentable, CaseIterable {
     }
 }
 
-enum FcrAppMediaStreamLatency: String, FcrAppStringRawRepresentable, CaseIterable {
-    case low, ultraLow
+enum FcrAppMediaStreamLatency: Int, FcrAppIntRawRepresentable, CaseIterable, FcrAppCodable {
+    case low = 1, ultraLow = 2
 }
 
 enum FcrAppRoomType: Int, FcrAppCodable {

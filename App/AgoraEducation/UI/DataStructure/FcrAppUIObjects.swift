@@ -84,8 +84,28 @@ struct FcrAppUIJoinRoomConfig {
 }
 
 struct FcrAppUICreateRoomMoreSettingOption {
-    var iconImage: UIImage?
-    var title: String
-    var subTitle: String?
-    var isSwitchOn: Bool
+    enum Item {
+        case watermark
+        
+        var iconImage: UIImage? {
+            switch self {
+            case .watermark: return UIImage(named: "fcr_room_create_security")
+            }
+        }
+        
+        var title: String {
+            switch self {
+            case .watermark: return "fcr_create_more_security".localized() + "·"
+            }
+        }
+        
+        var subTitle: String? {
+            switch self {
+            case .watermark: return "fcr_create_more_security_detail".localized()
+            }
+        }
+    }
+    
+    var type: Item
+    var isSwitchOn: Bool = false
 }
