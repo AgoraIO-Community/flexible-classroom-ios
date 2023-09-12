@@ -74,7 +74,7 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
             case .proctor:
                 let video = AgoraProctorVideoEncoderConfig()
                 let media = AgoraProctorMediaOptions(videoEncoderConfig: video,
-                                                     latencyLevel: streamLatency.toClassroomType())
+                                                     latencyLevel: streamLatency.toProctorType())
                 
                 let options = AgoraProctorLaunchConfig(userName: userName,
                                                        userUuid: userId,
@@ -100,6 +100,8 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
                        hasWatermark: Bool) {
         insertWidgetSampleToClassroom(config,
                                       hasWatermark: hasWatermark)
+
+        AgoraClassroomSDK.setDelegate(self)
         
         AgoraClassroomSDK.launch(config) {
             AgoraLoading.hide()
@@ -111,6 +113,8 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
 
     func joinProctorRoom(config: AgoraProctorLaunchConfig) {
         let proctor = AgoraProctor(config: config)
+
+        proctor.delegate = self
         
         proctor.launch {
             AgoraLoading.hide()

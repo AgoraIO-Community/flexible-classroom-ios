@@ -10,8 +10,8 @@ import AgoraUIBaseViews
 
 class FcrAppUIMainTitleActionView: UIView,
                                    AgoraUIContentContainer {
-    private let contentView = UIImageView(frame: .zero )
-    private let iconBGView = UIImageView(frame: .zero )
+    private let contentView = UIImageView(frame: .zero)
+    private let iconBGView = UIImageView(frame: .zero)
     
     let iconView = UIImageView(frame: .zero )
     let titleLabel = UILabel()
@@ -43,13 +43,14 @@ class FcrAppUIMainTitleActionView: UIView,
         }
         
         iconBGView.mas_makeConstraints { make in
-            make?.width.height().equalTo()(44)
+            make?.width.height().equalTo()(40)
             make?.left.equalTo()(8)
             make?.centerY.equalTo()(0)
         }
         
         iconView.mas_makeConstraints { make in
             make?.center.equalTo()(iconBGView)
+            make?.width.height().equalTo()(40)
         }
         
         titleLabel.mas_makeConstraints { make in

@@ -19,8 +19,7 @@ class FcrAppUIQuickStartViewController: FcrAppUICoreViewController {
     
     let roomTypeList: [FcrAppUIRoomType] = [.smallClass,
                                             .lectureHall,
-                                            .oneToOne,
-                                            .proctor]
+                                            .oneToOne]
     
     var settingItems: [FcrAppUISettingItem] = [.generalSetting(FcrAppUISettingItem.GeneralItem.quickStartList()),
                                                .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]

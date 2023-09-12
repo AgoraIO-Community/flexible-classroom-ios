@@ -162,6 +162,8 @@ class FcrAppUICreateRoomTypeCell: UICollectionViewCell,
                 return
             }
             selectedView.isHidden = !aSelected
+            
+            updateBoardColor(aSelected)
         }
     }
     
@@ -180,6 +182,10 @@ class FcrAppUICreateRoomTypeCell: UICollectionViewCell,
         contentView.addSubview(imageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(selectedView)
+        
+        imageView.layer.borderWidth = 2
+        imageView.layer.cornerRadius = 12
+        imageView.layer.masksToBounds = true
         
         titleLabel.font = FcrAppUIFontGroup.font14
         titleLabel.textAlignment = .center
@@ -211,6 +217,16 @@ class FcrAppUICreateRoomTypeCell: UICollectionViewCell,
         
         imageView.backgroundColor = FcrAppUIColorGroup.fcr_white
         titleLabel.textColor = FcrAppUIColorGroup.fcr_white
+        
+        updateBoardColor(false)
+    }
+    
+    private func updateBoardColor(_ isSelected: Bool) {
+        if isSelected {
+            imageView.layer.borderColor = FcrAppUIColorGroup.fcr_v2_brand6.cgColor
+        } else {
+            imageView.layer.borderColor = UIColor.clear.cgColor
+        }
     }
 }
 
