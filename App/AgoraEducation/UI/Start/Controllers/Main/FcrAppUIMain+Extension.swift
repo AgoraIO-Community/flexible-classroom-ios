@@ -114,18 +114,8 @@ extension FcrAppUIMainViewController: AgoraUIContentContainer {
 
 private extension FcrAppUIMainViewController {
     @objc func onJoinButtonPressed(_ sender: UIButton) {
-        let vc = FcrAppUIJoinRoomController(center: center) { [weak self] object in
-            let config = AgoraEduLaunchConfig(userName: object.userName,
-                                              userUuid: object.userId,
-                                              userRole: object.userRole.toClassroomType(),
-                                              roomName: object.roomName,
-                                              roomUuid: object.roomId,
-                                              roomType: object.roomType.toClassroomType(),
-                                              appId: object.appId,
-                                              token: object.token)
-            
-            self?.joinClassroom(config: config,
-                                hasWatermark: false)
+        let vc = FcrAppUIJoinRoomController(center: center) { [weak self] config in
+            self?.joinRoomPreCheck(config: config)
         }
         
         presentViewController(vc,

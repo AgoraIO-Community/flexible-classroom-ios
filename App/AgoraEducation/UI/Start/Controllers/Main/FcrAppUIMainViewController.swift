@@ -21,8 +21,7 @@ class FcrAppUIMainViewController: FcrAppUICoreViewController {
     
     let roomTypeList: [FcrAppUIRoomType] = [.smallClass,
                                             .lectureHall,
-                                            .oneToOne,
-                                            .proctor]
+                                            .oneToOne]
     
     let createRoomOptionList: [FcrAppUICreateRoomMoreSettingOption] = [.init(type: .watermark)]
     

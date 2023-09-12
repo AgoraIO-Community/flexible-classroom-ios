@@ -13,10 +13,10 @@ class FcrAppUIJoinRoomController: FcrAppStartUIPresentedViewController {
     
     private var center: FcrAppCenter
     
-    var completion: ((FcrAppUIJoinRoomConfig) -> Void)?
+    var completion: ((FcrAppJoinRoomPreCheckConfig) -> Void)?
     
     init(center: FcrAppCenter,
-         completion: ((FcrAppUIJoinRoomConfig) -> Void)? = nil) {
+         completion: ((FcrAppJoinRoomPreCheckConfig) -> Void)? = nil) {
         self.center = center
         self.completion = completion
         super.init()
@@ -125,34 +125,16 @@ private extension FcrAppUIJoinRoomController {
             fatalError()
         }
         
-        AgoraLoading.loading()
-        
         let config = FcrAppJoinRoomPreCheckConfig(roomId: roomId,
                                                   userId: userId,
                                                   userName: userName,
                                                   userRole: userRole)
         
-        center.room.joinRoomPreCheck(config: config) { [weak self] object in
-            let options = FcrAppUIJoinRoomConfig(userId: userId,
-                                                 userName: userName,
-                                                 userRole: userRole,
-                                                 roomId: roomId,
-                                                 roomName: object.roomDetail.roomName,
-                                                 roomType: object.roomDetail.sceneType,
-                                                 appId: object.appId,
-                                                 token: object.token)
-            
-            AgoraLoading.hide()
-            
-            self?.dismiss(animated: true)
-            
-            self?.completion?(options)
-            
-            self?.completion = nil
-        } failure: { [weak self] error in
-            AgoraLoading.hide()
-            self?.showErrorToast(error)
-        }
+        dismiss(animated: true)
+        
+        completion?(config)
+        
+        completion = nil
     }
     
     @objc func onPressedTeacherButton(_ sender: UIButton) {

@@ -229,7 +229,7 @@ private extension FcrAppUIRoomListController {
                 
         center.room.refreshRoomList(count: count,
                                     success: { [weak self] list in
-            var new = list.filtered { object in
+            let new = list.filtered { object in
                 return object.sceneType.isValid
             } map: { object in
                 return FcrAppUIRoomListItem.create(from: object)
@@ -245,7 +245,7 @@ private extension FcrAppUIRoomListController {
                           failure: @escaping FcrAppFailure) {
         center.room.incrementalRoomList(count: 10,
                                         success: { [weak self] list in
-            var new = list.filtered { object in
+            let new = list.filtered { object in
                 return object.sceneType.isValid
             } map: { object in
                 return FcrAppUIRoomListItem.create(from: object)
