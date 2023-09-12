@@ -64,6 +64,7 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
                                                    userRole: .teacher,
                                                    roomId: roomId,
                                                    roomName: config.roomName,
+                                                   roomType: config.roomType,
                                                    joinImmediately: joinImmediately)
             
             self.completion?(result)
