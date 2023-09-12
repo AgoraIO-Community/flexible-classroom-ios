@@ -155,6 +155,21 @@ class FcrAppRoom {
                                  failure: failure)
     }
     
+    func getRoomInfo(roomId: String,
+                     success: @escaping (FcrAppServerRoomObject) -> Void,
+                     failure: @escaping FcrAppFailure) {
+        let url = urlGroup.roomInfo(roomId: roomId)
+        
+        let headers = urlGroup.headers()
+        
+        armin.convertableRequest(url: url,
+                                 headers: headers,
+                                 method: .get,
+                                 event: "room-info",
+                                 success: success,
+                                 failure: failure)
+    }
+    
     func refreshRoomList(count: Int,
                          success: @escaping ([FcrAppServerRoomObject]) -> Void,
                          failure: @escaping FcrAppFailure) {
