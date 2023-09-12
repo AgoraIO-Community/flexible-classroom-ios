@@ -153,18 +153,29 @@ private extension FcrAppUIQuickStartViewController {
         
         let userRole = joinRoomView.selectedUserRole
         
-        let userId = "\(userName)_\(userRole.rawValue)".md5()
+        AgoraLoading.loading()
         
-        let config = FcrAppJoinRoomPreCheckConfig(roomId: roomId,
-                                                  userId: userId,
-                                                  userName: userName,
-                                                  userRole: userRole,
-                                                  isQuickStart: true)
-        
-        localStorage(with: userId,
-                     userName: userName)
-        
-        joinRoomPreCheck(config: config)
+        center.room.getRoomInfo(roomId: roomId) { [weak self] object in
+            AgoraLoading.hide()
+            
+            let userId = FcrAppUserIdCreater.quickStart(userName: userName,
+                                                        userRole: userRole,
+                                                        roomType: object.sceneType)
+            
+            let config = FcrAppJoinRoomPreCheckConfig(roomId: roomId,
+                                                      userId: userId,
+                                                      userName: userName,
+                                                      userRole: userRole,
+                                                      isQuickStart: true)
+            
+            self?.localStorage(with: userId,
+                               userName: userName)
+            
+            self?.joinRoomPreCheck(config: config)
+        } failure: { [weak self] error in
+            AgoraLoading.hide()
+            self?.showErrorToast(error)
+        }
     }
     
     @objc func onCreateButtonPressed(_ sender: UIButton) {
@@ -194,15 +205,17 @@ private extension FcrAppUIQuickStartViewController {
             return
         }
      
-        let userRole = FcrAppUserRole.teacher
-        
-        let userId = "\(userName)_\(userRole.rawValue)".md5()
-        
         let roomType = createRoomView.roomTypeView.selectedRoomType
         let latency = center.room.mediaStreamLatency
         
         let startTime = Int64(Date().timeIntervalSince1970 * 1000)
         let duration = Int64(center.room.duration * 60 * 1000)
+        
+        let userRole = FcrAppUserRole.teacher
+        
+        let userId = FcrAppUserIdCreater.quickStart(userName: userName,
+                                                    userRole: userRole,
+                                                    roomType: roomType)
         
         let config = FcrAppCreateRoomConfig(roomName: roomName,
                                             roomType: roomType,
@@ -236,7 +249,6 @@ private extension FcrAppUIQuickStartViewController {
     func localStorage(with userId: String,
                       userName: String) {
         if let localUser = center.localUser {
-            localUser.userId = userId
             localUser.nickname = userName
         } else {
             center.createLocalUser(userId: userId,

@@ -125,16 +125,30 @@ private extension FcrAppUIJoinRoomController {
             fatalError()
         }
         
-        let config = FcrAppJoinRoomPreCheckConfig(roomId: roomId,
-                                                  userId: userId,
+        AgoraLoading.loading()
+        
+        center.room.getRoomInfo(roomId: roomId) { [weak self] object in
+            AgoraLoading.hide()
+            
+            let newId = FcrAppUserIdCreater.start(userId: userId,
                                                   userName: userName,
-                                                  userRole: userRole)
-        
-        dismiss(animated: true)
-        
-        completion?(config)
-        
-        completion = nil
+                                                  userRole: userRole,
+                                                  roomType: object.sceneType)
+            
+            let config = FcrAppJoinRoomPreCheckConfig(roomId: roomId,
+                                                      userId: newId,
+                                                      userName: userName,
+                                                      userRole: userRole)
+            
+            self?.dismiss(animated: true)
+            
+            self?.completion?(config)
+            
+            self?.completion = nil
+        } failure: { [weak self] error in
+            AgoraLoading.hide()
+            self?.showErrorToast(error)
+        }
     }
     
     @objc func onPressedTeacherButton(_ sender: UIButton) {

@@ -67,6 +67,7 @@ struct FcrAppUICreatedRoomResult {
     
     var roomId: String
     var roomName: String
+    var roomType: FcrAppRoomType
     var joinImmediately: Bool
 }
 

@@ -129,8 +129,13 @@ private extension FcrAppUIMainViewController {
             self?.roomListComponent.addedNotice()
             
             if result.joinImmediately {
+                let userId = FcrAppUserIdCreater.start(userId: result.userId,
+                                                       userName: result.userName,
+                                                       userRole: result.userRole,
+                                                       roomType: result.roomType)
+                
                 let config = FcrAppJoinRoomPreCheckConfig(roomId: result.roomId,
-                                                          userId: result.userId,
+                                                          userId: userId,
                                                           userName: result.userName,
                                                           userRole: result.userRole)
                 
@@ -158,8 +163,13 @@ extension FcrAppUIMainViewController: FcrAppUIRoomListControllerDelegate {
             return
         }
         
+        let newId = FcrAppUserIdCreater.start(userId: userId,
+                                              userName: roomInfo.userName,
+                                              userRole: roomInfo.userRole,
+                                              roomType: roomInfo.roomType)
+        
         let config = FcrAppJoinRoomPreCheckConfig(roomId: roomInfo.getRoomId(),
-                                                  userId: userId,
+                                                  userId: newId,
                                                   userName: roomInfo.userName,
                                                   userRole: roomInfo.userRole)
         
