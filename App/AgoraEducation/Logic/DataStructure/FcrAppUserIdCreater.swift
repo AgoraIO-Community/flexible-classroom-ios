@@ -13,24 +13,34 @@ struct FcrAppUserIdCreater {
                       userName: String,
                       userRole: FcrAppUserRole,
                       roomType: FcrAppRoomType) -> String {
+        var localUserId: String
+        
         switch roomType {
         case .proctor:
-            return "\(userName.md5())_sub"
+            localUserId = "\(userName.md5())-sub"
         default:
-            let new = userId + "\(userRole.rawValue)"
-            return new
+            localUserId = userId + "\(userRole.rawValue)"
         }
+        
+        printDebug("localUserId: \(localUserId)")
+        
+        return localUserId
     }
     
     static func quickStart(userName: String,
                            userRole: FcrAppUserRole,
                            roomType: FcrAppRoomType) -> String {
+        var localUserId: String
+        
         switch roomType {
         case .proctor:
-            return "\(userName.md5())_sub"
+            localUserId = "\(userName.md5())-sub"
         default:
-            let userId = "\(userName)_\(userRole.rawValue)".md5()
-            return userId
+            localUserId = "\(userName)_\(userRole.rawValue)".md5()
         }
+        
+        printDebug("localUserId: \(localUserId)")
+        
+        return localUserId
     }
 }

@@ -42,6 +42,7 @@ class FcrAppArmin: Armin {
                 try success?(responseObject)
             } catch var error as FcrAppError {
                 error.message = event + ", " + error.message
+                printDebug("Error: " + "\(error.message)")
                 failure?(error)
             }
         }
