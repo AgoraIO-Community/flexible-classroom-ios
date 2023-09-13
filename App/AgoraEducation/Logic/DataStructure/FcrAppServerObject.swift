@@ -69,6 +69,20 @@ struct FcrAppServerUserInfoObject: FcrAppCodable {
 }
 
 // MARK: - Room
+struct FcrAppServerShortRoomObject: FcrAppCodable {
+    var roomName: String
+    var roomId: String
+    var sceneType: FcrAppRoomType
+    var roomState: FcrAppRoomState
+    
+    var startTime: Int64
+    var endTime: Int64
+    
+    // User Id who created this room
+    var creatorId: String
+    var industry: String
+}
+
 struct FcrAppServerRoomObject: FcrAppCodable {
     var roomName: String
     var roomId: String

@@ -139,6 +139,14 @@ class FcrAppURLGroup {
         return url
     }
     
+    func roomInfo(roomId: String) -> String {
+        let array = [host, edu, companys,
+                     companyId, version1, rooms,
+                     roomId]
+        let url = array.joined(separator: "/")
+        return url
+    }
+    
     func quickCreateRoom() -> String {
         let array = [host, edu, companys,
                      version1, rooms]
@@ -153,10 +161,10 @@ class FcrAppURLGroup {
         return url
     }
     
-    func roomInfo(roomId: String) -> String {
+    func quickRoomInfo(roomId: String) -> String {
         let array = [host, edu, companys,
-                     companyId, version1, rooms,
-                     roomId]
+                     version1, rooms, roomId]
+        
         let url = array.joined(separator: "/")
         return url
     }

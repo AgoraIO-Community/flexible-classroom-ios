@@ -155,7 +155,8 @@ private extension FcrAppUIQuickStartViewController {
         
         AgoraLoading.loading()
         
-        center.room.getRoomInfo(roomId: roomId) { [weak self] object in
+        center.room.getRoomInfo(roomId: roomId,
+                                isQuickStart: true) { [weak self] object in
             AgoraLoading.hide()
             
             let userId = FcrAppUserIdCreater.quickStart(userName: userName,

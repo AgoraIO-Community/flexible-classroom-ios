@@ -107,11 +107,7 @@ class FcrAppUIJoinRoomInputView: UIView,
         
         roomIdTextField.leftViewMode = .always
         
-        roomIdTextField.returnKeyType = .done
-        roomIdTextField.keyboardType = .numberPad
-        
         userNameTextField.leftViewMode = .always
-        userNameTextField.returnKeyType = .done
         userNameTextField.lineView.isHidden = true
     }
     

@@ -156,9 +156,16 @@ class FcrAppRoom {
     }
     
     func getRoomInfo(roomId: String,
-                     success: @escaping (FcrAppServerRoomObject) -> Void,
+                     isQuickStart: Bool = false,
+                     success: @escaping (FcrAppServerShortRoomObject) -> Void,
                      failure: @escaping FcrAppFailure) {
-        let url = urlGroup.roomInfo(roomId: roomId)
+        var url: String
+        
+        if isQuickStart {
+            url = urlGroup.quickRoomInfo(roomId: roomId)
+        } else {
+            url = urlGroup.roomInfo(roomId: roomId)
+        }
         
         let headers = urlGroup.headers()
         

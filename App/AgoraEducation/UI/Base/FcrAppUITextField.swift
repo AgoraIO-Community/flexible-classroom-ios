@@ -103,6 +103,8 @@ class FcrAppUIIconTextField: FcrAppUITextField,
         leftViewMode = .always
         
         clearButtonMode = .always
+        
+        returnKeyType = .done
     }
     
     func initViewFrame() {
@@ -222,6 +224,24 @@ class FcrAppUIIconTextField: FcrAppUITextField,
 
 class FcrAppUIRoomIdTextField: FcrAppUIIconTextField {
     private var maxCount = (9 + 2)
+    
+    override init(leftViewType: FcrAppUIIconTextField.LeftViewType,
+                  leftImageSize: CGSize = CGSize.zero,
+                  leftTextWidth: CGFloat = 80,
+                  leftAreaOffsetX: CGFloat = 0,
+                  editAreaOffsetX: CGFloat = 10) {
+        super.init(leftViewType: leftViewType,
+                   leftImageSize: leftImageSize,
+                   leftTextWidth: leftTextWidth,
+                   leftAreaOffsetX: leftAreaOffsetX,
+                   editAreaOffsetX: editAreaOffsetX)
+        
+        keyboardType = .numberPad
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func getText() -> String? {
         let text = super.getText()
