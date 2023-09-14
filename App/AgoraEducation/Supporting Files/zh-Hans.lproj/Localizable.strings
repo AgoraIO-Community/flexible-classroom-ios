@@ -64,6 +64,7 @@ fcr_login_free_label_room_name = "房间名";
 fcr_login_free_label_class_mode = "教学模式";
 fcr_login_free_label_nick_name = "昵称";
 fcr_login_free_tips_content_length = "请输入2-20位长度的内容";
+fcr_login_free_tips_num_length = "请输入9位长度的数字";
 fcr_login_free_label_duration_time = "课程时间";
 fcr_login_free_tips_room_name = "请输入你的房间名";
 fcr_login_free_tips_room_id = "请输入你的房间号";

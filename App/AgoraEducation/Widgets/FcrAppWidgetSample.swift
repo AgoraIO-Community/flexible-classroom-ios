@@ -13,6 +13,7 @@ import AgoraWidget
 struct FcrAppWidgetSample {
     let sharingLinkWidgetId = "sharingLink"
     let watermarkWidgetId = "watermark"
+    let cloudDriveId = "cloudDrive"
     
     func createWatermark() -> AgoraWidgetConfig {
         let config = AgoraWidgetConfig(with: AgoraWatermarkWidget.self,
@@ -28,5 +29,10 @@ struct FcrAppWidgetSample {
         config.extraInfo = ["sharingLink": link]
         
         return config
+    }
+    
+    func cloudDriveExCourseware() -> [String: Any] {
+        let courseware = ["publicCoursewares": FcrAppCloudDriveExItems().publicCoursewares()]
+        return courseware
     }
 }

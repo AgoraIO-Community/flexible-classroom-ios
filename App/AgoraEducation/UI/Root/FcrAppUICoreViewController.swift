@@ -136,6 +136,11 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
         
         config.widgets[sample.sharingLinkWidgetId] = sample.createSharingLink(link)
         
+        if let cloudDrive = config.widgets[sample.cloudDriveId],
+           config.userRole == .teacher {
+            cloudDrive.extraInfo = sample.cloudDriveExCourseware()
+        }
+        
         if hasWatermark {
             config.widgets[sample.watermarkWidgetId] = sample.createWatermark()
         }

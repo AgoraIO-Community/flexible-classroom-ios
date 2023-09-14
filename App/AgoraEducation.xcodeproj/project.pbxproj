@@ -56,6 +56,7 @@
 		86B81E6C2A56B16500BA631C /* FcrAppEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E6B2A56B16500BA631C /* FcrAppEnums.swift */; };
 		86B81E6E2A57EBEA00BA631C /* FcrAppRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E6D2A57EBEA00BA631C /* FcrAppRoom.swift */; };
 		86E2786A2AB07775007E2373 /* FcrAppUserIdCreater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E278692AB07775007E2373 /* FcrAppUserIdCreater.swift */; };
+		86E36F582AB2E11E006C6339 /* FcrAppCloudDriveExItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E36F572AB2E11E006C6339 /* FcrAppCloudDriveExItems.swift */; };
 		86E5023A2A5FEC8C003C04D8 /* FcrAppObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E502392A5FEC8C003C04D8 /* FcrAppObjects.swift */; };
 		86E5023E2A5FF145003C04D8 /* FcrAppClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5023D2A5FF145003C04D8 /* FcrAppClosure.swift */; };
 		86E502442A5FFAE1003C04D8 /* FcrAppUIRoomListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E502432A5FFAE1003C04D8 /* FcrAppUIRoomListController.swift */; };
@@ -156,6 +157,7 @@
 		86B81E6B2A56B16500BA631C /* FcrAppEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppEnums.swift; sourceTree = "<group>"; };
 		86B81E6D2A57EBEA00BA631C /* FcrAppRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppRoom.swift; sourceTree = "<group>"; };
 		86E278692AB07775007E2373 /* FcrAppUserIdCreater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUserIdCreater.swift; sourceTree = "<group>"; };
+		86E36F572AB2E11E006C6339 /* FcrAppCloudDriveExItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppCloudDriveExItems.swift; sourceTree = "<group>"; };
 		86E502392A5FEC8C003C04D8 /* FcrAppObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppObjects.swift; sourceTree = "<group>"; };
 		86E5023D2A5FF145003C04D8 /* FcrAppClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppClosure.swift; sourceTree = "<group>"; };
 		86E502432A5FFAE1003C04D8 /* FcrAppUIRoomListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIRoomListController.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 				865746FF2A963B47003FBF72 /* FcrAppWidgetSample.swift */,
 				865746FB2A96368C003FBF72 /* SharingLink */,
 				865746F92A96368C003FBF72 /* Watermark */,
+				86E36F562AB2E0F7006C6339 /* CloudDrive */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -463,6 +466,14 @@
 				861978DB2A6A59A300009890 /* Setting */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		86E36F562AB2E0F7006C6339 /* CloudDrive */ = {
+			isa = PBXGroup;
+			children = (
+				86E36F572AB2E11E006C6339 /* FcrAppCloudDriveExItems.swift */,
+			);
+			path = CloudDrive;
 			sourceTree = "<group>";
 		};
 		86E5023B2A5FF097003C04D8 /* Logic */ = {
@@ -742,6 +753,7 @@
 			files = (
 				865746F62A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift in Sources */,
 				865747002A963B47003FBF72 /* FcrAppWidgetSample.swift in Sources */,
+				86E36F582AB2E11E006C6339 /* FcrAppCloudDriveExItems.swift in Sources */,
 				AB4F69E72874621F0012E6B3 /* FcrAppUIModeViewController.swift in Sources */,
 				AB4F69E32872C2340012E6B3 /* FcrAppUIDisclaimerViewController.swift in Sources */,
 				AB4F69DD286DC5D40012E6B3 /* FcrAppUINavigatorCell.swift in Sources */,
