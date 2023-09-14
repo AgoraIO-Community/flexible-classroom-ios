@@ -157,10 +157,6 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         view.addSubview(startButton)
         view.addSubview(testTag)
         
-        if !UIDevice.current.isSmallPhone {
-            textBgView.isHidden = false
-        }
-        
         textView.contentMode = .scaleAspectFit
         
         startButton.addTarget(self,
@@ -181,12 +177,20 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        let isSmallDevice = UIDevice.current.isSmallPhone
+        var compactLayout = UIDevice.current.isSmallPhone
+        
+        if UIDevice.current.agora_is_pad {
+            compactLayout = true
+        }
+        
+        textBgView.isHidden = !compactLayout
+        
+        let isEn = center.language.isEN
         
         let leftSideSpace: CGFloat = 38
         
         logoView.mas_makeConstraints { make in
-            let top: CGFloat = (isSmallDevice ? 24 : 55)
+            let top: CGFloat = (compactLayout ? 24 : 55)
             let `left`: CGFloat = (leftSideSpace - 2)
             
             make?.top.equalTo()(top)
@@ -203,7 +207,7 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         }
         
         backgroundView.mas_makeConstraints { make in
-            let offset: CGFloat = (isSmallDevice ? 18 : 32)
+            let offset: CGFloat = (compactLayout ? 18 : 32)
             
             make?.left.equalTo()(leftSideSpace)
             make?.right.equalTo()(-leftSideSpace)
@@ -212,12 +216,23 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         }
         
         textView.mas_makeConstraints { make in
-            let offset: CGFloat = (isSmallDevice ? -50 : 36)
-            
-            make?.top.equalTo()(backgroundView.mas_bottom)?.offset()(offset)
             make?.left.equalTo()(leftSideSpace)
-            make?.width.equalTo()(232)
-            make?.height.equalTo()(113)
+            
+            if isEn {
+                let offset: CGFloat = (compactLayout ? -50 : 19)
+                
+                make?.top.equalTo()(backgroundView.mas_bottom)?.offset()(offset)
+                
+                make?.width.equalTo()(263)
+                make?.height.equalTo()(135)
+            } else {
+                let offset: CGFloat = (compactLayout ? -50 : 36)
+                
+                make?.top.equalTo()(backgroundView.mas_bottom)?.offset()(offset)
+                
+                make?.width.equalTo()(232)
+                make?.height.equalTo()(113)
+            }
         }
         
         textBgView.mas_makeConstraints { make in
@@ -227,7 +242,14 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         }
         
         startButton.mas_makeConstraints { make in
-            let offset: CGFloat = (isSmallDevice ? 55 : 55)
+            var offset: CGFloat
+            
+            if compactLayout {
+                offset = (isEn ? 28 : 55)
+            } else {
+                offset = (isEn ? 28 : 33)
+            }
+            
             let width: CGFloat = 190
             let height: CGFloat = 52
             
@@ -238,7 +260,7 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         }
         
         afcView.mas_makeConstraints { make in
-            let offset: CGFloat = (isSmallDevice ? -20 : -30)
+            let offset: CGFloat = (compactLayout ? -20 : -30)
             
             make?.left.equalTo()(leftSideSpace)
             make?.bottom.equalTo()(self.mas_bottomLayoutGuideBottom)?.offset()(offset)
