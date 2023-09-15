@@ -23,7 +23,14 @@ class FcrAppUIQuickStartRoomTypeViewController: FcrAppUIPresentedViewController 
          selected: FcrAppUIRoomType) {
         self.dataSource = roomTypeList
         self.selected = selected
-        super.init(contentHeight: (377 + 24))
+        
+        let cellHeight: CGFloat = 60
+        let rowSpace: CGFloat = 15
+        let otherHight: CGFloat = 65 + 26 + 24
+        
+        let height: CGFloat = cellHeight * CGFloat(roomTypeList.count) + rowSpace * CGFloat(roomTypeList.count - 1) + otherHight
+        
+        super.init(contentHeight: height)
     }
     
     required init?(coder: NSCoder) {

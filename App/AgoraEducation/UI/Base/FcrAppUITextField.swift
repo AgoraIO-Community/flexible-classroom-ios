@@ -54,6 +54,8 @@ class FcrAppUIIconTextField: FcrAppUITextField,
     
     private var clearButtonFrame = CGRect.zero
     
+    private let clearButton = UIButton(frame: .zero)
+    
     let leftImageSize: CGSize
     let leftTextWidth: CGFloat
     let leftAreaOffsetX: CGFloat
@@ -100,11 +102,23 @@ class FcrAppUIIconTextField: FcrAppUITextField,
             leftView = leftLabel
         }
         
+        clearButton.setImage(UIImage(named: "fcr_clear_button"),
+                             for: .normal)
+        
+        clearButton.addTarget(self,
+                              action: #selector(onClearPressed),
+                              for: .touchUpInside)
+        
+        rightView = clearButton
+        rightViewMode = .whileEditing
+        
         leftViewMode = .always
         
-        clearButtonMode = .always
-        
         returnKeyType = .done
+    }
+    
+    @objc private func onClearPressed() {
+        text = nil
     }
     
     func initViewFrame() {
@@ -207,7 +221,7 @@ class FcrAppUIIconTextField: FcrAppUITextField,
                       height: height)
     }
     
-    override func clearButtonRect(forBounds bounds: CGRect) -> CGRect {
+    override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         let width: CGFloat = 16
         let height: CGFloat = width
         let x: CGFloat = bounds.width - width - 22
