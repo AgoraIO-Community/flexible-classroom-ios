@@ -148,14 +148,65 @@ class FcrAppUIQuickStartFooterView: UIView,
     private let contentLabel = FcrAppUITextView(frame: .zero)
     let signButton = UIButton(frame: .zero)
     
+    var suitableHeight: CGFloat {
+        return signButton.frame.maxY + 20
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initViews()
         initViewFrame()
+        updateViewProperties()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func layoutSubviews(with width: CGFloat) {
+        let boundsWidth = width
+        
+        guard let contentText = contentLabel.text,
+              let font = contentLabel.font else {
+            return
+        }
+        
+        let left: CGFloat = 15
+        let right: CGFloat = left
+        
+        // Title label
+        let x: CGFloat = left
+        var y: CGFloat = 60
+        var height: CGFloat = 14
+        var width: CGFloat = boundsWidth - (left + right)
+        
+        titleLabel.frame = CGRect(x: x,
+                                  y: y,
+                                  width: width,
+                                  height: height)
+        
+        // Content label
+        let limitWidth = bounds.width - (left + right)
+        
+        height = contentText.agora_size(font: font,
+                                        width: limitWidth).height
+        
+        y = titleLabel.frame.maxY + 10
+        
+        contentLabel.frame = CGRect(x: x,
+                                    y: y,
+                                    width: width,
+                                    height: height)
+        
+        // Sign button
+        y = contentLabel.frame.maxY + 20
+        width = signButton.intrinsicContentSize.width + 40
+        height = 30
+        
+        signButton.frame = CGRect(x: x,
+                                  y: y,
+                                  width: width,
+                                  height: height)
     }
     
     func initViews() {
@@ -180,26 +231,16 @@ class FcrAppUIQuickStartFooterView: UIView,
     }
     
     func initViewFrame() {
-        titleLabel.mas_makeConstraints { make in
-            make?.top.equalTo()(60)
-            make?.left.equalTo()(25)
-            make?.right.equalTo()(-25)
-            make?.height.equalTo()(14)
-        }
         
-        contentLabel.mas_makeConstraints { make in
-            make?.top.equalTo()(self.titleLabel.mas_bottom)?.offset()(10)
-            make?.left.equalTo()(25)
-            make?.right.equalTo()(-25)
-            make?.height.equalTo()(80)
-        }
     }
     
     func updateViewProperties() {
         titleLabel.textColor = FcrAppUIColorGroup.fcr_v2_green
         titleLabel.text = "fcr_login_free_tips_login_guide_title".localized()
         
-        contentLabel.text = "fcr_login_free_tips_login_guide".localized()
+        let contentText = "fcr_login_free_tips_login_guide".localized()
+        
+        contentLabel.text = contentText
         contentLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
         contentLabel.backgroundColor = .clear
         
@@ -210,13 +251,6 @@ class FcrAppUIQuickStartFooterView: UIView,
                                  for: .normal)
         
         signButton.backgroundColor = FcrAppUIColorGroup.fcr_white
-        
-        signButton.mas_makeConstraints { make in
-            make?.top.equalTo()(self.contentLabel.mas_bottom)?.offset()(20)
-            make?.left.equalTo()(25)
-            make?.width.equalTo()(signButton.intrinsicContentSize.width + 40)
-            make?.height.equalTo()(30)
-        }
     }
 }
 
@@ -257,33 +291,7 @@ class FcrAppUIQuickStartContentView: UIScrollView,
     }
     
     func initViewFrame() {
-        content.mas_makeConstraints { make in
-            make?.edges.equalTo()(self)
-            make?.width.equalTo()(self)
-            make?.height.equalTo()(870)
-        }
         
-        contentSize = CGSize(width: 0,
-                             height: 870)
-        
-        headerView.mas_makeConstraints { make in
-            make?.left.right().top().equalTo()(content)
-            make?.height.equalTo()(263)
-        }
-
-        roomInputView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.headerView.mas_bottom)?.offset()(-107)
-            make?.left.equalTo()(15)
-            make?.right.equalTo()(-15)
-            make?.height.equalTo()(479)
-        }
-
-        footerView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.roomInputView.mas_bottom)?.offset()(-35)
-            make?.left.equalTo()(15)
-            make?.right.equalTo()(-15)
-            make?.height.equalTo()(234)
-        }
     }
     
     func updateViewProperties() {
@@ -293,6 +301,54 @@ class FcrAppUIQuickStartContentView: UIScrollView,
         
         content.backgroundColor = UIColor.fcr_hex_string("#F8FAFF")
         footerView.backgroundColor = UIColor.fcr_hex_string("#EBF6FA")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // Header view
+        var x: CGFloat = 0
+        var y: CGFloat = 0
+        var width: CGFloat = bounds.width
+        var height: CGFloat = 263
+        
+        headerView.frame = CGRect(x: x,
+                                  y: y,
+                                  width: width,
+                                  height: height)
+        
+        // Room input view
+        x = 15
+        y = headerView.frame.maxY - 107
+        width = bounds.width - (x * 2)
+        height = 479
+        
+        roomInputView.frame = CGRect(x: x,
+                                     y: y,
+                                     width: width,
+                                     height: height)
+        
+        // Footer view
+        y = roomInputView.frame.maxY - 35
+        
+        footerView.layoutSubviews(with: width)
+        
+        height = footerView.suitableHeight
+
+        footerView.frame = CGRect(x: x,
+                                  y: y,
+                                  width: width,
+                                  height: height)
+        
+        // Content view
+        height = footerView.frame.maxY + 38
+        
+        content.frame = CGRect(x: 0,
+                               y: 0,
+                               width: bounds.width,
+                               height: height)
+        
+        contentSize = CGSize(width: 0,
+                             height: height)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>,
