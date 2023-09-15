@@ -298,7 +298,9 @@ extension FcrAppUIRoomListController: UITableViewDelegate {
         if isShowPlaceholder {
             return tableView.bounds.height
         } else {
-            return 152
+            let item = dataSource[indexPath.item]
+            
+            return item.height
         }
     }
 }

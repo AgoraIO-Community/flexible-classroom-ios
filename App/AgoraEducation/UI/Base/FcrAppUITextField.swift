@@ -52,7 +52,12 @@ class FcrAppUIIconTextField: FcrAppUITextField,
         case image, text
     }
     
-    private var clearButtonFrame = CGRect.zero
+    private var clearButtonFrame = CGRect(x: 0,
+                                          y: 0,
+                                          width: 16,
+                                          height: 16)
+    
+    private let clearButtonRight: CGFloat = 22
     
     private let clearButton = UIButton(frame: .zero)
     
@@ -178,6 +183,12 @@ class FcrAppUIIconTextField: FcrAppUITextField,
         
         rect.origin.x += editAreaOffsetX
         
+        var width: CGFloat = bounds.width - rect.origin.x
+        
+        width -= (clearButtonRight * 2 + clearButton.width)
+        
+        rect.size.width = width
+        
         return rect
     }
     
@@ -190,9 +201,7 @@ class FcrAppUIIconTextField: FcrAppUITextField,
         
         var width: CGFloat = bounds.width - x
         
-        if let view = rightView {
-            width -= (bounds.width - view.frame.minX)
-        }
+        width -= (clearButtonRight * 2 + clearButton.width)
         
         return CGRect(x: x,
                       y: 0,
@@ -209,11 +218,7 @@ class FcrAppUIIconTextField: FcrAppUITextField,
         
         var width: CGFloat = bounds.width - x
         
-        if let view = rightView {
-            width -= (bounds.width - view.frame.minX)
-        } else {
-            width -= (bounds.width - clearButtonFrame.minX)
-        }
+        width -= (clearButtonRight * 2 + clearButton.width)
         
         return CGRect(x: x,
                       y: 0,
@@ -222,9 +227,9 @@ class FcrAppUIIconTextField: FcrAppUITextField,
     }
     
     override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
-        let width: CGFloat = 16
+        let width: CGFloat = clearButtonFrame.width
         let height: CGFloat = width
-        let x: CGFloat = bounds.width - width - 22
+        let x: CGFloat = bounds.width - width - clearButtonRight
         let y: CGFloat = (bounds.height - height) * 0.5
         
         clearButtonFrame = CGRect(x: x,
