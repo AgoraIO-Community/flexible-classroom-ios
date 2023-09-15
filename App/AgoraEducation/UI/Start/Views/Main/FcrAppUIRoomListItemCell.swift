@@ -93,6 +93,8 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
         cardView.addSubview(enteredButton)
         cardView.addSubview(sharedButton)
         
+        nameLabel.numberOfLines = 0
+        
         copiedButton.addTarget(self,
                              action: #selector(onCopiedButtonPressed(_:)),
                              for: .touchUpInside)
@@ -146,13 +148,14 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
         }
         
         sharedButton.mas_makeConstraints { make in
-            make?.top.equalTo()(14)
-            make?.right.equalTo()(-12)
+            make?.top.equalTo()(16)
+            make?.right.equalTo()(-16)
         }
         
         nameLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(17)
+            make?.left.equalTo()(16)
             make?.top.equalTo()(stateLabel.mas_bottom)?.offset()(12)
+            make?.right.equalTo()(-16)
         }
         
         timeIcon.mas_makeConstraints { make in
@@ -176,8 +179,8 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
         }
         
         enteredButton.mas_makeConstraints { make in
-            make?.right.offset()(-14)
-            make?.bottom.offset()(-19)
+            make?.top.equalTo()(timeLabel.mas_top)?.offset()(2)
+            make?.right.offset()(-16)
             make?.width.equalTo()(100)
             make?.height.equalTo()(36)
         }

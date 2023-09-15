@@ -17,6 +17,9 @@ struct FcrAppUIRoomListItem {
     var userName: String
     var time: String
     
+    var font: UIFont
+    var height: CGFloat
+    
     static func create(from: FcrAppServerRoomObject) -> FcrAppUIRoomListItem {
         // Id
         let originalString = from.roomId
@@ -42,13 +45,28 @@ struct FcrAppUIRoomListItem {
         let endTime = endDate.string(withFormat: "HH:mm")
         let time = "\(day), \(startTime)-\(endTime)"
         
+        
+        // Text height
+        let textLimitWidth = UIScreen.agora_width - 64
+        let text = from.roomName
+        let font = FcrAppUIFontGroup.font16
+        
+        let size = text.agora_size(font: font,
+                                   width: textLimitWidth)
+        
+        let top: CGFloat = 45
+        let bottom: CGFloat = 78
+        let height = size.height + top + bottom
+        
         let item = FcrAppUIRoomListItem(roomState: from.roomState,
                                         roomType: from.sceneType,
                                         roomId: roomId,
                                         roomName: from.roomName,
                                         userRole: from.role,
                                         userName: from.userName,
-                                        time: time)
+                                        time: time,
+                                        font: font,
+                                        height: height)
         
         return item
     }
