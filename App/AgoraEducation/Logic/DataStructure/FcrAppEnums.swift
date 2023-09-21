@@ -9,7 +9,7 @@
 import AgoraUIBaseViews
 
 enum FcrAppRegion: String, FcrAppStringRawRepresentable, CaseIterable {
-    case CN, NA
+    case CN, NA, AP, EU
 }
 
 enum FcrAppUIMode: String, FcrAppStringRawRepresentable, CaseIterable {
