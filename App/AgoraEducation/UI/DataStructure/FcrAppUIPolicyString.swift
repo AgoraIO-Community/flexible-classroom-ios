@@ -6,7 +6,7 @@
 //  Copyright © 2023 Agora. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct FcrAppUIPolicyString {
     let privacykLink =  "fcr_login_label_privacy_policy_link".localized()
@@ -15,16 +15,25 @@ struct FcrAppUIPolicyString {
     let privacyText = "fcr_login_label_privacy_policy".localized()
     let tearmsText = "fcr_login_label_terms_of_service".localized()
     
-    func loginString() -> NSMutableAttributedString {
+    func loginDetailString() -> NSMutableAttributedString {
         let text = "fcr_login_popup_window_label_content".localized()
         
-        return string(text)
+        return string(text,
+                      foregroundColor: FcrAppUIColorGroup.fcr_v2_light_text2)
+    }
+    
+    func loginString() -> NSMutableAttributedString {
+        let text = "fcr_login_free_option_read_agree".localized()
+        
+        return string(text,
+                      foregroundColor: FcrAppUIColorGroup.fcr_white)
     }
     
     func quickStartString() -> NSMutableAttributedString {
         let text = "fcr_login_free_option_read_agree".localized()
         
-        return string(text)
+        return string(text,
+                      foregroundColor: FcrAppUIColorGroup.fcr_v2_light_text2)
     }
     
     func toastString() -> String {
@@ -33,13 +42,14 @@ struct FcrAppUIPolicyString {
         return replace(text)
     }
     
-    private func string(_ string: String) -> NSMutableAttributedString {
+    private func string(_ string: String,
+                        foregroundColor: UIColor) -> NSMutableAttributedString {
         let text = replace(string)
         
         let attributedString = NSMutableAttributedString(string: text)
         
         attributedString.addAttribute(.foregroundColor,
-                                      value: FcrAppUIColorGroup.fcr_v2_light_text2,
+                                      value: foregroundColor,
                                       range: NSRange(location: 0, length: text.count))
         
         if let range = text.range(of: privacyText) {

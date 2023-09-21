@@ -10,6 +10,7 @@ import Foundation
 
 class FcrAppLocalStorage {
     enum Key: String, CaseIterable {
+        case firstPrivacyAgreement = "com.agora.first.privacyTermsAgree"
         case privacyAgreement      = "com.agora.privacyTermsAgree"
              
         case login                 = "com.agora.login"

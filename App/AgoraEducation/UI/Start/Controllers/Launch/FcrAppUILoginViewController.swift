@@ -59,6 +59,8 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
     
     private let startButton = StartButton(frame: .zero)
     
+    private let policyView = FcrAppUIQuickStartPolicyView(frame: .zero)
+    
     private let testTag = UIButton()
     
     private var center: FcrAppCenter
@@ -72,6 +74,10 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
         super.init(nibName: nil,
                    bundle: nil)
         center.tester.delegate = self
+    }
+    
+    deinit {
+        removeAppActiveObserver()
     }
     
     required init?(coder: NSCoder) {
@@ -96,11 +102,27 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
         updateViewProperties()
         createAnimation()
         privacyCheck()
+        addAppActiveObserver()
         tester()
     }
     
+    private func addAppActiveObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(appDidBecomeActive),
+                                               name: NSNotification.Name("app_did_become_active"),
+                                               object: nil)
+    }
+    
+    private func removeAppActiveObserver() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func appDidBecomeActive() {
+        createAnimation()
+    }
+    
     private func privacyCheck() {
-        guard center.isAgreedPrivacy == false else {
+        guard center.isFirstAgreedPrivacy == false else {
             return
         }
         
@@ -112,7 +134,7 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
                               animated: true)
         
         vc.onAgreedCompletion = { [weak self] in
-            self?.center.isAgreedPrivacy = true
+            self?.center.isFirstAgreedPrivacy = true
         }
     }
     
@@ -155,6 +177,7 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         view.addSubview(textView)
         view.addSubview(afcView)
         view.addSubview(startButton)
+        view.addSubview(policyView)
         view.addSubview(testTag)
         
         textView.contentMode = .scaleAspectFit
@@ -167,6 +190,12 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         startButton.layer.masksToBounds = true
         startButton.titleLabel?.font = FcrAppUIFontGroup.font16
         startButton.titleLabel?.textAlignment = .center
+        
+        policyView.checkBox.isSelected = center.isAgreedPrivacy
+        
+        policyView.checkBox.addTarget(self,
+                                      action: #selector(doPolicyPressed(_ :)),
+                                      for: .touchUpInside)
         
         testTag.titleLabel?.font = FcrAppUIFontGroup.font20
         testTag.setTitleColor(.white,
@@ -259,6 +288,13 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
             make?.height.equalTo()(height)
         }
         
+        policyView.mas_makeConstraints { make in
+            make?.left.equalTo()(self.startButton.mas_left)
+            make?.top.equalTo()(self.startButton.mas_bottom)?.offset()(29)
+            make?.height.equalTo()(40)
+            make?.right.equalTo()(-leftSideSpace)
+        }
+        
         afcView.mas_makeConstraints { make in
             let offset: CGFloat = (compactLayout ? -20 : -30)
             
@@ -271,6 +307,8 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
     
     func updateViewProperties() {
         view.backgroundColor = FcrAppUIColorGroup.fcr_black
+        
+        policyView.updateViewProperties()
         
         backgroundView.image = UIImage(named: "fcr_login_center_afc")
         textView.image = UIImage(named: "fcr_login_text_en")
@@ -301,6 +339,16 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
                           for: .highlighted)
         
         textView.image = UIImage(named: textViewImage)
+        
+        policyView.textView.backgroundColor = .clear
+        
+        policyView.textView.attributedText = FcrAppUIPolicyString().quickStartString()
+    }
+    
+    @objc private func doPolicyPressed(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        
+        center.isAgreedPrivacy = sender.isSelected
     }
     
     private func createAnimation() {

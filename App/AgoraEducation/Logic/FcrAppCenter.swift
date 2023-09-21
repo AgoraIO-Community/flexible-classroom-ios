@@ -37,6 +37,17 @@ class FcrAppCenter: NSObject {
     
     weak var delegate: FcrAppCenterDelegate?
     
+    var isFirstAgreedPrivacy = false {
+        didSet {
+            guard isFirstAgreedPrivacy != oldValue else {
+                return
+            }
+            
+            localStorage.writeData(isFirstAgreedPrivacy,
+                                   key: .firstPrivacyAgreement)
+        }
+    }
+    
     var isAgreedPrivacy = false {
         didSet {
             guard isAgreedPrivacy != oldValue else {
@@ -100,6 +111,11 @@ class FcrAppCenter: NSObject {
             } else {
                 self.language = (UIDevice.current.agora_is_chinese_language ? .zh_cn : .en)
             }
+            
+            let firstAgreedPrivacy = try localStorage.readData(key: .firstPrivacyAgreement,
+                                                               type: Bool.self)
+                
+            self.isFirstAgreedPrivacy = firstAgreedPrivacy
             
             let privacy = try localStorage.readData(key: .privacyAgreement,
                                                     type: Bool.self)
