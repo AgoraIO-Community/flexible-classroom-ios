@@ -22,7 +22,6 @@ class FcrAppUIPolicyView: UIView,
         self.checkBoxNormalImage = checkBoxNormalImage
         self.checkBoxSelectedImage = checkBoxSelectedImage
         super.init(frame: .zero)
-        
         initViews()
         initViewFrame()
     }
