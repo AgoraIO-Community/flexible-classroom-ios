@@ -194,9 +194,14 @@ private extension FcrAppUICreateRoomViewController {
             }
         }
         
+        let newId = FcrAppRoomUserIdCreater().start(userId: userId,
+                                                    userName: userName,
+                                                    userRole: .teacher,
+                                                    roomType: roomType)
+        
         let config = FcrAppCreateRoomConfig(roomName: roomName,
                                             roomType: roomType,
-                                            userId: userId,
+                                            userId: newId,
                                             userName: userName,
                                             startTime: startTime,
                                             duration: duration,

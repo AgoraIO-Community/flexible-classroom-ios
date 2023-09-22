@@ -59,7 +59,8 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
     
     private let startButton = StartButton(frame: .zero)
     
-    private let policyView = FcrAppUIQuickStartPolicyView(frame: .zero)
+    private let policyView = FcrAppUIPolicyView(checkBoxNormalImage: "fcr_notchoosed",
+                                                checkBoxSelectedImage: "fcr_choosed")
     
     private let testTag = UIButton()
     
@@ -139,6 +140,12 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
     }
     
     @objc private func onStartButtonPressed() {
+        guard policyView.checkBox.isSelected else {
+            showToast(FcrAppUIPolicyString().toastString(),
+                      type: .error)
+            return
+        }
+        
         AgoraLoading.loading()
         
         center.getAgoraConsoleURL { [weak self] url in
@@ -231,7 +238,6 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         testTag.mas_makeConstraints { make in
             make?.right.equalTo()(-20)
             make?.centerY.equalTo()(logoView.mas_centerY)
-            make?.right.equalTo()(0)
             make?.height.equalTo()(20)
         }
         
@@ -342,7 +348,7 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         
         policyView.textView.backgroundColor = .clear
         
-        policyView.textView.attributedText = FcrAppUIPolicyString().quickStartString()
+        policyView.textView.attributedText = FcrAppUIPolicyString().loginString()
     }
     
     @objc private func doPolicyPressed(_ sender: UIButton) {

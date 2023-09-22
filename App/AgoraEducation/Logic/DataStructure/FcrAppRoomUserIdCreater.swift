@@ -1,5 +1,5 @@
 //
-//  FcrAppUserIdCreater.swift
+//  FcrAppRoomUserIdCreater.swift
 //  AgoraEducation
 //
 //  Created by Cavan on 2023/9/12.
@@ -8,18 +8,18 @@
 
 import Foundation
 
-struct FcrAppUserIdCreater {
-    static func start(userId: String,
-                      userName: String,
-                      userRole: FcrAppUserRole,
-                      roomType: FcrAppRoomType) -> String {
+struct FcrAppRoomUserIdCreater {
+    func start(userId: String,
+               userName: String,
+               userRole: FcrAppUserRole,
+               roomType: FcrAppRoomType) -> String {
         var localUserId: String
         
         switch roomType {
         case .proctor:
             localUserId = "\(userName.md5())-sub"
         default:
-            localUserId = userId + "\(userRole.rawValue)"
+            localUserId = userId + "_" + "\(userRole.rawValue)"
         }
         
         printDebug("localUserId: \(localUserId)")
@@ -27,9 +27,9 @@ struct FcrAppUserIdCreater {
         return localUserId
     }
     
-    static func quickStart(userName: String,
-                           userRole: FcrAppUserRole,
-                           roomType: FcrAppRoomType) -> String {
+    func quickStart(userName: String,
+                    userRole: FcrAppUserRole,
+                    roomType: FcrAppRoomType) -> String {
         var localUserId: String
         
         switch roomType {

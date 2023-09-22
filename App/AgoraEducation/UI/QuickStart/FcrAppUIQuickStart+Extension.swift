@@ -27,17 +27,19 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
         let joinRoomView = contentView.roomInputView.joinRoomView
         
         joinRoomView.roomIdTextField.setShowText(center.room.lastId)
-        joinRoomView.userNameTextField.text = center.localUser?.nickname
+        joinRoomView.userNameTextField.text = try? center.localStorage.readData(key: .nickname,
+                                                                                type: String.self)
         
         joinRoomView.joinButton.addTarget(self,
                                           action: #selector(onJoinButtonPressed(_ :)),
                                           for: .touchUpInside)
-       
+        
         // Create room view
         let createRoomView = contentView.roomInputView.createRoomView
         
         createRoomView.roomNameTextField.text = center.room.lastName
-        createRoomView.userNameTextField.text = center.localUser?.nickname
+        createRoomView.userNameTextField.text = try? center.localStorage.readData(key: .nickname,
+                                                                                  type: String.self)
         
         createRoomView.roomTypeView.rightButton.addTarget(self,
                                                           action: #selector(onRoomTypeButtonPressed),
@@ -159,9 +161,9 @@ private extension FcrAppUIQuickStartViewController {
                                 isQuickStart: true) { [weak self] object in
             AgoraLoading.hide()
             
-            let userId = FcrAppUserIdCreater.quickStart(userName: userName,
-                                                        userRole: userRole,
-                                                        roomType: object.sceneType)
+            let userId = FcrAppRoomUserIdCreater().quickStart(userName: userName,
+                                                              userRole: userRole,
+                                                              roomType: object.sceneType)
             
             let config = FcrAppJoinRoomPreCheckConfig(roomId: roomId,
                                                       userId: userId,
@@ -169,8 +171,8 @@ private extension FcrAppUIQuickStartViewController {
                                                       userRole: userRole,
                                                       isQuickStart: true)
             
-            self?.localStorage(with: userId,
-                               userName: userName)
+            self?.center.localStorage.writeData(userName,
+                                                key: .nickname)
             
             self?.joinRoomPreCheck(config: config)
         } failure: { [weak self] error in
@@ -214,9 +216,9 @@ private extension FcrAppUIQuickStartViewController {
         
         let userRole = FcrAppUserRole.teacher
         
-        let userId = FcrAppUserIdCreater.quickStart(userName: userName,
-                                                    userRole: userRole,
-                                                    roomType: roomType)
+        let userId = FcrAppRoomUserIdCreater().quickStart(userName: userName,
+                                                          userRole: userRole,
+                                                          roomType: roomType)
         
         let config = FcrAppCreateRoomConfig(roomName: roomName,
                                             roomType: roomType,
@@ -227,8 +229,8 @@ private extension FcrAppUIQuickStartViewController {
                                             mediaStreamLatency: latency,
                                             isQuickStart: true)
         
-        localStorage(with: userId,
-                     userName: userName)
+        center.localStorage.writeData(userName,
+                                      key: .nickname)
         
         createRoom(config: config)
     }
@@ -245,16 +247,6 @@ private extension FcrAppUIQuickStartViewController {
         
         present(navigation,
                 animated: true)
-    }
-    
-    func localStorage(with userId: String,
-                      userName: String) {
-        if let localUser = center.localUser {
-            localUser.nickname = userName
-        } else {
-            center.createLocalUser(userId: userId,
-                                   nickname: userName)
-        }
     }
 }
 

@@ -55,7 +55,8 @@
 		86B81E6A2A56A2B400BA631C /* FcrAppLocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E692A56A2B400BA631C /* FcrAppLocalUser.swift */; };
 		86B81E6C2A56B16500BA631C /* FcrAppEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E6B2A56B16500BA631C /* FcrAppEnums.swift */; };
 		86B81E6E2A57EBEA00BA631C /* FcrAppRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B81E6D2A57EBEA00BA631C /* FcrAppRoom.swift */; };
-		86E2786A2AB07775007E2373 /* FcrAppUserIdCreater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E278692AB07775007E2373 /* FcrAppUserIdCreater.swift */; };
+		86DB10032ABD478300CAFA36 /* FcrAppUIPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DB10022ABD478300CAFA36 /* FcrAppUIPolicyView.swift */; };
+		86E2786A2AB07775007E2373 /* FcrAppRoomUserIdCreater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E278692AB07775007E2373 /* FcrAppRoomUserIdCreater.swift */; };
 		86E36F582AB2E11E006C6339 /* FcrAppCloudDriveExItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E36F572AB2E11E006C6339 /* FcrAppCloudDriveExItems.swift */; };
 		86E5023A2A5FEC8C003C04D8 /* FcrAppObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E502392A5FEC8C003C04D8 /* FcrAppObjects.swift */; };
 		86E5023E2A5FF145003C04D8 /* FcrAppClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5023D2A5FF145003C04D8 /* FcrAppClosure.swift */; };
@@ -156,7 +157,8 @@
 		86B81E692A56A2B400BA631C /* FcrAppLocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppLocalUser.swift; sourceTree = "<group>"; };
 		86B81E6B2A56B16500BA631C /* FcrAppEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppEnums.swift; sourceTree = "<group>"; };
 		86B81E6D2A57EBEA00BA631C /* FcrAppRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppRoom.swift; sourceTree = "<group>"; };
-		86E278692AB07775007E2373 /* FcrAppUserIdCreater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUserIdCreater.swift; sourceTree = "<group>"; };
+		86DB10022ABD478300CAFA36 /* FcrAppUIPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIPolicyView.swift; sourceTree = "<group>"; };
+		86E278692AB07775007E2373 /* FcrAppRoomUserIdCreater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppRoomUserIdCreater.swift; sourceTree = "<group>"; };
 		86E36F572AB2E11E006C6339 /* FcrAppCloudDriveExItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppCloudDriveExItems.swift; sourceTree = "<group>"; };
 		86E502392A5FEC8C003C04D8 /* FcrAppObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppObjects.swift; sourceTree = "<group>"; };
 		86E5023D2A5FF145003C04D8 /* FcrAppClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppClosure.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				8629C3472A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift */,
 				869026982A6E19C3006E0D44 /* FcrAppUITextField.swift */,
 				860CB3F32A97276700B03141 /* FcrAppUITextView.swift */,
+				86DB10022ABD478300CAFA36 /* FcrAppUIPolicyView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -495,7 +498,7 @@
 				86E502392A5FEC8C003C04D8 /* FcrAppObjects.swift */,
 				86B81E632A5667D500BA631C /* FcrAppServerObject.swift */,
 				86E5023D2A5FF145003C04D8 /* FcrAppClosure.swift */,
-				86E278692AB07775007E2373 /* FcrAppUserIdCreater.swift */,
+				86E278692AB07775007E2373 /* FcrAppRoomUserIdCreater.swift */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";
@@ -765,12 +768,13 @@
 				1A44BE7B22BF863000766274 /* AppDelegate.m in Sources */,
 				86F5E3202A8CBF9E00AED16A /* FcrAppUIFontGroup.swift in Sources */,
 				86B81E6A2A56A2B400BA631C /* FcrAppLocalUser.swift in Sources */,
-				86E2786A2AB07775007E2373 /* FcrAppUserIdCreater.swift in Sources */,
+				86E2786A2AB07775007E2373 /* FcrAppRoomUserIdCreater.swift in Sources */,
 				AB4F69D3286D8DE70012E6B3 /* FcrAppUIAboutViewController.swift in Sources */,
 				AB7B7B6F28C1E0B1001D327A /* FcrAppUIMainHeaderView.swift in Sources */,
 				AB8AC745287FEB5000B57B58 /* FcrAppUIPrivacyTermsViewController.swift in Sources */,
 				AB4F69DF286DC5F30012E6B3 /* FcrAppUICheckBoxCell.swift in Sources */,
 				86E502472A60025A003C04D8 /* FcrAppUIObjects.swift in Sources */,
+				86DB10032ABD478300CAFA36 /* FcrAppUIPolicyView.swift in Sources */,
 				86E5024B2A60061D003C04D8 /* FcrAppUIRoomListSubViews.swift in Sources */,
 				AB4F69D7286DBE490012E6B3 /* FcrAppUIRegionViewController.swift in Sources */,
 				869026992A6E19C3006E0D44 /* FcrAppUITextField.swift in Sources */,

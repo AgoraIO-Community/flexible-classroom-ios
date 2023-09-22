@@ -47,6 +47,7 @@ class FcrAppLocalStorage {
     
     func writeData(_ value: Any,
                    key: Key) {
+        printDebug("write key: \(key), value: \(value)")
         UserDefaults.standard.set(value,
                                   forKey: key.rawValue)
     }
@@ -81,6 +82,7 @@ class FcrAppLocalStorage {
                           type: T.Type) throws -> T {
         if let value = UserDefaults.standard.object(forKey: key.rawValue) {
             if let `value` = value as? T {
+                printDebug("read key: \(key), value: \(value)")
                 return value
             } else {
                 printDebug("read key: \(key), nil")
