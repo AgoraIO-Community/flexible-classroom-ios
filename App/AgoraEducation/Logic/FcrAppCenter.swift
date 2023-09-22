@@ -112,15 +112,15 @@ class FcrAppCenter: NSObject {
                 self.language = (UIDevice.current.agora_is_chinese_language ? .zh_cn : .en)
             }
             
-            let firstAgreedPrivacy = try localStorage.readData(key: .firstPrivacyAgreement,
-                                                               type: Bool.self)
-                
-            self.isFirstAgreedPrivacy = firstAgreedPrivacy
+            if let firstAgreedPrivacy = try? localStorage.readData(key: .firstPrivacyAgreement,
+                                                                   type: Bool.self) {
+                self.isFirstAgreedPrivacy = firstAgreedPrivacy
+            }
             
-            let privacy = try localStorage.readData(key: .privacyAgreement,
-                                                    type: Bool.self)
-            
-            self.isAgreedPrivacy = privacy
+            if let privacy = try? localStorage.readData(key: .privacyAgreement,
+                                                        type: Bool.self) {
+                self.isAgreedPrivacy = privacy
+            }
             
             let nickname = try localStorage.readData(key: .nickname,
                                                      type: String.self)
