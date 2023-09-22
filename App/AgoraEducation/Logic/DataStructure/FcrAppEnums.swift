@@ -78,9 +78,9 @@ enum FcrAppRoomState: Int, FcrAppCodable {
 }
 
 enum FcrAppUserRole: Int, FcrAppCodable {
-    case teacher
-    case student
-    case audience
+    case teacher  = 1
+    case student  = 2
+    case audience = 4
 }
 
 protocol FcrAppStringRawRepresentable: RawRepresentable where Self.RawValue == String {}
