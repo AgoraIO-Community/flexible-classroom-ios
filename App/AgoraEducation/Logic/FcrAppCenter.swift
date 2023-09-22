@@ -31,11 +31,22 @@ class FcrAppCenter: NSObject {
     
     private lazy var armin = FcrAppArmin(logTube: self)
     
-    private let localStorage = FcrAppLocalStorage()
+    let localStorage = FcrAppLocalStorage()
     
     private(set) var localUser: FcrAppLocalUser?
     
     weak var delegate: FcrAppCenterDelegate?
+    
+    var isFirstAgreedPrivacy = false {
+        didSet {
+            guard isFirstAgreedPrivacy != oldValue else {
+                return
+            }
+            
+            localStorage.writeData(isFirstAgreedPrivacy,
+                                   key: .firstPrivacyAgreement)
+        }
+    }
     
     var isAgreedPrivacy = false {
         didSet {
@@ -100,6 +111,11 @@ class FcrAppCenter: NSObject {
             } else {
                 self.language = (UIDevice.current.agora_is_chinese_language ? .zh_cn : .en)
             }
+            
+            let firstAgreedPrivacy = try localStorage.readData(key: .firstPrivacyAgreement,
+                                                               type: Bool.self)
+                
+            self.isFirstAgreedPrivacy = firstAgreedPrivacy
             
             let privacy = try localStorage.readData(key: .privacyAgreement,
                                                     type: Bool.self)
@@ -180,21 +196,12 @@ class FcrAppCenter: NSObject {
                 return
             }
             
-            self.localStorage.writeData(object.companyId,
-                                        key: .companyId)
-            
             self.localStorage.writeData(object.companyName,
                                         key: .companyName)
             
-            self.localStorage.writeData(object.displayName,
-                                        key: .nickname)
-            
-            self.localStorage.writeData(object.userId,
-                                        key: .userId)
-            
             self.urlGroup.companyId = object.companyId
             
-            let localUser = FcrAppLocalUser(userId: object.userId,
+            let localUser = FcrAppLocalUser(userId: object.companyId,
                                             nickname: object.displayName,
                                             localStorage: self.localStorage)
             

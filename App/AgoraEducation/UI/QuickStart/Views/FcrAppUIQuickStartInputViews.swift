@@ -130,48 +130,6 @@ class FcrAppUIQuickStartSegmentedControl: UIButton,
     }
 }
 
-class FcrAppUIQuickStartPolicyView: UIView,
-                                    AgoraUIContentContainer {
-    let checkBox = UIButton(frame: .zero)
-    let textView = FcrAppUITextView(frame: .zero,
-                                    textContainer: nil)
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        initViews()
-        initViewFrame()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func initViews() {
-        addSubview(checkBox)
-        addSubview(textView)
-    }
-    
-    func initViewFrame() {
-        checkBox.mas_makeConstraints { make in
-            make?.top.equalTo()(1)
-            make?.left.equalTo()(0)
-            make?.width.height().equalTo()(16)
-        }
-        
-        textView.mas_makeConstraints { make in
-            make?.left.equalTo()(self.checkBox.mas_right)?.offset()(3)
-            make?.right.top().bottom().equalTo()(0)
-        }
-    }
-    
-    func updateViewProperties() {
-        checkBox.setImage(UIImage(named: "fcr_mobile_check0"),
-                          for: .normal)
-        checkBox.setImage(UIImage(named: "fcr_mobile_check1"),
-                          for: .selected)
-    }
-}
-
 class FcrAppUIQuickStartInputView: UIView,
                                    AgoraUIContentContainer {
     private let backgroundImageView = UIImageView(frame: .zero)
@@ -179,7 +137,8 @@ class FcrAppUIQuickStartInputView: UIView,
     
     let joinRoomView: FcrAppUIQuickStartJoinRoomInputView
     let createRoomView: FcrAppUIQuickStartCreateRoomInputView
-    let policyView = FcrAppUIQuickStartPolicyView()
+    let policyView = FcrAppUIPolicyView(checkBoxNormalImage: "fcr_mobile_check0",
+                                        checkBoxSelectedImage: "fcr_mobile_check1")
     
     init(userRoleList: [FcrAppUIUserRole],
          roomTypeList: [FcrAppUIRoomType],

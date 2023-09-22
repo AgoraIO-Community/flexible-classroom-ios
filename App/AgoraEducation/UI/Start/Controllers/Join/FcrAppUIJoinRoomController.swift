@@ -130,10 +130,10 @@ private extension FcrAppUIJoinRoomController {
         center.room.getRoomInfo(roomId: roomId) { [weak self] object in
             AgoraLoading.hide()
             
-            let newId = FcrAppUserIdCreater.start(userId: userId,
-                                                  userName: userName,
-                                                  userRole: userRole,
-                                                  roomType: object.sceneType)
+            let newId = FcrAppRoomUserIdCreater().start(userId: userId,
+                                                        userName: userName,
+                                                        userRole: userRole,
+                                                        roomType: object.sceneType)
             
             let config = FcrAppJoinRoomPreCheckConfig(roomId: roomId,
                                                       userId: newId,

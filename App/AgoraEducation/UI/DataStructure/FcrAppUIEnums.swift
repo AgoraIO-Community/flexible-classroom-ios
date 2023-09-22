@@ -55,6 +55,8 @@ extension FcrAppUIRegion {
         switch self {
         case .CN:  return .CN
         case .NA:  return .NA
+        case .AP:  return .AP
+        case .EU:  return .EU
         }
     }
     
@@ -62,6 +64,8 @@ extension FcrAppUIRegion {
         switch self {
         case .CN:  return .CN
         case .NA:  return .NA
+        case .AP:  return .AP
+        case .EU:  return .EU
         }
     }
 }

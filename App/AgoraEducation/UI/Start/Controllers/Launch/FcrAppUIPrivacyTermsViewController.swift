@@ -85,7 +85,7 @@ class FcrAppUIPrivacyTermsViewController: FcrAppUIPresentedViewController {
         super.updateViewProperties()
         titleLabel.text = "fcr_login_label_welcome".localized()
         
-        textView.attributedText = FcrAppUIPolicyString().loginString()
+        textView.attributedText = FcrAppUIPolicyString().loginDetailString()
         
         agreedButton.setTitle("fcr_login_popup_window_button_agree".localized(),
                               for: .normal)

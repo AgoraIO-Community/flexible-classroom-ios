@@ -20,9 +20,13 @@ class FcrAppURLGroup {
         case .pro:
             switch region {
             case .CN:
-                return "https://api-solutions.bj2.agoralab.co"
+                return "https://api-solutions-cn.agoralab.co"
             case .NA:
-                return "https://api-solutions.sv3sbm.agoralab.co"
+                return "https://api-solutions-na.agoralab.co"
+            case .EU:
+                return "https://api-solutions-eu.agoralab.co"
+            case .AP:
+                return "https://api-solutions-ap.agoralab.co"
             }
         }
     }
@@ -201,7 +205,7 @@ class FcrAppURLGroup {
     
     func invitation(roomId: String,
                     inviterName: String) -> String {
-        let web = "https://solutions-apaas.agora.io/apaas/demo/index.html#/invite?sc="
+        let web = "https://solutions-apaas.agora.io/apaas/demo/index.html/invite?sc="
         
         let parameter: [String: Any] = ["roomId": roomId,
                                         "owner": inviterName,
