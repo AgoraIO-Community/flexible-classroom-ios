@@ -205,7 +205,7 @@ class FcrAppURLGroup {
     
     func invitation(roomId: String,
                     inviterName: String) -> String {
-        let web = "https://solutions-apaas.agora.io/apaas/demo/index.html/invite?sc="
+        let web = "https://solutions-apaas.agora.io/apaas/demo/index.html#/invite?sc="
         
         let parameter: [String: Any] = ["roomId": roomId,
                                         "owner": inviterName,
