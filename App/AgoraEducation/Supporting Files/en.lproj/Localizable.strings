@@ -142,6 +142,7 @@ fcr_create_end_time_info = "Default 30mins";
 fcr_create_more_setting = "More Setting";
 fcr_create_more_security = "Security";
 fcr_create_more_security_detail = "Watermark";
+fcr_user_tips_prohibited_join_room = "You have been prohibited from joining this room.";
 
 // Settings
 fcr_alert_title = "Tips";

@@ -58,7 +58,14 @@ class FcrAppUIViewController: UIViewController {
                                    message: nsError.debugDescription)
         }
         
-        showToast(appError.description(),
+        var message: String
+        
+        switch appError.code {
+        case 30403100: message = "fcr_user_tips_prohibited_join_room".localized()
+        default:       message = appError.description()
+        }
+        
+        showToast(message,
                   type: .error)
     }
     

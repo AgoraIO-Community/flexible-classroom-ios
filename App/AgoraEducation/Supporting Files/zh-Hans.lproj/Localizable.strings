@@ -142,6 +142,7 @@ fcr_create_end_time_info = "默认时长30分钟";
 fcr_create_more_setting = "更多设置";
 fcr_create_more_security = "安全防护";
 fcr_create_more_security_detail = "水印";
+fcr_user_tips_prohibited_join_room = "你已被禁止加入该房间";
 
 // Settings
 fcr_alert_title = "提示";
