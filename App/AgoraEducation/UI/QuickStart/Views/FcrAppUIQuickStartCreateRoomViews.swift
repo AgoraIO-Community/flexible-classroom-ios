@@ -192,7 +192,6 @@ class FcrAppUIQuickStartTimeView: UIView,
         
         timeLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text2
         
-        // TODO: UI 变量名
         lineView.backgroundColor = FcrAppUIColorGroup.fcr_v2_line
     }
 }

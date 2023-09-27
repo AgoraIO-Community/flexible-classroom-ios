@@ -53,12 +53,10 @@ struct FcrAppUIColorGroup {
         return UIColor.fcr_hex_string("#F9F9FC")
     }
     
-    // TODO: UI
     static var fcr_v2_light1: UIColor {
         return UIColor.fcr_hex_string("#F2F2FA")
     }
     
-    // TODO: UI
     static var fcr_v2_green: UIColor {
         return UIColor.fcr_hex_string("#16D1A4")
     }
