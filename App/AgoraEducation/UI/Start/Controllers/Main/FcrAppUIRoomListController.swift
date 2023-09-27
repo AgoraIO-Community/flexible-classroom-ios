@@ -22,6 +22,8 @@ class FcrAppUIRoomListController: FcrAppUIViewController {
     private let tableView = UITableView(frame: .zero,
                                         style: .plain)
     
+    private let defaultPullRoomInfoCount = 5
+    
     private var pullUpLoading = false
     
     weak var delegate: FcrAppUIRoomListControllerDelegate?
@@ -225,7 +227,7 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
 private extension FcrAppUIRoomListController {
     func refreshRoomList(success: @escaping FcrAppSuccess,
                          failure: @escaping FcrAppFailure) {
-        let count = (dataSource.count < 10) ? 10 : dataSource.count
+        let count = (dataSource.count < defaultPullRoomInfoCount) ? defaultPullRoomInfoCount : dataSource.count
                 
         center.room.refreshRoomList(count: count,
                                     success: { [weak self] list in
@@ -243,7 +245,7 @@ private extension FcrAppUIRoomListController {
     
     func increaseRoomList(success: @escaping FcrAppSuccess,
                           failure: @escaping FcrAppFailure) {
-        center.room.incrementalRoomList(count: 10,
+        center.room.incrementalRoomList(count: defaultPullRoomInfoCount,
                                         success: { [weak self] list in
             let new = list.filtered { object in
                 return object.sceneType.isValid

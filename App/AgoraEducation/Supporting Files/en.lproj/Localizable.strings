@@ -143,6 +143,7 @@ fcr_create_more_setting = "More Setting";
 fcr_create_more_security = "Security";
 fcr_create_more_security_detail = "Watermark";
 fcr_user_tips_prohibited_join_room = "You have been prohibited from joining this room.";
+fcr_error_network_exception = "Network exception.Please check your network settings.";
 
 // Settings
 fcr_alert_title = "Tips";

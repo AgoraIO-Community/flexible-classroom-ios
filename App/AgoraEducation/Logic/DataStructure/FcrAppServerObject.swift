@@ -54,7 +54,7 @@ struct FcrAppServerResponseObject {
         if let `data` = data as? T {
             return data
         } else {
-            throw FcrAppError(code: -1,
+            throw FcrAppError(code: -2,
                               message: "Failed data type conversion")
         }
     }

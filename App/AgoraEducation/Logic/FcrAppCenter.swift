@@ -317,8 +317,8 @@ extension FcrAppCenter: ArLogTube {
     func logOnConsole(_ log: String,
                       extra: String) {
         NSLog("--------------------------")
-        NSLog(log)
-        NSLog(extra)
+        print(log.utf8)
+        print(extra)
         NSLog("--------------------------")
     }
 }
