@@ -62,6 +62,7 @@ class FcrAppUIViewController: UIViewController {
         
         switch appError.code {
         case 30403100: message = "fcr_user_tips_prohibited_join_room".localized()
+        case -1:       message = "fcr_error_network_exception".localized()
         default:       message = appError.description()
         }
         
