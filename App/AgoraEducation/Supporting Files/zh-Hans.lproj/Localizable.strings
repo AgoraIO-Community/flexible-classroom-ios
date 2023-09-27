@@ -143,7 +143,7 @@ fcr_create_more_setting = "更多设置";
 fcr_create_more_security = "安全防护";
 fcr_create_more_security_detail = "水印";
 fcr_user_tips_prohibited_join_room = "你已被禁止加入该房间";
-cr_error_network_exception = "网络异常，请检查网络设置";
+fcr_error_network_exception = "网络异常，请检查网络设置";
 
 // Settings
 fcr_alert_title = "提示";
