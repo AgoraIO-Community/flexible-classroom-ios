@@ -128,7 +128,10 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
     
     func insertWidgetSampleToClassroom(_ config: AgoraEduLaunchConfig,
                                        hasWatermark: Bool) {
-        // TODO: 写注释
+        // Widget Doc CN: https://doc.shengwang.cn/doc/flexible-classroom/ios/advanced-features/widget
+        // Widget Doc EN: https://docs.agora.io/en/flexible-classroom/develop/embed-custom-plugin?platform=ios
+        // This provides an example of how to register a widget in the room.
+        
         let sample = FcrAppWidgetSample()
         
         let link = center.urlGroup.invitation(roomId: config.roomUuid,
