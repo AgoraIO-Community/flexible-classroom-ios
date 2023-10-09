@@ -174,9 +174,15 @@ class FcrAppCenter: NSObject {
             
             if let _ = try? self.localStorage.readStringEnumData(key: .region,
                                                                  type: FcrAppRegion.self) {
-                completion(need)
+                
             } else {
                 self.urlGroup.region = (need ? .CN : .NA)
+            }
+            
+            if need == false,
+                self.isLogined {
+                completion(true)
+            } else {
                 completion(need)
             }
         } failure: { _ in
