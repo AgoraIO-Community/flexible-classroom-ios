@@ -157,28 +157,31 @@ class FcrAppCenter: NSObject {
     }
     
     func needLogin(completion: @escaping FcrAppBoolCompletion) {
-        if let region = try? localStorage.readStringEnumData(key: .region,
-                                                             type: FcrAppRegion.self) {
-            if region == .CN {
-                completion(true)
-            } else {
-                completion(false)
+        let url = urlGroup.needLogin()
+        let headers = urlGroup.headers()
+        
+        armin.request(url: url,
+                      headers: headers,
+                      method: .get,
+                      event: "ip-check") { [weak self] object in
+            guard let `self` = self else {
+                return
             }
-        } else {
-            let url = urlGroup.needLogin()
-            let headers = urlGroup.headers()
             
-            armin.request(url: url,
-                          headers: headers,
-                          method: .get,
-                          event: "ip-check") { object in
-                let data = try object.dataConvert(type: [String: Any].self)
-                let need = try data.getValue(of: "loginType",
-                                             type: Bool.self)
+            let data = try object.dataConvert(type: [String: Any].self)
+            let need = try data.getValue(of: "loginType",
+                                         type: Bool.self)
+            
+            if let _ = try? self.localStorage.readStringEnumData(key: .region,
+                                                                 type: FcrAppRegion.self) {
                 completion(need)
-            } failure: { _ in
-                completion(true)
+            } else {
+                self.urlGroup.region = (need ? .CN : .NA)
+                completion(need)
             }
+        } failure: { _ in
+            self.urlGroup.region = .CN
+            completion(true)
         }
     }
     
