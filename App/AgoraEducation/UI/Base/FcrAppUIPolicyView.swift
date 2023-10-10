@@ -8,12 +8,27 @@
 
 import AgoraUIBaseViews
 
+fileprivate class FcrAppUIPolicyCheckBox: UIButton {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        guard let `imageView` = imageView else {
+            return
+        }
+        
+        imageView.frame = CGRect(x: 0,
+                                 y: 0,
+                                 width: 16,
+                                 height: 16)
+    }
+}
+
 class FcrAppUIPolicyView: UIView,
                           AgoraUIContentContainer {
     let checkBoxNormalImage: String
     let checkBoxSelectedImage: String
     
-    let checkBox = UIButton(frame: .zero)
+    let checkBox: UIButton = FcrAppUIPolicyCheckBox(frame: .zero)
     let textView = FcrAppUITextView(frame: .zero,
                                     textContainer: nil)
     
@@ -39,11 +54,11 @@ class FcrAppUIPolicyView: UIView,
         checkBox.mas_makeConstraints { make in
             make?.top.equalTo()(1)
             make?.left.equalTo()(0)
-            make?.width.height().equalTo()(16)
+            make?.width.height().equalTo()(19)
         }
         
         textView.mas_makeConstraints { make in
-            make?.left.equalTo()(self.checkBox.mas_right)?.offset()(3)
+            make?.left.equalTo()(self.checkBox.mas_right)?.offset()(0)
             make?.right.top().bottom().equalTo()(0)
         }
     }

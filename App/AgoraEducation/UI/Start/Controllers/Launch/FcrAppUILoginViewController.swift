@@ -62,6 +62,8 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
     private let policyView = FcrAppUIPolicyView(checkBoxNormalImage: "fcr_notchoosed",
                                                 checkBoxSelectedImage: "fcr_choosed")
     
+    private let closeButton = UIButton(frame: .zero)
+    
     private let testTag = UIButton()
     
     private var center: FcrAppCenter
@@ -69,12 +71,14 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
     var onCompleted: FcrAppCompletion?
     
     init(center: FcrAppCenter,
+         closeIsHidden: Bool = true,
          onCompleted: FcrAppCompletion? = nil) {
         self.center = center
         self.onCompleted = onCompleted
         super.init(nibName: nil,
                    bundle: nil)
         center.tester.delegate = self
+        closeButton.isHidden = closeIsHidden
     }
     
     deinit {
@@ -185,6 +189,7 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         view.addSubview(afcView)
         view.addSubview(startButton)
         view.addSubview(policyView)
+        view.addSubview(closeButton)
         view.addSubview(testTag)
         
         textView.contentMode = .scaleAspectFit
@@ -204,12 +209,27 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
                                       action: #selector(doPolicyPressed(_ :)),
                                       for: .touchUpInside)
         
+        closeButton.setImage(UIImage(named: "fcr_close"),
+                             for: .normal)
+        
+        closeButton.backgroundColor = FcrAppUIColorGroup.fcr_app_white
+        closeButton.layer.cornerRadius = 18
+        closeButton.layer.masksToBounds = true
+        
+        closeButton.addTarget(self,
+                              action: #selector(onCloseButtonPressed),
+                              for: .touchUpInside)
+        
         testTag.titleLabel?.font = FcrAppUIFontGroup.font20
         testTag.setTitleColor(.white,
                               for: .normal)
         testTag.setTitle("Test",
                          for: .normal)
         testTag.isHidden = true
+    }
+    
+    @objc private func onCloseButtonPressed() {
+        agora_dismiss(animated: true)
     }
     
     func initViewFrame() {
@@ -235,8 +255,14 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
             make?.height.equalTo()(32)
         }
         
-        testTag.mas_makeConstraints { make in
+        closeButton.mas_makeConstraints { make in
             make?.right.equalTo()(-20)
+            make?.centerY.equalTo()(logoView.mas_centerY)
+            make?.width.height().equalTo()(36)
+        }
+        
+        testTag.mas_makeConstraints { make in
+            make?.right.equalTo()(closeButton.mas_left)?.offset()(-20)
             make?.centerY.equalTo()(logoView.mas_centerY)
             make?.height.equalTo()(20)
         }

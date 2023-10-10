@@ -18,6 +18,13 @@ struct FcrAppUIColorGroup {
         return .white
     }
     
+    static var fcr_app_white: UIColor {
+        return UIColor(red: 1,
+                       green: 1,
+                       blue: 1,
+                       alpha: 0.1)
+    }
+    
     //
     static var fcr_v2_brand6: UIColor {
         return UIColor.fcr_hex_string("#4262FF")

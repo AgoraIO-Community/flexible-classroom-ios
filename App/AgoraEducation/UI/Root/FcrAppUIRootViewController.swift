@@ -41,9 +41,7 @@ class FcrAppUIRootViewController: UIViewController {
     
     private func loginProcess() {
         if !formalLoginProcess || center.tester.isTest {
-            let vc = FcrAppUIQuickStartViewController(center: center)
-            
-            presentNavigationController(vc)
+            presentQuickStartViewController()
         } else {
             if center.isLogined {
                 presentMainViewController()
