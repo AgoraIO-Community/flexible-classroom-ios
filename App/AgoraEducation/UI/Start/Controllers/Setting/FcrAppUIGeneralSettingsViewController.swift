@@ -84,6 +84,10 @@ extension FcrAppUIGeneralSettingsViewController: UITableViewDelegate, UITableVie
             cell.infoLabel.text = "fcr_settings_label_region".localized()
         case .theme:
             cell.infoLabel.text = "settings_theme".localized()
+        case .userInfoCollection:
+            cell.infoLabel.text = "fcr_settings_label_user_info_notice".localized()
+        case .dataSharing:
+            cell.infoLabel.text = "fcr_settings_label_data_share".localized()
         case .closeAccount:
             cell.infoLabel.text = "settings_close_account".localized()
         case .environment:
@@ -117,6 +121,12 @@ extension FcrAppUIGeneralSettingsViewController: UITableViewDelegate, UITableVie
             vc = FcrAppUIRegionViewController(center: center)
         case .theme:
             vc = FcrAppUIModeViewController(center: center)
+        case .userInfoCollection:
+            let url = "https://solutions-apaas.agora.io/static/assets/data_collection.html"
+            vc = FcrAppUIWebViewController(url: url)
+        case .dataSharing:
+            let url = "https://solutions-apaas.agora.io/static/assets/third_sdk.html"
+            vc = FcrAppUIWebViewController(url: url)
         case .environment:
             vc = FcrAppUIEnvironmentViewController(center: center)
         case .roomDuration:
@@ -126,7 +136,8 @@ extension FcrAppUIGeneralSettingsViewController: UITableViewDelegate, UITableVie
         case .closeAccount:
             vc = FcrAppUICloseAccountViewController(center: center)
         case .quickStart:
-            vc = FcrAppUIQuickStartViewController(center: center)
+            navigationController?.dismiss(animated: true)
+            return
         }
         
         navigationController?.pushViewController(vc,

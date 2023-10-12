@@ -10,52 +10,8 @@ import AgoraClassroomSDK_iOS
 import AgoraUIBaseViews
 import AgoraProctorSDK
 
-// MARK: - Login check
-extension FcrAppUIMainViewController: FcrAppNavigationControllerDelegate {
-    func launch() {
-        loginCheck { [weak self] in
-            self?.roomListComponent.refresh()
-        }
-    }
-    
-    func loginCheck(completion: @escaping FcrAppCompletion) {
-        guard center.isLogined == false else {
-            return
-        }
-        
-        let vc = FcrAppUILoginViewController(center: center)
-        
-        let navigation = FcrAppUINavigationController(rootViewController: vc)
-        
-        navigation.modalTransitionStyle = .crossDissolve
-        navigation.modalPresentationStyle = .fullScreen
-        
-        present(navigation,
-                animated: true)
-        
-        vc.onCompleted = { [weak navigation] in
-            navigation?.dismiss(animated: true)
-        }
-    }
-    
-    func navigation(_ navigation: FcrAppUINavigationController,
-                    didPopToRoot from: UIViewController) {
-        guard from is FcrAppUISettingsViewController else {
-            return
-        }
-        
-        loginCheck { [weak self] in
-            self?.roomListComponent.refresh()
-        }
-    }
-}
-
 extension FcrAppUIMainViewController: AgoraUIContentContainer {
     func initViews() {
-        if let navigation = navigationController as? FcrAppUINavigationController {
-            navigation.csDelegate = self
-        }
-        
         view.addSubview(headerView)
         view.addSubview(roomListComponent.view)
         
@@ -63,18 +19,18 @@ extension FcrAppUIMainViewController: AgoraUIContentContainer {
         
         // Join view
         headerView.joinActionView.button.addTarget(self,
-                                                  action: #selector(onJoinButtonPressed(_ :)),
-                                                  for: .touchUpInside)
+                                                   action: #selector(onJoinButtonPressed(_ :)),
+                                                   for: .touchUpInside)
         
         // Create view
         headerView.createActionView.button.addTarget(self,
-                                                    action: #selector(onCreateButtonPressed(_:)),
-                                                    for: .touchUpInside)
+                                                     action: #selector(onCreateButtonPressed(_:)),
+                                                     for: .touchUpInside)
         
         // Setting button
         headerView.settingButton.addTarget(self,
-                                          action: #selector(onSettingButtonPressed(_:)),
-                                          for: .touchUpInside)
+                                           action: #selector(onSettingButtonPressed(_:)),
+                                           for: .touchUpInside)
     }
     
     func initViewFrame() {
@@ -101,6 +57,20 @@ extension FcrAppUIMainViewController: AgoraUIContentContainer {
         headerView.backgroundColor = .clear
         
         view.backgroundColor = .white
+    }
+    
+    func createSettingList() -> [FcrAppUISettingItem] {
+        let list: [FcrAppUISettingItem]
+        
+        if center.isMainLandChinaIP {
+            list = [.generalSetting(FcrAppUISettingItem.GeneralItem.mainLandStartList()),
+                    .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
+        } else {
+            list = [.generalSetting(FcrAppUISettingItem.GeneralItem.startList()),
+                    .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
+        }
+        
+        return list
     }
     
     func refreshRoomList() {
@@ -195,19 +165,9 @@ extension FcrAppUIMainViewController: FcrAppCenterDelegate {
     }
     
     func onLoginExpired() {
-        // Pop to FcrAppUIMainViewController
-        if let navigation = navigationController,
-            let displayedVC = navigation.viewControllers.last,
-            displayedVC != self {
-            navigation.popToViewController(self,
-                                           animated: true)
-        }
-        
         printDebug("login expired")
         
-        loginCheck { [weak self] in
-            self?.roomListComponent.refresh()
-        }
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 
@@ -235,8 +195,7 @@ extension FcrAppUIMainViewController: FcrAppTesterDelegate {
             settingItems = [.generalSetting(FcrAppUISettingItem.GeneralItem.startTestList()),
                             .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
         } else {
-            settingItems = [.generalSetting(FcrAppUISettingItem.GeneralItem.startList()),
-                            .aboutUs(FcrAppUISettingItem.AboutUsItem.allCases)]
+            settingItems = createSettingList()
         }
     }
 }

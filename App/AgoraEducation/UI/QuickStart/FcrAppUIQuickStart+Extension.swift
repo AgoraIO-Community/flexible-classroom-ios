@@ -112,10 +112,10 @@ private extension FcrAppUIQuickStartViewController {
     
     @objc func onSignInButtonPressed(_ sender: UIButton) {
         if !center.tester.isTest {
-           presentMainViweController()
+           showLoginViewController()
         } else {
             if !popToMainViweController() {
-                presentMainViweController()
+                showLoginViewController()
             }
         }
     }
@@ -240,8 +240,9 @@ private extension FcrAppUIQuickStartViewController {
         center.isAgreedPrivacy = sender.isSelected
     }
     
-    func presentMainViweController() {
-        let vc = FcrAppUIMainViewController(center: center)
+    func showLoginViewController() {
+        let vc = FcrAppUILoginViewController(center: center,
+                                             closeIsHidden: false)
         
         let navigation = FcrAppUINavigationController(rootViewController: vc)
         

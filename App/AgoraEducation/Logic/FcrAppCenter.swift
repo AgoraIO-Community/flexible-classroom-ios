@@ -37,6 +37,8 @@ class FcrAppCenter: NSObject {
     
     weak var delegate: FcrAppCenterDelegate?
     
+    var isMainLandChinaIP = true
+    
     var isFirstAgreedPrivacy = false {
         didSet {
             guard isFirstAgreedPrivacy != oldValue else {
@@ -171,6 +173,8 @@ class FcrAppCenter: NSObject {
             let data = try object.dataConvert(type: [String: Any].self)
             let need = try data.getValue(of: "loginType",
                                          type: Bool.self)
+            
+            self.isMainLandChinaIP = need
             
             if let _ = try? self.localStorage.readStringEnumData(key: .region,
                                                                  type: FcrAppRegion.self) {

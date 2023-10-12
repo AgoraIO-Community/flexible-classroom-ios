@@ -109,6 +109,16 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
         privacyCheck()
         addAppActiveObserver()
         tester()
+        
+        if center.isLogined {
+            showMainVC(animated: true)
+        }
+    }
+    
+    private func showMainVC(animated: Bool = false) {
+        let mainVC = FcrAppUIMainViewController(center: center)
+        navigationController?.pushViewController(mainVC,
+                                                 animated: animated)
     }
     
     private func addAppActiveObserver() {
@@ -160,12 +170,12 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
             AgoraLoading.hide()
             
             let vc = FcrAppUILoginWebViewController(url: url,
-                                                  center: self.center) { [weak self] isLogined in
-                if isLogined {
-                    self?.navigationController?.dismiss(animated: true)
-                } else {
-                    self?.navigationController?.popViewController(animated: true)
+                                                    center: self.center) { [weak self] isLogined in
+                guard isLogined else {
+                    return
                 }
+                
+                self?.showMainVC(animated: true)
             }
             
             self.navigationController?.pushViewController(vc,
@@ -229,7 +239,7 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
     }
     
     @objc private func onCloseButtonPressed() {
-        agora_dismiss(animated: true)
+        navigationController?.dismiss(animated: true)
     }
     
     func initViewFrame() {
@@ -440,7 +450,7 @@ extension FcrAppUILoginViewController: FcrAppTesterDelegate {
     }
     
     @objc func onTestTagPressed(_ sender: UIButton) {
-        presentQuickStartViewController()
+        navigationController?.dismiss(animated: true)
     }
     
     func isTest() {
@@ -450,16 +460,5 @@ extension FcrAppUILoginViewController: FcrAppTesterDelegate {
     
     func onIsTestMode(_ isTest: Bool) {
         testTag.isHidden = !isTest
-    }
-    
-    func presentQuickStartViewController() {
-        let vc = FcrAppUIQuickStartViewController(center: center)
-        let navigation = FcrAppUINavigationController(rootViewController: vc)
-
-        navigation.modalPresentationStyle = .fullScreen
-        navigation.modalTransitionStyle = .crossDissolve
-
-        present(navigation,
-                animated: true)
     }
 }

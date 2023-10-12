@@ -153,7 +153,19 @@ enum FcrAppUISettingItem {
         case environment
         case roomDuration
         case mediaStreamLatency
+        case userInfoCollection
+        case dataSharing
         case quickStart
+        
+        static func mainLandStartList() -> [GeneralItem] {
+            return [.nickname,
+                    .language,
+                    .region,
+                    .theme,
+                    .userInfoCollection,
+                    .dataSharing,
+                    .closeAccount]
+        }
         
         static func startList() -> [GeneralItem] {
             return [.nickname,

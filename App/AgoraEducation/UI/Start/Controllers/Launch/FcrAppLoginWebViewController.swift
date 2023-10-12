@@ -10,11 +10,7 @@ import AgoraUIBaseViews
 import WebKit
 import UIKit
 
-class FcrAppUILoginWebViewController: FcrAppUIViewController {
-    private var webView = WKWebView()
-    
-    private var url: String
-    
+class FcrAppUILoginWebViewController: FcrAppUIWebViewController {
     private var onLoginCompleted: FcrAppBoolCompletion?
     
     private var center: FcrAppCenter
@@ -22,17 +18,16 @@ class FcrAppUILoginWebViewController: FcrAppUIViewController {
     init(url: String,
          center: FcrAppCenter,
          onLoginCompleted: FcrAppBoolCompletion? = nil) {
-        self.url = url
         self.center = center
         self.onLoginCompleted = onLoginCompleted
-        super.init(nibName: nil,
-                   bundle: nil)
+        super.init(url: url)
+        self.webView.navigationDelegate = self
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-        
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false,
@@ -45,23 +40,6 @@ class FcrAppUILoginWebViewController: FcrAppUIViewController {
                                                      animated: true)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initViews()
-        initViewFrame()
-        updateViewProperties()
-        loadURL()
-    }
-    
-    private func loadURL() {
-        guard let consoleURL = URL(string: url) else {
-            return
-        }
-        
-        let request = URLRequest(url: consoleURL)
-        webView.load(request)
-    }
-    
     private func login(accessToken: String,
                        refreshToken: String) {
         center.urlGroup.accessToken = accessToken
@@ -72,46 +50,23 @@ class FcrAppUILoginWebViewController: FcrAppUIViewController {
         center.login { [weak self] in
             AgoraLoading.hide()
             
+            self?.navigationController?.popViewController(animated: true)
+            
             self?.onLoginCompleted?(true)
         } failure: { [weak self] error in
             AgoraLoading.hide()
             
             self?.showErrorToast(error)
+            
+            self?.navigationController?.popViewController(animated: true)
+            
             self?.onLoginCompleted?(false)
         }
     }
 }
 
-extension FcrAppUILoginWebViewController: AgoraUIContentContainer {
-    func initViews() {
-        view.addSubview(webView)
-        
-        webView.navigationDelegate = self
-    }
-    
-    func initViewFrame() {
-        webView.mas_makeConstraints { make in
-            make?.left.right().top().bottom().equalTo()(0)
-        }
-    }
-    
-    func updateViewProperties() {
-        
-    }
-}
-
 // MARK: - WKNavigationDelegate
 extension FcrAppUILoginWebViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView,
-                 didStartProvisionalNavigation navigation: WKNavigation!) {
-        
-    }
-    
-    func webView(_ webView: WKWebView,
-                 didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
-        
-    }
-    
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationResponse: WKNavigationResponse,
                  decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {

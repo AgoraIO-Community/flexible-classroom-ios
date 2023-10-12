@@ -158,6 +158,8 @@ fcr_settings_link_about_us_privacy_policy = "Privacy Policy";
 fcr_settings_link_about_us_user_agreement = "User Agreement";
 fcr_settings_option_general = "General";
 fcr_settings_option_about_us = "About Us";
+fcr_settings_label_user_info_notice = "Personal Information Collection Notice";
+fcr_settings_label_data_share = "Third-Party Information Data Sharing";
 
 settings_setting = "Settings";
 settings_logout = "Logout";

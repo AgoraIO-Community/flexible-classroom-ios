@@ -158,6 +158,8 @@ fcr_settings_link_about_us_privacy_policy = "隐私条例";
 fcr_settings_link_about_us_user_agreement = "用户协议";
 fcr_settings_option_general = "常规设置";
 fcr_settings_option_about_us = "关于我们";
+fcr_settings_label_user_info_notice = "个人信息收集公示";
+fcr_settings_label_data_share = "第三方信息数据共享";
 
 settings_setting = "设置";
 settings_logout = "退出登录";
