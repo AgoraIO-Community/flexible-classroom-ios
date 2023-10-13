@@ -50,17 +50,6 @@ class FcrAppCenter: NSObject {
         }
     }
     
-    var isAgreedPrivacy = false {
-        didSet {
-            guard isAgreedPrivacy != oldValue else {
-                return
-            }
-            
-            localStorage.writeData(isAgreedPrivacy,
-                                   key: .privacyAgreement)
-        }
-    }
-    
     var isLogined = false {
         didSet {
             guard isLogined != oldValue else {
@@ -117,11 +106,6 @@ class FcrAppCenter: NSObject {
             if let firstAgreedPrivacy = try? localStorage.readData(key: .firstPrivacyAgreement,
                                                                    type: Bool.self) {
                 self.isFirstAgreedPrivacy = firstAgreedPrivacy
-            }
-            
-            if let privacy = try? localStorage.readData(key: .privacyAgreement,
-                                                        type: Bool.self) {
-                self.isAgreedPrivacy = privacy
             }
             
             let nickname = try localStorage.readData(key: .nickname,

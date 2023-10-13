@@ -37,6 +37,7 @@ class FcrAppUIPresentedViewController: FcrAppUIViewController,
     init(contentHeight: CGFloat = 446,
          contentViewOffY: CGFloat = 24,
          contentViewHorizontalSpace: CGFloat = 0,
+         canHide: Bool = true,
          onDismissed: FcrAppCompletion? = nil) {
         self.contentHeight = contentHeight
         self.contentViewOffY = contentViewOffY
@@ -44,6 +45,7 @@ class FcrAppUIPresentedViewController: FcrAppUIViewController,
         self.onDismissed = onDismissed
         super.init(nibName: nil,
                    bundle: nil)
+        self.dimissButton.isHidden = !canHide
     }
     
     required init?(coder: NSCoder) {
@@ -98,10 +100,10 @@ class FcrAppUIPresentedViewController: FcrAppUIViewController,
     }
     
     func showFrame() -> CGRect {
-        return CGRect(x: self.contentViewX,
-                      y: self.contentViewY,
-                      width: self.contentWith,
-                      height: self.contentHeight)
+        return CGRect(x: contentViewX,
+                      y: contentViewY,
+                      width: contentWith,
+                      height: contentHeight)
     }
     
     func animation(isShow: Bool,

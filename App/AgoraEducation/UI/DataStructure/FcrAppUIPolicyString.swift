@@ -9,7 +9,7 @@
 import UIKit
 
 struct FcrAppUIPolicyString {
-    let privacykLink =  "fcr_login_label_privacy_policy_link".localized()
+    let privacyLink = "fcr_login_label_privacy_policy_link".localized()
     let tearmsLink = "fcr_login_label_terms_of_service_link".localized()
     
     let privacyText = "fcr_login_label_privacy_policy".localized()
@@ -27,6 +27,19 @@ struct FcrAppUIPolicyString {
         
         return string(text,
                       foregroundColor: FcrAppUIColorGroup.fcr_white)
+    }
+    
+    func loginTitleString() -> String {
+        let text = "fcr_login_popup_window_label_title_again".localized()
+        
+        return replace(text)
+    }
+    
+    func loginDetailString2() -> NSMutableAttributedString {
+        let text = "fcr_login_popup_window_label_content_again".localized()
+        
+        return string(text,
+                      foregroundColor: FcrAppUIColorGroup.fcr_v2_light_text2)
     }
     
     func quickStartString() -> NSMutableAttributedString {
@@ -54,7 +67,7 @@ struct FcrAppUIPolicyString {
         
         if let range = text.range(of: privacyText) {
             attributedString.addAttribute(.link,
-                                           value: privacykLink,
+                                           value: privacyLink,
                                            range: NSRange(range, in: text))
         }
         

@@ -7,7 +7,6 @@
 //
 
 import AgoraUIBaseViews
-import UIKit
 
 fileprivate class StartButton: UIButton {
     override func layoutSubviews() {
@@ -44,6 +43,112 @@ fileprivate class StartButton: UIButton {
     }
 }
 
+fileprivate class AgreementView: UIView,
+                                 AgoraUIContentContainer {
+    let closeButton = UIButton(frame: .zero)
+    let titleLabel = UILabel(frame: .zero)
+    let contentView = FcrAppUITextView(frame: .zero,
+                                       textContainer: nil)
+    
+    let exitButton = UIButton(frame: .zero)
+    let agreeButton = UIButton(frame: .zero)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initViews()
+        initViewFrame()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func initViews() {
+        addSubview(titleLabel)
+        addSubview(closeButton)
+        addSubview(contentView)
+        addSubview(exitButton)
+        addSubview(agreeButton)
+        
+        closeButton.layer.cornerRadius = 10
+        exitButton.layer.cornerRadius = 18
+        agreeButton.layer.cornerRadius = 18
+        
+        // Title label
+        titleLabel.font = FcrAppUIFontGroup.font16
+        titleLabel.numberOfLines = 0
+        
+        // Content view
+        contentView.font = FcrAppUIFontGroup.font12
+    }
+    
+    func initViewFrame() {
+        titleLabel.mas_makeConstraints { make in
+            make?.top.equalTo()(20)
+            make?.left.equalTo()(20)
+            make?.right.equalTo()(-32)
+            make?.bottom.equalTo()(contentView.mas_top)?.offset()(-15)
+        }
+        
+        closeButton.mas_makeConstraints { make in
+            make?.top.equalTo()(10)
+            make?.right.equalTo()(-10)
+            make?.height.equalTo()(20)
+            make?.width.equalTo()(20)
+        }
+        
+        contentView.mas_makeConstraints { make in
+            make?.left.equalTo()(20)
+            make?.right.equalTo()(-20)
+            make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(15)
+            make?.bottom.equalTo()(-15)
+        }
+        
+        exitButton.mas_makeConstraints { make in
+            make?.left.equalTo()(20)
+            make?.bottom.equalTo()(-20)
+            make?.width.equalTo()(110)
+            make?.height.equalTo()(36)
+        }
+        
+        agreeButton.mas_makeConstraints { make in
+            make?.right.equalTo()(-20)
+            make?.bottom.equalTo()(-20)
+            make?.width.equalTo()(110)
+            make?.height.equalTo()(36)
+        }
+    }
+    
+    func updateViewProperties() {
+        // Close button
+        closeButton.setImage(UIImage(named: "fcr_close"),
+                             for: .normal)
+
+        closeButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_light4
+        
+        // Title label
+        titleLabel.textColor = FcrAppUIColorGroup.fcr_v2_light_text1
+        
+        // Exit button
+        exitButton.setTitleColor(FcrAppUIColorGroup.fcr_v2_light_text1,
+                                 for: .normal)
+        exitButton.setTitle("fcr_login_popup_window_again_button_disagree".localized(),
+                            for: .normal)
+        exitButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_light1
+        
+        exitButton.titleLabel?.font = FcrAppUIFontGroup.font14
+        
+        // Agree button
+        agreeButton.setTitleColor(FcrAppUIColorGroup.fcr_white,
+                                 for: .normal)
+        agreeButton.setTitle("fcr_login_popup_window_again_button_agree".localized(),
+                             for: .normal)
+        agreeButton.backgroundColor = FcrAppUIColorGroup.fcr_v2_brand6
+        
+        agreeButton.titleLabel?.font = FcrAppUIFontGroup.font14
+    }
+}
+
 class FcrAppUILoginViewController: FcrAppUIViewController {
     private let logoView = UIButton(frame: .zero)
     
@@ -61,6 +166,8 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
     
     private let policyView = FcrAppUIPolicyView(checkBoxNormalImage: "fcr_notchoosed",
                                                 checkBoxSelectedImage: "fcr_choosed")
+    
+    private let agreementView = AgreementView(frame: .zero)
     
     private let closeButton = UIButton(frame: .zero)
     
@@ -141,49 +248,33 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
             return
         }
         
-        let vc = FcrAppUIPrivacyTermsViewController(contentHeight: 456,
-                                                    contentViewOffY: -15,
-                                                    contentViewHorizontalSpace: 15)
+        let contentTextTopSpace: CGFloat = 73
+        let contentTextBottomSpace: CGFloat = 144
+        let contentViewOffY: CGFloat = 15
+        
+        let contentViewHorizontalSpace: CGFloat = 15
+        let text = FcrAppUIPolicyString().loginDetailString().mutableString as String
+        let contentTextHorizontalSpace: CGFloat = 30
+        let contentTextWidth = (UIScreen.agora_width - (contentViewHorizontalSpace + contentTextHorizontalSpace) * 2)
+        let contentTextHeight = text.agora_size(font: FcrAppUIFontGroup.font12,
+                                                width: contentTextWidth).height
+        
+        let contentHeight = contentTextHeight + contentTextTopSpace + contentTextBottomSpace + contentViewOffY
+        
+        let vc = FcrAppUIPrivacyTermsViewController(contentHeight: contentHeight,
+                                                    contentViewOffY: -contentViewOffY,
+                                                    contentViewHorizontalSpace: contentViewHorizontalSpace,
+                                                    canHide: false)
         
         presentViewController(vc,
                               animated: true)
         
-        vc.onAgreedCompletion = { [weak self] in
-            self?.center.isFirstAgreedPrivacy = true
-        }
-    }
-    
-    @objc private func onStartButtonPressed() {
-        guard policyView.checkBox.isSelected else {
-            showToast(FcrAppUIPolicyString().toastString(),
-                      type: .error)
-            return
-        }
-        
-        AgoraLoading.loading()
-        
-        center.getAgoraConsoleURL { [weak self] url in
-            guard let `self` = self else {
-                return
+        vc.onAgreedCompletion = { [weak self] (isAgreed) in
+            if isAgreed {
+                self?.center.isFirstAgreedPrivacy = true
+            } else {
+                self?.showAgreementView()
             }
-            
-            AgoraLoading.hide()
-            
-            let vc = FcrAppUILoginWebViewController(url: url,
-                                                    center: self.center) { [weak self] isLogined in
-                guard isLogined else {
-                    return
-                }
-                
-                self?.showMainVC(animated: true)
-            }
-            
-            self.navigationController?.pushViewController(vc,
-                                                          animated: true)
-        } failure: { [weak self] error in
-            AgoraLoading.hide()
-            
-            self?.showErrorToast(error)
         }
     }
 }
@@ -200,6 +291,7 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         view.addSubview(startButton)
         view.addSubview(policyView)
         view.addSubview(closeButton)
+        view.addSubview(agreementView)
         view.addSubview(testTag)
         
         textView.contentMode = .scaleAspectFit
@@ -213,10 +305,8 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         startButton.titleLabel?.font = FcrAppUIFontGroup.font16
         startButton.titleLabel?.textAlignment = .center
         
-        policyView.checkBox.isSelected = center.isAgreedPrivacy
-        
         policyView.checkBox.addTarget(self,
-                                      action: #selector(doPolicyPressed(_ :)),
+                                      action: #selector(onPolicyPressed(_ :)),
                                       for: .touchUpInside)
         
         closeButton.setImage(UIImage(named: "fcr_close"),
@@ -236,10 +326,21 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         testTag.setTitle("Test",
                          for: .normal)
         testTag.isHidden = true
-    }
-    
-    @objc private func onCloseButtonPressed() {
-        navigationController?.dismiss(animated: true)
+        
+        agreementView.titleLabel.text = FcrAppUIPolicyString().loginTitleString()
+        agreementView.contentView.attributedText = FcrAppUIPolicyString().loginDetailString2()
+        
+        agreementView.closeButton.addTarget(self,
+                                            action: #selector(onCloseButtonOfAgreementViewPressed),
+                                            for: .touchUpInside)
+        
+        agreementView.exitButton.addTarget(self,
+                                           action: #selector(onExitButtonOfAgreementViewPressed),
+                                           for: .touchUpInside)
+        
+        agreementView.agreeButton.addTarget(self,
+                                            action: #selector(onAgreeButtonOfAgreementViewPressed),
+                                            for: .touchUpInside)
     }
     
     func initViewFrame() {
@@ -345,12 +446,47 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
             make?.width.equalTo()(109)
             make?.height.equalTo()(36)
         }
+        
+        let contentWidth: CGFloat = 275
+        
+        let titleText = FcrAppUIPolicyString().loginTitleString()
+        let titleTextWidth: CGFloat = (contentWidth - 20 - 32)
+        let titleTextHeight = titleText.agora_size(font: agreementView.titleLabel.font,
+                                                   width: titleTextWidth).height
+        
+        let titleTextTopSpace: CGFloat = 20
+        
+        let contentText = FcrAppUIPolicyString().loginDetailString2().mutableString as String
+        
+        let contentTextWidth: CGFloat = (contentWidth - 20 - 20)
+        let contentTextHeight = contentText.agora_size(font: FcrAppUIFontGroup.font12,
+                                                       width: contentTextWidth).height
+        
+        let contentTextTopSpace: CGFloat = 15
+        let contentTextBottomSpace: CGFloat = 71
+        
+        let contentHeight: CGFloat = (titleTextTopSpace + titleTextHeight + contentTextHeight + contentTextTopSpace + contentTextBottomSpace)
+        
+        let x: CGFloat = (UIScreen.agora_width - contentWidth) * 0.5
+        let y: CGFloat = UIScreen.agora_height
+        
+        let frame = CGRect(x: x,
+                           y: y,
+                           width: contentWidth,
+                           height: contentHeight)
+        
+        agreementView.frame = frame
+        
+        agreementView.layer.cornerRadius = 16
     }
     
     func updateViewProperties() {
         view.backgroundColor = FcrAppUIColorGroup.fcr_black
         
         policyView.updateViewProperties()
+        agreementView.updateViewProperties()
+        
+        agreementView.backgroundColor = .white
         
         backgroundView.image = UIImage(named: "fcr_login_center_afc")
         textView.image = UIImage(named: "fcr_login_text_en")
@@ -386,14 +522,69 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         
         policyView.textView.attributedText = FcrAppUIPolicyString().loginString()
     }
-    
-    @objc private func doPolicyPressed(_ sender: UIButton) {
-        sender.isSelected.toggle()
+}
+
+// MARK: - Action
+private extension FcrAppUILoginViewController {
+    @objc private func onStartButtonPressed() {
+        guard policyView.checkBox.isSelected else {
+            showToast(FcrAppUIPolicyString().toastString(),
+                      type: .error)
+            return
+        }
         
-        center.isAgreedPrivacy = sender.isSelected
+        AgoraLoading.loading()
+        
+        center.getAgoraConsoleURL { [weak self] url in
+            guard let `self` = self else {
+                return
+            }
+            
+            AgoraLoading.hide()
+            
+            let vc = FcrAppUILoginWebViewController(url: url,
+                                                    center: self.center) { [weak self] isLogined in
+                guard isLogined else {
+                    return
+                }
+                
+                self?.showMainVC(animated: true)
+            }
+            
+            self.navigationController?.pushViewController(vc,
+                                                          animated: true)
+        } failure: { [weak self] error in
+            AgoraLoading.hide()
+            
+            self?.showErrorToast(error)
+        }
     }
     
-    private func createAnimation() {
+    @objc func onCloseButtonPressed() {
+        navigationController?.dismiss(animated: true)
+    }
+    
+    @objc func onPolicyPressed(_ sender: UIButton) {
+        sender.isSelected.toggle()
+    }
+    
+    @objc func onCloseButtonOfAgreementViewPressed() {
+        hideAgreementView()
+    }
+    
+    @objc func onAgreeButtonOfAgreementViewPressed() {
+        hideAgreementView()
+        center.isFirstAgreedPrivacy = true
+        policyView.checkBox.isSelected = true
+    }
+    
+    @objc func onExitButtonOfAgreementViewPressed() {
+        exit(0)
+    }
+}
+
+private extension FcrAppUILoginViewController {
+    func createAnimation() {
         guard let bounds = UIApplication.shared.keyWindow?.bounds else {
             return
         }
@@ -430,6 +621,29 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         
         haloView.layer.add(animation,
                            forKey: "com.agora.halo")
+    }
+    
+    func showAgreementView() {
+        var new = agreementView.frame
+       
+        let y: CGFloat = (UIScreen.agora_height - new.size.height) * 0.5
+        
+        new.origin.y = y
+
+        UIView.animate(withDuration: TimeInterval.agora_animation) {
+            self.agreementView.frame = new
+        }
+    }
+    
+    func hideAgreementView() {
+        let y: CGFloat = UIScreen.agora_height
+        
+        var new = agreementView.frame
+        new.origin.y = y
+
+        UIView.animate(withDuration: TimeInterval.agora_animation) {
+            self.agreementView.frame = new
+        }
     }
 }
 

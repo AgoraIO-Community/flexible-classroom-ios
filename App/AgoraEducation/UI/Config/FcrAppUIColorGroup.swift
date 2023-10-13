@@ -64,6 +64,10 @@ struct FcrAppUIColorGroup {
         return UIColor.fcr_hex_string("#F2F2FA")
     }
     
+    static var fcr_v2_light4: UIColor {
+        return UIColor.fcr_hex_string("#ECECF4")
+    }
+    
     static var fcr_v2_green: UIColor {
         return UIColor.fcr_hex_string("#16D1A4")
     }
