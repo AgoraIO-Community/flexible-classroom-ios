@@ -8,18 +8,36 @@
 
 import UIKit
 
-protocol FcrAppNavigationControllerDelegate: NSObjectProtocol {
+protocol FcrAppNavigationControllerDismissDelegate: NSObjectProtocol {
+    func navigation(_ navigation: FcrAppUINavigationController,
+                    didDismiss lastChild: UIViewController?)
+}
+
+extension FcrAppNavigationControllerDismissDelegate {
+    func navigation(_ navigation: FcrAppUINavigationController,
+                    didDismiss lastChild: UIViewController?) {}
+}
+
+protocol FcrAppNavigationControllerPopDelegate: NSObjectProtocol {
     func navigation(_ navigation: FcrAppUINavigationController,
                     willPop from: UIViewController,
+                    to: UIViewController?)
+    
+    func navigation(_ navigation: FcrAppUINavigationController,
+                    didPop from: UIViewController,
                     to: UIViewController?)
     
     func navigation(_ navigation: FcrAppUINavigationController,
                     didPopToRoot from: UIViewController)
 }
 
-extension FcrAppNavigationControllerDelegate {
+extension FcrAppNavigationControllerPopDelegate {
     func navigation(_ navigation: FcrAppUINavigationController,
                     willPop from: UIViewController,
+                    to: UIViewController?) {}
+    
+    func navigation(_ navigation: FcrAppUINavigationController,
+                    didPop from: UIViewController,
                     to: UIViewController?) {}
     
     func navigation(_ navigation: FcrAppUINavigationController,
@@ -65,7 +83,8 @@ class FcrAppUINavigationController: UINavigationController {
     
     var statusBarStyle: UIStatusBarStyle = .default
     
-    weak var csDelegate: FcrAppNavigationControllerDelegate?
+    weak var popDelegate: FcrAppNavigationControllerPopDelegate?
+    weak var dismissDelegate: FcrAppNavigationControllerDismissDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,12 +147,19 @@ class FcrAppUINavigationController: UINavigationController {
         }
         
         if let fromVC = from {
-            csDelegate?.navigation(self,
-                                   willPop: fromVC,
-                                   to: to)
+            popDelegate?.navigation(self,
+                                    willPop: fromVC,
+                                    to: to)
         }
         
         super.popViewController(animated: animated)
+        
+        if let fromVC = from {
+            popDelegate?.navigation(self,
+                                    didPop: fromVC,
+                                    to: to)
+        }
+        
         return to
     }
     
@@ -143,7 +169,7 @@ class FcrAppUINavigationController: UINavigationController {
         let vcs = super.popToRootViewController(animated: animated)
         
         if let fromVC = from {
-            csDelegate?.navigation(self,
+            popDelegate?.navigation(self,
                                    didPopToRoot: fromVC)
         }
         
@@ -152,6 +178,15 @@ class FcrAppUINavigationController: UINavigationController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return statusBarStyle
+    }
+    
+    override func dismiss(animated flag: Bool,
+                          completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag,
+                      completion: completion)
+        
+        dismissDelegate?.navigation(self,
+                                    didDismiss: self.topViewController)
     }
 }
 

@@ -8,7 +8,8 @@
 
 import AgoraUIBaseViews
 
-class FcrAppUIRootViewController: UIViewController {
+class FcrAppUIRootViewController: UIViewController,
+                                  FcrAppNavigationControllerDismissDelegate {
     private let center = FcrAppCenter()
     
     private let formalLoginProcess: Bool
@@ -41,30 +42,24 @@ class FcrAppUIRootViewController: UIViewController {
     
     private func loginProcess() {
         if !formalLoginProcess || center.tester.isTest {
-            let vc = FcrAppUIQuickStartViewController(center: center)
-            
-            presentNavigationController(vc)
+            presentQuickStartViewController()
         } else {
-            if center.isLogined {
-                presentMainViewController()
-            } else {
-                center.needLogin { [weak self] need in
-                    guard let `self` = self else {
-                        return
-                    }
-                    
-                    if need {
-                        self.presentMainViewController()
-                    } else {
-                        self.presentQuickStartViewController()
-                    }
+            center.needLogin { [weak self] need in
+                guard let `self` = self else {
+                    return
+                }
+                
+                if need {
+                    self.presentLoginViewController()
+                } else {
+                    self.presentQuickStartViewController()
                 }
             }
         }
     }
     
-    private func presentMainViewController() {
-        let vc = FcrAppUIMainViewController(center: center)
+    private func presentLoginViewController() {
+        let vc = FcrAppUILoginViewController(center: center)
         presentNavigationController(vc)
     }
     
@@ -75,7 +70,7 @@ class FcrAppUIRootViewController: UIViewController {
     
     private func presentNavigationController(_ root: UIViewController) {
         let navigation = FcrAppUINavigationController(rootViewController: root)
-        
+            
         navigation.modalPresentationStyle = .fullScreen
         navigation.modalTransitionStyle = .crossDissolve
         

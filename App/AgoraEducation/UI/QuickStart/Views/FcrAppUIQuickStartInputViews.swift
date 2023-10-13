@@ -216,8 +216,8 @@ class FcrAppUIQuickStartInputView: UIView,
         
         backgroundImageView.image = UIImage(named: "fcr-quick-input")
         
-        backgroundImageView.transform = CGAffineTransform(scaleX: -1,
-                                                          y: 1)
+        updateBackgroundTransform(with: segmentedControl.segmented)
+        updateInputViewType(with: segmentedControl.segmented)
     }
     
     private func updateBackgroundTransform(with segmented: FcrAppUIQuickStartSegmentOption) {

@@ -19,7 +19,7 @@ class FcrAppUIPrivacyTermsViewController: FcrAppUIPresentedViewController {
 
     private let disagreedButton = UIButton(frame: .zero)
     
-    var onAgreedCompletion: FcrAppCompletion?
+    var onAgreedCompletion: FcrAppBoolCompletion?
     
     override func initViews() {
         super.initViews()
@@ -66,18 +66,18 @@ class FcrAppUIPrivacyTermsViewController: FcrAppUIPresentedViewController {
             make?.right.equalTo()(-30)
         }
         
-        disagreedButton.mas_makeConstraints { make in
-            make?.bottom.equalTo()(-12)
-            make?.left.equalTo()(33)
-            make?.centerX.equalTo()(0)
-            make?.height.equalTo()(44)
-        }
-        
         agreedButton.mas_makeConstraints { make in
             make?.bottom.equalTo()(self.disagreedButton.mas_top)?.offset()(-10)
             make?.left.equalTo()(33)
             make?.height.equalTo()(44)
             make?.centerX.equalTo()(0)
+        }
+        
+        disagreedButton.mas_makeConstraints { make in
+            make?.bottom.equalTo()(-12)
+            make?.left.equalTo()(33)
+            make?.centerX.equalTo()(0)
+            make?.height.equalTo()(44)
         }
     }
     
@@ -103,12 +103,14 @@ class FcrAppUIPrivacyTermsViewController: FcrAppUIPresentedViewController {
     }
     
     @objc private func onAgreedButtonPressed() {
-        dismiss(animated: true)
-        onAgreedCompletion?()
+        dismissSelf()
+        onAgreedCompletion?(true)
         onAgreedCompletion = nil
     }
     
     @objc private func onDisagreedButtonPressed() {
-        exit(0)
+        dismissSelf()
+        onAgreedCompletion?(false)
+        onAgreedCompletion = nil
     }
 }

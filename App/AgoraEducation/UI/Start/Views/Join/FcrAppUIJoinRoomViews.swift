@@ -29,6 +29,9 @@ class FcrAppUIJoinRoomRoleView: UIView,
         
         button.layer.cornerRadius = FcrAppUIFrameGroup.cornerRadius12
         button.clipsToBounds = true
+        
+        button.backgroundColor = (selected ? FcrAppUIColorGroup.fcr_v2_brand5 : FcrAppUIColorGroup.fcr_v2_light1)
+        button.layer.borderColor = (selected ? FcrAppUIColorGroup.fcr_v2_brand6 : FcrAppUIColorGroup.fcr_v2_light1).cgColor
     }
     
     func initViews() {
@@ -39,6 +42,8 @@ class FcrAppUIJoinRoomRoleView: UIView,
     }
     
     func initViewFrame() {
+        button.layer.borderWidth = 2
+        
         button.mas_makeConstraints { make in
             make?.right.left().bottom().top().equalTo()(0)
         }
@@ -63,18 +68,6 @@ class FcrAppUIJoinRoomRoleView: UIView,
         
         button.setTitleColor(.black,
                              for: .normal)
-        
-        let normalImg = UIImage(color: FcrAppUIColorGroup.fcr_v2_light1,
-                                size: CGSize(width: 1, height: 1))
-        
-        button.setBackgroundImage(normalImg,
-                                  for: .normal)
-        
-        let selectImg = UIImage(color: FcrAppUIColorGroup.fcr_v2_brand6,
-                                size: CGSize(width: 1, height: 1))
-        
-        button.setBackgroundImage(selectImg,
-                                  for: .selected)
     }
 }
  
@@ -179,26 +172,28 @@ class FcrAppUIJoinRoomView: UIView,
     func initViewFrame() {
         roomInputView.mas_makeConstraints { make in
             make?.top.equalTo()(0)
-            make?.left.equalTo()(15)
-            make?.right.equalTo()(-15)
+            make?.left.equalTo()(0)
+            make?.right.equalTo()(0)
             make?.height.equalTo()(120)
         }
         
         roleTitleLabel.mas_makeConstraints { make in
             make?.top.equalTo()(roomInputView.mas_bottom)?.offset()(20)
-            make?.left.equalTo()(37)
+            make?.left.equalTo()(15)
+            make?.right.equalTo()(0)
+            make?.height.equalTo()(15)
         }
         
         teacherView.mas_makeConstraints { make in
             make?.top.equalTo()(roleTitleLabel.mas_bottom)?.offset()(12)
-            make?.left.equalTo()(17)
+            make?.left.equalTo()(0)
             make?.right.equalTo()(self.mas_centerX)?.offset()(-6)
             make?.height.equalTo()(45)
         }
         
         studentView.mas_makeConstraints { make in
             make?.top.equalTo()(roleTitleLabel.mas_bottom)?.offset()(12)
-            make?.right.equalTo()(-17)
+            make?.right.equalTo()(0)
             make?.left.equalTo()(self.mas_centerX)?.offset()(6)
             make?.height.equalTo()(45)
         }

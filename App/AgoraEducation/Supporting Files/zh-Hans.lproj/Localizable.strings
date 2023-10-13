@@ -19,8 +19,14 @@ fcr_login_label_terms_of_service = "用户协议";
 fcr_login_label_privacy_policy = "隐私政策";
 fcr_login_label_terms_of_service_link = "https://solutions-apaas.agora.io/static/assets/user_agreement.html";
 fcr_login_label_privacy_policy_link = "https://solutions-apaas.agora.io/static/assets/privacy_policy.html";
-fcr_login_popup_window_button_agree = "同意并继续";
-fcr_login_popup_window_button_disagree = "不同意并退出";
+fcr_login_popup_window_button_agree = "同意";
+fcr_login_popup_window_button_disagree = "不同意";
+
+fcr_login_popup_window_label_title_again = "您需要同意隐私政策和用户协议才可继续使用灵动课堂";
+fcr_login_popup_window_label_content_again = "请您再次认真阅读《{xxx}》和《{yyy}》若您不同意隐私政策和用户协议，很遗憾我们将无法为您提供服务";
+
+fcr_login_popup_window_again_button_agree = "同意并使用";
+fcr_login_popup_window_again_button_disagree = "退出应用";
 
 //****************** 首页 Home ******************
 fcr_home_label_roomlist = "房间列表";
@@ -158,6 +164,8 @@ fcr_settings_link_about_us_privacy_policy = "隐私条例";
 fcr_settings_link_about_us_user_agreement = "用户协议";
 fcr_settings_option_general = "常规设置";
 fcr_settings_option_about_us = "关于我们";
+fcr_settings_label_user_info_notice = "个人信息收集公示";
+fcr_settings_label_data_share = "第三方信息数据共享";
 
 settings_setting = "设置";
 settings_logout = "退出登录";

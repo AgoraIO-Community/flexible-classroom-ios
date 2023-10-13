@@ -52,7 +52,6 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
         // Policy view
         let policyView = contentView.roomInputView.policyView
         
-        policyView.checkBox.isSelected = center.isAgreedPrivacy
         policyView.checkBox.addTarget(self,
                                       action: #selector(onPolicyButtonPressed(_ :)),
                                       for: .touchUpInside)
@@ -112,10 +111,10 @@ private extension FcrAppUIQuickStartViewController {
     
     @objc func onSignInButtonPressed(_ sender: UIButton) {
         if !center.tester.isTest {
-           presentMainViweController()
+           showLoginViewController()
         } else {
             if !popToMainViweController() {
-                presentMainViweController()
+                showLoginViewController()
             }
         }
     }
@@ -237,11 +236,11 @@ private extension FcrAppUIQuickStartViewController {
     
     @objc func onPolicyButtonPressed(_ sender: UIButton) {
         sender.isSelected.toggle()
-        center.isAgreedPrivacy = sender.isSelected
     }
     
-    func presentMainViweController() {
-        let vc = FcrAppUIMainViewController(center: center)
+    func showLoginViewController() {
+        let vc = FcrAppUILoginViewController(center: center,
+                                             closeIsHidden: false)
         
         let navigation = FcrAppUINavigationController(rootViewController: vc)
         
@@ -297,6 +296,8 @@ extension FcrAppUIQuickStartViewController: FcrAppTesterDelegate {
     
     func onIsTestMode(_ isTest: Bool) {
         contentView.headerView.testTag.isHidden = !isTest
+        
+        contentView.roomInputView.policyView.checkBox.isSelected = isTest
         
         if isTest {
             settingItems = [.generalSetting(FcrAppUISettingItem.GeneralItem.quickStartTestList()),

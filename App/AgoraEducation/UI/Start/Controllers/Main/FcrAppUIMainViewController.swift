@@ -31,7 +31,6 @@ class FcrAppUIMainViewController: FcrAppUICoreViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        launch()
         initViews()
         initViewFrame()
         updateViewProperties()

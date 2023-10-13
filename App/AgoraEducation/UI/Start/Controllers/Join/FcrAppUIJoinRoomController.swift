@@ -75,7 +75,7 @@ class FcrAppUIJoinRoomController: FcrAppStartUIPresentedViewController {
             make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(30)
             make?.left.equalTo()(20)
             make?.right.equalTo()(-20)
-            make?.bottom.equalTo()(bottomButton.mas_top)?.offset()
+            make?.bottom.equalTo()(lineView.mas_top)?.offset()
         }
     }
     

@@ -19,8 +19,15 @@ fcr_login_label_terms_of_service = "Terms of service";
 fcr_login_label_privacy_policy = "Privacy Policy";
 fcr_login_label_terms_of_service_link = "https://www.agora.io/en/terms-of-service/";
 fcr_login_label_privacy_policy_link = "";
-fcr_login_popup_window_button_agree = "Agree and continue";
-fcr_login_popup_window_button_disagree = "Disagree and exit";
+fcr_login_popup_window_button_agree = "Agree";
+fcr_login_popup_window_button_disagree = "Disagree";
+
+fcr_login_popup_window_label_title_again = "You need to agree to the {yyy} to continue using the flexible classroom.";
+fcr_login_popup_window_label_content_again = "Please carefully read the {yyy} once again.
+If you do not agree to the Privacy Policy and User Agreement, we regret to inform you that we will be unable to provide our services to you.";
+
+fcr_login_popup_window_again_button_agree = "Agree";
+fcr_login_popup_window_again_button_disagree = "Exit";
 
 //****************** 首页 Home ******************
 fcr_home_label_roomlist = "My Room List";
@@ -158,6 +165,8 @@ fcr_settings_link_about_us_privacy_policy = "Privacy Policy";
 fcr_settings_link_about_us_user_agreement = "User Agreement";
 fcr_settings_option_general = "General";
 fcr_settings_option_about_us = "About Us";
+fcr_settings_label_user_info_notice = "Personal Information Collection Notice";
+fcr_settings_label_data_share = "Third-Party Information Data Sharing";
 
 settings_setting = "Settings";
 settings_logout = "Logout";

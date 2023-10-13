@@ -30,6 +30,7 @@
 		8629C3542A8482F900DA97B7 /* FcrAppUIFrameGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3532A8482F900DA97B7 /* FcrAppUIFrameGroup.swift */; };
 		8629C3562A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3552A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift */; };
 		8629C3582A850DD200DA97B7 /* FcrAppUIQuickStartJoinRoomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629C3572A850DD200DA97B7 /* FcrAppUIQuickStartJoinRoomViews.swift */; };
+		862D4A642AD7DEE00035EAFF /* FcrAppUIWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862D4A632AD7DEE00035EAFF /* FcrAppUIWebViewController.swift */; };
 		865746F22A949494003FBF72 /* FcrAppTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865746F12A949494003FBF72 /* FcrAppTester.swift */; };
 		865746F42A94DA6C003FBF72 /* FcrAppUIMain+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865746F32A94DA6C003FBF72 /* FcrAppUIMain+Extension.swift */; };
 		865746F62A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865746F52A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift */; };
@@ -133,6 +134,7 @@
 		8629C3532A8482F900DA97B7 /* FcrAppUIFrameGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIFrameGroup.swift; sourceTree = "<group>"; };
 		8629C3552A84BA9500DA97B7 /* FcrAppUIQuickStartViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartViews.swift; sourceTree = "<group>"; };
 		8629C3572A850DD200DA97B7 /* FcrAppUIQuickStartJoinRoomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIQuickStartJoinRoomViews.swift; sourceTree = "<group>"; };
+		862D4A632AD7DEE00035EAFF /* FcrAppUIWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppUIWebViewController.swift; sourceTree = "<group>"; };
 		865746F12A949494003FBF72 /* FcrAppTester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcrAppTester.swift; sourceTree = "<group>"; };
 		865746F32A94DA6C003FBF72 /* FcrAppUIMain+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FcrAppUIMain+Extension.swift"; sourceTree = "<group>"; };
 		865746F52A94DB1F003FBF72 /* FcrAppUIQuickStart+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FcrAppUIQuickStart+Extension.swift"; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				86B81E5A2A5593A400BA631C /* FcrAppUIViewController.swift */,
 				86B81E672A568F4800BA631C /* FcrAppUINavigationController.swift */,
 				8629C3472A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift */,
+				862D4A632AD7DEE00035EAFF /* FcrAppUIWebViewController.swift */,
 				869026982A6E19C3006E0D44 /* FcrAppUITextField.swift */,
 				860CB3F32A97276700B03141 /* FcrAppUITextView.swift */,
 				86DB10022ABD478300CAFA36 /* FcrAppUIPolicyView.swift */,
@@ -787,6 +790,7 @@
 				86B81E5E2A55AA4500BA631C /* FcrAppURLGroup.swift in Sources */,
 				865746F42A94DA6C003FBF72 /* FcrAppUIMain+Extension.swift in Sources */,
 				86140D1B2AA720B200AC1E28 /* FcrAppUIStreamLatencyViewController.swift in Sources */,
+				862D4A642AD7DEE00035EAFF /* FcrAppUIWebViewController.swift in Sources */,
 				8629C34B2A8114A900DA97B7 /* FcrAppUIColorGroup.swift in Sources */,
 				8629C3482A80F0DF00DA97B7 /* FcrAppUIPresentedViewController.swift in Sources */,
 				AB08496128D1812700214B68 /* FcrAppUIJoinRoomController.swift in Sources */,

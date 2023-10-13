@@ -37,6 +37,8 @@ class FcrAppCenter: NSObject {
     
     weak var delegate: FcrAppCenterDelegate?
     
+    var isMainLandChinaIP = true
+    
     var isFirstAgreedPrivacy = false {
         didSet {
             guard isFirstAgreedPrivacy != oldValue else {
@@ -45,17 +47,6 @@ class FcrAppCenter: NSObject {
             
             localStorage.writeData(isFirstAgreedPrivacy,
                                    key: .firstPrivacyAgreement)
-        }
-    }
-    
-    var isAgreedPrivacy = false {
-        didSet {
-            guard isAgreedPrivacy != oldValue else {
-                return
-            }
-            
-            localStorage.writeData(isAgreedPrivacy,
-                                   key: .privacyAgreement)
         }
     }
     
@@ -117,11 +108,6 @@ class FcrAppCenter: NSObject {
                 self.isFirstAgreedPrivacy = firstAgreedPrivacy
             }
             
-            if let privacy = try? localStorage.readData(key: .privacyAgreement,
-                                                        type: Bool.self) {
-                self.isAgreedPrivacy = privacy
-            }
-            
             let nickname = try localStorage.readData(key: .nickname,
                                                      type: String.self)
             
@@ -171,6 +157,8 @@ class FcrAppCenter: NSObject {
             let data = try object.dataConvert(type: [String: Any].self)
             let need = try data.getValue(of: "loginType",
                                          type: Bool.self)
+            
+            self.isMainLandChinaIP = need
             
             if let _ = try? self.localStorage.readStringEnumData(key: .region,
                                                                  type: FcrAppRegion.self) {
