@@ -19,7 +19,29 @@ class FcrAppUIPrivacyTermsViewController: FcrAppUIPresentedViewController {
 
     private let disagreedButton = UIButton(frame: .zero)
     
+    private let isMainLandChina: Bool
+    
     var onAgreedCompletion: FcrAppBoolCompletion?
+    
+    init(contentHeight: CGFloat = 446,
+         contentViewOffY: CGFloat = 24,
+         contentViewHorizontalSpace: CGFloat = 0,
+         canHide: Bool = true,
+         isMainLandChina: Bool,
+         onAgreedCompletion: FcrAppBoolCompletion? = nil) {
+        self.isMainLandChina = isMainLandChina
+        self.onAgreedCompletion = onAgreedCompletion
+        
+        super.init(contentHeight: contentHeight,
+                   contentViewOffY: contentViewOffY,
+                   contentViewHorizontalSpace: contentViewHorizontalSpace,
+                   canHide: canHide,
+                   onDismissed: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func initViews() {
         super.initViews()
@@ -85,7 +107,7 @@ class FcrAppUIPrivacyTermsViewController: FcrAppUIPresentedViewController {
         super.updateViewProperties()
         titleLabel.text = "fcr_login_label_welcome".localized()
         
-        textView.attributedText = FcrAppUIPolicyString().loginDetailString()
+        textView.attributedText = FcrAppUIPolicyString().loginDetailString(isMainLandChina: isMainLandChina)
         
         agreedButton.setTitle("fcr_login_popup_window_button_agree".localized(),
                               for: .normal)

@@ -6,47 +6,79 @@
 //  Copyright © 2023 Agora. All rights reserved.
 //
 
-import UIKit
+import AgoraUIBaseViews
 
 struct FcrAppUIPolicyString {
-    let privacyLink = "fcr_login_label_privacy_policy_link".localized()
-    let tearmsLink = "fcr_login_label_terms_of_service_link".localized()
-    
     let privacyText = "fcr_login_label_privacy_policy".localized()
     let tearmsText = "fcr_login_label_terms_of_service".localized()
     
-    func loginDetailString() -> NSMutableAttributedString {
-        let text = "fcr_login_popup_window_label_content".localized()
+    func getPrivacyLink(isMainLandChina: Bool) -> String {
+        let language = isMainLandChina ? "zh-Hans" : "en"
         
-        return string(text,
-                      foregroundColor: FcrAppUIColorGroup.fcr_v2_light_text2)
+        let privacyLink = "fcr_login_label_privacy_policy_link".localized(with: language)
+        
+        return privacyLink
     }
     
-    func loginString() -> NSMutableAttributedString {
-        let text = "fcr_login_free_option_read_agree".localized()
+    func getTearmsLink(isMainLandChina: Bool) -> String {
+        let language = isMainLandChina ? "zh-Hans" : "en"
         
-        return string(text,
-                      foregroundColor: FcrAppUIColorGroup.fcr_white)
+        let tearmsLink = "fcr_login_label_terms_of_service_link".localized(with: language)
+        
+        return tearmsLink
     }
     
-    func loginTitleString() -> String {
-        let text = "fcr_login_popup_window_label_title_again".localized()
+    func loginDetailString(isMainLandChina: Bool) -> NSMutableAttributedString {
+        var text = "fcr_login_popup_window_label_content".localized()
+        
+        text = ifNeedTearms(text,
+                            isMainLandChina: isMainLandChina)
+        
+        return string(text,
+                      foregroundColor: FcrAppUIColorGroup.fcr_v2_light_text2,
+                      isMainLandChina: isMainLandChina)
+    }
+    
+    func loginString(isMainLandChina: Bool) -> NSMutableAttributedString {
+        var text = "fcr_login_free_option_read_agree".localized()
+        
+        text = ifNeedTearms(text,
+                            isMainLandChina: isMainLandChina)
+        
+        return string(text,
+                      foregroundColor: FcrAppUIColorGroup.fcr_white,
+                      isMainLandChina: isMainLandChina)
+    }
+    
+    func loginTitleString(isMainLandChina: Bool) -> String {
+        var text = "fcr_login_popup_window_label_title_again".localized()
+        
+        text = ifNeedTearms(text,
+                            isMainLandChina: isMainLandChina)
         
         return replace(text)
     }
     
-    func loginDetailString2() -> NSMutableAttributedString {
-        let text = "fcr_login_popup_window_label_content_again".localized()
+    func loginDetailString2(isMainLandChina: Bool) -> NSMutableAttributedString {
+        var text = "fcr_login_popup_window_label_content_again".localized()
+        
+        text = ifNeedTearms(text,
+                            isMainLandChina: isMainLandChina)
         
         return string(text,
-                      foregroundColor: FcrAppUIColorGroup.fcr_v2_light_text2)
+                      foregroundColor: FcrAppUIColorGroup.fcr_v2_light_text2,
+                      isMainLandChina: isMainLandChina)
     }
     
-    func quickStartString() -> NSMutableAttributedString {
-        let text = "fcr_login_free_option_read_agree".localized()
+    func quickStartString(isMainLandChina: Bool) -> NSMutableAttributedString {
+        var text = "fcr_login_free_option_read_agree".localized()
+        
+        text = ifNeedTearms(text,
+                            isMainLandChina: isMainLandChina)
         
         return string(text,
-                      foregroundColor: FcrAppUIColorGroup.fcr_v2_light_text2)
+                      foregroundColor: FcrAppUIColorGroup.fcr_v2_light_text2,
+                      isMainLandChina: isMainLandChina)
     }
     
     func toastString() -> String {
@@ -56,7 +88,8 @@ struct FcrAppUIPolicyString {
     }
     
     private func string(_ string: String,
-                        foregroundColor: UIColor) -> NSMutableAttributedString {
+                        foregroundColor: UIColor,
+                        isMainLandChina: Bool) -> NSMutableAttributedString {
         let text = replace(string)
         
         let attributedString = NSMutableAttributedString(string: text)
@@ -67,13 +100,13 @@ struct FcrAppUIPolicyString {
         
         if let range = text.range(of: privacyText) {
             attributedString.addAttribute(.link,
-                                           value: privacyLink,
+                                           value: getPrivacyLink(isMainLandChina: isMainLandChina),
                                            range: NSRange(range, in: text))
         }
         
         if let range = text.range(of: tearmsText) {
             attributedString.addAttribute(.link,
-                                           value: tearmsLink,
+                                           value: getTearmsLink(isMainLandChina: isMainLandChina),
                                            range: NSRange(range, in: text))
         }
         
@@ -88,6 +121,22 @@ struct FcrAppUIPolicyString {
         
         text = text.replacingOccurrences(of: "{yyy}",
                                          with: tearmsText)
+        
+        return text
+    }
+    
+    private func ifNeedTearms(_ string: String,
+                              isMainLandChina: Bool) -> String {
+        var text = string
+        
+        let isChinese = UIDevice.current.agora_is_chinese_language
+        
+        if isMainLandChina,
+           !isChinese {
+            text = text.replacingOccurrences(of: "{yyy}",
+                                             with: "{xxx} and {yyy}")
+            
+        }
         
         return text
     }

@@ -101,7 +101,8 @@ private extension FcrAppUISettingsViewController {
     }
     
     func onClickAbout(_ itemList: [FcrAppUISettingItem.AboutUsItem]) {
-        let vc = FcrAppUIAboutViewController(dataSource: itemList)
+        let vc = FcrAppUIAboutViewController(dataSource: itemList,
+                                             isMainLandChina: center.isMainLandChinaIP)
         navigationController?.pushViewController(vc,
                                                  animated: true)
     }

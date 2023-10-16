@@ -253,7 +253,7 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
         let contentViewOffY: CGFloat = 15
         
         let contentViewHorizontalSpace: CGFloat = 15
-        let text = FcrAppUIPolicyString().loginDetailString().mutableString as String
+        let text = FcrAppUIPolicyString().loginDetailString(isMainLandChina: center.isMainLandChinaIP).mutableString as String
         let contentTextHorizontalSpace: CGFloat = 30
         let contentTextWidth = (UIScreen.agora_width - (contentViewHorizontalSpace + contentTextHorizontalSpace) * 2)
         let contentTextHeight = text.agora_size(font: FcrAppUIFontGroup.font12,
@@ -264,7 +264,7 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
         let vc = FcrAppUIPrivacyTermsViewController(contentHeight: contentHeight,
                                                     contentViewOffY: -contentViewOffY,
                                                     contentViewHorizontalSpace: contentViewHorizontalSpace,
-                                                    canHide: false)
+                                                    canHide: false, isMainLandChina: center.isMainLandChinaIP)
         
         presentViewController(vc,
                               animated: true)
@@ -327,8 +327,8 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
                          for: .normal)
         testTag.isHidden = true
         
-        agreementView.titleLabel.text = FcrAppUIPolicyString().loginTitleString()
-        agreementView.contentView.attributedText = FcrAppUIPolicyString().loginDetailString2()
+        agreementView.titleLabel.text = FcrAppUIPolicyString().loginTitleString(isMainLandChina: center.isMainLandChinaIP)
+        agreementView.contentView.attributedText = FcrAppUIPolicyString().loginDetailString2(isMainLandChina: center.isMainLandChinaIP)
         
         agreementView.closeButton.addTarget(self,
                                             action: #selector(onCloseButtonOfAgreementViewPressed),
@@ -449,14 +449,14 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         
         let contentWidth: CGFloat = 275
         
-        let titleText = FcrAppUIPolicyString().loginTitleString()
+        let titleText = FcrAppUIPolicyString().loginTitleString(isMainLandChina: center.isMainLandChinaIP)
         let titleTextWidth: CGFloat = (contentWidth - 20 - 32)
         let titleTextHeight = titleText.agora_size(font: agreementView.titleLabel.font,
                                                    width: titleTextWidth).height
         
         let titleTextTopSpace: CGFloat = 20
         
-        let contentText = FcrAppUIPolicyString().loginDetailString2().mutableString as String
+        let contentText = FcrAppUIPolicyString().loginDetailString2(isMainLandChina: center.isMainLandChinaIP).mutableString as String
         
         let contentTextWidth: CGFloat = (contentWidth - 20 - 20)
         let contentTextHeight = contentText.agora_size(font: FcrAppUIFontGroup.font12,
@@ -520,7 +520,7 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         
         policyView.textView.backgroundColor = .clear
         
-        policyView.textView.attributedText = FcrAppUIPolicyString().loginString()
+        policyView.textView.attributedText = FcrAppUIPolicyString().loginString(isMainLandChina: center.isMainLandChinaIP)
     }
 }
 

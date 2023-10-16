@@ -71,7 +71,7 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     func updateViewProperties() {
         contentView.backgroundColor = UIColor.fcr_hex_string("#F8FAFF")
         
-        let attributedText = FcrAppUIPolicyString().quickStartString()
+        let attributedText = FcrAppUIPolicyString().quickStartString(isMainLandChina: center.isMainLandChinaIP)
         
         contentView.roomInputView.policyView.textView.attributedText = attributedText
         

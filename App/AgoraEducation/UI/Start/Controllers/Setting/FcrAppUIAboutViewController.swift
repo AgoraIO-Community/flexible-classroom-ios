@@ -13,12 +13,15 @@ class FcrAppUIAboutViewController: FcrAppUIViewController {
                                                      style: .plain)
     
     private let dataSource: [FcrAppUISettingItem.AboutUsItem]
+    private let isMainLandChina: Bool
     
     ///Publish-Time
     private let versionTime = ""
     
-    init(dataSource: [FcrAppUISettingItem.AboutUsItem]) {
+    init(dataSource: [FcrAppUISettingItem.AboutUsItem],
+         isMainLandChina: Bool) {
         self.dataSource = dataSource
+        self.isMainLandChina = isMainLandChina
         super.init(nibName: nil,
                    bundle: nil)
     }
@@ -103,10 +106,10 @@ extension FcrAppUIAboutViewController: UITableViewDelegate, UITableViewDataSourc
         
         switch type {
         case .privacy:
-            let link = FcrAppUIPolicyString().privacyLink
+            let link = FcrAppUIPolicyString().getTearmsLink(isMainLandChina: isMainLandChina)
             openURL(link)
         case .terms:
-            let link = FcrAppUIPolicyString().tearmsLink
+            let link = FcrAppUIPolicyString().getPrivacyLink(isMainLandChina: isMainLandChina)
             openURL(link)
         case .disclaimer:
             let vc = FcrAppUIDisclaimerViewController()
