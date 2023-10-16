@@ -126,9 +126,13 @@ extension String {
     }
     
     func localized() -> String {
+        return localized(with: agora_ui_language)
+    }
+    
+    func localized(with language: String? = nil) -> String {
         let bundle = Bundle.main
         
-        if let language = agora_ui_language,
+        if let `language` = language,
            let languagePath = bundle.path(forResource: language,
                                           ofType: "lproj"),
            let bundle = Bundle(path: languagePath) {
@@ -143,6 +147,7 @@ extension String {
             
             return text
         }
+        
     }
 }
 
