@@ -16,7 +16,6 @@ target 'AgoraEducation' do
   pod 'SSZipArchive',      '2.4.2'
   pod 'SwifterSwift',      '5.2.0'
   pod 'SDWebImage',        '5.12.0'
-  pod 'Protobuf',          '3.17.0'
   pod 'Masonry',           '1.1.0'
   pod 'Armin',             '1.1.0'
   
