@@ -36,7 +36,7 @@ target 'AgoraEducation' do
   pod 'AgoraWidgets',          '2.8.70'
   
   # close source libs
-  pod 'AgoraUIBaseViews',      '2.8.0'
+  pod 'AgoraUIBaseViews',      '2.8.70'
   pod 'AgoraEduCore', 	       '2.8.70'
   pod 'AgoraWidget',           '2.8.0'
 
