@@ -10,7 +10,9 @@ echo pwd: `pwd`
 Product_Name="AgoraCloudClass"
 Target_Name="AgoraEducation"
 Project_Name="AgoraEducation"
-Mode="Debug"
+
+# Mode: CertificateA CertificateB CertificateC CertificateD
+Mode=$1
 Repo_Name="open-flexible-classroom-ios"
 iS_Sign=true
 
