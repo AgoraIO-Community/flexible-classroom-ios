@@ -7,8 +7,9 @@ echo pwd: `pwd`
 . ../../../../apaas-cicd-ios/Products/Scripts/Other/v1/operation_print.sh
 
 # parameters
-App_Name=$1
-Repo_Name=$2
+App_Name="AgoraCloudClass"
+Repo_Name="open-flexible-classroom-ios"
+Current_Branch=`git rev-parse --abbrev-ref HEAD`
 
 startPrint "${Repo_Name} ${App_Name} Package"
 
@@ -21,6 +22,6 @@ CICD_Products_Path=${CICD_Root_Path}/Products
 CICD_Scripts_Path=${CICD_Products_Path}/Scripts
 
 # pack
-${CICD_Scripts_Path}/App/Pack/v1/package.sh ${App_Name} ${Repo_Name}
+${CICD_Scripts_Path}/App/Pack/v1/package.sh ${App_Name} ${Current_Branch} ${Repo_Name}
 
 endPrint $? "${Repo_Name} ${App_Name} Package"
