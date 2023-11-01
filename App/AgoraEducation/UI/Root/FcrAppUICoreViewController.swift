@@ -34,7 +34,7 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
             }
             
             let userId = config.userId
-            let userName = config.userName
+            let userName = object.roomDetail.userName
             let userRole = config.userRole
             
             let roomType = object.roomDetail.sceneType
@@ -57,9 +57,9 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
             
             switch roomType {
             case .oneToOne, .smallClass, .lectureHall:
-                let options = AgoraEduLaunchConfig(userName: config.userName,
-                                                   userUuid: config.userId,
-                                                   userRole: config.userRole.toClassroomType(),
+                let options = AgoraEduLaunchConfig(userName: userName,
+                                                   userUuid: userId,
+                                                   userRole: userRole.toClassroomType(),
                                                    roomName: roomName,
                                                    roomUuid: roomId,
                                                    roomType: roomType.toClassroomType(),

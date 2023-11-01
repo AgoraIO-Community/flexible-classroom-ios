@@ -117,6 +117,7 @@ struct FcrAppServerDetailRoomObject: FcrAppCodable {
     var roomId: String
     var sceneType: FcrAppRoomType
     var roomProperties: FcrAppServerDetailRoomPropertiesObject
+    var userName: String
 }
 
 struct FcrAppServerJoinRoomObject: FcrAppCodable {
