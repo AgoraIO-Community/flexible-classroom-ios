@@ -108,7 +108,7 @@ private extension FcrAppUIJoinRoomController {
         }
         
         guard let userName = joinView.roomInputView.userNameTextField.getText() else {
-            showToast("fcr_joinroom_tips_username_empty".localized(),
+            showToast("fcr_home_toast_nick_name_null".localized(),
                       type: .error)
             return
         }
