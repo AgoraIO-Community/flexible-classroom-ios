@@ -99,13 +99,8 @@ private extension FcrAppUIMainViewController {
             self?.roomListComponent.addedNotice()
             
             if result.joinImmediately {
-                let userId = FcrAppRoomUserIdCreater().start(userId: result.userId,
-                                                         userName: result.userName,
-                                                         userRole: result.userRole,
-                                                         roomType: result.roomType)
-                
                 let config = FcrAppJoinRoomPreCheckConfig(roomId: result.roomId,
-                                                          userId: userId,
+                                                          userId: result.userId,
                                                           userName: result.userName,
                                                           userRole: result.userRole)
                 
