@@ -20,7 +20,7 @@ class FcrAppURLGroup {
         case .pro:
             switch region {
             case .CN:
-                return "https://api-solutions-cn.agoralab.co"
+                return "https://api-solutions-cn.shengwang.cn"
             case .NA:
                 return "https://api-solutions-na.agoralab.co"
             case .EU:
