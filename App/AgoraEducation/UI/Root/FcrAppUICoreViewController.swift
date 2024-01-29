@@ -145,7 +145,7 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
         }
         
         if hasWatermark {
-            config.widgets[sample.watermarkWidgetId] = sample.createWatermark()
+            config.widgets[sample.watermarkWidgetId] = sample.createWatermark(text: config.userName)
         }
     }
 }

@@ -15,9 +15,11 @@ struct FcrAppWidgetSample {
     let watermarkWidgetId = "watermark"
     let cloudDriveId = "cloudDrive"
     
-    func createWatermark() -> AgoraWidgetConfig {
+    func createWatermark(text: String) -> AgoraWidgetConfig {
         let config = AgoraWidgetConfig(with: AgoraWatermarkWidget.self,
                                        widgetId: watermarkWidgetId)
+        
+        config.extraInfo = ["watermark": text]
         
         return config
     }
