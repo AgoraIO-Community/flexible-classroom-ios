@@ -130,7 +130,7 @@ class FcrAppCenter: NSObject {
         let url = urlGroup.agoraConsole()
         
         let parameters =  ["redirectUrl": "https://sso2.agora.io/",
-                           "toRegion": urlGroup.region.rawValue]
+                           "toRegion": urlGroup.region.rawValue.lowercased()]
         
         armin.request(url: url,
                       parameters: parameters,
