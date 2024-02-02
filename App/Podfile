@@ -7,9 +7,6 @@ install! 'cocoapods', :deterministic_uuids => false, :warn_for_unused_master_spe
 target 'AgoraEducation' do
   use_frameworks!
   
-  # for token builder
-  pod 'OpenSSL-Universal', '1.0.2.17'
-  
   # third libs
   pod "CocoaLumberjack",   '3.6.1'
   pod 'AliyunOSSiOS',      '2.10.8'
@@ -27,8 +24,8 @@ target 'AgoraEducation' do
   pod 'Whiteboard',                  '2.16.51'
  
   # open source libs
-  pod 'AgoraClassroomSDK_iOS', '2.8.70'
-  pod 'AgoraEduUI',            '2.8.70'
+  pod 'AgoraClassroomSDK_iOS', '2.8.100'
+  pod 'AgoraEduUI',            '2.8.100'
   
   pod 'AgoraProctorSDK',       '1.0.1'
   pod 'AgoraProctorUI',        '1.0.0'
@@ -36,7 +33,7 @@ target 'AgoraEducation' do
   pod 'AgoraWidgets',          '2.8.100'
   
   # close source libs
-  pod 'AgoraUIBaseViews',      '2.8.70'
+  pod 'AgoraUIBaseViews',      '2.8.71'
   pod 'AgoraEduCore', 	       '2.8.100'
   pod 'AgoraWidget',           '2.8.0'
 
