@@ -14,7 +14,7 @@ target 'AgoraEducation' do
   pod 'SwifterSwift',      '5.2.0'
   pod 'SDWebImage',        '5.12.0'
   pod 'Masonry',           '1.1.0'
-  pod 'Armin',             '1.1.0'
+  pod 'Armin',             '1.1.1'
   
   # agora libs
   pod 'AgoraRtcEngine_iOS/RtcBasic', '3.7.2'
