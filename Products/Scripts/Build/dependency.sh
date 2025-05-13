@@ -12,18 +12,24 @@
 # AgoraUIBaseViews
 Artifactory_iOS_URL="https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS"
 
-AgoraClassroomSDK_iOS_URL="${Artifactory_iOS_URL}/AgoraClassroomSDK_iOS/release_2.8.105/dev/AgoraClassroomSDK_iOS_2.8.105.zip"
-AgoraEduUI_URL="${Artifactory_iOS_URL}/AgoraEduUI/release_2.8.105/dev/AgoraEduUI_2.8.105.zip"
+ProctorVersion="1.0.2"
+ProctorBranch="release_${ProctorVersion}"
 
-AgoraProctorSDK_URL="${Artifactory_iOS_URL}/AgoraProctorSDK/release_1.0.2/dev/AgoraProctorSDK_1.0.2.zip"
-AgoraProctorUI_URL="${Artifactory_iOS_URL}/AgoraProctorUI/release_1.0.2/dev/AgoraProctorUI_1.0.2.zip"
+Version="2.8.110"
+Branch="release_${Version}"
 
-AgoraWidgets_URL="${Artifactory_iOS_URL}/AgoraWidgets/release_2.8.105/dev/AgoraWidgets_2.8.105.zip"
+AgoraClassroomSDK_iOS_URL="${Artifactory_iOS_URL}/AgoraClassroomSDK_iOS/${Branch}/dev/AgoraClassroomSDK_iOS_${Version}.zip"
+AgoraEduUI_URL="${Artifactory_iOS_URL}/AgoraEduUI/${Branch}/dev/AgoraEduUI_${Version}.zip"
 
-AgoraEduCore_URL="${Artifactory_iOS_URL}/AgoraEduCore/release_2.8.107/dev/AgoraEduCore_2.8.107.zip"
-AgoraWidget_URL="${Artifactory_iOS_URL}/AgoraWidget/release_2.8.105/dev/AgoraWidget_2.8.0.zip"
-AgoraFoundation_URL="${Artifactory_iOS_URL}/AgoraFoundation/feature_3.4.0_rx/dev/AgoraFoundation_3.4.0_dev.zip"
-AgoraUIBaseViews_URL="${Artifactory_iOS_URL}/AgoraUIBaseViews/release_2.8.105/dev/AgoraUIBaseViews_2.8.101.zip"
+AgoraProctorSDK_URL="${Artifactory_iOS_URL}/AgoraProctorSDK/${ProctorBranch}/dev/AgoraProctorSDK_${ProctorVersion}.zip"
+AgoraProctorUI_URL="${Artifactory_iOS_URL}/AgoraProctorUI/${ProctorBranch}/dev/AgoraProctorUI_${ProctorVersion}.zip"
+
+AgoraWidgets_URL="${Artifactory_iOS_URL}/AgoraWidgets/${Branch}/dev/AgoraWidgets_${Version}.zip"
+
+AgoraEduCore_URL="${Artifactory_iOS_URL}/AgoraEduCore/${Branch}/dev/AgoraEduCore_${Version}.zip"
+AgoraWidget_URL="${Artifactory_iOS_URL}/AgoraWidget/${Branch}/dev/AgoraWidget_${Version}.zip"
+
+AgoraUIBaseViews_URL="${Artifactory_iOS_URL}/AgoraUIBaseViews${Branch}/dev/AgoraUIBaseViews_${Version}.zip"
 
 Dep_Array_URL=("${AgoraClassroomSDK_iOS_URL}" 
                "${AgoraEduUI_URL}"
@@ -32,7 +38,6 @@ Dep_Array_URL=("${AgoraClassroomSDK_iOS_URL}"
                "${AgoraWidgets_URL}"
                "${AgoraEduCore_URL}"
                "${AgoraWidget_URL}"
-               "${AgoraFoundation_URL}"
                "${AgoraUIBaseViews_URL}")
 
 Dep_Array=(AgoraClassroomSDK_iOS
@@ -42,7 +47,6 @@ Dep_Array=(AgoraClassroomSDK_iOS
            AgoraWidgets
            AgoraEduCore
            AgoraWidget
-           AgoraFoundation
            AgoraUIBaseViews)
 
 # cd this file path
