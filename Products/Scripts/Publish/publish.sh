@@ -15,7 +15,7 @@ fi
 if git remote -v | grep -q 'originGithub'; then
     echo "originGithub exist"
 else
-    Git_Hub="git@github.com:AgoraIO-Community/CloudClass-iOS.git"
+    Git_Hub="git@github.com:AgoraIO-Community/flexible-classroom-ios.git"
 
     git remote add originGithub ${Git_Hub}
 fi
