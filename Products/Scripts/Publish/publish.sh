@@ -21,3 +21,6 @@ else
 fi
 
 git push originGithub ${Branch_Name}
+
+git symbolic-ref HEAD refs/heads/${Branch_Name}
+git push originGithub HEAD 
