@@ -102,6 +102,8 @@ def executePod():
 
     os.system('rm -rf Podfile.lock')
 
+    os.system('cat Podfile')
+
     if BaseParams["updateFlag"] == True:
         os.system('pod install --repo-update')
     else:
