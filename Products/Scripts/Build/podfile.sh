@@ -9,3 +9,5 @@ export LANG=en_US.UTF-8
 Dependency_Type=$1
 
 python ./cloud_pod.py ${Dependency_Type} 1 
+
+sh ./remove_bitcode.sh ../../../App/Pods
