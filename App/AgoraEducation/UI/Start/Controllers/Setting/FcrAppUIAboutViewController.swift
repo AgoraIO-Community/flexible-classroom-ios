@@ -16,7 +16,7 @@ class FcrAppUIAboutViewController: FcrAppUIViewController {
     private let isMainLandChina: Bool
     
     ///Publish-Time
-    private let versionTime = "2024.12.27"
+    private let versionTime = "2025.09.02"
     
     init(dataSource: [FcrAppUISettingItem.AboutUsItem],
          isMainLandChina: Bool) {
@@ -56,7 +56,7 @@ extension FcrAppUIAboutViewController: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        tableView.mas_makeConstraints { make in
+        tableView.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
     }

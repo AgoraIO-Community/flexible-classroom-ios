@@ -30,13 +30,13 @@ class FcrAppUIDisclaimerViewController: FcrAppUIViewController, AgoraUIContentCo
     }
     
     func initViewFrame() {
-        textLabel.mas_makeConstraints { make in
+        textLabel.agora_mas_makeConstraints { make in
             make?.left.equalTo()(10)
             make?.right.equalTo()(-10)
-            make?.top.equalTo()(self.mas_topLayoutGuideBottom)
+            make?.top.equalTo()(self.agora_mas_topLayoutGuideBottom)
         }
         
-        infoLabel.mas_makeConstraints { make in
+        infoLabel.agora_mas_makeConstraints { make in
             make?.left.right().equalTo()(0)
             make?.bottom.equalTo()(-20)
         }

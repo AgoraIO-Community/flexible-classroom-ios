@@ -34,12 +34,12 @@ class FcrAppUIDetailInfoCell: UITableViewCell,
     }
     
     func initViewFrame() {
-        infoLabel.mas_makeConstraints { make in
+        infoLabel.agora_mas_makeConstraints { make in
             make?.left.equalTo()(16)
             make?.centerY.equalTo()(0)
         }
         
-        detailLabel.mas_makeConstraints { make in
+        detailLabel.agora_mas_makeConstraints { make in
             make?.right.equalTo()(-16)
             make?.centerY.equalTo()(0)
         }

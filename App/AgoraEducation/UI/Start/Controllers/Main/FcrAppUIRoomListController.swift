@@ -130,28 +130,28 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
     func initViewFrame() {
         let radius = cornerRadiusView.radius
         
-        cornerRadiusView.mas_makeConstraints { make in
+        cornerRadiusView.agora_mas_makeConstraints { make in
             make?.top.equalTo()(0)
             make?.left.equalTo()(0)
             make?.right.equalTo()(0)?.offset()(radius)
             make?.bottom.equalTo()(0)?.offset()(radius)
         }
         
-        titleView.mas_makeConstraints { make in
+        titleView.agora_mas_makeConstraints { make in
             make?.top.equalTo()(0)
             make?.left.equalTo()(radius)
             make?.right.equalTo()(-radius)
             make?.height.equalTo()(51)
         }
         
-        noticeView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.titleView.mas_bottom)?.offset()(-40)
+        noticeView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.titleView.agora_mas_bottom)?.offset()(-40)
             make?.left.right().equalTo()(0)
             make?.height.equalTo()(40)
         }
         
-        tableView.mas_makeConstraints { make in
-            make?.top.equalTo()(noticeView.mas_bottom)?.offset()(12)
+        tableView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(noticeView.agora_mas_bottom)?.offset()(12)
             make?.left.right().bottom().equalTo()(0)
         }
     }
@@ -208,8 +208,8 @@ extension FcrAppUIRoomListController: AgoraUIContentContainer {
         
         let offset: CGFloat = (isShow ? 11 : -40)
         
-        noticeView.mas_updateConstraints { make in
-            make?.top.equalTo()(self.titleView.mas_bottom)?.offset()(offset)
+        noticeView.agora_mas_updateConstraints { make in
+            make?.top.equalTo()(self.titleView.agora_mas_bottom)?.offset()(offset)
         }
         
         UIView.animate(withDuration: TimeInterval.agora_animation) {

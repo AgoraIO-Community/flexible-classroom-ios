@@ -107,7 +107,7 @@ class FcrAppUIRoomListTitleView: UIView,
     }
     
     func initViewFrame() {
-        label.mas_makeConstraints { make in
+        label.agora_mas_makeConstraints { make in
             make?.left.equalTo()(0)
             make?.right.equalTo()(0)
             make?.height.equalTo()(24)
@@ -155,7 +155,7 @@ class FcrAppUIRoomListAddedNoticeView: UIView,
         label.text = "fcr_home_tips_room_created".localized()
         label.textColor = FcrAppUIColorGroup.fcr_white
         
-        label.mas_remakeConstraints { make in
+        label.agora_mas_remakeConstraints { make in
             make?.center.equalTo()(0)
             make?.width.equalTo()(label.intrinsicContentSize.width + 20)
             make?.top.equalTo()(0)

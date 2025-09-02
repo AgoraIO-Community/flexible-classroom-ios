@@ -61,23 +61,23 @@ class FcrAppUIQuickStartRoomTypeViewController: FcrAppUIPresentedViewController 
     override func initViewFrame() {
         super.initViewFrame()
         
-        lineView.mas_makeConstraints { make in
+        lineView.agora_mas_makeConstraints { make in
             make?.top.equalTo()(6)
             make?.centerX.equalTo()(0)
             make?.width.equalTo()(50)
             make?.height.equalTo()(5)
         }
         
-        titleLabel.mas_makeConstraints { make in
+        titleLabel.agora_mas_makeConstraints { make in
             make?.top.equalTo()(28)
             make?.left.right().equalTo()(0)
             make?.height.equalTo()(15)
         }
         
-        tableView.mas_makeConstraints { make in
+        tableView.agora_mas_makeConstraints { make in
             make?.left.equalTo()(15)
             make?.right.equalTo()(-15)
-            make?.top.equalTo()(self.titleLabel.mas_bottom)?.offset()(20)
+            make?.top.equalTo()(self.titleLabel.agora_mas_bottom)?.offset()(20)
             make?.bottom.equalTo()(0)
         }
     }

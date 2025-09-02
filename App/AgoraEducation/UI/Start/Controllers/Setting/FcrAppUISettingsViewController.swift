@@ -63,11 +63,11 @@ extension FcrAppUISettingsViewController: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        tableView.mas_makeConstraints { make in
+        tableView.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
         
-        logoutButton.mas_makeConstraints { make in
+        logoutButton.agora_mas_makeConstraints { make in
             make?.centerX.equalTo()(0)
             make?.height.equalTo()(44)
             make?.width.equalTo()(300)

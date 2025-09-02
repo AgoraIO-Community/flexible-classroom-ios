@@ -69,8 +69,8 @@ extension FcrAppUIRoomDurationViewController: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        textField.mas_makeConstraints { make in
-            make?.top.equalTo()(self.mas_topLayoutGuideBottom)
+        textField.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.agora_mas_topLayoutGuideBottom)
             make?.left.equalTo()(16)
             make?.right.equalTo()(-16)
             make?.height.equalTo()(52)

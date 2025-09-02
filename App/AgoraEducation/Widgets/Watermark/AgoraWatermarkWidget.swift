@@ -47,9 +47,9 @@ private extension AgoraWatermarkWidget {
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 40)
         view.addSubview(label)
-        label.mas_makeConstraints { make in
+        label.agora_mas_makeConstraints { make in
             make?.top.equalTo()(30)
-            make?.left.equalTo()(view.mas_right)
+            make?.left.equalTo()(view.agora_mas_right)
         }
     }
 }

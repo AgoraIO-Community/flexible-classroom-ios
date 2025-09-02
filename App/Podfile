@@ -9,7 +9,6 @@ target 'AgoraEducation' do
   
   # third libs
   pod 'SwifterSwift',      '5.2.0'
-  pod 'Masonry',           '1.1.0'
   pod 'SDWebImage',        '5.12.0'
   
   pod 'AgoraRtcEngine_Special_iOS', '3.7.2.133'
@@ -17,7 +16,7 @@ target 'AgoraEducation' do
  
   # agora libs header
   pod 'AgoraClassroomSDK_iOS', '2.8.112'
-  pod 'AgoraProctorSDK',       '1.0.2'
+  pod 'AgoraProctorSDK',       '2.8.112'
   pod 'AgoraWidgets',          '2.8.112'
   # agora libs footer
 end
