@@ -15,7 +15,7 @@ Artifactory_iOS_URL="https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/i
 ProctorVersion="1.0.2"
 ProctorBranch="release_${ProctorVersion}"
 
-Version="2.8.111"
+Version="2.8.112"
 Branch="release_${Version}"
 
 AgoraClassroomSDK_iOS_URL="${Artifactory_iOS_URL}/AgoraClassroomSDK_iOS/${Branch}/dev/AgoraClassroomSDK_iOS_${Version}.zip"
