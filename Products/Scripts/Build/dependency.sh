@@ -12,7 +12,7 @@
 # AgoraUIBaseViews
 Artifactory_iOS_URL="https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS"
 
-ProctorVersion="1.0.2"
+ProctorVersion="2.8.112"
 ProctorBranch="release_${ProctorVersion}"
 
 Version="2.8.112"
