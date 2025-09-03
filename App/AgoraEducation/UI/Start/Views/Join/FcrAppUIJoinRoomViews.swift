@@ -44,7 +44,7 @@ class FcrAppUIJoinRoomRoleView: UIView,
     func initViewFrame() {
         button.layer.borderWidth = 2
         
-        button.mas_makeConstraints { make in
+        button.agora_mas_makeConstraints { make in
             make?.right.left().bottom().top().equalTo()(0)
         }
         
@@ -52,7 +52,7 @@ class FcrAppUIJoinRoomRoleView: UIView,
         let selectedImageViewHeight: CGFloat = selectedImageViewWidth
         let offset: CGFloat = selectedImageViewWidth * 0.5 - 4
         
-        selectedImageView.mas_makeConstraints { make in
+        selectedImageView.agora_mas_makeConstraints { make in
             make?.right.equalTo()(offset)
             make?.top.equalTo()(-offset)
             make?.width.equalTo()(selectedImageViewWidth)
@@ -105,14 +105,14 @@ class FcrAppUIJoinRoomInputView: UIView,
     }
     
     func initViewFrame() {
-        roomIdTextField.mas_makeConstraints { make in
+        roomIdTextField.agora_mas_makeConstraints { make in
             make?.left.top().right().equalTo()(0)
-            make?.height.equalTo()(self.mas_height)?.multipliedBy()(0.5)
+            make?.height.equalTo()(self.agora_mas_height)?.multipliedBy()(0.5)
         }
         
-        userNameTextField.mas_makeConstraints { make in
+        userNameTextField.agora_mas_makeConstraints { make in
             make?.left.bottom().right().equalTo()(0)
-            make?.height.equalTo()(self.mas_height)?.multipliedBy()(0.5)
+            make?.height.equalTo()(self.agora_mas_height)?.multipliedBy()(0.5)
         }
     }
     
@@ -170,31 +170,31 @@ class FcrAppUIJoinRoomView: UIView,
     }
     
     func initViewFrame() {
-        roomInputView.mas_makeConstraints { make in
+        roomInputView.agora_mas_makeConstraints { make in
             make?.top.equalTo()(0)
             make?.left.equalTo()(0)
             make?.right.equalTo()(0)
             make?.height.equalTo()(120)
         }
         
-        roleTitleLabel.mas_makeConstraints { make in
-            make?.top.equalTo()(roomInputView.mas_bottom)?.offset()(20)
+        roleTitleLabel.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(roomInputView.agora_mas_bottom)?.offset()(20)
             make?.left.equalTo()(15)
             make?.right.equalTo()(0)
             make?.height.equalTo()(15)
         }
         
-        teacherView.mas_makeConstraints { make in
-            make?.top.equalTo()(roleTitleLabel.mas_bottom)?.offset()(12)
+        teacherView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(roleTitleLabel.agora_mas_bottom)?.offset()(12)
             make?.left.equalTo()(0)
-            make?.right.equalTo()(self.mas_centerX)?.offset()(-6)
+            make?.right.equalTo()(self.agora_mas_centerX)?.offset()(-6)
             make?.height.equalTo()(45)
         }
         
-        studentView.mas_makeConstraints { make in
-            make?.top.equalTo()(roleTitleLabel.mas_bottom)?.offset()(12)
+        studentView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(roleTitleLabel.agora_mas_bottom)?.offset()(12)
             make?.right.equalTo()(0)
-            make?.left.equalTo()(self.mas_centerX)?.offset()(6)
+            make?.left.equalTo()(self.agora_mas_centerX)?.offset()(6)
             make?.height.equalTo()(45)
         }
     }

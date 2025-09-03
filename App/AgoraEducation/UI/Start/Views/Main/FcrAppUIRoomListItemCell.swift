@@ -109,77 +109,77 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        cardView.mas_makeConstraints { make in
+        cardView.agora_mas_makeConstraints { make in
             make?.edges.equalTo()(UIEdgeInsets(top: 6,
                                                left: 14,
                                                bottom: 6,
                                                right: 14))
         }
         
-        stateIcon.mas_makeConstraints { make in
+        stateIcon.agora_mas_makeConstraints { make in
             make?.left.top().equalTo()(14)
         }
         
-        stateLabel.mas_makeConstraints { make in
+        stateLabel.agora_mas_makeConstraints { make in
             make?.left.equalTo()(17)
             make?.centerY.equalTo()(stateIcon)
         }
         
-        verticalLine.mas_makeConstraints { make in
-            make?.left.equalTo()(stateLabel.mas_right)?.offset()(8)
+        verticalLine.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(stateLabel.agora_mas_right)?.offset()(8)
             make?.centerY.equalTo()(stateLabel)
             make?.width.equalTo()(1)
             make?.height.equalTo()(8)
         }
         
-        idTitleLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(verticalLine.mas_right)?.offset()(12)
+        idTitleLabel.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(verticalLine.agora_mas_right)?.offset()(12)
             make?.centerY.equalTo()(stateLabel)
         }
         
-        idLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(idTitleLabel.mas_right)?.offset()(4)
+        idLabel.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(idTitleLabel.agora_mas_right)?.offset()(4)
             make?.centerY.equalTo()(stateLabel)
         }
         
-        copiedButton.mas_makeConstraints { make in
-            make?.left.equalTo()(idLabel.mas_right)
+        copiedButton.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(idLabel.agora_mas_right)
             make?.centerY.equalTo()(stateLabel)
         }
         
-        sharedButton.mas_makeConstraints { make in
+        sharedButton.agora_mas_makeConstraints { make in
             make?.top.equalTo()(16)
             make?.right.equalTo()(-16)
         }
         
-        nameLabel.mas_makeConstraints { make in
+        nameLabel.agora_mas_makeConstraints { make in
             make?.left.equalTo()(16)
-            make?.top.equalTo()(stateLabel.mas_bottom)?.offset()(12)
+            make?.top.equalTo()(stateLabel.agora_mas_bottom)?.offset()(12)
             make?.right.equalTo()(-16)
         }
         
-        timeIcon.mas_makeConstraints { make in
-            make?.top.equalTo()(nameLabel.mas_bottom)?.offset()(17)
+        timeIcon.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(nameLabel.agora_mas_bottom)?.offset()(17)
             make?.left.equalTo()(nameLabel)
         }
         
-        timeLabel.mas_makeConstraints { make in
+        timeLabel.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(timeIcon)
-            make?.left.equalTo()(timeIcon.mas_right)?.offset()(5)
+            make?.left.equalTo()(timeIcon.agora_mas_right)?.offset()(5)
         }
         
-        typeIcon.mas_makeConstraints { make in
-            make?.top.equalTo()(timeLabel.mas_bottom)?.offset()(7)
+        typeIcon.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(timeLabel.agora_mas_bottom)?.offset()(7)
             make?.left.equalTo()(nameLabel)
         }
         
-        typeLabel.mas_makeConstraints { make in
+        typeLabel.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(typeIcon)
-            make?.left.equalTo()(typeIcon.mas_right)?.offset()(5)
+            make?.left.equalTo()(typeIcon.agora_mas_right)?.offset()(5)
         }
         
-        enteredButton.mas_makeConstraints { make in
-            make?.top.equalTo()(timeLabel.mas_top)?.offset()(2)
+        enteredButton.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(timeLabel.agora_mas_top)?.offset()(2)
             make?.right.offset()(-16)
             make?.width.equalTo()(100)
             make?.height.equalTo()(36)
@@ -256,7 +256,7 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
             timeLabel.textColor = .black
             typeLabel.textColor = .black
             
-            stateLabel.mas_updateConstraints { make in
+            stateLabel.agora_mas_updateConstraints { make in
                 make?.left.equalTo()(17)
             }
         case .inProgress:
@@ -289,7 +289,7 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
             timeLabel.textColor = .white
             typeLabel.textColor = .white
             
-            stateLabel.mas_updateConstraints { make in
+            stateLabel.agora_mas_updateConstraints { make in
                 make?.left.equalTo()(35)
             }
         case .closed:
@@ -314,7 +314,7 @@ extension FcrAppUIRoomListItemCell: AgoraUIContentContainer {
             timeLabel.textColor = .black
             typeLabel.textColor = .black
             
-            stateLabel.mas_updateConstraints { make in
+            stateLabel.agora_mas_updateConstraints { make in
                 make?.left.equalTo()(17)
             }
         }

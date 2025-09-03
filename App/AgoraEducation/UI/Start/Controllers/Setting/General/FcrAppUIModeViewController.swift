@@ -46,7 +46,7 @@ class FcrAppUIModeViewController: FcrAppUIViewController,
     }
     
     func initViewFrame() {
-        tableView.mas_makeConstraints { make in
+        tableView.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
     }

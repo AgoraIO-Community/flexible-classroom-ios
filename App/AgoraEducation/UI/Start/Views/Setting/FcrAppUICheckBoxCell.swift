@@ -45,12 +45,12 @@ class FcrAppUICheckBoxCell: UITableViewCell,
     }
     
     func initViewFrame() {
-        infoLabel.mas_makeConstraints { make in
+        infoLabel.agora_mas_makeConstraints { make in
             make?.left.equalTo()(16)
             make?.centerY.equalTo()(0)
         }
         
-        checkBox.mas_makeConstraints { make in
+        checkBox.agora_mas_makeConstraints { make in
             make?.right.equalTo()(-20)
             make?.centerY.equalTo()(0)
         }

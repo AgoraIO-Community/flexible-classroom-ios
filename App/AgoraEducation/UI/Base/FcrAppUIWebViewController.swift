@@ -47,7 +47,7 @@ class FcrAppUIWebViewController: FcrAppUIViewController,
     }
     
     func initViewFrame() {
-        webView.mas_makeConstraints { make in
+        webView.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
     }

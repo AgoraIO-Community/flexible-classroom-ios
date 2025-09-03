@@ -101,11 +101,11 @@ class FcrAppUICreateRoomTimePickerController: FcrAppStartUIPresentedViewControll
     override func initViewFrame() {
         super.initViewFrame()
             
-        pickerView.mas_makeConstraints { make in
-            make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(0)
+        pickerView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(titleLabel.agora_mas_bottom)?.offset()(0)
             make?.left.equalTo()(20)
             make?.right.equalTo()(-20)
-            make?.bottom.equalTo()(bottomButton.mas_top)?.offset()
+            make?.bottom.equalTo()(bottomButton.agora_mas_top)?.offset()
         }
     }
     

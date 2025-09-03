@@ -169,23 +169,23 @@ class FcrAppStartUIPresentedViewController: FcrAppUIPresentedViewController {
     override func initViewFrame() {
         super.initViewFrame()
         
-        titleLabel.mas_makeConstraints { make in
+        titleLabel.agora_mas_makeConstraints { make in
             make?.left.top().equalTo()(24)
         }
         
-        closeButton.mas_makeConstraints { make in
-            make?.centerY.equalTo()(self.titleLabel.mas_centerY)
+        closeButton.agora_mas_makeConstraints { make in
+            make?.centerY.equalTo()(self.titleLabel.agora_mas_centerY)
             make?.right.equalTo()(-15)
             make?.width.height().equalTo()(24)
         }
         
-        lineView.mas_makeConstraints { make in
-            make?.bottom.equalTo()(self.bottomButton.mas_top)?.offset()(-12)
+        lineView.agora_mas_makeConstraints { make in
+            make?.bottom.equalTo()(self.bottomButton.agora_mas_top)?.offset()(-12)
             make?.right.left().equalTo()(0)
             make?.height.equalTo()(1)
         }
         
-        bottomButton.mas_makeConstraints { make in
+        bottomButton.agora_mas_makeConstraints { make in
             make?.bottom.equalTo()(-(40 + self.contentViewOffY))
             make?.right.equalTo()(-20)
             make?.left.equalTo()(20)

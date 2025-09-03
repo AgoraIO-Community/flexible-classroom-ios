@@ -59,19 +59,19 @@ class FcrAppUICloseAccountViewController: FcrAppUIViewController,
     }
     
     func initViewFrame() {        
-        textLabel.mas_makeConstraints { make in
-            make?.top.equalTo()(self.mas_topLayoutGuideBottom)
+        textLabel.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.agora_mas_topLayoutGuideBottom)
             make?.left.equalTo()(20)
             make?.right.equalTo()(-20)
         }
         
-        checkBox.mas_makeConstraints { make in
+        checkBox.agora_mas_makeConstraints { make in
             make?.left.equalTo()(textLabel)
-            make?.top.equalTo()(textLabel.mas_bottom)?.offset()(30)
+            make?.top.equalTo()(textLabel.agora_mas_bottom)?.offset()(30)
             make?.height.equalTo()(30)
         }
         
-        closeAccountButton.mas_makeConstraints { make in
+        closeAccountButton.agora_mas_makeConstraints { make in
             make?.centerX.equalTo()(0)
             make?.height.equalTo()(44)
             make?.width.equalTo()(300)

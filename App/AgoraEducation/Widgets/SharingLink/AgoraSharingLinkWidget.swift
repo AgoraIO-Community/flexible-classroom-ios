@@ -151,67 +151,67 @@ extension AgoraSharingLinkWidget: AgoraUIContentContainer {
     }
     
     public func initViewFrame() {
-        contentView.mas_makeConstraints { make in
+        contentView.agora_mas_makeConstraints { make in
             make?.top.bottom().right().equalTo()(0)
             make?.width.equalTo()(280)
         }
         
-        closeButton.mas_makeConstraints { make in
+        closeButton.agora_mas_makeConstraints { make in
             make?.top.right().equalTo()(0)
             make?.width.height().equalTo()(44)
         }
         
-        titleLabel.mas_makeConstraints { make in
+        titleLabel.agora_mas_makeConstraints { make in
             make?.top.equalTo()(19)
             make?.left.equalTo()(15)
         }
         
-        roomIdTitleLabel.mas_makeConstraints { make in
-            make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(24)
+        roomIdTitleLabel.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(titleLabel.agora_mas_bottom)?.offset()(24)
             make?.left.equalTo()(titleLabel)
         }
         
-        roomIdDetailLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(roomIdTitleLabel.mas_right)?.offset()(10)
+        roomIdDetailLabel.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(roomIdTitleLabel.agora_mas_right)?.offset()(10)
             make?.centerY.equalTo()(roomIdTitleLabel)
             make?.width.lessThanOrEqualTo()(160)
         }
         
-        roomIdCopyButton.mas_makeConstraints { make in
-            make?.left.equalTo()(roomIdDetailLabel.mas_right)
+        roomIdCopyButton.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(roomIdDetailLabel.agora_mas_right)
             make?.width.height().equalTo()(44)
             make?.centerY.equalTo()(roomIdDetailLabel)
         }
         
-        invitationTitleLabel.mas_makeConstraints { make in
-            make?.top.equalTo()(roomIdTitleLabel.mas_bottom)?.offset()(24)
+        invitationTitleLabel.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(roomIdTitleLabel.agora_mas_bottom)?.offset()(24)
             make?.left.equalTo()(titleLabel)
         }
         
-        sharingContentView.mas_makeConstraints { make in
-            make?.top.equalTo()(invitationTitleLabel.mas_bottom)?.offset()(16)
+        sharingContentView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(invitationTitleLabel.agora_mas_bottom)?.offset()(16)
             make?.left.equalTo()(15)
             make?.right.equalTo()(-15)
             make?.height.greaterThanOrEqualTo()(118)
         }
-        sharingLinkLabel.mas_makeConstraints { make in
+        sharingLinkLabel.agora_mas_makeConstraints { make in
             make?.top.equalTo()(sharingContentView)?.offset()(10)
             make?.left.equalTo()(sharingContentView)?.offset()(10)
             make?.right.equalTo()(sharingContentView)?.offset()(-10)
             make?.bottom.equalTo()(sharingContentView)?.offset()(-44)
         }
         
-        copyLinkButton.mas_makeConstraints { make in
+        copyLinkButton.agora_mas_makeConstraints { make in
             make?.width.height().equalTo()(24)
             make?.right.equalTo()(sharingContentView)?.offset()(-10)
             make?.bottom.equalTo()(sharingContentView)?.offset()(-10)
         }
         
-        sharingButton.mas_makeConstraints { make in
+        sharingButton.agora_mas_makeConstraints { make in
             make?.left.equalTo()(sharingContentView)?.offset()(10)
             make?.bottom.equalTo()(sharingContentView)?.offset()(-10)
             make?.height.equalTo()(22)
-            make?.right.equalTo()(copyLinkButton.mas_left)?.offset()(-6)
+            make?.right.equalTo()(copyLinkButton.agora_mas_left)?.offset()(-6)
         }
     }
     

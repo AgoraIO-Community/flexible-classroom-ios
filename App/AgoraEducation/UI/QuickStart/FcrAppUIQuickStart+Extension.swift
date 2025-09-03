@@ -63,7 +63,7 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        contentView.mas_makeConstraints { make in
+        contentView.agora_mas_makeConstraints { make in
             make?.edges.equalTo()(self.view)
         }
     }

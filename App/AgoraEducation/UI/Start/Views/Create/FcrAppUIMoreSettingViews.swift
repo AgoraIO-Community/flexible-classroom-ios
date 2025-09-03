@@ -86,19 +86,19 @@ class FcrAppUICreateRoomMoreTableView: UIView,
     func initViewFrame() {
         updateTopViewFrame(height: rowHeight)
         
-        tableView.mas_makeConstraints { make in
-            make?.left.equalTo()(self.mas_left)
-            make?.right.equalTo()(self.mas_right)
-            make?.top.equalTo()(self.headerView.mas_bottom)
-            make?.bottom.equalTo()(self.mas_bottom)
+        tableView.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(self.agora_mas_left)
+            make?.right.equalTo()(self.agora_mas_right)
+            make?.top.equalTo()(self.headerView.agora_mas_bottom)
+            make?.bottom.equalTo()(self.agora_mas_bottom)
         }
     }
     
     func updateTopViewFrame(height: CGFloat) {
-        headerView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.mas_top)
-            make?.left.equalTo()(self.mas_left)
-            make?.right.equalTo()(self.mas_right)
+        headerView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.agora_mas_top)
+            make?.left.equalTo()(self.agora_mas_left)
+            make?.right.equalTo()(self.agora_mas_right)
             make?.height.equalTo()(height)
         }
     }
@@ -293,30 +293,30 @@ class FcrAppUICreateRoomSwitchCell: UITableViewCell,
     }
     
     func initViewFrame() {
-        iconView.mas_makeConstraints { make in
-            make?.left.equalTo()(contentView.mas_left)?.offset()(16)
+        iconView.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(contentView.agora_mas_left)?.offset()(16)
             make?.centerY.equalTo()(0)
             make?.width.height().equalTo()(18)
         }
         
-        lineView.mas_makeConstraints { make in
-            make?.left.equalTo()(iconView.mas_left)
+        lineView.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(iconView.agora_mas_left)
             make?.right.bottom().equalTo()(0)
             make?.height.equalTo()(1)
         }
         
-        titleLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(iconView.mas_right)?.offset()(8)
+        titleLabel.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(iconView.agora_mas_right)?.offset()(8)
             make?.centerY.equalTo()(iconView)
         }
         
-        detailLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(titleLabel.mas_right)?.offset()(12)
+        detailLabel.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(titleLabel.agora_mas_right)?.offset()(12)
             make?.centerY.equalTo()(iconView)
         }
         
-        switchButton.mas_makeConstraints { make in
-            make?.right.equalTo()(contentView.mas_right)?.offset()(-18)
+        switchButton.agora_mas_makeConstraints { make in
+            make?.right.equalTo()(contentView.agora_mas_right)?.offset()(-18)
             make?.centerY.equalTo()(iconView)
             make?.width.height().equalTo()(48)
         }
