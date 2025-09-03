@@ -38,27 +38,27 @@ class FcrAppUIMainTitleActionView: UIView,
     }
     
     func initViewFrame() {
-        contentView.mas_makeConstraints { make in
+        contentView.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
         
-        iconBGView.mas_makeConstraints { make in
+        iconBGView.agora_mas_makeConstraints { make in
             make?.width.height().equalTo()(40)
             make?.left.equalTo()(8)
             make?.centerY.equalTo()(0)
         }
         
-        iconView.mas_makeConstraints { make in
+        iconView.agora_mas_makeConstraints { make in
             make?.center.equalTo()(iconBGView)
             make?.width.height().equalTo()(40)
         }
         
-        titleLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(iconView.mas_right)
+        titleLabel.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(iconView.agora_mas_right)
             make?.right.top().bottom().equalTo()(0)
         }
         
-        button.mas_makeConstraints { make in
+        button.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
     }
@@ -122,39 +122,39 @@ class FcrAppUIMainHeaderView: UIView,
     }
     
     func initViewFrame() {
-        backgroundView.mas_makeConstraints { make in
+        backgroundView.agora_mas_makeConstraints { make in
             make?.left.top().right().bottom().equalTo()(0)
         }
         
-        titleLabel.mas_makeConstraints { make in
+        titleLabel.agora_mas_makeConstraints { make in
             let top: CGFloat = (UIDevice.current.isSmallPhone ? 40 : 68)
             
             make?.top.equalTo()(top)
             make?.left.equalTo()(16)
         }
         
-        joinActionView.mas_makeConstraints { make in
-            make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(28)
+        joinActionView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(titleLabel.agora_mas_bottom)?.offset()(28)
             make?.left.equalTo()(24)
-            make?.right.equalTo()(createActionView.mas_left)?.offset()(-15)
+            make?.right.equalTo()(createActionView.agora_mas_left)?.offset()(-15)
             make?.height.equalTo()(56)
         }
         
-        createActionView.mas_makeConstraints { make in
-            make?.top.equalTo()(joinActionView.mas_top)
+        createActionView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(joinActionView.agora_mas_top)
             make?.right.equalTo()(-24)
-            make?.width.equalTo()(self.joinActionView.mas_width)
-            make?.height.equalTo()(joinActionView.mas_height)
+            make?.width.equalTo()(self.joinActionView.agora_mas_width)
+            make?.height.equalTo()(joinActionView.agora_mas_height)
         }
         
-        settingButton.mas_makeConstraints { make in
+        settingButton.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(titleLabel)
             make?.right.equalTo()(-14)
         }
         
-        testTag.mas_makeConstraints { make in
+        testTag.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(settingButton)
-            make?.right.equalTo()(settingButton.mas_left)?.offset()(-5)
+            make?.right.equalTo()(settingButton.agora_mas_left)?.offset()(-5)
         }
     }
     

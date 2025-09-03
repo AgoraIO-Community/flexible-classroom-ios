@@ -89,14 +89,14 @@ class FcrAppUIQuickStartRoomTypeSelectView: UIView,
     }
     
     func initViewFrame() {
-        leftLabel.mas_makeConstraints { make in
+        leftLabel.agora_mas_makeConstraints { make in
             make?.left.equalTo()(self.leftAreaOffsetX)
             make?.top.equalTo()(0)
             make?.bottom.equalTo()(0)
             make?.width.equalTo()(self.leftTextWidth)
         }
         
-        rightButton.mas_makeConstraints { make in
+        rightButton.agora_mas_makeConstraints { make in
             let left = self.leftAreaOffsetX + self.leftTextWidth + self.rightViewOffsetX
             
             make?.left.equalTo()(left)
@@ -105,11 +105,11 @@ class FcrAppUIQuickStartRoomTypeSelectView: UIView,
             make?.bottom.equalTo()(-7)
         }
         
-        lineView.mas_makeConstraints { make in  
+        lineView.agora_mas_makeConstraints { make in  
             make?.left.equalTo()(0)
             make?.right.equalTo()(0)
             make?.height.equalTo()(1)
-            make?.bottom.equalTo()(self.mas_bottom)
+            make?.bottom.equalTo()(self.agora_mas_bottom)
         }
     }
     
@@ -163,25 +163,25 @@ class FcrAppUIQuickStartTimeView: UIView,
     }
     
     func initViewFrame() {
-        titleLable.mas_makeConstraints { make in
+        titleLable.agora_mas_makeConstraints { make in
             make?.left.equalTo()(20)
             make?.top.equalTo()(20)
             make?.right.equalTo()(-20)
             make?.height.equalTo()(13)
         }
         
-        timeLabel.mas_makeConstraints { make in
+        timeLabel.agora_mas_makeConstraints { make in
             make?.left.equalTo()(20)
-            make?.top.equalTo()(self.titleLable.mas_bottom)?.offset()(8)
+            make?.top.equalTo()(self.titleLable.agora_mas_bottom)?.offset()(8)
             make?.right.equalTo()(-20)
             make?.height.equalTo()(15)
         }
         
-        lineView.mas_makeConstraints { make in
+        lineView.agora_mas_makeConstraints { make in
             make?.left.equalTo()(0)
             make?.right.equalTo()(0)
             make?.height.equalTo()(1)
-            make?.bottom.equalTo()(self.mas_bottom)
+            make?.bottom.equalTo()(self.agora_mas_bottom)
         }
     }
     
@@ -262,31 +262,31 @@ class FcrAppUIQuickStartCreateRoomInputView: UIView,
     }
     
     func initViewFrame() {
-        roomNameTextField.mas_makeConstraints { make in
+        roomNameTextField.agora_mas_makeConstraints { make in
             make?.top.equalTo()(0)
             make?.left.right().equalTo()(0)
             make?.height.equalTo()(54)
         }
         
-        roomTypeView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.roomNameTextField.mas_bottom)
+        roomTypeView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.roomNameTextField.agora_mas_bottom)
             make?.left.right().equalTo()(0)
             make?.height.equalTo()(54)
         }
         
-        userNameTextField.mas_makeConstraints { make in
-            make?.top.equalTo()(self.roomTypeView.mas_bottom)
+        userNameTextField.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.roomTypeView.agora_mas_bottom)
             make?.left.right().equalTo()(0)
             make?.height.equalTo()(54)
         }
         
-        timeView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.userNameTextField.mas_bottom)
+        timeView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.userNameTextField.agora_mas_bottom)
             make?.left.right().equalTo()(0)
             make?.height.equalTo()(80)
         }
         
-        createButton.mas_makeConstraints { make in
+        createButton.agora_mas_makeConstraints { make in
             make?.left.equalTo()(25)
             make?.right.equalTo()(-25)
             make?.height.equalTo()(46)
@@ -362,13 +362,13 @@ class FcrAppUIQuickStartCheckBoxCell: UITableViewCell,
     }
     
     func initViewFrame() {
-        infoLabel.mas_makeConstraints { make in
+        infoLabel.agora_mas_makeConstraints { make in
             make?.centerX.centerY().equalTo()(0)
             make?.top.bottom().equalTo()(0)
-            make?.right.equalTo()(self.checkBox.mas_left)
+            make?.right.equalTo()(self.checkBox.agora_mas_left)
         }
         
-        checkBox.mas_makeConstraints { make in
+        checkBox.agora_mas_makeConstraints { make in
             make?.width.height().equalTo()(24)
             make?.right.equalTo()(-16)
             make?.centerY.equalTo()(0)

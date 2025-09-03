@@ -51,21 +51,21 @@ class FcrAppUIQuickStartSegmentedControl: UIButton,
     }
     
     func initViewFrame() {
-        joinButton.mas_makeConstraints { make in
+        joinButton.agora_mas_makeConstraints { make in
             make?.left.top().bottom().equalTo()(0)
-            make?.width.equalTo()(self.mas_width)?.multipliedBy()(0.5)
+            make?.width.equalTo()(self.agora_mas_width)?.multipliedBy()(0.5)
         }
         
-        createButton.mas_makeConstraints { make in
+        createButton.agora_mas_makeConstraints { make in
             make?.right.top().bottom().equalTo()(0)
-            make?.width.equalTo()(self.mas_width)?.multipliedBy()(0.5)
+            make?.width.equalTo()(self.agora_mas_width)?.multipliedBy()(0.5)
         }
         
-        lineView.mas_makeConstraints { make in
+        lineView.agora_mas_makeConstraints { make in
             make?.bottom.equalTo()(0)
-            make?.width.equalTo()(self.mas_width)?.multipliedBy()(0.5)?.offset()(-40)
+            make?.width.equalTo()(self.agora_mas_width)?.multipliedBy()(0.5)?.offset()(-40)
             make?.height.equalTo()(3)
-            make?.centerX.equalTo()(self.joinButton.mas_centerX)
+            make?.centerX.equalTo()(self.joinButton.agora_mas_centerX)
         }
     }
     
@@ -103,20 +103,20 @@ class FcrAppUIQuickStartSegmentedControl: UIButton,
         createButton.isSelected.toggle()
         
         if joinButton.isSelected {
-            lineView.mas_remakeConstraints { make in
+            lineView.agora_mas_remakeConstraints { make in
                 make?.bottom.equalTo()(0)
-                make?.width.equalTo()(self.mas_width)?.multipliedBy()(0.5)?.offset()(-40)
+                make?.width.equalTo()(self.agora_mas_width)?.multipliedBy()(0.5)?.offset()(-40)
                 make?.height.equalTo()(2)
-                make?.centerX.equalTo()(self.joinButton.mas_centerX)
+                make?.centerX.equalTo()(self.joinButton.agora_mas_centerX)
             }
             
             segmented = .join
         } else {
-            lineView.mas_remakeConstraints { make in
+            lineView.agora_mas_remakeConstraints { make in
                 make?.bottom.equalTo()(0)
-                make?.width.equalTo()(self.mas_width)?.multipliedBy()(0.5)?.offset()(-40)
+                make?.width.equalTo()(self.agora_mas_width)?.multipliedBy()(0.5)?.offset()(-40)
                 make?.height.equalTo()(2)
-                make?.centerX.equalTo()(self.createButton.mas_centerX)
+                make?.centerX.equalTo()(self.createButton.agora_mas_centerX)
             }
             
             segmented = .create
@@ -178,29 +178,29 @@ class FcrAppUIQuickStartInputView: UIView,
     }
     
     func initViewFrame() {
-        backgroundImageView.mas_makeConstraints { make in
+        backgroundImageView.agora_mas_makeConstraints { make in
             make?.top.left().right().bottom().equalTo()(0)
         }
         
-        segmentedControl.mas_makeConstraints { make in
+        segmentedControl.agora_mas_makeConstraints { make in
             make?.top.equalTo()(self.backgroundImageView)?.offset()(12)
             make?.left.right().equalTo()(0)
             make?.height.equalTo()(46)
         }
         
-        joinRoomView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.segmentedControl.mas_bottom)?.offset()(23)
+        joinRoomView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.segmentedControl.agora_mas_bottom)?.offset()(23)
             make?.right.left().equalTo()(0)
             make?.bottom.equalTo()(-85)
         }
         
-        createRoomView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.segmentedControl.mas_bottom)?.offset()(23)
+        createRoomView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.segmentedControl.agora_mas_bottom)?.offset()(23)
             make?.right.left().equalTo()(0)
             make?.bottom.equalTo()(-85)
         }
         
-        policyView.mas_makeConstraints { make in
+        policyView.agora_mas_makeConstraints { make in
             make?.left.equalTo()(24)
             make?.right.equalTo()(-24)
             make?.bottom.equalTo()(0)

@@ -35,12 +35,12 @@ class FcrAppUINavigatorCell: UITableViewCell,
     }
     
     func initViewFrame() {
-        infoLabel.mas_makeConstraints { make in
+        infoLabel.agora_mas_makeConstraints { make in
             make?.left.equalTo()(16)
             make?.centerY.equalTo()(0)
         }
         
-        arrow.mas_makeConstraints { make in
+        arrow.agora_mas_makeConstraints { make in
             make?.right.equalTo()(-16)
             make?.centerY.equalTo()(0)
         }

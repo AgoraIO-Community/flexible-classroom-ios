@@ -46,14 +46,14 @@ fileprivate class FcrAppUIQuickStartUserRoleCell: UICollectionViewCell,
         let selectedImageViewHeight: CGFloat = selectedImageViewWidth
         let offset: CGFloat = selectedImageViewWidth * 0.5 - 6
         
-        selectedImageView.mas_makeConstraints { make in
+        selectedImageView.agora_mas_makeConstraints { make in
             make?.right.equalTo()(offset)
             make?.top.equalTo()(-offset)
             make?.width.equalTo()(selectedImageViewWidth)
             make?.width.equalTo()(selectedImageViewHeight)
         }
         
-        textLabel.mas_makeConstraints { make in
+        textLabel.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
     }
@@ -163,26 +163,26 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
     }
     
     func initViewFrame() {
-        roomIdTextField.mas_makeConstraints { make in
+        roomIdTextField.agora_mas_makeConstraints { make in
             make?.top.equalTo()(0)
             make?.left.right().equalTo()(0)
             make?.height.equalTo()(54)
         }
         
-        userNameTextField.mas_makeConstraints { make in
-            make?.top.equalTo()(self.roomIdTextField.mas_bottom)
+        userNameTextField.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.roomIdTextField.agora_mas_bottom)
             make?.left.right().equalTo()(0)
             make?.height.equalTo()(54)
         }
         
-        roleLabel.mas_makeConstraints { make in
-            make?.top.equalTo()(self.userNameTextField.mas_bottom)?.offset()(22)
+        roleLabel.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.userNameTextField.agora_mas_bottom)?.offset()(22)
             make?.left.equalTo()(self.leftTextOffsetX)
             make?.width.equalTo()(self.leftTextWidth)
             make?.height.equalTo()(23)
         }
         
-        joinButton.mas_makeConstraints { make in
+        joinButton.agora_mas_makeConstraints { make in
             make?.left.equalTo()(25)
             make?.right.equalTo()(-25)
             make?.height.equalTo()(46)

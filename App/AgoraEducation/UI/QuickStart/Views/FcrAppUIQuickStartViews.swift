@@ -59,26 +59,26 @@ class FcrAppUIQuickStartHeaderView: UIView,
     }
     
     func initViewFrame() {
-        backgroundImageView.mas_makeConstraints { make in
+        backgroundImageView.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
         
-        titleLabel.mas_makeConstraints { make in
+        titleLabel.agora_mas_makeConstraints { make in
             make?.top.equalTo()(0)
             make?.left.equalTo()(22)
             make?.right.equalTo()(-100)
             make?.height.equalTo()(26)
         }
         
-        settingButton.mas_makeConstraints { make in
-            make?.centerY.equalTo()(self.titleLabel.mas_centerY)
+        settingButton.agora_mas_makeConstraints { make in
+            make?.centerY.equalTo()(self.titleLabel.agora_mas_centerY)
             make?.right.equalTo()(-17)
             make?.width.height().equalTo()(32)
         }
         
-        testTag.mas_makeConstraints { make in
-            make?.centerY.equalTo()(self.titleLabel.mas_centerY)
-            make?.right.equalTo()(self.settingButton.mas_left)?.offset()(-10)
+        testTag.agora_mas_makeConstraints { make in
+            make?.centerY.equalTo()(self.titleLabel.agora_mas_centerY)
+            make?.right.equalTo()(self.settingButton.agora_mas_left)?.offset()(-10)
             make?.width.equalTo()(100)
         }
     }
@@ -118,8 +118,8 @@ class FcrAppUIQuickStartHeaderView: UIView,
         
         signButton.layer.borderColor = FcrAppUIColorGroup.fcr_white.cgColor
         
-        signButton.mas_makeConstraints { make in
-            make?.top.equalTo()(self.titleLabel.mas_bottom)?.offset()(22)
+        signButton.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.titleLabel.agora_mas_bottom)?.offset()(22)
             make?.left.equalTo()(18)
             make?.width.equalTo()(signButton.intrinsicContentSize.width + 40)
             make?.height.equalTo()(30)
@@ -133,7 +133,7 @@ class FcrAppUIQuickStartHeaderView: UIView,
         
         isTopConstraintsUpdated = true
         
-        titleLabel.mas_updateConstraints { make in
+        titleLabel.agora_mas_updateConstraints { make in
             let space: CGFloat = (UIDevice.current.isSmallPhone ? 35 : 11)
             let top: CGFloat = (topSafeArea + space)
             make?.top.equalTo()(top)

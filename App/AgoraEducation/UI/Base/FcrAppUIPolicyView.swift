@@ -51,14 +51,14 @@ class FcrAppUIPolicyView: UIView,
     }
     
     func initViewFrame() {
-        checkBox.mas_makeConstraints { make in
+        checkBox.agora_mas_makeConstraints { make in
             make?.top.equalTo()(1)
             make?.left.equalTo()(0)
             make?.width.height().equalTo()(19)
         }
         
-        textView.mas_makeConstraints { make in
-            make?.left.equalTo()(self.checkBox.mas_right)?.offset()(0)
+        textView.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(self.checkBox.agora_mas_right)?.offset()(0)
             make?.right.top().bottom().equalTo()(0)
         }
     }

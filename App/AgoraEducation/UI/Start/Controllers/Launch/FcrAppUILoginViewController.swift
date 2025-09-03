@@ -83,35 +83,35 @@ fileprivate class AgreementView: UIView,
     }
     
     func initViewFrame() {
-        titleLabel.mas_makeConstraints { make in
+        titleLabel.agora_mas_makeConstraints { make in
             make?.top.equalTo()(20)
             make?.left.equalTo()(20)
             make?.right.equalTo()(-32)
-            make?.bottom.equalTo()(contentView.mas_top)?.offset()(-15)
+            make?.bottom.equalTo()(contentView.agora_mas_top)?.offset()(-15)
         }
         
-        closeButton.mas_makeConstraints { make in
+        closeButton.agora_mas_makeConstraints { make in
             make?.top.equalTo()(10)
             make?.right.equalTo()(-10)
             make?.height.equalTo()(20)
             make?.width.equalTo()(20)
         }
         
-        contentView.mas_makeConstraints { make in
+        contentView.agora_mas_makeConstraints { make in
             make?.left.equalTo()(20)
             make?.right.equalTo()(-20)
-            make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(15)
+            make?.top.equalTo()(titleLabel.agora_mas_bottom)?.offset()(15)
             make?.bottom.equalTo()(-15)
         }
         
-        exitButton.mas_makeConstraints { make in
+        exitButton.agora_mas_makeConstraints { make in
             make?.left.equalTo()(20)
             make?.bottom.equalTo()(-20)
             make?.width.equalTo()(110)
             make?.height.equalTo()(36)
         }
         
-        agreeButton.mas_makeConstraints { make in
+        agreeButton.agora_mas_makeConstraints { make in
             make?.right.equalTo()(-20)
             make?.bottom.equalTo()(-20)
             make?.width.equalTo()(110)
@@ -356,7 +356,7 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
         
         let leftSideSpace: CGFloat = 38
         
-        logoView.mas_makeConstraints { make in
+        logoView.agora_mas_makeConstraints { make in
             let top: CGFloat = (compactLayout ? 24 : 55)
             let `left`: CGFloat = (leftSideSpace - 2)
             
@@ -366,54 +366,54 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
             make?.height.equalTo()(32)
         }
         
-        closeButton.mas_makeConstraints { make in
+        closeButton.agora_mas_makeConstraints { make in
             make?.right.equalTo()(-20)
-            make?.centerY.equalTo()(logoView.mas_centerY)
+            make?.centerY.equalTo()(logoView.agora_mas_centerY)
             make?.width.height().equalTo()(36)
         }
         
-        testTag.mas_makeConstraints { make in
-            make?.right.equalTo()(closeButton.mas_left)?.offset()(-20)
-            make?.centerY.equalTo()(logoView.mas_centerY)
+        testTag.agora_mas_makeConstraints { make in
+            make?.right.equalTo()(closeButton.agora_mas_left)?.offset()(-20)
+            make?.centerY.equalTo()(logoView.agora_mas_centerY)
             make?.height.equalTo()(20)
         }
         
-        backgroundView.mas_makeConstraints { make in
+        backgroundView.agora_mas_makeConstraints { make in
             let offset: CGFloat = (compactLayout ? 18 : 32)
             
             make?.left.equalTo()(leftSideSpace)
             make?.right.equalTo()(-leftSideSpace)
-            make?.top.equalTo()(logoView.mas_bottom)?.offset()(offset)
-            make?.height.equalTo()(backgroundView.mas_width)
+            make?.top.equalTo()(logoView.agora_mas_bottom)?.offset()(offset)
+            make?.height.equalTo()(backgroundView.agora_mas_width)
         }
         
-        textView.mas_makeConstraints { make in
+        textView.agora_mas_makeConstraints { make in
             make?.left.equalTo()(leftSideSpace)
             
             if isEn {
                 let offset: CGFloat = (compactLayout ? -50 : 19)
                 
-                make?.top.equalTo()(backgroundView.mas_bottom)?.offset()(offset)
+                make?.top.equalTo()(backgroundView.agora_mas_bottom)?.offset()(offset)
                 
                 make?.width.equalTo()(263)
                 make?.height.equalTo()(135)
             } else {
                 let offset: CGFloat = (compactLayout ? -50 : 36)
                 
-                make?.top.equalTo()(backgroundView.mas_bottom)?.offset()(offset)
+                make?.top.equalTo()(backgroundView.agora_mas_bottom)?.offset()(offset)
                 
                 make?.width.equalTo()(232)
                 make?.height.equalTo()(113)
             }
         }
         
-        textBgView.mas_makeConstraints { make in
-            make?.top.equalTo()(textView.mas_top)?.offset()(-14)
+        textBgView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(textView.agora_mas_top)?.offset()(-14)
             make?.left.right().equalTo()(0)
-            make?.height.equalTo()(textView.mas_height)?.offset()(77)
+            make?.height.equalTo()(textView.agora_mas_height)?.offset()(77)
         }
         
-        startButton.mas_makeConstraints { make in
+        startButton.agora_mas_makeConstraints { make in
             var offset: CGFloat
             
             if compactLayout {
@@ -425,24 +425,24 @@ extension FcrAppUILoginViewController: AgoraUIContentContainer {
             let width: CGFloat = 190
             let height: CGFloat = 52
             
-            make?.top.equalTo()(textView.mas_bottom)?.offset()(offset)
+            make?.top.equalTo()(textView.agora_mas_bottom)?.offset()(offset)
             make?.left.equalTo()(leftSideSpace)
             make?.width.equalTo()(width)
             make?.height.equalTo()(height)
         }
         
-        policyView.mas_makeConstraints { make in
-            make?.left.equalTo()(self.startButton.mas_left)
-            make?.top.equalTo()(self.startButton.mas_bottom)?.offset()(29)
+        policyView.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(self.startButton.agora_mas_left)
+            make?.top.equalTo()(self.startButton.agora_mas_bottom)?.offset()(29)
             make?.height.equalTo()(40)
             make?.right.equalTo()(-leftSideSpace)
         }
         
-        afcView.mas_makeConstraints { make in
+        afcView.agora_mas_makeConstraints { make in
             let offset: CGFloat = (compactLayout ? -20 : -30)
             
             make?.left.equalTo()(leftSideSpace)
-            make?.bottom.equalTo()(self.mas_bottomLayoutGuideBottom)?.offset()(offset)
+            make?.bottom.equalTo()(self.agora_mas_bottomLayoutGuideBottom)?.offset()(offset)
             make?.width.equalTo()(109)
             make?.height.equalTo()(36)
         }

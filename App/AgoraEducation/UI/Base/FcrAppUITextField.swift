@@ -127,11 +127,11 @@ class FcrAppUIIconTextField: FcrAppUITextField,
     }
     
     func initViewFrame() {
-        lineView.mas_makeConstraints { make in
+        lineView.agora_mas_makeConstraints { make in
             make?.left.equalTo()(0)
             make?.right.equalTo()(0)
             make?.height.equalTo()(1)
-            make?.bottom.equalTo()(self.mas_bottom)
+            make?.bottom.equalTo()(self.agora_mas_bottom)
         }
     }
     
