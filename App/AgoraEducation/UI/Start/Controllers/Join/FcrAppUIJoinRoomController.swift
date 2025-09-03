@@ -71,11 +71,11 @@ class FcrAppUIJoinRoomController: FcrAppStartUIPresentedViewController {
     override func initViewFrame() {
         super.initViewFrame()
         
-        joinView.mas_makeConstraints { make in
-            make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(30)
+        joinView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(titleLabel.agora_mas_bottom)?.offset()(30)
             make?.left.equalTo()(20)
             make?.right.equalTo()(-20)
-            make?.bottom.equalTo()(lineView.mas_top)?.offset()
+            make?.bottom.equalTo()(lineView.agora_mas_top)?.offset()
         }
     }
     

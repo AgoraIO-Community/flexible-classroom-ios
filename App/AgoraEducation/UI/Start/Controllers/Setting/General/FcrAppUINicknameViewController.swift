@@ -67,17 +67,17 @@ extension FcrAppUINicknameViewController: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        textField.mas_makeConstraints { make in
-            make?.top.equalTo()(self.mas_topLayoutGuideBottom)
+        textField.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.agora_mas_topLayoutGuideBottom)
             make?.left.equalTo()(16)
             make?.right.equalTo()(-16)
             make?.height.equalTo()(52)
         }
         
-        line.mas_makeConstraints { make in
+        line.agora_mas_makeConstraints { make in
             make?.left.right().equalTo()(0)
             make?.height.equalTo()(1)
-            make?.top.equalTo()(textField.mas_bottom)
+            make?.top.equalTo()(textField.agora_mas_bottom)
         }
     }
     

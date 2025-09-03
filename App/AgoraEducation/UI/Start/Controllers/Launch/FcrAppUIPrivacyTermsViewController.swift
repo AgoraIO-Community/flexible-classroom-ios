@@ -74,28 +74,28 @@ class FcrAppUIPrivacyTermsViewController: FcrAppUIPresentedViewController {
     override func initViewFrame() {
         super.initViewFrame()
         
-        titleLabel.mas_makeConstraints { make in
+        titleLabel.agora_mas_makeConstraints { make in
             make?.top.equalTo()(36)
             make?.centerX.equalTo()(0)
             make?.left.right().equalTo()(0)
             make?.height.equalTo()(16)
         }
         
-        textView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.titleLabel.mas_bottom)?.offset()(21)
+        textView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.titleLabel.agora_mas_bottom)?.offset()(21)
             make?.left.equalTo()(30)
-            make?.bottom.equalTo()(self.disagreedButton.mas_top)?.offset()(10)
+            make?.bottom.equalTo()(self.disagreedButton.agora_mas_top)?.offset()(10)
             make?.right.equalTo()(-30)
         }
         
-        agreedButton.mas_makeConstraints { make in
-            make?.bottom.equalTo()(self.disagreedButton.mas_top)?.offset()(-10)
+        agreedButton.agora_mas_makeConstraints { make in
+            make?.bottom.equalTo()(self.disagreedButton.agora_mas_top)?.offset()(-10)
             make?.left.equalTo()(33)
             make?.height.equalTo()(44)
             make?.centerX.equalTo()(0)
         }
         
-        disagreedButton.mas_makeConstraints { make in
+        disagreedButton.agora_mas_makeConstraints { make in
             make?.bottom.equalTo()(-12)
             make?.left.equalTo()(33)
             make?.centerX.equalTo()(0)

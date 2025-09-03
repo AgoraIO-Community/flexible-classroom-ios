@@ -34,17 +34,17 @@ extension FcrAppUIMainViewController: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        headerView.mas_makeConstraints { make in
+        headerView.agora_mas_makeConstraints { make in
             let height: CGFloat = (UIDevice.current.isSmallPhone ? 198 : 226)
             
             make?.left.top().right().equalTo()(0)
             make?.height.equalTo()(height)
         }
         
-        roomListComponent.view.mas_makeConstraints { make in
+        roomListComponent.view.agora_mas_makeConstraints { make in
             let offset: CGFloat = FcrAppUIFrameGroup.cornerRadius24
             
-            make?.top.equalTo()(headerView.mas_bottom)?.offset()(-offset)
+            make?.top.equalTo()(headerView.agora_mas_bottom)?.offset()(-offset)
             make?.left.right().bottom().equalTo()(0)
         }
     }

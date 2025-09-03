@@ -66,25 +66,25 @@ class FcrAppUICreateRoomHeaderView: UIView, AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        roomNameTextField.mas_makeConstraints { make in
-            make?.top.equalTo()(self.mas_top)
-            make?.left.equalTo()(self.mas_left)?.offset()(15)
-            make?.right.equalTo()(self.mas_right)?.offset()(-15)
+        roomNameTextField.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.agora_mas_top)
+            make?.left.equalTo()(self.agora_mas_left)?.offset()(15)
+            make?.right.equalTo()(self.agora_mas_right)?.offset()(-15)
             make?.height.equalTo()(60)
         }
         
-        userNameTextField.mas_makeConstraints { make in
-            make?.top.equalTo()(self.roomNameTextField.mas_bottom)
-            make?.left.equalTo()(self.mas_left)?.offset()(15)
-            make?.right.equalTo()(self.mas_right)?.offset()(-15)
+        userNameTextField.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.roomNameTextField.agora_mas_bottom)
+            make?.left.equalTo()(self.agora_mas_left)?.offset()(15)
+            make?.right.equalTo()(self.agora_mas_right)?.offset()(-15)
             make?.height.equalTo()(60)
         }
         
-        collectionView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.userNameTextField.mas_bottom)
-            make?.left.equalTo()(self.mas_left)
-            make?.right.equalTo()(self.mas_right)
-            make?.bottom.equalTo()(self.mas_bottom)
+        collectionView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.userNameTextField.agora_mas_bottom)
+            make?.left.equalTo()(self.agora_mas_left)
+            make?.right.equalTo()(self.agora_mas_right)
+            make?.bottom.equalTo()(self.agora_mas_bottom)
         }
     }
     
@@ -194,15 +194,15 @@ class FcrAppUICreateRoomTypeCell: UICollectionViewCell,
     }
     
     func initViewFrame() {
-        imageView.mas_makeConstraints { make in
+        imageView.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
         
-        titleLabel.mas_makeConstraints { make in
+        titleLabel.agora_mas_makeConstraints { make in
             make?.top.left().right().bottom().equalTo()(0)
         }
         
-        selectedView.mas_makeConstraints { make in
+        selectedView.agora_mas_makeConstraints { make in
             make?.width.height().equalTo()(30)
             make?.top.equalTo()(imageView)?.offset()(-8)
             make?.right.equalTo()(imageView)?.offset()(8)
@@ -296,34 +296,34 @@ class FcrAppUICreateRoomTimeView: UIButton,
     }
     
     func initViewFrame() {
-        startTitleLabel.mas_makeConstraints { make in
-            make?.top.equalTo()(self.mas_top)?.offset()(16)
+        startTitleLabel.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.agora_mas_top)?.offset()(16)
             make?.left.equalTo()(21)
         }
         
-        endTitleLabel.mas_makeConstraints { make in
+        endTitleLabel.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(startTitleLabel)
-            make?.left.equalTo()(self.mas_centerX)
+            make?.left.equalTo()(self.agora_mas_centerX)
         }
         
-        startTimeLabel.mas_makeConstraints { make in
+        startTimeLabel.agora_mas_makeConstraints { make in
             make?.left.equalTo()(startTitleLabel)
-            make?.top.equalTo()(startTitleLabel.mas_bottom)?.offset()(12)
+            make?.top.equalTo()(startTitleLabel.agora_mas_bottom)?.offset()(12)
         }
         
-        arrowIcon.mas_makeConstraints { make in
-            make?.left.equalTo()(startTimeLabel.mas_right)?.offset()(5)
+        arrowIcon.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(startTimeLabel.agora_mas_right)?.offset()(5)
             make?.centerY.equalTo()(startTimeLabel)
         }
         
-        endTimeLabel.mas_makeConstraints { make in
+        endTimeLabel.agora_mas_makeConstraints { make in
             make?.left.equalTo()(endTitleLabel)
             make?.centerY.equalTo()(startTimeLabel)
             make?.height.greaterThanOrEqualTo()(10)
         }
         
-        durationLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(endTimeLabel.mas_right)?.offset()(8)
+        durationLabel.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(endTimeLabel.agora_mas_right)?.offset()(8)
             make?.bottom.equalTo()(endTimeLabel)
         }
     }
@@ -399,18 +399,18 @@ class FcrAppUICreateRoomFooterView: UIView,
     }
     
     func initViewFrame() {
-        createButton.mas_makeConstraints { make in
+        createButton.agora_mas_makeConstraints { make in
             make?.top.equalTo()(15)
             make?.right.equalTo()(-15)
             make?.height.equalTo()(46)
-            make?.width.equalTo()(cancelButton.mas_width)?.multipliedBy()(2)
+            make?.width.equalTo()(cancelButton.agora_mas_width)?.multipliedBy()(2)
         }
         
-        cancelButton.mas_makeConstraints { make in
+        cancelButton.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(createButton)
             make?.left.equalTo()(15)
-            make?.right.equalTo()(createButton.mas_left)?.offset()(-15)
-            make?.height.equalTo()(createButton.mas_height)
+            make?.right.equalTo()(createButton.agora_mas_left)?.offset()(-15)
+            make?.height.equalTo()(createButton.agora_mas_height)
         }
     }
     
@@ -489,36 +489,36 @@ class FcrAppUICreateRoomContentView: UIView,
     }
     
     func initViewFrame() {
-        closeButton.mas_makeConstraints { make in
+        closeButton.agora_mas_makeConstraints { make in
             make?.width.height().equalTo()(44)
             make?.left.equalTo()(16)
             make?.top.equalTo()(44)
         }
         
-        backgroundImageView.mas_makeConstraints { make in
+        backgroundImageView.agora_mas_makeConstraints { make in
             make?.left.top().right().equalTo()(0)
         }
         
-        titleLabel.mas_makeConstraints { make in
+        titleLabel.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(closeButton)
             make?.left.right().equalTo()(0)
         }
         
-        headerView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.titleLabel.mas_bottom)?.offset()(27)
+        headerView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.titleLabel.agora_mas_bottom)?.offset()(27)
             make?.left.equalTo()(15)
             make?.right.equalTo()(-15)
             make?.height.equalTo()(248)
         }
         
-        timeView.mas_makeConstraints { make in
-            make?.top.equalTo()(self.headerView.mas_bottom)?.offset()(10)
+        timeView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(self.headerView.agora_mas_bottom)?.offset()(10)
             make?.left.equalTo()(15)
             make?.right.equalTo()(-15)
             make?.height.equalTo()(83)
         }
         
-        footerView.mas_makeConstraints { make in
+        footerView.agora_mas_makeConstraints { make in
             make?.left.right().bottom().equalTo()(0)
             make?.height.equalTo()(96)
         }
@@ -551,10 +551,10 @@ class FcrAppUICreateRoomContentView: UIView,
     func updateMoreTableViewHeight(animated: Bool = false) {
         let height = moreView.suitableHeight
         
-        moreView.mas_remakeConstraints { make in
+        moreView.agora_mas_remakeConstraints { make in
             make?.left.equalTo()(15)
             make?.right.equalTo()(-15)
-            make?.top.equalTo()(self.timeView.mas_bottom)?.offset()(10)
+            make?.top.equalTo()(self.timeView.agora_mas_bottom)?.offset()(10)
             make?.height.equalTo()(height)
         }
         
