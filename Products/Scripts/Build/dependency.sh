@@ -12,7 +12,7 @@
 # AgoraUIBaseViews
 Artifactory_iOS_URL="https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS"
 
-Version="2.8.124-hello"
+Version="2.8.125-hello"
 Branch="release_${Version}"
 
 AgoraClassroomSDK_iOS_URL="${Artifactory_iOS_URL}/AgoraClassroomSDK_iOS/${Branch}/dev/AgoraClassroomSDK_iOS_${Version}.zip"
