@@ -719,13 +719,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1001,7 +997,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GM72UGLGZW;
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = PV44H27855;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1037,12 +1032,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.8.126-hello";
+				MARKETING_VERSION = 2.8.126-hello;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraEducation;
 				PRODUCT_NAME = AgoraCloudClass;
 				PROVISIONING_PROFILE_SPECIFIER = App;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AgoraQA2021;
 				STRIP_STYLE = "non-global";
 				STRIP_SWIFT_SYMBOLS = NO;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -1103,7 +1097,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.8.126-hello";
+				MARKETING_VERSION = 2.8.126-hello;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraFlexEduDis;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1224,7 +1218,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.8.126-hello";
+				MARKETING_VERSION = 2.8.126-hello;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.WayangQA;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1344,7 +1338,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.8.126-hello";
+				MARKETING_VERSION = 2.8.126-hello;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.CertificateA;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1463,7 +1457,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.8.126-hello";
+				MARKETING_VERSION = 2.8.126-hello;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.CertificateB;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1582,7 +1576,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.8.126-hello";
+				MARKETING_VERSION = 2.8.126-hello;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.CertificateD;
 				PRODUCT_NAME = AgoraCloudClass;
