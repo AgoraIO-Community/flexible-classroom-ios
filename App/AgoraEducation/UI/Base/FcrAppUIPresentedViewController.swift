@@ -128,7 +128,7 @@ class FcrAppUIPresentedViewController: FcrAppUIViewController,
                 return
             }
             
-            UIApplication.shared.keyWindow?.endEditing(true)
+            UIWindow.agora_top_window()?.endEditing(true)
             self.dismiss(animated: true)
             self.onDismissed?()
             self.onDismissed = nil

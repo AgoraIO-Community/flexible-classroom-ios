@@ -80,7 +80,9 @@ private extension AgoraSharingLinkWidget {
     }
     
     @objc func onClickSendToFriend(_ sender: UIButton) {
-        let topVC = UIViewController.agora_top_view_controller()
+        guard let topVC = UIViewController.agora_top_view_controller() else {
+            return
+        }
         let shareURL = URL(string: sharingLink)
         let activity = UIActivity()
         let shareVC = UIActivityViewController(activityItems: [sharingLink, shareURL],

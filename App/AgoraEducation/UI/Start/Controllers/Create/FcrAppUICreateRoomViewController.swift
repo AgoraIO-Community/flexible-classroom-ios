@@ -45,7 +45,7 @@ class FcrAppUICreateRoomViewController: FcrAppUIViewController {
         super.touchesBegan(touches,
                            with: event)
         
-        UIApplication.shared.keyWindow?.endEditing(true)
+        UIWindow.agora_top_window()?.endEditing(true)
     }
     
     func createRoom(_ config: FcrAppCreateRoomConfig,
