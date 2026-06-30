@@ -63,13 +63,34 @@ parameterCheckPrint ${Repo_Name}
 # path
 Root_Path="../../.."
 
+download_exit=0
+
 for SDK_URL in ${Dep_Array_URL[*]} 
 do
     echo ${SDK_URL}
-    python3 ${WORKSPACE}/artifactory_utils.py --action=download_file --file=${SDK_URL}
+
+    download_exit=1
+    retry_count=0
+    retry_max_count=3
+    
+    while [ $retry_count -lt $retry_max_count ]; do
+        retry_count=$((retry_count + 1))
+        python3 ${WORKSPACE}/artifactory_utils.py --action=download_file --file=${SDK_URL}
+        download_exit=$?
+        if [ $download_exit -eq 0 ]; then
+            break
+        fi
+        if [ $retry_count -lt $retry_max_count ]; then
+            sleep 10
+        fi
+    done
+
+    if [ $download_exit -ne 0 ]; then
+        break
+    fi
 done
 
-errorPrint $? "${Repo_Name} Download Dependency Libs"
+errorPrint $download_exit "${Repo_Name} Download Dependency Libs"
 
 echo Dependency Libs
 
