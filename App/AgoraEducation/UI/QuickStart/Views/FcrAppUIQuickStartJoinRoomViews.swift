@@ -266,7 +266,7 @@ class FcrAppUIQuickStartJoinRoomInputView: UIView,
     
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        UIApplication.shared.keyWindow?.endEditing(true)
+        UIWindow.agora_top_window()?.endEditing(true)
         
         let userRole = userRoleList[indexPath.item]
         selectedUserRole = userRole

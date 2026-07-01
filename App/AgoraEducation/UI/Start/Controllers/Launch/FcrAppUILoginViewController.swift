@@ -231,7 +231,7 @@ class FcrAppUILoginViewController: FcrAppUIViewController {
     private func addAppActiveObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(appDidBecomeActive),
-                                               name: NSNotification.Name("app_did_become_active"),
+                                               name: UIApplication.didBecomeActiveNotification,
                                                object: nil)
     }
     
@@ -585,7 +585,7 @@ private extension FcrAppUILoginViewController {
 
 private extension FcrAppUILoginViewController {
     func createAnimation() {
-        guard let bounds = UIApplication.shared.keyWindow?.bounds else {
+        guard let bounds = UIWindow.agora_top_window()?.bounds else {
             return
         }
         

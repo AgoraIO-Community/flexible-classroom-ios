@@ -12,7 +12,7 @@
 		1A44BE7B22BF863000766274 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A44BE6022BF863000766274 /* AppDelegate.m */; };
 		489330F749FFF2263BE9EF78 /* Pods_AgoraEducation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E41C30C2710CB486B9E7805 /* Pods_AgoraEducation.framework */; };
 		68403F83276C859800E88214 /* FcrAppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861D3CFA276AE05E00645D6A /* FcrAppExtension.swift */; };
-		75D36FB810CB94F4AEF8D9A2 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		75D36FB810CB94F4AEF8D9A2 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		7813B70223FA5A0300265830 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7813B6F623FA5A0300265830 /* LaunchScreen.storyboard */; };
 		7878B4C523FA72EE00AF1B4F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7878B4C723FA72EE00AF1B4F /* Localizable.strings */; };
 		7878B4CB23FA735700AF1B4F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7878B4CD23FA735700AF1B4F /* InfoPlist.strings */; };
@@ -87,6 +87,8 @@
 		AB7B7B6F28C1E0B1001D327A /* FcrAppUIMainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B7B6E28C1E0B1001D327A /* FcrAppUIMainHeaderView.swift */; };
 		AB8AC745287FEB5000B57B58 /* FcrAppUIPrivacyTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8AC744287FEB5000B57B58 /* FcrAppUIPrivacyTermsViewController.swift */; };
 		ABB1D15D287C00A600395A13 /* FcrAppLoginWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB1D15C287C00A600395A13 /* FcrAppLoginWebViewController.swift */; };
+		E1D2C3A42F03001100EDU01 /* FcrAppLaunchSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D2C3A42F03000200EDU01 /* FcrAppLaunchSupport.m */; };
+		E1D2C3A42F03001200EDU01 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D2C3A42F03000400EDU01 /* SceneDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -195,6 +197,12 @@
 		C4C459442E746BCF4D5997C8 /* Pods-AgoraEducation.certificateb.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.certificateb.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.certificateb.xcconfig"; sourceTree = "<group>"; };
 		D07BBD028AA8C6FEF9294576 /* Pods-AgoraEducation.certificatea.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.certificatea.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.certificatea.xcconfig"; sourceTree = "<group>"; };
 		D58F6327530BE8AC6BB7A5A6 /* Pods-AgoraEducation.qatestnewrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.qatestnewrelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.qatestnewrelease.xcconfig"; sourceTree = "<group>"; };
+		E1D2C3A42F03000100EDU01 /* FcrAppLaunchSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FcrAppLaunchSupport.h; sourceTree = "<group>"; };
+		E1D2C3A42F03000200EDU01 /* FcrAppLaunchSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FcrAppLaunchSupport.m; sourceTree = "<group>"; };
+		E1D2C3A42F03000300EDU01 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		E1D2C3A42F03000400EDU01 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		E1D2C3A42F03000500EDU01 /* Info-Legacy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Legacy.plist"; sourceTree = "<group>"; };
+		E1D2C3A42F03002000EDU01 /* Pods-AgoraEducation.debug-legacy.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.debug-legacy.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.debug-legacy.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,7 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75D36FB810CB94F4AEF8D9A2 /* (null) in Frameworks */,
+				75D36FB810CB94F4AEF8D9A2 /* BuildFile in Frameworks */,
 				8661A1A4270DA50E0047CB16 /* libz.tbd in Frameworks */,
 				787A004225D10FC10063456F /* AudioToolbox.framework in Frameworks */,
 				489330F749FFF2263BE9EF78 /* Pods_AgoraEducation.framework in Frameworks */,
@@ -230,11 +238,16 @@
 				78A3EA5E25640261003067AB /* AgoraEducation-Bridging-Header.h */,
 				1A44BE5722BF863000766274 /* Assets.xcassets */,
 				1A44BE7E22BF874A00766274 /* Info.plist */,
+				E1D2C3A42F03000500EDU01 /* Info-Legacy.plist */,
 				7878B4CD23FA735700AF1B4F /* InfoPlist.strings */,
 				7878B4C723FA72EE00AF1B4F /* Localizable.strings */,
 				1A44BE5E22BF863000766274 /* main.m */,
 				1A44BE3522BF863000766274 /* AppDelegate.h */,
 				1A44BE6022BF863000766274 /* AppDelegate.m */,
+				E1D2C3A42F03000100EDU01 /* FcrAppLaunchSupport.h */,
+				E1D2C3A42F03000200EDU01 /* FcrAppLaunchSupport.m */,
+				E1D2C3A42F03000300EDU01 /* SceneDelegate.h */,
+				E1D2C3A42F03000400EDU01 /* SceneDelegate.m */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -584,6 +597,7 @@
 			isa = PBXGroup;
 			children = (
 				40B28313D80C71B4DA8D643D /* Pods-AgoraEducation.debug.xcconfig */,
+				E1D2C3A42F03002000EDU01 /* Pods-AgoraEducation.debug-legacy.xcconfig */,
 				4EAA54960A24224AEAEC570D /* Pods-AgoraEducation.release.xcconfig */,
 				A5BFF93D50503E0756F47D98 /* Pods-AgoraEducation.qarelease.xcconfig */,
 				3327573F8A98D9B63A402151 /* Pods-AgoraEducation.devrelease.xcconfig */,
@@ -769,6 +783,8 @@
 				AB05CE9A28C89FAD001239AD /* FcrAppUICreateRoomTimePickerController.swift in Sources */,
 				AB0A2DD228DAEF6A0048FA3C /* FcrAppUILoginViewController.swift in Sources */,
 				1A44BE7B22BF863000766274 /* AppDelegate.m in Sources */,
+				E1D2C3A42F03001100EDU01 /* FcrAppLaunchSupport.m in Sources */,
+				E1D2C3A42F03001200EDU01 /* SceneDelegate.m in Sources */,
 				86F5E3202A8CBF9E00AED16A /* FcrAppUIFontGroup.swift in Sources */,
 				86B81E6A2A56A2B400BA631C /* FcrAppLocalUser.swift in Sources */,
 				86E2786A2AB07775007E2373 /* FcrAppRoomUserIdCreater.swift in Sources */,
@@ -1027,7 +1043,7 @@
 					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
 				);
 				INFOPLIST_FILE = "AgoraEducation/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1092,7 +1108,7 @@
 					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
 				);
 				INFOPLIST_FILE = "AgoraEducation/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1213,7 +1229,7 @@
 					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
 				);
 				INFOPLIST_FILE = "AgoraEducation/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1333,7 +1349,7 @@
 					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
 				);
 				INFOPLIST_FILE = "AgoraEducation/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1452,7 +1468,7 @@
 					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
 				);
 				INFOPLIST_FILE = "AgoraEducation/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1571,7 +1587,7 @@
 					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
 				);
 				INFOPLIST_FILE = "AgoraEducation/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1591,6 +1607,133 @@
 			};
 			name = CertificateD;
 		};
+		E1D2C3A42F03003000EDU01 /* Debug-Legacy */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = "Debug-Legacy";
+		};
+		E1D2C3A42F03003100EDU01 /* Debug-Legacy */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1D2C3A42F03002000EDU01 /* Pods-AgoraEducation.debug-legacy.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 100;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GM72UGLGZW;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/AgoraEducation",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"DEBUG_LEGACY=1",
+				);
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking/AFNetworking.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AgoraActionProcess/AgoraActionProcess.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AgoraEduSDK/AgoraEduSDK.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AgoraHandsUp/AgoraHandsUp.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AgoraLog/AgoraLog.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AliyunOSSiOS/AliyunOSSiOS.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaLumberjack/CocoaLumberjack.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/EduSDK/EduSDK.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Whiteboard/Whiteboard.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/YYModel/YYModel.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/dsBridge/dsBridge.framework/Headers\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"",
+				);
+				INFOPLIST_FILE = "AgoraEducation/Supporting Files/Info-Legacy.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.8.117;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraEducation;
+				PRODUCT_NAME = AgoraCloudClass;
+				PROVISIONING_PROFILE_SPECIFIER = App;
+				STRIP_STYLE = "non-global";
+				STRIP_SWIFT_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "AgoraEducation/Supporting Files/AgoraEducation-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-Legacy";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1598,6 +1741,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1AE0D02E2283C5F40092AC5E /* Debug */,
+				E1D2C3A42F03003000EDU01 /* Debug-Legacy */,
 				1AE0D02F2283C5F40092AC5E /* Release */,
 				78AED04623C58E5D00A24DDB /* CertificateA */,
 				78CFE1DC257DE5AD0044F3D5 /* CertificateB */,
@@ -1611,6 +1755,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1AE0D0312283C5F40092AC5E /* Debug */,
+				E1D2C3A42F03003100EDU01 /* Debug-Legacy */,
 				1AE0D0322283C5F40092AC5E /* Release */,
 				78AED04723C58E5D00A24DDB /* CertificateA */,
 				78CFE1DD257DE5AD0044F3D5 /* CertificateB */,
